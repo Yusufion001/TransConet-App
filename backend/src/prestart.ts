@@ -72,7 +72,7 @@ if (process.env.DATABASE_URL) {
     console.log("✅ [PRESTART] Database connection successfully verified.");
   } catch (error) {
     console.warn("⚠️ [PRESTART] WARNING: Database connection failed (bad credentials or offline server).");
-    console.warn("🔌 [PRESTART] Cannot start without database in production mode. Throwing error...");
+    console.warn("🔌 [PRESTART] Cannot connect to database. Continuing anyway for development...");
     // throw error; // Disabled to allow dev server to start even if DB is offline or invalid credentials
   }
 }
