@@ -1,6 +1,9 @@
+process.env.NODE_ENV = 'test';
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'test_jwt_secret_key_12345';
+process.env.ADMIN_JWT_SECRET = process.env.ADMIN_JWT_SECRET || 'test_admin_jwt_secret_key_12345';
+process.env.DATABASE_URL = process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/test_db';
+
 require('dotenv').config();
-process.env.NODE_ENV = 'test';
-process.env.NODE_ENV = 'test';
 import { vi } from 'vitest';
 
 vi.mock('ioredis', () => {
