@@ -4,7 +4,7 @@ import path from 'path';
 import { execSync } from 'child_process';
 
 // Configure dotenv to read our local clean .env file first
-dotenv.config({ path: path.resolve(process.cwd(), '../.env'), override: true });
+dotenv.config({ path: path.resolve(process.cwd(), '../.env'), override: false });
 
 function sanitizeDatabaseUrl(url: string | undefined): string | undefined {
   if (!url) return url;

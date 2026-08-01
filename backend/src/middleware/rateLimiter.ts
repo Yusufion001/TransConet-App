@@ -7,7 +7,7 @@ const limiters: Record<string, Ratelimit> = {};
 
 const getLimiter = (path: string) => {
   if (!redis) {
-    if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+    if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_REST_URL.includes("dummy")) {
       return null;
     }
     redis = new Redis({ url: process.env.UPSTASH_REDIS_REST_URL?.replace(/"/g, "") || "", token: process.env.UPSTASH_REDIS_REST_TOKEN?.replace(/"/g, "") || "" });

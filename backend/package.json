@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "postinstall": "prisma generate --schema=prisma/schema.prisma",
-    "dev": "PORT=3001 concurrently \"tsx src/server.ts\" \"tsx src/worker.ts\"",
+    "dev": "BACKEND_PORT=3001 concurrently \"tsx src/server.ts\" \"tsx src/worker.ts\"",
     "build": "esbuild src/server.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs && esbuild src/worker.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/worker.cjs",
     "start": "node dist/worker.cjs & node dist/server.cjs"
   },

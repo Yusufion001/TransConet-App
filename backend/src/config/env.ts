@@ -36,5 +36,5 @@ export const config = {
   jwtSecret: (process.env.JWT_SECRET || 'test_jwt_secret_key_12345') as string,
   adminJwtSecret: (process.env.ADMIN_JWT_SECRET || 'test_admin_jwt_secret_key_12345') as string,
   databaseUrl: (process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/test_db') as string,
-  port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
+  port: process.env.BACKEND_PORT ? parseInt(process.env.BACKEND_PORT, 10) : (process.env.PORT ? parseInt(process.env.PORT, 10) : 3000),
 };
