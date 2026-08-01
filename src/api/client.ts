@@ -12,13 +12,22 @@ const api = axios.create({
 
 export const fetchCsrfToken = async () => {
   try {
-    const res = await api.get('/csrf-token');
-    csrfToken = res.data.csrfToken;
+    const response = await fetch('/api/csrf-token', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      },
+      credentials: 'include'
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    csrfToken = data.csrfToken;
   } catch (err: any) {
-    console.error('CSRF Token fetch failed permanently:', err?.message || err);
+    console.error('CSRF Token fetch failed permanently:', err?.message || err, err);
   }
 };
-
 api.interceptors.request.use(
   async (config) => {
     const isAdminRoute = config.url?.startsWith('/admin') || config.url?.startsWith('admin');
