@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "transport-connect",
+    "entryPoint": "./index.js",
+    "slug": "TransConet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#020617"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#020617"
+      },
+      "package": "com.transkonect.app"
+    },
+    "web": { "bundler": "metro",
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "da37b4af-a0ef-4466-8147-4f9ecd8e510d"
+      }
+    },
+    "owner": "transport_connect1"
+  }
+}

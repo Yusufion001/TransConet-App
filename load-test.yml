@@ -1,0 +1,22 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 50
+      name: "Ramping up real-time marketplace traffic"
+    - duration: 120
+      arrivalRate: 50
+      name: "Sustained peak operations (Lagos-Ibadan corridor spike)"
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Shipper browsing active load board"
+    flow:
+      - get:
+          url: "/api/loads"
+      - think: 2 # Simulates a human stopping to read the board for 2 seconds
+      - get:
+          url: "/api/health"

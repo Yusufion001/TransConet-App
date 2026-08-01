@@ -1,0 +1,4 @@
+src/socket.ts:12:        ? ['https://transconet.com', 'https://www.transconet.com', 'https://transconet.ng', 'https://www.transconet.ng', 'https://transconet.ng', 'https://www.transconet.ng'] 
+src/server.ts:77:      if (host && (host === 'www.transconet.com' || host === 'transconet.ng' || host === 'www.transconet.ng' || host === 'transconet.ng' || host === 'www.transconet.ng')) {
+src/server.ts:132:    'https://transconet.ng', 
+src/server.ts:133:    'https://www.transconet.ng'

@@ -1,0 +1,22 @@
+{
+  "name": "functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.110.8",
+    "firebase-admin": "^14.2.0",
+    "firebase-functions": "^7.3.2-rc.0",
+    "flutterwave-node-v3": "^1.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2"
+  }
+}

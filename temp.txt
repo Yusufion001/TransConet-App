@@ -1,0 +1,16 @@
+                  You are not authorized to view the Administrative portal.
+                </p>
+              </div>
+            )
+          ) : activeView === 'support' ? (
+            <SupportChatWidget 
+              inline={true} 
+              initialTab={supportTab}
+              highlight={supportHighlight}
+              onHighlightReset={handleSupportHighlightReset}
+            />
+          ) : (
+            <AccountManagement />
+          )}
+        </div>
+      </div>
