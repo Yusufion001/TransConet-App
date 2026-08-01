@@ -230,34 +230,8 @@ async function startServer() {
     });
   });
 
-  // Vite middleware for development
-  if (process.env.NODE_ENV !== "production") {
-    const { createServer: createViteServer } = await import('v' + 'ite');
-    const vite = await createViteServer({
-      server: { 
-        middlewareMode: true,
-        hmr: { server: httpServer }
-      },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
-    app.get('*', (req, res) => {
-      
-      fs.readFile(path.join(distPath, 'index.html'), 'utf8', (err, html) => {
-        if (err) return res.status(500).send('Error reading index.html');
-        // Replace scripts to include nonce
-        const noncedHtml = html.replace(/<script /g, `<script nonce="${(res as any).locals.nonce}" `);
-        res.send(noncedHtml);
-      });
-
-    });
-  }
-
   
-  
+  // Vite middleware removed for separate frontend hosting
   httpServer.on('error', (e: any) => {
     console.error('Server error:', e);
   });

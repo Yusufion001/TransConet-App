@@ -5,17 +5,17 @@
   "type": "module",
   "scripts": {
     "postinstall": "prisma generate",
-    "dev": "node dev.mjs",
+    "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
     "start:dev": "tsx src/server.ts",
     "start:worker": "tsx src/worker.ts",
-    "build": "vite build && esbuild src/server.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs && esbuild src/worker.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/worker.cjs",
+    "build": "npm run build -w frontend && npm run build -w backend",
     "prestart": "echo \"Skipping migrations during boot to prevent pooler hang\"",
-    "start": "node dist/worker.cjs & node dist/server.cjs",
+    "start": "npm run start -w backend",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "test": "vitest run tests/",
-    "build:frontend": "vite build"
+    "build:frontend": "npm run build -w frontend"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
@@ -94,5 +94,9 @@
     "supertest": "^7.2.2",
     "tailwindcss": "^4.1.14",
     "vitest": "^4.1.10"
-  }
+  },
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
 }

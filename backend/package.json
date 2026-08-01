@@ -1,0 +1,13 @@
+{
+  "name": "transconet-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "postinstall": "prisma generate",
+    "dev": "PORT=3001 concurrently \"tsx src/server.ts\" \"tsx src/worker.ts\"",
+    "build": "esbuild src/server.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs && esbuild src/worker.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/worker.cjs",
+    "start": "node dist/worker.cjs & node dist/server.cjs"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
