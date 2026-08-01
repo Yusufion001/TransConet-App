@@ -9,7 +9,7 @@ export const initSocket = (httpServer: HttpServer) => {
   io = new SocketIOServer(httpServer, {
     cors: {
       origin: (origin, callback) => {
-        if (!origin || origin.includes('transconet') || origin.includes('railway') || origin.endsWith('.run.app') || origin.endsWith('.cloudshell.dev') || origin.includes('localhost')) {
+        if (!origin || origin.includes('transconet') || origin.includes('railway') || origin.includes('onrender') || origin.endsWith('.run.app') || origin.endsWith('.cloudshell.dev') || origin.includes('localhost')) {
           callback(null, true);
         } else {
           callback(null, false);

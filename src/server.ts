@@ -135,7 +135,7 @@ async function startServer() {
 
   app.use(cors({
     origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.run.app') || origin.endsWith('.cloudshell.dev') || origin.endsWith('.railway.app') || origin.includes('railway')) {
+      if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.run.app') || origin.endsWith('.cloudshell.dev') || origin.endsWith('.railway.app') || origin.includes('railway') || origin.endsWith('.onrender.com') || origin.includes('onrender')) {
         callback(null, true);
       } else {
         callback(null, false); // Don't throw an error to prevent breaking, just don't allow
