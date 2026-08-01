@@ -1,7 +1,9 @@
+import path from 'path';
 import dotenv from 'dotenv';
 
 // Load variables from .env file
-dotenv.config();
+dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
+dotenv.config(); // fallback
 
 // Fallbacks for test environment when .env is not present (e.g. in CI)
 if (process.env.NODE_ENV === 'test') {
