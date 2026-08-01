@@ -36,7 +36,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
   const [activeMatch, setActiveMatch] = useState<any>(null);
 
   useEffect(() => {
-    const newSocket = io((import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL !== 'undefined' && import.meta.env.VITE_API_URL !== 'null') ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') : (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''),  {
+    const newSocket = io('/', {
       withCredentials: true
     });
     setSocket(newSocket);
@@ -69,8 +69,8 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
 
   const [matchOptions, setMatchOptions] = useState<any[]>([]);
   const [acceptedJob, setAcceptedJob] = useState<any>(null);
-  const [pickupDetails, setPickupDetails] = useState({ address: (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''), contact: (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''), date: '' });
-  const [deliveryDetails, setDeliveryDetails] = useState({ address: (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''), contact: (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''), date: '' });
+  const [pickupDetails, setPickupDetails] = useState({ address: '', contact: '', date: '' });
+  const [deliveryDetails, setDeliveryDetails] = useState({ address: '', contact: '', date: '' });
   const [detailsProvided, setDetailsProvided] = useState(false);
   
   // Negotiation States

@@ -144,7 +144,7 @@ export function useAdminLiveData<T>(config: LiveDataConfig) {
     }
 
     if (config.socketEvent) {
-      socketRef.current = io((import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL !== 'undefined' && import.meta.env.VITE_API_URL !== 'null') ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') : (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''),  {
+      socketRef.current = io('/', {
         withCredentials: true
       });
       

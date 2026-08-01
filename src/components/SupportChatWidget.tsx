@@ -135,7 +135,7 @@ export default function SupportChatWidget({
 
   useEffect(() => {
     if (isOpen && ticket?.id) {
-      const newSocket = io((import.meta.env.VITE_API_URL && import.meta.env.VITE_API_URL !== 'undefined' && import.meta.env.VITE_API_URL !== 'null') ? import.meta.env.VITE_API_URL.replace(/\/api\/?$/, '') : (import.meta.env.MODE === 'production' ? 'https://transconet-app-production-0e65.up.railway.app' : ''),  {
+      const newSocket = io('/', {
         withCredentials: true
       });
       setSocket(newSocket);
