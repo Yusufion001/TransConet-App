@@ -10,7 +10,18 @@ const getLimiter = (path: string) => {
     if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN || process.env.UPSTASH_REDIS_REST_URL.includes("dummy")) {
       return null;
     }
-    redis = new Redis({ url: process.env.UPSTASH_REDIS_REST_URL?.replace(/"/g, "") || "", token: process.env.UPSTASH_REDIS_REST_TOKEN?.replace(/"/g, "") || "" });
+    const rawUrl = process.env.UPSTASH_REDIS_REST_URL.replace(/"/g, "");
+    const cleanUrl = rawUrl.split(" ")[0];
+    let cleanToken = process.env.UPSTASH_REDIS_REST_TOKEN.replace(/"/g, "");
+    
+    if (rawUrl.includes("UPSTASH_REDIS_REST_TOKEN=")) {
+      const match = rawUrl.match(/UPSTASH_REDIS_REST_TOKEN=([^\s]+)/);
+      if (match && match[1]) {
+        cleanToken = match[1];
+      }
+    }
+    
+    redis = new Redis({ url: cleanUrl, token: cleanToken });
   }
 
   let limit = 20;
