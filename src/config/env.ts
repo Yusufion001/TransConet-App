@@ -25,5 +25,5 @@ export const config = {
   jwtSecret: process.env.JWT_SECRET as string,
   adminJwtSecret: process.env.ADMIN_JWT_SECRET as string,
   databaseUrl: process.env.DATABASE_URL as string,
-  port: process.env.NODE_ENV === 'production' ? (process.env.PORT ? parseInt(process.env.PORT, 10) : 3000) : 3000,
+  port: process.env.PORT ? parseInt(process.env.PORT, 10) : 3000,
 };

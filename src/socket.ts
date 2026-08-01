@@ -8,9 +8,13 @@ let io: SocketIOServer | null = null;
 export const initSocket = (httpServer: HttpServer) => {
   io = new SocketIOServer(httpServer, {
     cors: {
-      origin: process.env.NODE_ENV === 'production' 
-        ? ['https://transconet.com', 'https://www.transconet.com', 'https://transconet.ng', 'https://www.transconet.ng', 'https://transconet.ng', 'https://www.transconet.ng'] 
-        : '*',
+      origin: (origin, callback) => {
+        if (!origin || origin.includes('transconet') || origin.includes('railway') || origin.endsWith('.run.app') || origin.endsWith('.cloudshell.dev') || origin.includes('localhost')) {
+          callback(null, true);
+        } else {
+          callback(null, false);
+        }
+      },
       methods: ['GET', 'POST'],
       credentials: true
     }
