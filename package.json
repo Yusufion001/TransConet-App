@@ -9,7 +9,7 @@
     "start:dev": "tsx src/server.ts",
     "start:worker": "tsx src/worker.ts",
     "build": "vite build && esbuild src/server.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs && esbuild src/worker.ts --bundle --platform=node --target=node20 --format=cjs --packages=external --sourcemap --outfile=dist/worker.cjs",
-    "prestart": "npx prisma db push --accept-data-loss || true",
+    "prestart": "echo \"Skipping migrations during boot to prevent pooler hang\"",
     "start": "node dist/worker.cjs & node dist/server.cjs",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
