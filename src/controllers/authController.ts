@@ -194,7 +194,7 @@ export const loginPin = async (req: Request, res: Response): Promise<any> => {
     const sanitizedPhone = rawPhone.trim();
     const sanitizedPin = rawPin.trim();
 
-    if (!sanitizedPhone || !sanitizedPin || sanitizedPin.length !== 6) {
+    if (!sanitizedPhone || !sanitizedPin || sanitizedPin.length < 6) {
       return res.status(400).json({ error: 'Phone number and a valid 6-digit PIN are required.' });
     }
 
@@ -272,7 +272,7 @@ export const registerPin = async (req: Request, res: Response): Promise<any> => 
     const sanitizedPhone = rawPhone.trim();
     const sanitizedPin = rawPin.trim();
 
-    if (!sanitizedPhone || !sanitizedPin || sanitizedPin.length !== 6) {
+    if (!sanitizedPhone || !sanitizedPin || sanitizedPin.length < 6) {
       return res.status(400).json({ error: 'Phone number and a 6-digit PIN are required.' });
     }
 

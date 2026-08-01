@@ -21,7 +21,7 @@ const verifyOtpSchema = z.object({
 const pinSchema = z.object({
   body: z.object({
     phoneNumber: z.string().min(10).max(15).regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone format'),
-    pin: z.string().length(4)
+    pin: z.string().min(4).max(64)
   })
 });
 
