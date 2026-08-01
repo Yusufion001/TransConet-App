@@ -7,21 +7,24 @@ const router = Router();
 
 const phoneSchema = z.object({
   body: z.object({
-    phoneNumber: z.string().min(10).max(15).regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone format')
+    phoneNumber: z.string().min(10).max(15).regex(/^\+?\d{10,15}$/, 'Invalid phone format')
   })
 });
 
 const verifyOtpSchema = z.object({
   body: z.object({
-    phoneNumber: z.string().min(10).max(15).regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone format'),
+    phoneNumber: z.string().min(10).max(15).regex(/^\+?\d{10,15}$/, 'Invalid phone format'),
     otpCode: z.string().min(4).max(6)
   })
 });
 
 const pinSchema = z.object({
   body: z.object({
-    phoneNumber: z.string().min(10).max(15).regex(/^\+?[1-9]\d{1,14}$/, 'Invalid phone format'),
-    pin: z.string().min(4).max(64)
+    phoneNumber: z.string().min(10).max(15).regex(/^\+?\d{10,15}$/, 'Invalid phone format'),
+    pin: z.string().min(4).max(64),
+    email: z.string().optional(),
+    role: z.string().optional(),
+    fullName: z.string().optional()
   })
 });
 
