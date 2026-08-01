@@ -1,3 +1,6 @@
+require('dotenv').config();
+process.env.NODE_ENV = 'test';
+process.env.NODE_ENV = 'test';
 import { vi } from 'vitest';
 
 vi.mock('ioredis', () => {
