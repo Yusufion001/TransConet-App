@@ -3,7 +3,7 @@ import axios from 'axios';
 let csrfToken = '';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -12,7 +12,8 @@ const api = axios.create({
 
 export const fetchCsrfToken = async () => {
   try {
-    const response = await fetch('/api/csrf-token', {
+    const baseUrl = import.meta.env.VITE_API_URL || '';
+    const response = await fetch(`${baseUrl}/api/csrf-token`, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
