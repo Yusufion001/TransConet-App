@@ -82,7 +82,7 @@ export const rateLimitMiddleware = async (req: Request, res: Response, next: Nex
 
     next();
   } catch (error) {
-    console.error("Rate limiting error:", error);
+    console.error("Rate limiting error:", error); return res.status(500).json({error: error.message});
     next();
   }
 };

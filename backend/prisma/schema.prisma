@@ -8,8 +8,8 @@ datasource db {
   provider   = "postgresql"
   url        = env("DATABASE_URL")
   directUrl  = env("DIRECT_URL")
+  extensions = [postgis, uuid_ossp(map: "uuid-ossp", schema: "extensions"), vector]
   schemas    = ["auth", "public"]
-  extensions = [postgis, vector]
 }
 
 model User {
@@ -22,17 +22,18 @@ model User {
   phone                String?              @unique
   password             String               @default("")
   walletBalance        Float                @default(0.0)
-  sentTransactions     Transaction[]        @relation("ShipperTransactions")
-  receivedTransactions Transaction[]        @relation("TransporterTransactions")
   bids                 Bid[]
   loadPostings         LoadPosting[]
   shipperProfile       ShipperProfile?
+  sentTransactions     Transaction[]        @relation("ShipperTransactions")
+  receivedTransactions Transaction[]        @relation("TransporterTransactions")
   transporterProfile   TransporterProfile?
   vehicles             TransporterVehicle[]
 
   @@schema("public")
 }
 
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model TransporterProfile {
   id                       String                       @id @default(uuid())
   userId                   String                       @unique
@@ -66,7 +67,7 @@ model TransporterProfile {
   taxIdentificationNumber  String?
   verificationLevel        TransporterVerificationLevel @default(LEVEL_1)
   verificationNotes        String?
-  embedding                Unsupported("vector(768)")?
+  embedding                Unsupported("vector")?
   assignedDrivers          AssignedDriver[]
   user                     User                         @relation(fields: [userId], references: [id], onDelete: Cascade)
   vehicles                 Vehicle[]
@@ -75,14 +76,13 @@ model TransporterProfile {
 }
 
 model Vehicle {
-  id                         String                                @id @default(uuid())
+  id                         String                   @id @default(uuid())
   transporterProfileId       String
-  licensePlate               String                                @unique
+  licensePlate               String                   @unique
   make                       String
   model                      String
   year                       Int
   capacityTons               Float
-  currentLocation            Unsupported("geometry(Point, 4326)")?
   registrationCertificateUrl String
   proofOfOwnershipUrl        String
   vehicleLicenseUrl          String
@@ -90,12 +90,13 @@ model Vehicle {
   insuranceCertificateUrl    String
   inspectionReportUrl        String?
   photographs                String[]
-  status                     DocumentStatus                        @default(PENDING)
-  assignedDriverId           String?                               @unique
-  createdAt                  DateTime                              @default(now())
-  updatedAt                  DateTime                              @updatedAt
-  assignedDriver             AssignedDriver?                       @relation(fields: [assignedDriverId], references: [id])
-  transporter                TransporterProfile                    @relation(fields: [transporterProfileId], references: [id], onDelete: Cascade)
+  status                     DocumentStatus           @default(PENDING)
+  assignedDriverId           String?                  @unique
+  createdAt                  DateTime                 @default(now())
+  updatedAt                  DateTime                 @updatedAt
+  currentLocation            Unsupported("geometry")?
+  assignedDriver             AssignedDriver?          @relation(fields: [assignedDriverId], references: [id])
+  transporter                TransporterProfile       @relation(fields: [transporterProfileId], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -118,29 +119,30 @@ model AssignedDriver {
   @@schema("public")
 }
 
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model LoadPosting {
-  id                  String                                @id @default(uuid())
+  id                  String                   @id @default(uuid())
   title               String
   cargoType           CargoType
   weightKg            Float
   origin              String
   destination         String
-  originLocation      Unsupported("geometry(Point, 4326)")?
-  destinationLocation Unsupported("geometry(Point, 4326)")?
-  embedding           Unsupported("vector(768)")?
   suggestedBudget     Float?
-  status              String                                @default("AVAILABLE")
+  status              String                   @default("AVAILABLE")
   customerId          String
-  createdAt           DateTime                              @default(now())
-  updatedAt           DateTime                              @updatedAt
-  isEscrowEnabled     Boolean                               @default(false)
-  paymentStatus       String                                @default("PENDING")
-  embeddingStatus     EmbeddingStatus                       @default(PENDING)
-  embeddingRetries    Int                                   @default(0)
-  escrowBalance       Float                                 @default(0.0)
-  transactions        Transaction[]
+  createdAt           DateTime                 @default(now())
+  updatedAt           DateTime                 @updatedAt
+  isEscrowEnabled     Boolean                  @default(false)
+  paymentStatus       String                   @default("PENDING")
+  destinationLocation Unsupported("geometry")?
+  embedding           Unsupported("vector")?
+  originLocation      Unsupported("geometry")?
+  embeddingRetries    Int                      @default(0)
+  embeddingStatus     EmbeddingStatus          @default(PENDING)
+  escrowBalance       Float                    @default(0.0)
   bids                Bid[]
-  user                User                                  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  user                User                     @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  transactions        Transaction[]
 
   @@index([status, createdAt(sort: Desc)])
   @@schema("public")
@@ -187,11 +189,12 @@ model Bid {
   @@schema("public")
 }
 
+/// This model contains an expression index which requires additional setup for migrations. Visit https://pris.ly/d/expression-indexes for more info.
 model ShipperProfile {
-  id                       String                      @id @default(uuid())
-  userId                   String                      @unique
-  verificationLevel        VerificationLevel           @default(LEVEL_1)
-  isBusinessVerified       Boolean                     @default(false)
+  id                       String                 @id @default(uuid())
+  userId                   String                 @unique
+  verificationLevel        VerificationLevel      @default(LEVEL_1)
+  isBusinessVerified       Boolean                @default(false)
   businessName             String?
   companyAddress           String?
   companyEmail             String?
@@ -200,19 +203,19 @@ model ShipperProfile {
   companyLogoUrl           String?
   cacCertificateUrl        String?
   cacStatusReportUrl       String?
-  cacDocumentStatus        DocumentStatus              @default(PENDING)
+  cacDocumentStatus        DocumentStatus         @default(PENDING)
   representativeIdUrl      String?
   letterOfAuthorizationUrl String?
-  representativeStatus     DocumentStatus              @default(PENDING)
+  representativeStatus     DocumentStatus         @default(PENDING)
   utilityBillUrl           String?
   proofOfBankOwnershipUrl  String?
   businessWebsiteUrl       String?
   insuranceCertificateUrl  String?
   verificationNotes        String?
-  embedding                Unsupported("vector(768)")?
-  createdAt                DateTime                    @default(now())
-  updatedAt                DateTime                    @updatedAt
-  user                     User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt                DateTime               @default(now())
+  updatedAt                DateTime               @updatedAt
+  embedding                Unsupported("vector")?
+  user                     User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@schema("public")
 }
@@ -753,6 +756,168 @@ model profiles {
   @@schema("public")
 }
 
+model OutboxEvent {
+  id        String   @id @default(uuid())
+  type      String
+  payload   Json
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([payload(ops: JsonbPathOps)], type: Gin)
+  @@schema("public")
+}
+
+model AdminUser {
+  id                  String          @id @default(uuid())
+  email               String          @unique
+  passwordHash        String
+  role                AdminRole       @default(SUPPORT_ADMIN)
+  twoFactorSecret     String?
+  twoFactorEnabled    Boolean         @default(false)
+  failedLoginAttempts Int             @default(0)
+  lockoutUntil        DateTime?
+  lastLoginAt         DateTime?
+  lastLoginIp         String?
+  lastLoginDeviceId   String?
+  createdAt           DateTime        @default(now())
+  updatedAt           DateTime        @updatedAt
+  isActive            Boolean         @default(true)
+  auditLogs           AdminAuditLog[]
+  sessions            AdminSession[]
+
+  @@schema("public")
+}
+
+model AdminSession {
+  id          String    @id @default(uuid())
+  adminUserId String
+  token       String    @unique
+  ipAddress   String?
+  userAgent   String?
+  deviceId    String?
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@schema("public")
+}
+
+model AdminAuditLog {
+  id          String     @id @default(uuid())
+  adminUserId String?
+  action      String
+  details     Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime   @default(now())
+  adminUser   AdminUser? @relation(fields: [adminUserId], references: [id])
+
+  @@index([details(ops: JsonbPathOps)], type: Gin)
+  @@schema("public")
+}
+
+model Transaction {
+  id            String            @id @default(uuid())
+  amount        Float
+  type          TransactionType
+  status        TransactionStatus @default(PENDING)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  loadId        String
+  shipperId     String
+  transporterId String
+  load          LoadPosting       @relation(fields: [loadId], references: [id])
+  shipper       User              @relation("ShipperTransactions", fields: [shipperId], references: [id])
+  transporter   User              @relation("TransporterTransactions", fields: [transporterId], references: [id])
+
+  @@schema("public")
+}
+
+model PlatformSetting {
+  key         String   @id
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+  updatedBy   String?
+
+  @@schema("public")
+}
+
+model NotificationTemplate {
+  id               String    @id @default(uuid())
+  title            String
+  channel          String
+  targetAudience   String
+  status           String    @default("DRAFT")
+  sentAt           DateTime?
+  metricsSent      Int       @default(0)
+  metricsDelivered Int       @default(0)
+  metricsOpened    Int       @default(0)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@schema("public")
+}
+
+model MarketingCampaign {
+  id          String    @id @default(uuid())
+  name        String
+  type        String
+  status      String
+  budget      Float
+  spent       Float     @default(0)
+  conversions Int       @default(0)
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@schema("public")
+}
+
+model ContentArticle {
+  id        String   @id @default(uuid())
+  title     String
+  category  String
+  status    String   @default("DRAFT")
+  content   String?
+  author    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@schema("public")
+}
+
+model PartnerProfile {
+  id             String    @id @default(uuid())
+  name           String
+  type           String
+  status         String    @default("ACTIVE")
+  uptime         String?
+  apiCalls       String?
+  lastSync       DateTime?
+  joinedAt       DateTime  @default(now())
+  activeLoads    Int       @default(0)
+  totalSpent     Float     @default(0)
+  accountManager String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@schema("public")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model spatial_ref_sys {
+  srid      Int     @id
+  auth_name String? @db.VarChar(256)
+  auth_srid Int?
+  srtext    String? @db.VarChar(2048)
+  proj4text String? @db.VarChar(2048)
+
+  @@schema("public")
+}
+
 enum UserRole {
   CUSTOMER
   TRANSPORTER
@@ -913,18 +1078,6 @@ enum user_role {
   @@schema("public")
 }
 
-model OutboxEvent {
-  id        String   @id @default(uuid())
-  type      String
-  payload   Json
-  status    String   @default("PENDING")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([payload(ops: JsonbPathOps)], type: Gin)
-  @@schema("public")
-}
-
 enum AdminRole {
   SUPER_ADMIN
   PLATFORM_ADMIN
@@ -932,76 +1085,6 @@ enum AdminRole {
   FINANCE_ADMIN
   SUPPORT_ADMIN
   DEVELOPER
-
-  @@schema("public")
-}
-
-model AdminUser {
-  id                  String          @id @default(uuid())
-  email               String          @unique
-  passwordHash        String
-  role                AdminRole       @default(SUPPORT_ADMIN)
-  twoFactorSecret     String?
-  twoFactorEnabled    Boolean         @default(false)
-  failedLoginAttempts Int             @default(0)
-  lockoutUntil        DateTime?
-  lastLoginAt         DateTime?
-  lastLoginIp         String?
-  lastLoginDeviceId   String?
-  createdAt           DateTime        @default(now())
-  updatedAt           DateTime        @updatedAt
-  isActive            Boolean         @default(true)
-  sessions            AdminSession[]
-  auditLogs           AdminAuditLog[]
-
-  @@schema("public")
-}
-
-model AdminSession {
-  id          String   @id @default(uuid())
-  adminUserId String
-  token       String   @unique
-  ipAddress   String?
-  userAgent   String?
-  deviceId    String?
-  expiresAt   DateTime
-  createdAt   DateTime @default(now())
-
-  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
-
-  @@schema("public")
-}
-
-model AdminAuditLog {
-  id          String   @id @default(uuid())
-  adminUserId String?
-  action      String
-  details     Json?
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime @default(now())
-
-  adminUser AdminUser? @relation(fields: [adminUserId], references: [id], onDelete: SetNull)
-
-  @@index([details(ops: JsonbPathOps)], type: Gin)
-  @@schema("public")
-}
-
-model Transaction {
-  id        String            @id @default(uuid())
-  amount    Float
-  type      TransactionType
-  status    TransactionStatus @default(PENDING)
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
-
-  loadId        String
-  shipperId     String
-  transporterId String
-
-  load        LoadPosting @relation(fields: [loadId], references: [id])
-  shipper     User        @relation("ShipperTransactions", fields: [shipperId], references: [id])
-  transporter User        @relation("TransporterTransactions", fields: [transporterId], references: [id])
 
   @@schema("public")
 }
@@ -1021,73 +1104,5 @@ enum TransactionStatus {
   FAILED
   REFUNDED
 
-  @@schema("public")
-}
-
-model PlatformSetting {
-  key         String   @id
-  value       String
-  description String?
-  updatedAt   DateTime @updatedAt
-  updatedBy   String?
-  @@schema("public")
-}
-
-model NotificationTemplate {
-  id             String   @id @default(uuid())
-  title          String
-  channel        String
-  targetAudience String
-  status         String   @default("DRAFT")
-  sentAt         DateTime?
-  metricsSent    Int      @default(0)
-  metricsDelivered Int    @default(0)
-  metricsOpened  Int      @default(0)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  @@schema("public")
-}
-
-model MarketingCampaign {
-  id          String   @id @default(uuid())
-  name        String
-  type        String
-  status      String
-  budget      Float
-  spent       Float    @default(0)
-  conversions Int      @default(0)
-  startDate   DateTime?
-  endDate     DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  @@schema("public")
-}
-
-model ContentArticle {
-  id          String   @id @default(uuid())
-  title       String
-  category    String
-  status      String   @default("DRAFT")
-  content     String?
-  author      String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  @@schema("public")
-}
-
-model PartnerProfile {
-  id             String   @id @default(uuid())
-  name           String
-  type           String
-  status         String   @default("ACTIVE")
-  uptime         String?
-  apiCalls       String?
-  lastSync       DateTime?
-  joinedAt       DateTime @default(now())
-  activeLoads    Int      @default(0)
-  totalSpent     Float    @default(0)
-  accountManager String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
   @@schema("public")
 }
