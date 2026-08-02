@@ -4,7 +4,7 @@ import path from 'path';
 import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
-  return {
+  return { root: __dirname,
     envDir: '../',
     plugins: [react(), tailwindcss()],
     resolve: {
