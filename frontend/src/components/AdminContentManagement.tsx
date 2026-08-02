@@ -49,9 +49,9 @@ export default function AdminContentManagement() {
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'BANNER': return <Image size={16} className="text-pink-500" />;
-      case 'NEWS': return <Newspaper size={16} className="text-blue-500" />;
+      case 'NEWS': return <Newspaper size={16} className="text-brand-500" />;
       case 'HELP_ARTICLE': 
-      case 'USER_GUIDE': return <Layout size={16} className="text-indigo-500" />;
+      case 'USER_GUIDE': return <Layout size={16} className="text-brand-500" />;
       case 'FAQ': return <HelpCircle size={16} className="text-amber-500" />;
       case 'POLICY': 
       case 'LEGAL': return <Shield size={16} className="text-emerald-500" />;
@@ -100,7 +100,7 @@ export default function AdminContentManagement() {
         <div className="space-y-4 max-w-3xl">
           <div>
             <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-1">Content Type</label>
-            <select className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500">
+            <select className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500">
               <option value="BANNER">Homepage Banner</option>
               <option value="NEWS">News & Announcement</option>
               <option value="HELP_ARTICLE">Help Center Article</option>
@@ -110,15 +110,15 @@ export default function AdminContentManagement() {
           </div>
           <div>
             <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-1">Title</label>
-            <input type="text" defaultValue={editingItem?.title || ''} className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="Enter title..." />
+            <input type="text" defaultValue={editingItem?.title || ''} className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" placeholder="Enter title..." />
           </div>
           <div>
             <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-1">Content Body (Markdown/HTML supported)</label>
-            <textarea rows={10} className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="Write content here..."></textarea>
+            <textarea rows={10} className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" placeholder="Write content here..."></textarea>
           </div>
           <div className="flex gap-2 pt-4">
             <Button onClick={closeEditor} className="bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate- font-bold px-6 py-2 rounded-xl text-sm transition-colors">Cancel</Button>
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-6 py-2 rounded-xl text-sm transition-colors flex items-center gap-2">
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-2 rounded-xl text-sm transition-colors flex items-center gap-2">
               <Check size={16} /> Save & Publish
             </Button>
           </div>
@@ -132,11 +132,11 @@ export default function AdminContentManagement() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <FileText className="text-indigo-600" /> Content Management
+            <FileText className="text-brand-600" /> Content Management
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage banners, news, FAQs, and policies.</p>
         </div>
-        <Button onClick={handleCreateNew} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+        <Button onClick={handleCreateNew} className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
           <Plus size={16} /> Create Content
         </Button>
       </div>
@@ -157,7 +157,7 @@ export default function AdminContentManagement() {
                 onClick={() => setActiveTab(tab.id as any)}
                 className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
                   activeTab === tab.id 
-                    ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                    ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                     : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
                 }`}
               >
@@ -180,7 +180,7 @@ export default function AdminContentManagement() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredContent.map(item => (
-                <tr key={item.id || item?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                <tr key={item.id || item?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="font-bold text-sm text-slate-900 dark:text-white">{item.title}</div>
                     <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{item.id} • {item.author}</div>
@@ -199,10 +199,10 @@ export default function AdminContentManagement() {
                   </td>
                   <td className="p-4">
                     <div className="flex items-center justify-end gap-2">
-                      <Button aria-label="Action" className="p-2 text-slate-400 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors">
+                      <Button aria-label="Action" className="p-2 text-slate-400 dark:text-slate-400 hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">
                         <Eye size={16} />
                       </Button>
-                      <Button onClick={() => handleEdit(item)} className="p-2 text-slate-400 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm rounded-lg transition-colors">
+                      <Button onClick={() => handleEdit(item)} className="p-2 text-slate-400 dark:text-slate-400 hover:text-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg transition-colors">
                         <Edit2 size={16} />
                       </Button>
                       <Button onClick={() => deleteItem(item.id)} className="p-2 text-slate-400 dark:text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">

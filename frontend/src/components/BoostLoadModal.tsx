@@ -30,7 +30,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
           className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col"
         >
           {/* Header */}
-          <div className="relative h-32 bg-gradient-to-br from-purple-700 to-indigo-900 p-6 flex flex-col justify-end overflow-hidden">
+          <div className="relative h-32 bg-gradient-to-br from-brand-700 to-brand-900 p-6 flex flex-col justify-end overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-slate-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
             <div className="absolute -top-12 -left-12 opacity-20">
               <Rocket size={120} className="text-white" />
@@ -64,16 +64,16 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
                 <input type="radio" name="boost_plan" className="sr-only" onChange={() => setSelectedPlan('standard')} checked={selectedPlan === 'standard'} />
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'standard' ? 'border-purple-600 bg-purple-600' : 'border-slate-300'}`}>
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${selectedPlan === 'standard' ? 'border-purple-600 bg-brand-600' : 'border-slate-300'}`}>
                       {selectedPlan === 'standard' && <CheckCircle2 size={12} className="text-white" strokeWidth={3} />}
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#1F2937]">Standard Boost</h4>
+                      <h4 className="font-bold text-slate-900">Standard Boost</h4>
                       <p className="text-xs text-slate-500 dark:text-slate- font-medium">Top 5 in search results for 24h</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-black text-lg text-[#1F2937]">₦5,000</div>
+                    <div className="font-black text-lg text-slate-900">₦5,000</div>
                   </div>
                 </div>
               </label>
@@ -93,14 +93,14 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
                       {selectedPlan === 'premium' && <CheckCircle2 size={12} className="text-white" strokeWidth={3} />}
                     </div>
                     <div>
-                      <h4 className="font-bold text-[#1F2937] flex items-center gap-1.5">
+                      <h4 className="font-bold text-slate-900 flex items-center gap-1.5">
                         Priority Boost <TrendingUp size={14} className="text-amber-500" />
                       </h4>
                       <p className="text-xs text-slate-500 dark:text-slate- font-medium">Pinned at the top + SMS Alerts to drivers</p>
                     </div>
                   </div>
                   <div className="text-right mt-1">
-                    <div className="font-black text-lg text-[#1F2937]">₦12,500</div>
+                    <div className="font-black text-lg text-slate-900">₦12,500</div>
                   </div>
                 </div>
               </label>
@@ -121,7 +121,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
                 alert(`Redirecting to payment gateway for ${selectedPlan} plan...`);
                 onClose();
               }}
-              className="px-6 py-3 bg-gradient-to-r from-purple-700 to-indigo-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:shadow-lg disabled:hover:translate-y-0 flex items-center gap-2"
+              className="px-6 py-3 bg-gradient-to-r from-brand-700 to-brand-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:shadow-lg disabled:hover:translate-y-0 flex items-center gap-2"
             >
               Confirm & Pay <ChevronRight size={18} />
             </Button>

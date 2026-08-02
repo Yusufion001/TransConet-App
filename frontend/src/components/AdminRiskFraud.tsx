@@ -43,7 +43,7 @@ export default function AdminRiskFraud() {
       case 'CRITICAL': return <span className="bg-red-100 text-red-800 border border-red-200 px-2 py-0.5 rounded text-[10px] font-black uppercase">Critical</span>;
       case 'HIGH': return <span className="bg-orange-100 text-orange-800 border border-orange-200 px-2 py-0.5 rounded text-[10px] font-black uppercase">High</span>;
       case 'MEDIUM': return <span className="bg-amber-100 text-amber-800 border border-amber-200 px-2 py-0.5 rounded text-[10px] font-black uppercase">Medium</span>;
-      case 'LOW': return <span className="bg-blue-100 text-blue-800 border border-blue-200 px-2 py-0.5 rounded text-[10px] font-black uppercase">Low</span>;
+      case 'LOW': return <span className="bg-brand-100 text-brand-800 border border-brand-200 px-2 py-0.5 rounded text-[10px] font-black uppercase">Low</span>;
       default: return null;
     }
   };
@@ -171,7 +171,7 @@ export default function AdminRiskFraud() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredAlerts.map(alert => (
-                <tr key={alert.id || alert?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                <tr key={alert.id || alert?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="font-mono text-sm text-slate-700 dark:text-slate- font-bold">{alert.id}</div>
                     <div className="text-xs text-slate-500 dark:text-slate- mt-0.5">{alert.detectedAt}</div>
@@ -209,7 +209,7 @@ export default function AdminRiskFraud() {
                           Clear
                         </Button>
                       )}
-                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50" title="View Details">
+                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50" title="View Details">
                          <Eye size={16} />
                       </Button>
                     </div>

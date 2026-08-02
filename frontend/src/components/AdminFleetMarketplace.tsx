@@ -67,10 +67,10 @@ export default function AdminFleetMarketplace() {
 
   const getLoadStatusBadge = (status: string) => {
     switch (status) {
-      case 'AVAILABLE': return <span className="bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Available</span>;
+      case 'AVAILABLE': return <span className="bg-brand-100 text-brand-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Available</span>;
       case 'ASSIGNED': return <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Assigned</span>;
       case 'IN_TRANSIT': return <span className="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">In Transit</span>;
-      case 'DELIVERED': return <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Delivered</span>;
+      case 'DELIVERED': return <span className="bg-brand-100 text-brand-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Delivered</span>;
       default: return null;
     }
   };
@@ -80,7 +80,7 @@ export default function AdminFleetMarketplace() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Map className="text-indigo-600" /> Fleet & Marketplace
+            <Map className="text-brand-600" /> Fleet & Marketplace
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Monitor active vehicles and available loads in the marketplace.</p>
         </div>
@@ -89,7 +89,7 @@ export default function AdminFleetMarketplace() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Truck size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Total Fleet</h3>
@@ -116,7 +116,7 @@ export default function AdminFleetMarketplace() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <CheckCircle2 size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Completed Today</h3>
@@ -132,7 +132,7 @@ export default function AdminFleetMarketplace() {
               onClick={() => setActiveTab('FLEET')}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'FLEET' 
-                  ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                  ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
               }`}
             >
@@ -142,7 +142,7 @@ export default function AdminFleetMarketplace() {
               onClick={() => setActiveTab('MARKETPLACE')}
               className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
                 activeTab === 'MARKETPLACE' 
-                  ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                  ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
               }`}
             >
@@ -156,7 +156,7 @@ export default function AdminFleetMarketplace() {
               placeholder={activeTab === 'FLEET' ? "Search vehicles..." : "Search loads..."}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
             />
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function AdminFleetMarketplace() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {fleet.filter(v => v.plate.toLowerCase().includes(searchTerm.toLowerCase()) || v.id.toLowerCase().includes(searchTerm.toLowerCase())).map(vehicle => (
-                  <tr key={vehicle.id || vehicle?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                  <tr key={vehicle.id || vehicle?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                     <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate- font-bold">{vehicle.id}</td>
                     <td className="p-4">
                       <div className="font-bold text-sm text-slate-900 dark:text-white">{vehicle.plate}</div>
@@ -188,7 +188,7 @@ export default function AdminFleetMarketplace() {
                     </td>
                     <td className="p-4">{getVehicleStatusBadge(vehicle.status)}</td>
                     <td className="p-4 text-right">
-                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50">
+                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50">
                         <MoreVertical size={16} />
                       </Button>
                     </td>
@@ -210,11 +210,11 @@ export default function AdminFleetMarketplace() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {loads.filter(l => l.id.toLowerCase().includes(searchTerm.toLowerCase()) || l.shipper.toLowerCase().includes(searchTerm.toLowerCase())).map(load => (
-                  <tr key={load.id || load?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                  <tr key={load.id || load?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                     <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate- font-bold">{load.id}</td>
                     <td className="p-4">
                       <div className="font-bold text-sm text-slate-900 dark:text-white">{load.origin}</div>
-                      <div className="text-xs text-slate-500 dark:text-slate- text-indigo-600 flex items-center gap-1">
+                      <div className="text-xs text-slate-500 dark:text-slate- text-brand-600 flex items-center gap-1">
                         &rarr; {load.destination}
                       </div>
                     </td>
@@ -225,7 +225,7 @@ export default function AdminFleetMarketplace() {
                     </td>
                     <td className="p-4">{getLoadStatusBadge(load.status)}</td>
                     <td className="p-4 text-right">
-                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50">
+                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50">
                         <MoreVertical size={16} />
                       </Button>
                     </td>

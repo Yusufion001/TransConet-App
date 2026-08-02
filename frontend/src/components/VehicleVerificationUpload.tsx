@@ -177,7 +177,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
     <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-3xl p-6 md:p-8 shadow-2xl max-w-2xl mx-auto space-y-6">
       <div>
         <h3 className="text-xl font-black text-slate-900 dark:text-white  flex items-center gap-2">
-          <Video className="text-blue-500 animate-pulse" size={24} /> Physical Asset Inspection
+          <Video className="text-brand-500 animate-pulse" size={24} /> Physical Asset Inspection
         </h3>
         <p className="text-xs text-slate-500 dark:text-slate-  mt-1.5 leading-relaxed">
           Upload a clear 15-second clip walking around your transport haulage unit showing registration plates, active running motor, and structural cargo containment integrity.
@@ -205,7 +205,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
             className="hidden"
             onChange={handleFileChange}
           />
-          <div className="p-4 bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl mb-4 text-blue-600">
+          <div className="p-4 bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl mb-4 text-brand-600">
             <UploadCloud size={32} />
           </div>
           <p className="text-sm font-bold text-slate-900 dark:text-white  mb-1">Drag and drop your inspection clip here</p>
@@ -221,7 +221,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
         <div className="space-y-4 bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl p-5">
           <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700  pb-3">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 text-blue-600 rounded-xl">
+              <div className="p-2 bg-brand-100 text-brand-600 rounded-xl">
                 <Video size={18} />
               </div>
               <div>
@@ -234,7 +234,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
             <Button aria-label="Action"
               onClick={handleRemoveFile}
               disabled={uploading}
-              className="p-2 bg-white dark:bg-slate-900  hover:bg-blue-600 border border-slate-200 dark:border-slate-700  text-rose-400 hover:text-rose-300 rounded-xl transition cursor-pointer disabled:opacity-50"
+              className="p-2 bg-white dark:bg-slate-900  hover:bg-brand-600 border border-slate-200 dark:border-slate-700  text-rose-400 hover:text-rose-300 rounded-xl transition cursor-pointer disabled:opacity-50"
             >
               <Trash2 size={16} />
             </Button>
@@ -257,7 +257,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
               type="button"
               onClick={uploadVideo}
               disabled={uploading}
-              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-blue-600 text-white font-bold py-3.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm cursor-pointer"
+              className="w-full bg-emerald-600 hover:bg-emerald-500 disabled:bg-brand-600 text-white font-bold py-3.5 px-4 rounded-xl transition flex items-center justify-center gap-2 text-sm cursor-pointer"
             >
               {uploading ? (
                 <>

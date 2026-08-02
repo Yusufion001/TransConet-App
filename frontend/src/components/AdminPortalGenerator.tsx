@@ -139,7 +139,7 @@ export default function AdminPortalGenerator({
             onClick={() => setActiveTab(tab.id)}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-bold whitespace-nowrap transition-all ${
               activeTab === tab.id 
-                ? 'bg-blue-600 text-white shadow-md' 
+                ? 'bg-brand-600 text-white shadow-md' 
                 : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100'
             }`}
           >
@@ -150,7 +150,7 @@ export default function AdminPortalGenerator({
       </div>
 
       <div className="bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-1 md:p-4 min-h-[500px]">
-        <Suspense fallback={<div className="flex items-center justify-center h-64"><Loader2 className="animate-spin text-blue-600" size={32} /></div>}>
+        <Suspense fallback={<div className="flex items-center justify-center h-64"><Loader2 className="animate-spin text-brand-600" size={32} /></div>}>
         {activeTab === 'OVERVIEW' && (
           <AdminOverviewTab 
             currentRole={currentRole} 

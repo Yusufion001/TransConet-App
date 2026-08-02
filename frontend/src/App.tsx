@@ -181,15 +181,15 @@ export default function App() {
         return (
           <div className="flex-1 flex flex-col justify-center py-8 px-4 bg-slate-50 dark:bg-slate-800  overflow-y-auto scrollbar-none animate-in fade-in">
             <div className="max-w-md mx-auto w-full flex flex-col items-center text-center mb-8 select-none relative group">
-              <div className="absolute -inset-6 bg-gradient-to-tr from-blue-100/50 to-indigo-50/50 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition duration-1000"></div>
+              <div className="absolute -inset-6 bg-gradient-to-tr from-brand-100/50 to-brand-50/50 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition duration-1000"></div>
               <div className="relative">
                 <span className="text-[36px] sm:text-[52px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center justify-center gap-0.5">
-                  <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+                  <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
                 </span>
                 <div className="flex items-center justify-center gap-3 mt-2">
-                  <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-blue-300"></div>
+                  <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-brand-300"></div>
                   <p className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-[0.2em] uppercase">Connecting Cargo with Capacity</p>
-                  <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-blue-300"></div>
+                  <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-brand-300"></div>
                 </div>
               </div>
             </div>
@@ -217,7 +217,7 @@ export default function App() {
           <div className="flex items-center gap-2 select-none">
             <div className="flex flex-col relative group">
               <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
-                <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+                <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
               </span>
               <p className="text-[7.5px] text-slate-500 dark:text-slate-400 font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
             </div>
@@ -236,7 +236,7 @@ export default function App() {
 
         {/* Scrollable Main Area Inside Mobile Frame */}
         <div className={`flex-1 flex flex-col overflow-x-hidden overflow-y-auto scrollbar-none ${['account', 'wallet', 'reports', 'settings'].includes(activeView) ? 'pb-24' : 'p-3 pb-24'}`}>
-          <Suspense fallback={<div className="flex flex-1 items-center justify-center p-8"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+          <Suspense fallback={<div className="flex flex-1 items-center justify-center p-8"><div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin"></div></div>}>
           
           {activeView === 'fleet' && activeRole !== 'CUSTOMER' ? (
             <TransporterFleetDashboard />
@@ -301,7 +301,7 @@ export default function App() {
       <div className="hidden md:block bg-white dark:bg-slate-900/95  backdrop-blur-md border-b border-slate-200 dark:border-slate-700  sticky top-0 z-50 shadow-sm shrink-0">
         <div className="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-2">
-            <Smartphone className="text-blue-500 animate-pulse" size={18} />
+            <Smartphone className="text-brand-500 animate-pulse" size={18} />
             <span className="text-xs font-black tracking-wider text-slate-800 dark:text-slate-100  uppercase">
               TransConet Mobile Simulator
             </span>
@@ -313,7 +313,7 @@ export default function App() {
               <button
                 onClick={() => setUseMobileFrame(true)}
                 className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition cursor-pointer ${
-                  useMobileFrame ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white :text-white'
+                  useMobileFrame ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white :text-white'
                 }`}
               >
                 Mobile Frame
@@ -321,7 +321,7 @@ export default function App() {
               <button
                 onClick={() => setUseMobileFrame(false)}
                 className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider transition cursor-pointer ${
-                  !useMobileFrame ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white :text-white'
+                  !useMobileFrame ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white :text-white'
                 }`}
               >
                 Full Screen
@@ -330,9 +330,9 @@ export default function App() {
 
             <button
               onClick={() => setIsMobilePortalOpen(true)}
-              className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  hover:border-blue-500 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200  flex items-center gap-1.5 transition cursor-pointer shadow-sm"
+              className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  hover:border-brand-500 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200  flex items-center gap-1.5 transition cursor-pointer shadow-sm"
             >
-              <Smartphone size={12} className="text-blue-400" />
+              <Smartphone size={12} className="text-brand-400" />
               <span>Mobile Test</span>
             </button>
           </div>
@@ -357,7 +357,7 @@ export default function App() {
             {/* Dynamic Island Cutout Notch */}
             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-28 h-6 bg-black rounded-full z-50 flex items-center justify-center gap-1 px-3 shadow-inner">
               <div className="w-2.5 h-2.5 bg-slate-900 rounded-full border border-slate-800/50 flex items-center justify-center">
-                <div className="w-1 h-1 bg-blue-900/60 rounded-full" />
+                <div className="w-1 h-1 bg-brand-900/60 rounded-full" />
               </div>
               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse ml-auto" />
             </div>
@@ -407,7 +407,7 @@ export default function App() {
                     <div className="flex items-center gap-2 select-none group cursor-pointer">
                       <div className="flex flex-col relative">
                         <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
-                          <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-blue-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+                          <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
                         </span>
                         <p className="text-[7.5px] text-slate-500 dark:text-slate-400 font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
                       </div>
@@ -419,7 +419,7 @@ export default function App() {
                       onClick={() => setActiveView('account')}
                       className="flex items-center gap-2 bg-white dark:bg-slate-900  border px-3 py-1.5 rounded-xl cursor-pointer transition border-slate-200 dark:border-slate-700 "
                     >
-                      <User size={14} className="text-blue-400" />
+                      <User size={14} className="text-brand-400" />
                       <span className="text-xs font-mono">{userPhone}</span>
                       
                     </button>
@@ -437,7 +437,7 @@ export default function App() {
 
               <main className={['account', 'wallet', 'reports', 'settings'].includes(activeView) ? 'flex-1 flex flex-col' : 'pt-6 pb-0 flex-1 flex flex-col'}>
               {/* Main Widescreen Focus Area Layout */}
-                <Suspense fallback={<div className="flex flex-1 items-center justify-center p-8"><div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+                <Suspense fallback={<div className="flex flex-1 items-center justify-center p-8"><div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin"></div></div>}>
                 
                 <Routes>
                   {activeRole !== 'CUSTOMER' && (
@@ -575,7 +575,7 @@ export default function App() {
           <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-3xl max-w-md w-full overflow-hidden shadow-2xl shadow-blue-500/10 animate-in fade-in zoom-in duration-75">
             <div className="p-6 border-b border-slate-200 dark:border-slate-700  flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Smartphone className="text-blue-500" size={20} />
+                <Smartphone className="text-brand-500" size={20} />
                 <h3 className="text-base font-bold text-slate-900 dark:text-white  tracking-tight">Mobile Test Portal</h3>
               </div>
               <button 
@@ -612,7 +612,7 @@ export default function App() {
                     type="text" 
                     value={expoTunnelUrl}
                     onChange={(e) => setExpoTunnelUrl(e.target.value)}
-                    className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  text-slate-900 dark:text-white  rounded-xl px-3 py-2 text-xs font-mono flex-1 focus:outline-none focus:border-blue-500"
+                    className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  text-slate-900 dark:text-white  rounded-xl px-3 py-2 text-xs font-mono flex-1 focus:outline-none focus:border-brand-500"
                     placeholder="https://..."
                   />
                   <button 
@@ -639,7 +639,7 @@ export default function App() {
             <div className="p-4 bg-slate-50 dark:bg-slate-800  border-t border-slate-200 dark:border-slate-700  flex justify-end">
               <button 
                 onClick={() => setIsMobilePortalOpen(false)}
-                className="bg-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-4 py-2 rounded-xl transition"
+                className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-4 py-2 rounded-xl transition"
               >
                 Done
               </button>

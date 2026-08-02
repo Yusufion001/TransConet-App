@@ -43,7 +43,7 @@ export default function AdminUserManagement() {
       <div className="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <Users className="text-purple-500" /> User & Compliance Management
+            <Users className="text-brand-500" /> User & Compliance Management
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-">Manage user accounts, KYC verification statuses, and automated document verifications.</p>
         </div>
@@ -82,20 +82,20 @@ export default function AdminUserManagement() {
               </thead>
               <tbody>
                 {users.map(user => (
-                  <tr key={user.id || user?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                  <tr key={user.id || user?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                     <td className="py-3 px-4">
                       <p className="font-bold text-slate-900 dark:text-white">{user.name}</p>
                       <p className="text-[10px] text-slate-500 dark:text-slate-">{user.id}</p>
                     </td>
                     <td className="py-3 px-4">
-                      <span className={`px-2 py-1 rounded text-[10px] font-bold ${user.role === 'SHIPPER' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700'}`}>
+                      <span className={`px-2 py-1 rounded text-[10px] font-bold ${user.role === 'SHIPPER' ? 'bg-brand-50 text-brand-700' : 'bg-amber-50 text-amber-700'}`}>
                         {user.role}
                       </span>
                     </td>
                     <td className="py-3 px-4">
                       <span className={`px-2 py-1 rounded-full text-[9px] font-bold tracking-widest ${
-                        user.verificationLevel === 'LEVEL_3' ? 'bg-purple-100 text-purple-700' :
-                        user.verificationLevel === 'LEVEL_2' ? 'bg-indigo-100 text-indigo-700' :
+                        user.verificationLevel === 'LEVEL_3' ? 'bg-brand-100 text-brand-700' :
+                        user.verificationLevel === 'LEVEL_2' ? 'bg-brand-100 text-brand-700' :
                         'bg-slate-100 text-slate-600 dark:text-slate-300'
                       }`}>
                         {user.verificationLevel || 'LEVEL_1'}
@@ -146,7 +146,7 @@ export default function AdminUserManagement() {
                     <p className="font-bold text-slate-900 dark:text-white">{user.name}</p>
                     <p className="text-[10px] text-slate-500 dark:text-slate-">{user.id}</p>
                   </div>
-                  <span className={`px-2 py-1 rounded text-[10px] font-bold ${user.role === 'SHIPPER' ? 'bg-blue-50 text-blue-700' : 'bg-amber-50 text-amber-700'}`}>
+                  <span className={`px-2 py-1 rounded text-[10px] font-bold ${user.role === 'SHIPPER' ? 'bg-brand-50 text-brand-700' : 'bg-amber-50 text-amber-700'}`}>
                     {user.role}
                   </span>
                 </div>
@@ -155,8 +155,8 @@ export default function AdminUserManagement() {
                   <div>
                     <span className="text-slate-500 dark:text-slate- block mb-1 text-[10px] uppercase">KYC Level</span>
                     <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold tracking-widest ${
-                      user.verificationLevel === 'LEVEL_3' ? 'bg-purple-100 text-purple-700' :
-                      user.verificationLevel === 'LEVEL_2' ? 'bg-indigo-100 text-indigo-700' :
+                      user.verificationLevel === 'LEVEL_3' ? 'bg-brand-100 text-brand-700' :
+                      user.verificationLevel === 'LEVEL_2' ? 'bg-brand-100 text-brand-700' :
                       'bg-slate-100 text-slate-600 dark:text-slate-300'
                     }`}>
                       {user.verificationLevel || 'LEVEL_1'}

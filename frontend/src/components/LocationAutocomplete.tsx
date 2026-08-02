@@ -18,7 +18,7 @@ export default function LocationAutocomplete({
   placeholder = 'Enter city, state or address (e.g., Apapa Port, Lagos)',
   value,
   onChange,
-  iconColor = 'text-blue-500',
+  iconColor = 'text-brand-500',
   required = false,
   className = ''
 }: LocationAutocompleteProps) {
@@ -150,11 +150,11 @@ export default function LocationAutocomplete({
           onFocus={() => { if (predictions.length > 0) setIsOpen(true); }}
           placeholder={placeholder}
           required={required}
-          className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- text-sm font-medium focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-all"
+          className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- text-sm font-medium focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition-all"
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
           {isLoading ? (
-            <Loader2 className="animate-spin text-blue-500" size={18} />
+            <Loader2 className="animate-spin text-brand-500" size={18} />
           ) : (
             <MapPin className={iconColor} size={20} />
           )}
@@ -172,9 +172,9 @@ export default function LocationAutocomplete({
               type="button"
               key={p.placePrediction?.placeId || Math.random()}
               onClick={() => handleSelectPrediction(p)}
-              className="w-full text-left p-3.5 hover:bg-blue-50 cursor-pointer hover:shadow-sm border-b border-slate-100 dark:border-slate-800 last:border-none flex items-start gap-3 transition-colors cursor-pointer"
+              className="w-full text-left p-3.5 hover:bg-brand-50 cursor-pointer hover:shadow-sm border-b border-slate-100 dark:border-slate-800 last:border-none flex items-start gap-3 transition-colors cursor-pointer"
             >
-              <MapPin className="text-blue-500 mt-0.5 shrink-0" size={16} />
+              <MapPin className="text-brand-500 mt-0.5 shrink-0" size={16} />
               <div>
                 <p className="text-xs font-bold text-slate-900 dark:text-white">
                   {typeof p.placePrediction?.text === 'string' 

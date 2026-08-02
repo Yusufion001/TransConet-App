@@ -139,8 +139,8 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
             />
             
             <AdvancedMarker position={vehicleLocation}>
-              <div className="w-10 h-10 bg-blue-600 rounded-full border-2 border-white shadow-xl flex items-center justify-center relative">
-                 <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-75"></div>
+              <div className="w-10 h-10 bg-brand-600 rounded-full border-2 border-white shadow-xl flex items-center justify-center relative">
+                 <div className="absolute inset-0 bg-brand-500 rounded-full animate-ping opacity-75"></div>
                 <Navigation size={18} className="text-white transform rotate-45 relative z-10" />
               </div>
             </AdvancedMarker>
@@ -149,7 +149,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
 
         {/* Radar overlay */}
         <div className="absolute top-20 left-4 sm:left-6 z-10 bg-slate-900/90 border border-slate-700 p-3 rounded-xl backdrop-blur-md max-w-xs space-y-1 text-left pointer-events-none shadow-xl">
-          <div className="flex items-center gap-1.5 text-xs text-blue-400 font-bold uppercase tracking-wider">
+          <div className="flex items-center gap-1.5 text-xs text-brand-400 font-bold uppercase tracking-wider">
             <Radio size={12} className="animate-pulse" />
             Live GPS Telemetry
           </div>
@@ -178,8 +178,8 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
               <div className="w-12 h-1.5 bg-slate-300 rounded-full mb-3" />
               <div className="w-full flex justify-between items-center">
                 <div>
-                  <h3 className="text-lg font-black text-[#1F2937] uppercase">{loadData?.title || `Shipment ${shipmentId.substring(0, 8)}`}</h3>
-                  <p className="text-xs text-blue-600 font-bold uppercase tracking-wider flex items-center gap-1">
+                  <h3 className="text-lg font-black text-slate-900 uppercase">{loadData?.title || `Shipment ${shipmentId.substring(0, 8)}`}</h3>
+                  <p className="text-xs text-brand-600 font-bold uppercase tracking-wider flex items-center gap-1">
                     <Navigation size={12} /> Live Transit Active
                   </p>
                 </div>
@@ -194,15 +194,15 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
 
             <div className={`px-6 pb-8 pt-2 transition-opacity duration-75 ${isSheetOpen ? 'opacity-100' : 'opacity-0 pointer-events-none h-0'}`}>
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-[#F5F7FA] p-4 rounded-2xl">
+                <div className="bg-slate-50 p-4 rounded-2xl">
                   <p className="text-[10px] text-slate-600 dark:text-slate- uppercase tracking-widest font-bold mb-1">ETA</p>
-                  <p className="text-lg font-black text-[#1F2937] flex items-center gap-1.5">
-                    <Clock size={16} className="text-blue-500" /> ~14h 20m
+                  <p className="text-lg font-black text-slate-900 flex items-center gap-1.5">
+                    <Clock size={16} className="text-brand-500" /> ~14h 20m
                   </p>
                 </div>
-                <div className="bg-[#F5F7FA] p-4 rounded-2xl">
+                <div className="bg-slate-50 p-4 rounded-2xl">
                   <p className="text-[10px] text-slate-600 dark:text-slate- uppercase tracking-widest font-bold mb-1">Cargo Weight</p>
-                  <p className="text-lg font-black text-[#1F2937] flex items-center gap-1.5">
+                  <p className="text-lg font-black text-slate-900 flex items-center gap-1.5">
                     {loadData?.weightKg ? `${loadData.weightKg} kg` : '30 Tons'}
                   </p>
                 </div>
@@ -210,19 +210,19 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
 
               <div className="border border-slate-100 dark:border-slate-800 p-4 rounded-2xl flex items-center justify-between mb-6 shadow-sm bg-white dark:bg-slate-900">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center relative">
+                  <div className="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center relative">
                     <img src="https://ui-avatars.com/api/?name=Driver&background=1565C0&color=fff" alt="Driver" className="w-12 h-12 rounded-full" />
                     <div className="absolute -bottom-1 -right-1 bg-emerald-500 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center">
                       <CheckCircle2 size={10} className="text-white" />
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-bold text-[#1F2937]">Assigned Transporter</h4>
+                    <h4 className="font-bold text-slate-900">Assigned Transporter</h4>
                     <p className="text-xs text-slate-500 dark:text-slate-">Verified Partner Network</p>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <Button aria-label="Action" className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center hover:bg-blue-100 transition">
+                  <Button aria-label="Action" className="w-10 h-10 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center hover:bg-brand-100 transition">
                     <MessageSquare size={18} />
                   </Button>
                   <Button aria-label="Action" className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center hover:bg-emerald-100 transition">
@@ -235,17 +235,17 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
                 <div className="relative">
                   <span className="absolute -left-6 top-1 w-3 h-3 rounded-full bg-slate-300 ring-4 ring-white shadow-sm" />
                   <p className="text-[10px] text-slate-600 dark:text-slate- font-bold uppercase tracking-widest mb-0.5">Origin</p>
-                  <p className="font-bold text-[#1F2937] text-sm">{loadData?.origin || 'Lagos Port Terminal'}</p>
+                  <p className="font-bold text-slate-900 text-sm">{loadData?.origin || 'Lagos Port Terminal'}</p>
                 </div>
                 <div className="relative">
-                  <span className="absolute -left-6 top-1 w-3 h-3 rounded-full bg-blue-500 ring-4 ring-white shadow-sm animate-pulse" />
-                  <p className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mb-0.5">Current Location</p>
-                  <p className="font-bold text-[#1F2937] text-sm tracking-wide">{vehicleLocation.lat.toFixed(4)}, {vehicleLocation.lng.toFixed(4)}</p>
+                  <span className="absolute -left-6 top-1 w-3 h-3 rounded-full bg-brand-500 ring-4 ring-white shadow-sm animate-pulse" />
+                  <p className="text-[10px] text-brand-600 font-bold uppercase tracking-widest mb-0.5">Current Location</p>
+                  <p className="font-bold text-slate-900 text-sm tracking-wide">{vehicleLocation.lat.toFixed(4)}, {vehicleLocation.lng.toFixed(4)}</p>
                 </div>
                 <div className="relative opacity-70">
                   <span className="absolute -left-6 top-1 w-3 h-3 rounded-full border-2 border-emerald-500 bg-white dark:bg-slate-900 ring-4 ring-white" />
                   <p className="text-[10px] text-slate-600 dark:text-slate- font-bold uppercase tracking-widest mb-0.5">Destination</p>
-                  <p className="font-bold text-[#1F2937] text-sm">{loadData?.destination || 'Kano Central Depot'}</p>
+                  <p className="font-bold text-slate-900 text-sm">{loadData?.destination || 'Kano Central Depot'}</p>
                 </div>
               </div>
             </div>

@@ -26,7 +26,7 @@ export default function DriverDashboard() {
   }, [activeTab]);
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#F8FAFC]">
+    <div className="w-full h-full flex flex-col bg-slate-50">
       {/* Header */}
       <div className="p-4 md:p-6 pb-0 space-y-4 max-w-lg mx-auto w-full">
         <div className="flex justify-between items-center">
@@ -57,7 +57,7 @@ export default function DriverDashboard() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${
                 activeTab === tab.id 
-                  ? 'bg-blue-600 text-white shadow-md' 
+                  ? 'bg-brand-600 text-white shadow-md' 
                   : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100'
               }`}
             >
@@ -76,7 +76,7 @@ export default function DriverDashboard() {
             ) : availableJobs.map((job) => (
               <div key={job.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-2xl shadow-sm">
                 <div className="flex justify-between items-start mb-4">
-                  <div className="inline-flex items-center gap-1.5 bg-blue-50 text-blue-700 px-2 py-1 rounded text-xs font-bold border border-blue-100">
+                  <div className="inline-flex items-center gap-1.5 bg-brand-50 text-brand-700 px-2 py-1 rounded text-xs font-bold border border-brand-100">
                     <Clock size={12} /> {job.cargoType || 'Cargo'}
                   </div>
                   <h3 className="font-black text-lg text-slate-800 dark:text-slate-">₦{(job.suggestedBudget || 0).toLocaleString()}</h3>
@@ -85,8 +85,8 @@ export default function DriverDashboard() {
                 <div className="space-y-3 mb-6 relative">
                   <div className="absolute left-[9px] top-4 bottom-4 w-0.5 bg-slate-200"></div>
                   <div className="flex gap-3 relative z-10">
-                    <div className="w-5 h-5 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center mt-0.5">
-                      <div className="w-2 h-2 rounded-full bg-blue-600"></div>
+                    <div className="w-5 h-5 rounded-full bg-brand-100 border-2 border-white flex items-center justify-center mt-0.5">
+                      <div className="w-2 h-2 rounded-full bg-brand-600"></div>
                     </div>
                     <div>
                       <p className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-400 tracking-wider">Pickup</p>
@@ -109,7 +109,7 @@ export default function DriverDashboard() {
                     api.post('/bids/submit', { loadId: job.id, amount: job.suggestedBudget || 0, notes: 'Available immediately' })
                       .then(() => alert('Bid submitted successfully!'))
                       .catch(e => alert('Failed to submit bid: ' + ((typeof e.response?.data?.error === 'object' ? JSON.stringify(e.response?.data?.error) : e.response?.data?.error) || e.message)));
-                  }} className="flex-1 bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition flex items-center justify-center gap-2">
+                  }} className="flex-1 bg-brand-600 text-white font-bold py-3 rounded-xl hover:bg-brand-700 transition flex items-center justify-center gap-2">
                     <CheckSquare size={18} /> Accept
                   </Button>
                   <Button className="flex-1 bg-rose-50 text-rose-600 font-bold py-3 rounded-xl hover:bg-rose-100 border border-rose-200 transition flex items-center justify-center gap-2">
@@ -141,7 +141,7 @@ export default function DriverDashboard() {
                   <Button className="flex-1 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-slate-100 transition">
                     <Navigation size={16} /> Navigate
                   </Button>
-                  <Button className="flex-1 bg-blue-500/30 border border-blue-400/30 text-blue-100 font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-blue-50 cursor-pointer hover:shadow-sm0/50 transition">
+                  <Button className="flex-1 bg-brand-500/30 border border-brand-400/30 text-brand-100 font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm0/50 transition">
                     <MessageCircle size={16} /> Chat
                   </Button>
                 </div>
@@ -155,7 +155,7 @@ export default function DriverDashboard() {
               </h3>
               
               <div className="grid grid-cols-2 gap-3 mb-6">
-                 <Button className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-blue-50 cursor-pointer hover:shadow-sm hover:border-blue-200 hover:text-blue-600 transition group text-slate-600 dark:text-slate-">
+                 <Button className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm hover:border-brand-200 hover:text-brand-600 transition group text-slate-600 dark:text-slate-">
                     <Camera size={24} className="group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-bold text-center">Upload Cargo<br/>Photos</span>
                  </Button>
@@ -174,17 +174,17 @@ export default function DriverDashboard() {
 
         {activeTab === 'earnings' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-             <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-6 rounded-3xl text-white shadow-xl shadow-blue-900/20 relative overflow-hidden">
+             <div className="bg-gradient-to-br from-brand-600 to-brand-700 p-6 rounded-3xl text-white shadow-xl shadow-blue-900/20 relative overflow-hidden">
                 <div className="relative z-10">
-                  <p className="text-blue-100 font-bold uppercase tracking-wider text-xs mb-1">Available Balance</p>
-                  <h2 className="text-4xl font-black tracking-tight">₦124,500<span className="text-xl text-blue-300">.00</span></h2>
+                  <p className="text-brand-100 font-bold uppercase tracking-wider text-xs mb-1">Available Balance</p>
+                  <h2 className="text-4xl font-black tracking-tight">₦124,500<span className="text-xl text-brand-300">.00</span></h2>
                   
-                  <div className="mt-6 pt-6 border-t border-blue-500/30 flex justify-between items-center">
+                  <div className="mt-6 pt-6 border-t border-brand-500/30 flex justify-between items-center">
                     <div>
-                      <p className="text-blue-200 text-[10px] uppercase font-bold tracking-wider">This Week</p>
+                      <p className="text-brand-200 text-[10px] uppercase font-bold tracking-wider">This Week</p>
                       <p className="font-bold text-lg">+ ₦45,000</p>
                     </div>
-                    <Button className="bg-white dark:bg-slate-900 text-blue-700 px-5 py-2.5 rounded-full font-bold text-sm shadow-md hover:scale-105 transition-transform">
+                    <Button className="bg-white dark:bg-slate-900 text-brand-700 px-5 py-2.5 rounded-full font-bold text-sm shadow-md hover:scale-105 transition-transform">
                       Withdraw
                     </Button>
                   </div>
@@ -198,7 +198,7 @@ export default function DriverDashboard() {
                   { desc: 'Withdrawal to Bank', date: 'Yesterday, 10:15 AM', amt: '- ₦50,000', type: 'debit' },
                   { desc: 'Trip #TR-8812 (Ikeja)', date: 'Mon, 4:00 PM', amt: '+ ₦12,500', type: 'credit' },
                 ].map((txn, i) => (
-                  <div key={i} className="p-4 border-b border-slate-100 dark:border-slate-800 last:border-0 flex justify-between items-center hover:bg-blue-50 cursor-pointer hover:shadow-sm">
+                  <div key={i} className="p-4 border-b border-slate-100 dark:border-slate-800 last:border-0 flex justify-between items-center hover:bg-brand-50 cursor-pointer hover:shadow-sm">
                     <div className="flex items-center gap-3">
                       <div className={`w-10 h-10 rounded-full flex items-center justify-center ${txn.type === 'credit' ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-600 dark:text-slate-300'}`}>
                         {txn.type === 'credit' ? <CheckCircle2 size={18} /> : <Wallet size={18} />}
@@ -239,7 +239,7 @@ export default function DriverDashboard() {
                            <p className={`text-[10px] font-bold uppercase tracking-wider text-${doc.color}-600`}>{doc.status}</p>
                          </div>
                       </div>
-                      <Button aria-label="Action" className="text-blue-600 p-2 bg-blue-50 rounded-lg hover:bg-blue-100">
+                      <Button aria-label="Action" className="text-brand-600 p-2 bg-brand-50 rounded-lg hover:bg-brand-100">
                         <UploadCloud size={16} />
                       </Button>
                     </div>

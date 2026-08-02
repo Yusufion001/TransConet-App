@@ -62,12 +62,12 @@ export default function AdminAuditLogs() {
                 </td>
               </tr>
             ) : filteredLogs.map(log => (
-              <tr key={log.id || log?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800 animate-fade-in">
+              <tr key={log.id || log?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800 animate-fade-in">
                 <td className="py-3 pr-4 font-semibold text-slate-800 dark:text-slate-">
                   <div className="flex items-center gap-2">
-                    {log.type === 'SECURITY' && <Shield size={14} className="text-purple-500" />}
+                    {log.type === 'SECURITY' && <Shield size={14} className="text-brand-500" />}
                     {log.type === 'FINANCE' && <AlertTriangle size={14} className="text-amber-500" />}
-                    {log.type === 'COMPLIANCE' && <UserCheck size={14} className="text-blue-500" />}
+                    {log.type === 'COMPLIANCE' && <UserCheck size={14} className="text-brand-500" />}
                     {(!log.type || log.type === 'SYSTEM' || log.type === 'INFO') && <FileText size={14} className="text-slate-500 dark:text-slate-" />}
                     {log.title}
                   </div>

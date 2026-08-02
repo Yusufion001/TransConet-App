@@ -390,7 +390,7 @@ export default function SupportChatWidget({
         <Button
           id="floating-support-bubble"
           onClick={isOpen ? () => setIsOpen(false) : handleOpenChat}
-          className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm0 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-75 hover:scale-110 flex items-center justify-center cursor-pointer group"
+          className="fixed bottom-6 right-6 z-50 bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white p-4 rounded-full shadow-2xl hover:shadow-blue-500/30 transition-all duration-75 hover:scale-110 flex items-center justify-center cursor-pointer group"
           title="Open TransConet Support"
         >
           {isOpen ? (
@@ -399,7 +399,7 @@ export default function SupportChatWidget({
             <div className="relative">
               <MessageSquare size={24} className="animate-pulse" />
               {unreadCount > 0 && (
-                <span className="text-[8px] font-black uppercase text-blue-600 bg-blue-100   px-1 py-0.5 rounded flex items-center gap-0.5">
+                <span className="text-[8px] font-black uppercase text-brand-600 bg-brand-100   px-1 py-0.5 rounded flex items-center gap-0.5">
                   {unreadCount}
                 </span>
               )}
@@ -420,11 +420,11 @@ export default function SupportChatWidget({
         >
           {/* Header Panel */}
           <div className="bg-slate-900 px-5 py-4 flex items-center justify-between text-white border-b border-slate-200 dark:border-slate-700 shadow-md relative overflow-hidden">
-            <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-blue-600/10 blur-2xl rounded-full" />
-            <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-indigo-600/10 blur-2xl rounded-full" />
+            <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-brand-600/10 blur-2xl rounded-full" />
+            <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-brand-600/10 blur-2xl rounded-full" />
             
             <div className="flex items-center gap-3 relative z-10">
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-2 rounded-xl shadow-inner shadow-white/20">
+              <div className="bg-gradient-to-br from-brand-600 to-brand-600 p-2 rounded-xl shadow-inner shadow-white/20">
                 <Headset className="text-white" size={20} />
               </div>
               <div className="text-left">
@@ -442,14 +442,14 @@ export default function SupportChatWidget({
                 onClick={handleBellClick}
                 className={`p-1.5 rounded-xl transition-all relative ${
                   activeTab === 'notifications' 
-                    ? 'bg-blue-600 text-white' 
+                    ? 'bg-brand-600 text-white' 
                     : 'text-slate-600 dark:text-slate-300 hover:text-white hover:bg-slate-800/50'
                 }`}
                 title="View Broadcast Board & Alerts"
               >
                 <Bell size={18} className={unreadCount > 0 ? 'animate-bounce' : ''} />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-blue-500 rounded-full" />
+                  <span className="absolute -top-1 -right-1 w-2 h-2 bg-brand-500 rounded-full" />
                 )}
               </Button>
 
@@ -470,7 +470,7 @@ export default function SupportChatWidget({
               onClick={() => setActiveTab('chat')}
               className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 ${
                 activeTab === 'chat'
-                  ? 'bg-blue-600 text-white shadow-md border border-transparent'
+                  ? 'bg-brand-600 text-white shadow-md border border-transparent'
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-600 dark:text-slate-300 :text-slate-600 dark:text-slate-300'
               }`}
             >
@@ -481,33 +481,33 @@ export default function SupportChatWidget({
               onClick={() => setActiveTab('notifications')}
               className={`flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-xl transition flex items-center justify-center gap-2 relative ${
                 activeTab === 'notifications'
-                  ? 'bg-blue-600 text-white shadow-md border border-transparent'
+                  ? 'bg-brand-600 text-white shadow-md border border-transparent'
                   : 'text-slate-600 dark:text-slate-300 hover:text-slate-600 dark:text-slate-300 :text-slate-600 dark:text-slate-300'
-              } ${highlightBoard ? 'ring-2 ring-blue-500 bg-blue-50/10  animate-pulse' : ''}`}
+              } ${highlightBoard ? 'ring-2 ring-brand-500 bg-brand-50/10  animate-pulse' : ''}`}
             >
-              <Radio size={13} className={unreadCount > 0 || highlightBoard ? 'text-blue-500 animate-pulse' : ''} />
+              <Radio size={13} className={unreadCount > 0 || highlightBoard ? 'text-brand-500 animate-pulse' : ''} />
               Broadcast Board
               {(unreadCount > 0 || highlightBoard) && (
-                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
               )}
             </Button>
           </div>
 
           {/* Body and Chat Flow */}
-          <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-800 [#0b0f19] flex flex-col">
+          <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-800 slate-950 flex flex-col">
             {activeTab === 'chat' ? (
               // CHAT COMPONENT
               loading ? (
                 <div className="flex-1 flex flex-col items-center justify-center space-y-3 p-6">
-                  <RefreshCw className="text-blue-600 animate-spin" size={24} />
+                  <RefreshCw className="text-brand-600 animate-spin" size={24} />
                   <span className="text-xs text-slate-500 dark:text-slate-  font-mono">Initializing secure connection...</span>
                 </div>
               ) : !ticket ? (
                 // Ticket Configuration state
                 <div className="p-6 space-y-6 text-left flex-1 flex flex-col justify-center">
                   <div className="space-y-2">
-                    <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md bg-blue-50 text-blue-700   ring-1 ring-blue-500/20">
-                      <Sparkles size={12} className="text-blue-600 " /> Platform Diagnostics
+                    <span className="inline-flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest px-2.5 py-1 rounded-md bg-brand-50 text-brand-700   ring-1 ring-brand-500/20">
+                      <Sparkles size={12} className="text-brand-600 " /> Platform Diagnostics
                     </span>
                     <h3 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white ">How can we assist you today?</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-  leading-relaxed">
@@ -520,10 +520,10 @@ export default function SupportChatWidget({
                       <Button
                         key={i}
                         onClick={() => handleStartWithCategory(cat)}
-                        className="bg-white dark:bg-slate-900  hover:bg-blue-50 cursor-pointer hover:shadow-sm :bg-slate-800 border border-slate-200 dark:border-slate-700  hover:border-blue-500/50 p-3.5 rounded-xl text-left text-[11px] font-bold text-slate-700 dark:text-slate-  transition-all flex items-center justify-between group cursor-pointer shadow-sm hover:shadow-md"
+                        className="bg-white dark:bg-slate-900  hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-800 border border-slate-200 dark:border-slate-700  hover:border-brand-500/50 p-3.5 rounded-xl text-left text-[11px] font-bold text-slate-700 dark:text-slate-  transition-all flex items-center justify-between group cursor-pointer shadow-sm hover:shadow-md"
                       >
                         <span>{cat}</span>
-                        <ArrowRight size={14} className="text-slate-600 dark:text-slate-  group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight size={14} className="text-slate-600 dark:text-slate-  group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
                       </Button>
                     ))}
                   </div>
@@ -559,7 +559,7 @@ export default function SupportChatWidget({
                                 👨‍💼 Agent
                               </span>
                             ) : (
-                              <span className="text-[9px] font-black uppercase text-blue-600 bg-blue-100 px-1 py-0.5 rounded flex items-center gap-0.5 shadow-sm border border-blue-200">
+                              <span className="text-[9px] font-black uppercase text-brand-600 bg-brand-100 px-1 py-0.5 rounded flex items-center gap-0.5 shadow-sm border border-brand-200">
                                 <Bot size={10} /> AI
                               </span>
                             )
@@ -569,7 +569,7 @@ export default function SupportChatWidget({
                         
                         <div className={`p-3 rounded-2xl max-w-[85%] text-xs leading-relaxed text-left shadow-sm  ${
                           isUser 
-                            ? 'bg-blue-600 text-white rounded-tr-none' 
+                            ? 'bg-brand-600 text-white rounded-tr-none' 
                             : isAdmin 
                             ? 'bg-amber-50 border border-amber-200 text-slate-900 dark:text-white  rounded-tl-none'
                             : 'bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  text-slate-900 dark:text-white  rounded-tl-none'
@@ -583,7 +583,7 @@ export default function SupportChatWidget({
                   {/* Bot Typing Indicator */}
                   {botTyping && (
                     <div className="flex items-center gap-2 text-slate-500 dark:text-slate-  animate-pulse text-[10px] font-mono pl-1">
-                      <Bot size={14} className="text-blue-500 animate-bounce" />
+                      <Bot size={14} className="text-brand-500 animate-bounce" />
                       <span>TransConet AI is thinking...</span>
                     </div>
                   )}
@@ -604,7 +604,7 @@ export default function SupportChatWidget({
                 {/* Header overview and filter selectors */}
                 <div className="text-left space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black text-blue-500  uppercase tracking-widest flex items-center gap-1">
+                    <span className="text-[10px] font-black text-brand-500  uppercase tracking-widest flex items-center gap-1">
                       <Radio size={12} className="animate-pulse text-emerald-500" />
                       Live Feed Monitor
                     </span>
@@ -624,7 +624,7 @@ export default function SupportChatWidget({
                       onClick={() => setSelectedCategoryFilter(filter)}
                       className={`px-3 py-1.5 rounded-full text-[9px] font-extrabold whitespace-nowrap transition cursor-pointer ${
                         selectedCategoryFilter === filter
-                          ? 'bg-blue-600 text-white'
+                          ? 'bg-brand-600 text-white'
                           : 'bg-white dark:bg-slate-900  text-slate-600 dark:text-slate-300  border border-slate-200 dark:border-slate-700 '
                       }`}
                     >
@@ -645,7 +645,7 @@ export default function SupportChatWidget({
                         className={`p-3.5 rounded-2xl text-left border transition-all ${
                           notif.read 
                             ? 'border-slate-200 dark:border-slate-700  bg-white dark:bg-slate-900  opacity-80' 
-                            : 'border-blue-200  bg-blue-50/10  shadow-sm'
+                            : 'border-brand-200  bg-brand-50/10  shadow-sm'
                         }`}
                       >
                         <div className="flex justify-between items-start gap-2 mb-1.5">
@@ -726,12 +726,12 @@ export default function SupportChatWidget({
                   onChange={(e) => setMessageText(e.target.value)}
                   disabled={ticket.status === 'CLOSED'}
                   placeholder={ticket.status === 'CLOSED' ? "This ticket is closed." : "Type your complaint here..."}
-                  className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  text-slate-900 dark:text-white  text-xs rounded-xl px-3 py-2 flex-1 focus:outline-none focus:border-blue-500 focus:bg-white dark:bg-slate-900  disabled:opacity-50"
+                  className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  text-slate-900 dark:text-white  text-xs rounded-xl px-3 py-2 flex-1 focus:outline-none focus:border-brand-500 focus:bg-white dark:bg-slate-900  disabled:opacity-50"
                 />
                 <Button aria-label="Action"
                   type="submit"
                   disabled={!messageText.trim() || ticket.status === 'CLOSED'}
-                  className="bg-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm0 text-white p-2 rounded-xl transition flex items-center justify-center cursor-pointer disabled:opacity-40"
+                  className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white p-2 rounded-xl transition flex items-center justify-center cursor-pointer disabled:opacity-40"
                 >
                   <Send size={15} />
                 </Button>

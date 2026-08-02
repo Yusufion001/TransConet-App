@@ -156,12 +156,12 @@ export default function RouteDistanceCalculator({
   return (
     <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-xl border border-slate-800 space-y-4">
       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-        <div className="flex items-center gap-2 text-blue-400">
+        <div className="flex items-center gap-2 text-brand-400">
           <Navigation size={18} />
           <h4 className="text-xs font-black uppercase tracking-wider">Google Maps Distance Calculation</h4>
         </div>
         {loading && (
-          <div className="flex items-center gap-1.5 text-xs text-blue-400">
+          <div className="flex items-center gap-1.5 text-xs text-brand-400">
             <RefreshCw className="animate-spin" size={14} />
             <span>Calculating live route...</span>
           </div>
@@ -181,7 +181,7 @@ export default function RouteDistanceCalculator({
           </div>
           <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700/50">
             <p className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-bold tracking-wider">Benchmark Cost</p>
-            <p className="text-base font-black text-blue-400 mt-1">₦{(routeInfo?.estimatedCost || 0).toLocaleString()}</p>
+            <p className="text-base font-black text-brand-400 mt-1">₦{(routeInfo?.estimatedCost || 0).toLocaleString()}</p>
           </div>
         </div>
       ) : (

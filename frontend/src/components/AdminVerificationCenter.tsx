@@ -79,7 +79,7 @@ export default function AdminVerificationCenter() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'PENDING': return <span className="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">Pending</span>;
-      case 'IN_REVIEW': return <span className="bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">In Review</span>;
+      case 'IN_REVIEW': return <span className="bg-brand-100 text-brand-800 px-2.5 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">In Review</span>;
       case 'APPROVED': return <span className="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">Approved</span>;
       case 'REJECTED': return <span className="bg-red-100 text-red-800 px-2.5 py-1 rounded-full text-[10px] font-black tracking-wider uppercase">Rejected</span>;
       default: return null;
@@ -88,9 +88,9 @@ export default function AdminVerificationCenter() {
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'DRIVER': return <UserCheck size={18} className="text-indigo-500" />;
+      case 'DRIVER': return <UserCheck size={18} className="text-brand-500" />;
       case 'COMPANY': return <ShieldCheck size={18} className="text-emerald-500" />;
-      case 'VEHICLE': return <Truck size={18} className="text-blue-500" />;
+      case 'VEHICLE': return <Truck size={18} className="text-brand-500" />;
       default: return <FileText size={18} />;
     }
   };
@@ -110,7 +110,7 @@ export default function AdminVerificationCenter() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <ShieldCheck className="text-indigo-600" /> Identity & Verification
+            <ShieldCheck className="text-brand-600" /> Identity & Verification
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Approve drivers, transport companies, and vehicle documents.</p>
         </div>
@@ -137,7 +137,7 @@ export default function AdminVerificationCenter() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Truck size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Verified Vehicles</h3>
@@ -146,7 +146,7 @@ export default function AdminVerificationCenter() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <ShieldCheck size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Verified Companies</h3>
@@ -189,9 +189,9 @@ export default function AdminVerificationCenter() {
             <h4 className="font-bold text-slate-700 dark:text-slate- mb-4">Submitted Documents</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {selectedRequest.documents.map((doc, idx) => (
-                <div key={idx} className="border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex flex-col justify-between group hover:border-indigo-300 transition-colors bg-slate-50 dark:bg-slate-800">
+                <div key={idx} className="border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex flex-col justify-between group hover:border-brand-300 transition-colors bg-slate-50 dark:bg-slate-800">
                   <div className="flex items-start gap-3">
-                    <div className="p-2 bg-indigo-100 text-indigo-700 rounded-lg">
+                    <div className="p-2 bg-brand-100 text-brand-700 rounded-lg">
                       <FileText size={20} />
                     </div>
                     <div>
@@ -200,10 +200,10 @@ export default function AdminVerificationCenter() {
                     </div>
                   </div>
                   <div className="mt-4 flex gap-2">
-                    <Button className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- text-xs font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors">
+                    <Button className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- text-xs font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
                       <Eye size={14} /> View
                     </Button>
-                    <Button aria-label="Action" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- px-2 py-1.5 rounded-lg flex items-center justify-center hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors">
+                    <Button aria-label="Action" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- px-2 py-1.5 rounded-lg flex items-center justify-center hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
                       <Download size={14} />
                     </Button>
                   </div>
@@ -212,11 +212,11 @@ export default function AdminVerificationCenter() {
             </div>
           </div>
           
-          <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 flex gap-3">
-             <AlertTriangle className="text-blue-600 shrink-0" size={20} />
+          <div className="bg-brand-50 border border-brand-100 rounded-xl p-4 flex gap-3">
+             <AlertTriangle className="text-brand-600 shrink-0" size={20} />
              <div>
-               <p className="text-sm font-bold text-blue-900">AI Risk Assessment: {selectedRequest.riskScore}</p>
-               <p className="text-xs text-blue-800 mt-1">The system has analyzed these documents. No signs of forgery detected. Smile Identity facial match score: 98%.</p>
+               <p className="text-sm font-bold text-brand-900">AI Risk Assessment: {selectedRequest.riskScore}</p>
+               <p className="text-xs text-brand-800 mt-1">The system has analyzed these documents. No signs of forgery detected. Smile Identity facial match score: 98%.</p>
              </div>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function AdminVerificationCenter() {
                 placeholder="Search name or ID..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
               />
             </div>
           </div>
@@ -264,7 +264,7 @@ export default function AdminVerificationCenter() {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredRequests.map(req => (
-                  <tr key={req.id || req?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                  <tr key={req.id || req?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                     <td className="p-4">
                       <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-">{req.id}</span>
                     </td>
@@ -286,7 +286,7 @@ export default function AdminVerificationCenter() {
                     <td className="p-4 text-right">
                       <Button
                         onClick={() => setSelectedRequestId(req.id)}
-                        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-indigo-300 hover:bg-indigo-50 text-indigo-700 font-bold px-3 py-1.5 rounded-lg text-xs transition-all shadow-sm"
+                        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-brand-300 hover:bg-brand-50 text-brand-700 font-bold px-3 py-1.5 rounded-lg text-xs transition-all shadow-sm"
                       >
                         Review
                       </Button>

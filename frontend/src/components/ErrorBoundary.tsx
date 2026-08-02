@@ -53,7 +53,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
             </div>
             <button
               onClick={() => { sessionStorage.removeItem('hasReloaded'); window.location.reload(); }}
-              className="mt-4 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-50 cursor-pointer text-white font-medium text-sm transition-all"
+              className="mt-4 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-50 cursor-pointer text-white font-medium text-sm transition-all"
             >
               Reload Application
             </button>

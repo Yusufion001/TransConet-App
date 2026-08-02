@@ -156,8 +156,8 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
       {toastNotification && (
         <div className="fixed bottom-4 right-4 z-50 animate-in slide-in-from-bottom-5 fade-in duration-300">
           <div className="bg-slate-800 text-white p-4 rounded-xl shadow-2xl flex items-start gap-3 max-w-sm">
-            <div className="bg-blue-500/20 p-2 rounded-full mt-1">
-              <Truck size={16} className="text-blue-400" />
+            <div className="bg-brand-500/20 p-2 rounded-full mt-1">
+              <Truck size={16} className="text-brand-400" />
             </div>
             <div>
               <h4 className="font-bold text-sm">{toastNotification.title}</h4>
@@ -169,7 +169,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
 
       {/* Header */}
       <div className="text-center space-y-3">
-        <span className="bg-blue-50/50 text-blue-600 border border-blue-100 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest inline-flex items-center gap-1.5">
+        <span className="bg-brand-50/50 text-brand-600 border border-brand-100 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest inline-flex items-center gap-1.5">
           <Handshake size={12} /> Direct Connection & Free Negotiation
         </span>
         <h1 className="text-2xl font-black text-slate-900 dark:text-white  tracking-tight">
@@ -190,19 +190,19 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
         <div className="flex justify-center gap-2 animate-in fade-in duration-75">
           <Button
             onClick={() => { setShipperSubMode('SEARCH'); setActiveMatch(null); }}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${shipperSubMode === 'SEARCH' ? 'bg-blue-50 text-blue-600 border border-blue-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-blue-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${shipperSubMode === 'SEARCH' ? 'bg-brand-50 text-brand-600 border border-brand-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-brand-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
           >
             Find a Truck
           </Button>
           <Button
             onClick={() => { setShipperSubMode('POST'); setActiveMatch(null); }}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${shipperSubMode === 'POST' ? 'bg-blue-50 text-blue-600 border border-blue-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-blue-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${shipperSubMode === 'POST' ? 'bg-brand-50 text-brand-600 border border-brand-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-brand-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
           >
             Post Cargo
           </Button>
           <Button
             onClick={() => { setShipperSubMode('MY_LOADS'); setActiveMatch(null); }}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${shipperSubMode === 'MY_LOADS' ? 'bg-blue-50 text-blue-600 border border-blue-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-blue-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${shipperSubMode === 'MY_LOADS' ? 'bg-brand-50 text-brand-600 border border-brand-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-brand-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
           >
             My Shipments
           </Button>
@@ -214,13 +214,13 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
         <div className="flex justify-center gap-2 animate-in fade-in duration-75">
           <Button
             onClick={() => { setTransporterSubMode('JOBS'); setActiveMatch(null); }}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${transporterSubMode === 'JOBS' ? 'bg-blue-50 text-blue-600 border border-blue-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-blue-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${transporterSubMode === 'JOBS' ? 'bg-brand-50 text-brand-600 border border-brand-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-brand-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
           >
             Find Load Matches
           </Button>
           <Button
             onClick={() => { setTransporterSubMode('REGISTER'); setActiveMatch(null); }}
-            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${transporterSubMode === 'REGISTER' ? 'bg-blue-50 text-blue-600 border border-blue-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-blue-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
+            className={`px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-75 cursor-pointer uppercase tracking-widest ${transporterSubMode === 'REGISTER' ? 'bg-brand-50 text-brand-600 border border-brand-200 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:text-slate-100 hover:bg-brand-50 cursor-pointer hover:shadow-sm border border-transparent'}`}
           >
             Register Fleet
           </Button>
@@ -274,7 +274,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
                   placeholder="Search destination address..."
                   value={destination}
                   onChange={(val) => setDestination(val)}
-                  iconColor="text-blue-500"
+                  iconColor="text-brand-500"
                 />
               </div>
             )}
@@ -282,7 +282,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
             <Button
               type="submit"
               disabled={processing}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition shadow-md shadow-blue-500/10 text-sm cursor-pointer"
+              className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl transition shadow-md shadow-blue-500/10 text-sm cursor-pointer"
             >
               {processing ? 'Matching Fleet...' : 'Find Match & Negotiate'}
             </Button>
@@ -313,8 +313,8 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           <p className="text-sm text-slate-500 dark:text-slate- mb-4">{mode === 'SHIPPER' ? 'Select a transport option that best fits your budget and risk preference.' : 'Select a cargo load that matches your truck capacity and route.'}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {matchOptions.map(option => (
-              <div key={option.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-lg hover:shadow-xl hover:border-blue-300 transition cursor-pointer flex flex-col" onClick={() => setActiveMatch(option)}>
-                <div className="p-3 bg-blue-50 text-blue-600 rounded-xl w-fit mb-3">
+              <div key={option.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-lg hover:shadow-xl hover:border-brand-300 transition cursor-pointer flex flex-col" onClick={() => setActiveMatch(option)}>
+                <div className="p-3 bg-brand-50 text-brand-600 rounded-xl w-fit mb-3">
                   {mode === 'SHIPPER' ? <Truck size={24} /> : <Briefcase size={24} />}
                 </div>
                 <h4 className="font-bold text-slate-900 dark:text-white text-lg leading-tight">{option.title}</h4>
@@ -323,16 +323,16 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
                 <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-end justify-between">
                   <div>
                     <p className="text-[10px] text-slate-400 dark:text-slate-400 uppercase font-black tracking-wider">Estimated Fare</p>
-                    <p className="text-blue-600 font-black text-xl">₦{(option?.price || 0).toLocaleString()}</p>
+                    <p className="text-brand-600 font-black text-xl">₦{(option?.price || 0).toLocaleString()}</p>
                   </div>
-                  <Button aria-label="Action" className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition">
+                  <Button aria-label="Action" className="bg-brand-600 text-white p-2 rounded-lg hover:bg-brand-700 transition">
                     <Handshake size={16} />
                   </Button>
                 </div>
               </div>
             ))}
           </div>
-          <Button onClick={() => setMatchOptions([])} className="text-blue-600 text-sm font-semibold hover:underline">
+          <Button onClick={() => setMatchOptions([])} className="text-brand-600 text-sm font-semibold hover:underline">
             &larr; Back to Search
           </Button>
         </div>
@@ -359,7 +359,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           <div className="flex justify-center">
             <Button
               onClick={handleReturnToDashboard}
-              className="flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-blue-600 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate- hover:text-blue-600 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer"
+              className="flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-brand-600 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate- hover:text-brand-600 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer"
             >
               <RefreshCw size={12} /> Return to Dashboard
             </Button>

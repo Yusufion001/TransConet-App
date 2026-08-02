@@ -46,10 +46,10 @@ export default function AdminDisputes() {
 
             {dispute.status !== 'RESOLVED' && (
               <div className="flex gap-2 pt-3 border-t border-slate-200 dark:border-slate-700/50 mt-3">
-                <Button onClick={() => handleResolve(dispute.id, 'REFUND_CUSTOMER')} className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate- hover:bg-blue-50 cursor-pointer hover:shadow-sm flex items-center justify-center gap-1">
+                <Button onClick={() => handleResolve(dispute.id, 'REFUND_CUSTOMER')} className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm flex items-center justify-center gap-1">
                   <ArrowRight size={14} className="text-rose-500" /> Refund Customer
                 </Button>
-                <Button onClick={() => handleResolve(dispute.id, 'RELEASE_TRANSPORTER')} className="flex-1 bg-blue-600 border border-blue-600 py-2 rounded-xl text-xs font-bold text-white hover:bg-blue-700 flex items-center justify-center gap-1">
+                <Button onClick={() => handleResolve(dispute.id, 'RELEASE_TRANSPORTER')} className="flex-1 bg-brand-600 border border-brand-600 py-2 rounded-xl text-xs font-bold text-white hover:bg-brand-700 flex items-center justify-center gap-1">
                   Release to Transporter <Wallet size={14} />
                 </Button>
               </div>

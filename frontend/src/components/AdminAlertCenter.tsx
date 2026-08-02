@@ -205,7 +205,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
       case 'warning':
         return 'bg-amber-500/10 text-amber-400 border border-amber-500/30';
       case 'info':
-        return 'bg-blue-500/10 text-blue-400 border border-blue-500/30';
+        return 'bg-brand-500/10 text-brand-400 border border-brand-500/30';
       default:
         return 'bg-slate-500/10 text-slate-400 border border-slate-500/30';
     }
@@ -218,7 +218,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
       case 'storage':
         return <Server size={14} className="text-emerald-500" />;
       case 'auth':
-        return <ShieldAlert size={14} className="text-purple-500" />;
+        return <ShieldAlert size={14} className="text-brand-500" />;
       case 'realtime':
         return <Terminal size={14} className="text-sky-500" />;
       default:
@@ -268,7 +268,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-5">
             <div className="flex justify-between items-center">
               <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate- flex items-center gap-2">
-                <Server size={14} className="text-blue-600" /> Infrastructure Health
+                <Server size={14} className="text-brand-600" /> Infrastructure Health
               </h3>
               <Button aria-label="Action" 
                 onClick={() => refetch()} 
@@ -276,7 +276,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                 className="p-1.5 hover:bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate- rounded-lg transition"
                 title="Force refresh diagnostics"
               >
-                <RefreshCw size={14} className={loading ? 'animate-spin text-blue-600' : ''} />
+                <RefreshCw size={14} className={loading ? 'animate-spin text-brand-600' : ''} />
               </Button>
             </div>
 
@@ -355,14 +355,14 @@ CREATE POLICY "Public Read Access" ON storage.objects
           {/* Simulation Playground Panel */}
           <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-4">
             <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
-              <Sparkles className="text-indigo-500" size={14} /> Diagnostic Playground
+              <Sparkles className="text-brand-500" size={14} /> Diagnostic Playground
             </h3>
             <p className="text-[11px] text-slate-500 dark:text-slate- leading-normal">
               Toggle specific backend failures below to test how the Error Center detects, warns, and guides resolution. Great for demonstrating app robustness!
             </p>
 
             <div className="space-y-2 pt-2">
-              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-blue-50 cursor-pointer transition">
+              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Missing Tables</span>
                   <p className="text-[9px] text-slate-500 dark:text-slate-">Fakes complete postgres schema deletion</p>
@@ -371,11 +371,11 @@ CREATE POLICY "Public Read Access" ON storage.objects
                   type="checkbox" 
                   checked={simulations.missingTables} 
                   onChange={(e) => setSimulations(prev => ({ ...prev, missingTables: e.target.checked }))}
-                  className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+                  className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300"
                 />
               </label>
 
-              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-blue-50 cursor-pointer transition">
+              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Private Buckets</span>
                   <p className="text-[9px] text-slate-500 dark:text-slate-">Triggers warnings on bucket permission levels</p>
@@ -384,11 +384,11 @@ CREATE POLICY "Public Read Access" ON storage.objects
                   type="checkbox" 
                   checked={simulations.privateBucket} 
                   onChange={(e) => setSimulations(prev => ({ ...prev, privateBucket: e.target.checked }))}
-                  className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+                  className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300"
                 />
               </label>
 
-              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-blue-50 cursor-pointer transition">
+              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Auth Timeout</span>
                   <p className="text-[9px] text-slate-500 dark:text-slate-">Simulates high-latency auth engine delay</p>
@@ -397,11 +397,11 @@ CREATE POLICY "Public Read Access" ON storage.objects
                   type="checkbox" 
                   checked={simulations.authTimeout} 
                   onChange={(e) => setSimulations(prev => ({ ...prev, authTimeout: e.target.checked }))}
-                  className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+                  className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300"
                 />
               </label>
 
-              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-blue-50 cursor-pointer transition">
+              <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
                   <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Unconfigured State</span>
                   <p className="text-[9px] text-slate-500 dark:text-slate-">Simulates zero API keys in local workspace</p>
@@ -410,7 +410,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                   type="checkbox" 
                   checked={simulations.emptyApiKeys} 
                   onChange={(e) => setSimulations(prev => ({ ...prev, emptyApiKeys: e.target.checked }))}
-                  className="w-4 h-4 rounded text-blue-600 focus:ring-blue-500 border-slate-300"
+                  className="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-slate-300"
                 />
               </label>
             </div>
@@ -537,7 +537,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
 
                         {/* Resolution instructions */}
                         <div className="space-y-1 text-slate-800 dark:text-slate-">
-                          <strong className="text-indigo-700 block text-[10px] uppercase font-bold tracking-wider mb-1">
+                          <strong className="text-brand-700 block text-[10px] uppercase font-bold tracking-wider mb-1">
                             💡 Recommended Troubleshooting Steps:
                           </strong>
                           <p className="text-[11px] text-slate-600 dark:text-slate-">{issue.resolution}</p>
@@ -552,7 +552,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                               </span>
                               <Button 
                                 onClick={() => handleCopySql(issue.sqlFix || '', issue.id)}
-                                className="flex items-center gap-1.5 text-[10px] font-bold text-indigo-600 hover:text-indigo-800 px-2 py-1 rounded bg-indigo-50 hover:bg-indigo-100 transition"
+                                className="flex items-center gap-1.5 text-[10px] font-bold text-brand-600 hover:text-brand-800 px-2 py-1 rounded bg-brand-50 hover:bg-brand-100 transition"
                               >
                                 <Copy size={11} />
                                 {copiedId === issue.id ? 'Copied to Clipboard!' : 'Copy SQL Script'}

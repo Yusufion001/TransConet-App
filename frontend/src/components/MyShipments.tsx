@@ -42,7 +42,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
 
       {loading ? (
         <div className="flex justify-center items-center h-40">
-          <RefreshCw className="animate-spin text-blue-500" size={32} />
+          <RefreshCw className="animate-spin text-brand-500" size={32} />
         </div>
       ) : loads.length === 0 ? (
         <div className="text-center bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-12">
@@ -59,9 +59,9 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
                   <div className="flex items-center gap-2 mb-1">
                     <h3 className="font-bold text-lg">{load.title}</h3>
                     <span className={`px-2 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase ${
-                      load.status === 'AVAILABLE' ? 'bg-blue-100 text-blue-700' : 
+                      load.status === 'AVAILABLE' ? 'bg-brand-100 text-brand-700' : 
                       load.status === 'DELIVERED' ? 'bg-emerald-100 text-emerald-700' :
-                      'bg-purple-100 text-purple-700'
+                      'bg-brand-100 text-brand-700'
                     }`}>
                       {load.status}
                     </span>
@@ -74,7 +74,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
                 {load.status !== 'AVAILABLE' && onViewTracking && (
                   <Button 
                     onClick={() => onViewTracking(load)}
-                    className="bg-blue-50 text-blue-600 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-xs font-bold transition"
+                    className="bg-brand-50 text-brand-600 hover:bg-brand-100 px-3 py-1.5 rounded-lg text-xs font-bold transition"
                   >
                     Track Shipment
                   </Button>

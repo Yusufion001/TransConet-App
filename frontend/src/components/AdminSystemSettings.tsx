@@ -18,7 +18,7 @@ export default function AdminSystemSettings() {
   return (
     <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm max-w-4xl mx-auto">
       <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
-        <Sliders className="text-blue-600" size={20} /> System Settings
+        <Sliders className="text-brand-600" size={20} /> System Settings
       </h2>
       
       <div className="space-y-8">
@@ -29,22 +29,22 @@ export default function AdminSystemSettings() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-500 dark:text-slate-">Platform Name</label>
-              <input type="text" defaultValue="TransConet Africa" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-blue-500" />
+              <input type="text" defaultValue="TransConet Africa" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-brand-500" />
             </div>
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-500 dark:text-slate-">Base Currency</label>
-              <select className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-blue-500">
+              <select className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-brand-500">
                 <option>NGN (₦)</option>
                 <option>USD ($)</option>
               </select>
             </div>
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-500 dark:text-slate-">Platform Fee (%)</label>
-              <input type="number" defaultValue="5" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-blue-500" />
+              <input type="number" defaultValue="5" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-brand-500" />
             </div>
             <div className="space-y-1">
               <label className="text-xs font-bold text-slate-500 dark:text-slate-">Escrow Hold Duration (Days)</label>
-              <input type="number" defaultValue="3" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-blue-500" />
+              <input type="number" defaultValue="3" className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm font-medium focus:outline-none focus:border-brand-500" />
             </div>
           </div>
         </section>
@@ -61,7 +61,7 @@ export default function AdminSystemSettings() {
               'Daily Analytics Digest',
             ].map((setting, i) => (
               <label key={i} className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-800 cursor-pointer hover:bg-slate-100 transition-colors">
-                <input type="checkbox" defaultChecked={i < 3} className="w-4 h-4 text-blue-600 rounded border-slate-300 focus:ring-blue-500" />
+                <input type="checkbox" defaultChecked={i < 3} className="w-4 h-4 text-brand-600 rounded border-slate-300 focus:ring-brand-500" />
                 <span className="text-sm font-medium text-slate-700 dark:text-slate-">{setting}</span>
               </label>
             ))}
@@ -70,7 +70,7 @@ export default function AdminSystemSettings() {
 
         <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3">
           {saved && <span className="text-emerald-600 text-sm font-bold flex items-center gap-1">Settings Saved</span>}
-          <Button onClick={handleSave} disabled={loading} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-colors disabled:opacity-70">
+          <Button onClick={handleSave} disabled={loading} className="bg-brand-600 hover:bg-brand-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition-colors disabled:opacity-70">
             {loading ? <RefreshCw className="animate-spin" size={18} /> : <Save size={18} />} Save Changes
           </Button>
         </div>

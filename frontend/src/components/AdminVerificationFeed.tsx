@@ -111,7 +111,7 @@ export default function AdminVerificationFeed() {
           className="self-start sm:self-center bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  hover:border-slate-700 text-slate-700 dark:text-slate-200  hover:text-slate-900 dark:text-white  px-4 py-2.5 rounded-xl transition text-xs font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer"
         >
           {loading ? (
-            <Loader2 className="animate-spin text-blue-500" size={14} />
+            <Loader2 className="animate-spin text-brand-500" size={14} />
           ) : (
             <RefreshCw size={14} />
           )}
@@ -201,7 +201,7 @@ export default function AdminVerificationFeed() {
                 </div>
 
                 <div className="text-[10px] bg-white dark:bg-slate-900  border border-slate-300  p-2.5 rounded-xl flex items-center justify-between gap-2 overflow-hidden text-slate-500 dark:text-slate- ">
-                  <span className="font-bold shrink-0 uppercase tracking-tight text-[9px] text-blue-600 flex items-center gap-1">
+                  <span className="font-bold shrink-0 uppercase tracking-tight text-[9px] text-brand-600 flex items-center gap-1">
                     <Video size={10} /> Stream URL:
                   </span>
                   <span className="truncate text-slate-500 dark:text-slate-  font-mono select-all text-right w-full">

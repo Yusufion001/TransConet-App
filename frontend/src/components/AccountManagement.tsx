@@ -159,8 +159,8 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-sm w-full mx-4 shadow-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
             <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center relative">
                <div className="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-blue-600 animate-spin"></div>
-               {uploadStage === 'ENCRYPTING' ? <Lock className="text-blue-600" size={32} /> :
-                uploadStage === 'FRAUD_CHECK' ? <Cpu className="text-blue-600 animate-pulse" size={32} /> :
+               {uploadStage === 'ENCRYPTING' ? <Lock className="text-brand-600" size={32} /> :
+                uploadStage === 'FRAUD_CHECK' ? <Cpu className="text-brand-600 animate-pulse" size={32} /> :
                 <ShieldCheck className="text-emerald-500" size={32} />}
             </div>
             <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Secure Processing</h3>
@@ -205,20 +205,20 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <div className="relative shrink-0">
                   <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={(e) => { handleProfilePictureUpload(e); setShowProfileOptions(false); }} />
                   <div className="relative group cursor-pointer" onClick={() => setShowProfileOptions(!showProfileOptions)}>
-                    <div className="w-[64px] h-[64px] bg-slate-200  rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700  flex items-center justify-center transition-all shadow-sm group-hover:border-blue-500">
-                      {profilePicture ? <img src={profilePicture} alt="Profile" className="w-full h-full object-cover" /> : <UserRound className="w-8 h-8 text-slate-600 dark:text-slate- group-hover:text-blue-500" />}
+                    <div className="w-[64px] h-[64px] bg-slate-200  rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700  flex items-center justify-center transition-all shadow-sm group-hover:border-brand-500">
+                      {profilePicture ? <img src={profilePicture} alt="Profile" className="w-full h-full object-cover" /> : <UserRound className="w-8 h-8 text-slate-600 dark:text-slate- group-hover:text-brand-500" />}
                     </div>
-                    <div className="absolute -bottom-1 -right-1 bg-blue-600 w-[24px] h-[24px] rounded-full flex items-center justify-center text-white border-[2px] border-white  shadow-sm">
+                    <div className="absolute -bottom-1 -right-1 bg-brand-600 w-[24px] h-[24px] rounded-full flex items-center justify-center text-white border-[2px] border-white  shadow-sm">
                       <Camera size={12} />
                     </div>
                   </div>
                   
                   {showProfileOptions && (
                     <div className="absolute top-full mt-2 left-0 bg-white dark:bg-slate-900  rounded-xl shadow-lg border border-slate-200 dark:border-slate-700  p-2 z-10 flex flex-col gap-1 w-40 text-sm">
-                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-blue-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-  font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
+                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-  font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
                         <Camera size={16} /> Take Selfie
                       </Button>
-                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-blue-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-  font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
+                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-  font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
                         <UploadCloud size={16} /> Upload Photo
                       </Button>
                     </div>
@@ -293,7 +293,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'VERIFICATION' && (
             <div className="space-y-6 animate-in fade-in duration-75">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  tracking-tight uppercase flex items-center gap-2">
-                <Shield size={20} className="text-blue-500" />
+                <Shield size={20} className="text-brand-500" />
                 Identity & Asset Verification
               </h2>
               
@@ -330,7 +330,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                       <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl p-5 shadow-sm ">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white  uppercase tracking-wider flex items-center gap-2">
-                            <span className="bg-blue-600 text-slate-50 dark:text-slate-300 px-2 py-0.5 rounded text-[10px]">TIER 1</span>
+                            <span className="bg-brand-600 text-slate-50 dark:text-slate-300 px-2 py-0.5 rounded text-[10px]">TIER 1</span>
                             Basic Compliance
                           </h4>
                           <span className="text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase">Required</span>
@@ -339,18 +339,18 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                           Identity verification, valid vehicle certificates, and fleet physical inspection appointment.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-blue-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
+                          <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-brand-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
                             <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                              <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-blue-500 mb-2 transition" />
-                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-blue-500">Government ID</span></p>
+                              <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
+                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-brand-500">Government ID</span></p>
                               <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">PNG, JPG, PDF</p>
                             </div>
                             <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'driverLicense')} />
                           </label>
-                          <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-blue-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
+                          <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-brand-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
                             <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                              <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-blue-500 mb-2 transition" />
-                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-blue-500">Vehicle Certificate</span></p>
+                              <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
+                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-brand-500">Vehicle Certificate</span></p>
                               <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">PNG, JPG, PDF</p>
                             </div>
                             <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'vehicleRegistration')} />
@@ -362,7 +362,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm ">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-                            <span className="bg-purple-600 text-white px-2 py-0.5 rounded text-[10px]">CORPORATE</span>
+                            <span className="bg-brand-600 text-white px-2 py-0.5 rounded text-[10px]">CORPORATE</span>
                             Business Verification (CAC / NIN)
                           </h4>
                           <span className="text-[10px] font-mono text-slate-500 dark:text-slate- uppercase">Optional</span>
@@ -372,8 +372,8 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                         </p>
                         <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300 hover:border-purple-500 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-white dark:bg-slate-900 transition cursor-pointer group">
                           <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                            <Building2 size={20} className="text-slate-600 dark:text-slate- group-hover:text-purple-500 mb-2 transition" />
-                            <p className="mb-1 text-xs text-slate-700 dark:text-slate- font-bold"><span className="text-purple-500">Upload CAC / NIN</span></p>
+                            <Building2 size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
+                            <p className="mb-1 text-xs text-slate-700 dark:text-slate- font-bold"><span className="text-brand-500">Upload CAC / NIN</span></p>
                             <p className="text-[10px] text-slate-500 dark:text-slate- font-mono">PNG, JPG, PDF</p>
                           </div>
                           <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'cac')} />
@@ -383,7 +383,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                       <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl p-5 shadow-sm ">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white  uppercase tracking-wider flex items-center gap-2">
-                            <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-[10px]">TIER 2</span>
+                            <span className="bg-brand-600 text-white px-2 py-0.5 rounded text-[10px]">TIER 2</span>
                             Premium Haulage
                           </h4>
                           <span className="text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase">Optional</span>
@@ -391,10 +391,10 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                         <p className="text-xs text-slate-500 dark:text-slate-  mb-4 leading-relaxed">
                           Goods in Transit (GiT) Insurance. Required for high-value cargo assignments and priority matching.
                         </p>
-                        <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-blue-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
+                        <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-brand-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
                           <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                            <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-blue-500 mb-2 transition" />
-                            <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-blue-500">Upload GiT Insurance</span></p>
+                            <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
+                            <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-brand-500">Upload GiT Insurance</span></p>
                             <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">PNG, JPG, PDF</p>
                           </div>
                           <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'gitInsurance')} />
@@ -426,7 +426,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'SAFETY' && (
             <div className="space-y-6 animate-in fade-in duration-75">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  tracking-tight uppercase flex items-center gap-2">
-                <Shield size={20} className="text-blue-500" />
+                <Shield size={20} className="text-brand-500" />
                 Safety
               </h2>
               <div className="space-y-6 text-sm text-slate-600 dark:text-slate-  leading-relaxed">
@@ -519,7 +519,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'QUALITY' && (
             <div className="space-y-6 animate-in fade-in duration-75">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  tracking-tight uppercase flex items-center gap-2">
-                <Star size={20} className="text-blue-500" />
+                <Star size={20} className="text-brand-500" />
                 Service Quality
               </h2>
 
@@ -717,7 +717,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
               </p>
 
               {disputeFiled ? (
-                <div className="p-4 bg-blue-50 border border-blue-200 text-blue-600 rounded-xl text-xs font-bold animate-in zoom-in-95">
+                <div className="p-4 bg-brand-50 border border-brand-200 text-brand-600 rounded-xl text-xs font-bold animate-in zoom-in-95">
                   ✓ Dispute report submitted successfully to our administrative desk. The developer team will trace this user record history.
                 </div>
               ) : (
@@ -759,7 +759,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-slate-50 dark:bg-slate-800  p-4 rounded-xl border border-slate-200 dark:border-slate-700  space-y-2">
-                  <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block">Main Support Line</span>
+                  <span className="text-[10px] font-black text-brand-600 uppercase tracking-widest block">Main Support Line</span>
                   <a href="mailto:Support@transconet.com" className="text-slate-900 dark:text-white  text-sm font-bold font-mono hover:underline break-all block">
                     Support@transconet.com
                   </a>
@@ -782,7 +782,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'FINANCE' && (
             <div className="space-y-6">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  border-b border-slate-200 dark:border-slate-700  pb-2 flex items-center gap-2">
-                <Landmark size={20} className="text-blue-500" />
+                <Landmark size={20} className="text-brand-500" />
                 Escrow Settlement Bank Account
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate- ">
@@ -792,15 +792,15 @@ export default function AccountManagement({ initialSection = null }: AccountMana
               <div className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl p-5 space-y-4">
                 <div>
                   <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Bank Name</label>
-                  <input type="text" value={bankName} onChange={(e) => setBankName(e.target.value)} placeholder="e.g., Guaranty Trust Bank" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none focus:border-blue-500" />
+                  <input type="text" value={bankName} onChange={(e) => setBankName(e.target.value)} placeholder="e.g., Guaranty Trust Bank" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none focus:border-brand-500" />
                 </div>
                 <div>
                   <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Account Number</label>
-                  <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} placeholder="e.g., 0123456789" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none font-mono focus:border-blue-500" />
+                  <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} placeholder="e.g., 0123456789" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none font-mono focus:border-brand-500" />
                 </div>
                 <div>
                   <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Account Name</label>
-                  <input type="text" value={accountName} onChange={(e) => setAccountName(e.target.value)} placeholder="e.g., John Doe Logistics" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none focus:border-blue-500" />
+                  <input type="text" value={accountName} onChange={(e) => setAccountName(e.target.value)} placeholder="e.g., John Doe Logistics" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none focus:border-brand-500" />
                 </div>
                 <Button 
                   onClick={handleSaveBankDetails} 
@@ -808,7 +808,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   className={`${
                     bankUpdateStatus === 'SUCCESS' ? 'bg-emerald-600 hover:bg-emerald-700' :
                     bankUpdateStatus === 'ERROR' ? 'bg-red-600 hover:bg-red-700' :
-                    'bg-blue-600 hover:bg-blue-700'
+                    'bg-brand-600 hover:bg-brand-700'
                   } text-white text-xs font-bold px-4 py-2.5 rounded-xl uppercase tracking-wider transition w-full shadow-md  flex items-center justify-center gap-2 cursor-pointer mt-4`}
                 >
                   {bankUpdateStatus === 'SAVING' && <Loader2 size={14} className="animate-spin" />}
@@ -862,7 +862,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <h3 className="text-base font-black text-slate-900 dark:text-white  uppercase tracking-wider">Account Control Deck</h3>
                 <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">Synchronize your active database profile attributes</p>
               </div>
-              <Button onClick={() => setShowConfigModal(false)} className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-blue-100 hover:text-blue-600 border border-slate-200 dark:border-slate-700  rounded-lg text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white  transition cursor-pointer">
+              <Button onClick={() => setShowConfigModal(false)} className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-brand-100 hover:text-brand-600 border border-slate-200 dark:border-slate-700  rounded-lg text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white  transition cursor-pointer">
                 <X size={16} />
               </Button>
             </div>
@@ -883,8 +883,8 @@ export default function AccountManagement({ initialSection = null }: AccountMana
             </div>
 
             <div className="flex gap-3 justify-end pt-2 border-t border-slate-200 dark:border-slate-700 ">
-              <Button onClick={() => setShowConfigModal(false)} className="px-4 py-2 bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  hover:bg-blue-100 hover:text-blue-600 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-  transition cursor-pointer">Cancel</Button>
-              <Button onClick={handleSaveParameters} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition flex items-center gap-2 cursor-pointer">
+              <Button onClick={() => setShowConfigModal(false)} className="px-4 py-2 bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  hover:bg-brand-100 hover:text-brand-600 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-  transition cursor-pointer">Cancel</Button>
+              <Button onClick={handleSaveParameters} className="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition flex items-center gap-2 cursor-pointer">
                 <Save size={14} /> Save Parameters
               </Button>
             </div>

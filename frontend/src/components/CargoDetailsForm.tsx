@@ -23,7 +23,7 @@ function OptionCard({ options, selected, onSelect, label }: { options: { label: 
       >
         {selectedOption ? (
            <div className="flex items-center gap-3">
-             <span className="text-blue-500">{selectedOption.icon}</span>
+             <span className="text-brand-500">{selectedOption.icon}</span>
              <span className="text-slate-800 dark:text-slate- font-medium">{selectedOption.label}</span>
            </div>
         ) : (
@@ -39,9 +39,9 @@ function OptionCard({ options, selected, onSelect, label }: { options: { label: 
               type="button"
               key={opt.value}
               onClick={() => { onSelect(opt.value); setIsOpen(false); }}
-              className={`flex items-center gap-3 p-3 rounded-xl border text-sm font-medium transition-all ${selected === opt.value ? 'bg-blue-600/10 border-blue-500 text-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.2)]' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-500'}`}
+              className={`flex items-center gap-3 p-3 rounded-xl border text-sm font-medium transition-all ${selected === opt.value ? 'bg-brand-600/10 border-brand-500 text-brand-600 shadow-[0_0_15px_rgba(37,99,235,0.2)]' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:border-slate-500'}`}
             >
-              <span className={selected === opt.value ? 'text-blue-500' : 'text-emerald-500'}>{opt.icon}</span>
+              <span className={selected === opt.value ? 'text-brand-500' : 'text-emerald-500'}>{opt.icon}</span>
               {opt.label}
             </Button>
           ))}
@@ -210,7 +210,7 @@ export default function CargoDetailsForm() {
       <div className="flex justify-between items-start mb-6">
         <div>
           <h1 className="text-2xl font-serif font-black italic tracking-tighter">
-            <span className="text-black">Trans</span><span className="text-blue-600">Conet</span>
+            <span className="text-black">Trans</span><span className="text-brand-600">Conet</span>
           </h1>
           <p className="text-emerald-500 text-xs mt-1 flex items-center gap-1"><CheckCircle size={12}/> All cargo protected. Every mile matters.</p>
         </div>
@@ -223,8 +223,8 @@ export default function CargoDetailsForm() {
       <div className="bg-white dark:bg-slate-900 p-5 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-8 shadow-2xl">
         {/* Title */}
         <div className="flex gap-4 items-center">
-            <div className="w-12 h-12 rounded-2xl bg-blue-900/30 border border-blue-500/30 flex items-center justify-center">
-                <Box className="text-blue-500" size={24} />
+            <div className="w-12 h-12 rounded-2xl bg-brand-900/30 border border-brand-500/30 flex items-center justify-center">
+                <Box className="text-brand-500" size={24} />
             </div>
             <div>
                 <h2 className="text-xl font-bold text-slate-800 dark:text-slate-">Cargo Details</h2>
@@ -337,8 +337,8 @@ export default function CargoDetailsForm() {
         <div className="space-y-3">
           <Button type="button" onClick={() => setShowDelivery(!showDelivery)} className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-slate-500 transition-colors text-left">
               <div className="flex items-center gap-4">
-                  <div className="p-2 bg-blue-500/10 rounded-xl">
-                      <MapPin className="text-blue-500" size={20} />
+                  <div className="p-2 bg-brand-500/10 rounded-xl">
+                      <MapPin className="text-brand-500" size={20} />
                   </div>
                   <div>
                       <h3 className="text-slate-800 dark:text-slate- font-bold text-sm">Delivery Address (Google Maps Autocomplete)</h3>
@@ -354,7 +354,7 @@ export default function CargoDetailsForm() {
                   placeholder="Type delivery destination (e.g. Challenge, Ibadan)"
                   value={formData.deliveryAddress}
                   onChange={(val) => setFormData(prev => ({ ...prev, deliveryAddress: val }))}
-                  iconColor="text-blue-500"
+                  iconColor="text-brand-500"
                 />
                 <div className="grid grid-cols-1 gap-3">
                     <input type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate- focus:outline-none focus:border-emerald-500/50" />
@@ -394,7 +394,7 @@ export default function CargoDetailsForm() {
             <span className="text-[10px] text-slate-600 dark:text-slate- text-center leading-tight">Your cargo is protected</span>
         </div>
         <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700">
-            <Target className="text-blue-500" size={24}/>
+            <Target className="text-brand-500" size={24}/>
             <span className="text-xs text-slate-800 dark:text-slate- font-bold text-center">Smart Matching</span>
             <span className="text-[10px] text-slate-600 dark:text-slate- text-center leading-tight">Get the best transporters</span>
         </div>
@@ -405,7 +405,7 @@ export default function CargoDetailsForm() {
         </div>
       </div>
 
-      <Button type="submit" className="w-full bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:opacity-90 shadow-lg shadow-blue-500/20 transition-all">
+      <Button type="submit" className="w-full bg-gradient-to-r from-brand-600 to-emerald-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:opacity-90 shadow-lg shadow-blue-500/20 transition-all">
         <Send size={18} /> Post Cargo
       </Button>
       
@@ -414,7 +414,7 @@ export default function CargoDetailsForm() {
       {isCalculating && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4">
-            <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
             <p className="font-bold text-slate-800 dark:text-slate-">Calculating transportation costs...</p>
           </div>
         </div>
@@ -430,9 +430,9 @@ export default function CargoDetailsForm() {
             
             <div className="p-6 overflow-y-auto space-y-4">
               {calculatedOptions.map(opt => (
-                <div key={opt.id} className="border border-slate-200 dark:border-slate-700 rounded-xl p-5 hover:border-blue-500 hover:shadow-lg cursor-pointer transition flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div key={opt.id} className="border border-slate-200 dark:border-slate-700 rounded-xl p-5 hover:border-brand-500 hover:shadow-lg cursor-pointer transition flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex gap-4 items-center">
-                    <div className="bg-blue-50 text-blue-600 p-4 rounded-xl">
+                    <div className="bg-brand-50 text-brand-600 p-4 rounded-xl">
                       <Truck size={24} />
                     </div>
                     <div>
@@ -442,7 +442,7 @@ export default function CargoDetailsForm() {
                   </div>
                   <div className="text-left md:text-right">
                     <p className="text-[10px] uppercase font-black text-slate-400 dark:text-slate-400 tracking-wider">Estimated Cost</p>
-                    <p className="text-2xl font-black text-blue-600">₦{opt.price.toLocaleString()}</p>
+                    <p className="text-2xl font-black text-brand-600">₦{opt.price.toLocaleString()}</p>
                   </div>
                 </div>
               ))}

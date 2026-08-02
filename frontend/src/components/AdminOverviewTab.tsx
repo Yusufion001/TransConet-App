@@ -63,7 +63,7 @@ export default function AdminOverviewTab({
                 <span className="font-bold">₦{((metrics.totalRevenue || metrics.escrowTotal || 0) * 0.4).toLocaleString()}</span>
               </div>
               <div className="w-full h-1.5 bg-slate-700 rounded-full overflow-hidden">
-                <div className="h-full bg-blue-500 w-[40%]"></div>
+                <div className="h-full bg-brand-500 w-[40%]"></div>
               </div>
             </div>
             <div>
@@ -120,7 +120,7 @@ export default function AdminOverviewTab({
                       value={broadcastTitle}
                       onChange={e => setBroadcastTitle(e.target.value)}
                       placeholder="e.g. Traffic Bottleneck Alert" 
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 text-slate-900 dark:text-white placeholder:text-slate-600 dark:text-slate-300"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-500 text-slate-900 dark:text-white placeholder:text-slate-600 dark:text-slate-300"
                     />
                   </div>
                   <div className="space-y-1">
@@ -128,7 +128,7 @@ export default function AdminOverviewTab({
                     <select 
                       value={broadcastCategory}
                       onChange={e => setBroadcastCategory(e.target.value)}
-                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-blue-500 text-slate-900 dark:text-white"
+                      className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-brand-500 text-slate-900 dark:text-white"
                     >
                       <option value="ALL">General Broadcast</option>
                       <option value="Route Disruption">Route Disruption</option>

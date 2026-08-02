@@ -12,7 +12,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <PieChart className="text-blue-500" /> Business Analytics
+            <PieChart className="text-brand-500" /> Business Analytics
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-">Comprehensive overview of platform performance and growth.</p>
         </div>
@@ -25,7 +25,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl shadow-sm">
           <div className="flex justify-between items-start mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-lg"><Truck size={16} /></div>
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-lg"><Truck size={16} /></div>
             <span className="text-[10px] font-bold text-emerald-500 flex items-center"><TrendingUp size={10} className="mr-0.5" />+12%</span>
           </div>
           <p className="text-[10px] text-slate-500 dark:text-slate- font-bold uppercase tracking-wider">Total Shipments</p>
@@ -34,7 +34,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
         
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl shadow-sm">
           <div className="flex justify-between items-start mb-2">
-            <div className="p-2 bg-purple-50 text-purple-600 rounded-lg"><Activity size={16} /></div>
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-lg"><Activity size={16} /></div>
             <span className="text-[10px] font-bold text-emerald-500 flex items-center"><TrendingUp size={10} className="mr-0.5" />+8%</span>
           </div>
           <p className="text-[10px] text-slate-500 dark:text-slate- font-bold uppercase tracking-wider">Active Shipments</p>
@@ -73,7 +73,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl shadow-sm">
           <div className="flex items-center gap-2 mb-2">
-            <Activity size={14} className="text-blue-500" />
+            <Activity size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate- font-bold uppercase tracking-wider">Platform Uptime</p>
           </div>
           <p className="text-xl font-black text-slate-900 dark:text-white">99.99%</p>
@@ -81,7 +81,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl shadow-sm">
           <div className="flex items-center gap-2 mb-2">
-            <Zap size={14} className="text-indigo-500" />
+            <Zap size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate- font-bold uppercase tracking-wider">AI Health</p>
           </div>
           <p className="text-xl font-black text-slate-900 dark:text-white">98%</p>
@@ -107,7 +107,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl shadow-sm">
           <div className="flex items-center gap-2 mb-2">
-            <Clock size={14} className="text-blue-500" />
+            <Clock size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate- font-bold uppercase tracking-wider">Avg Delivery Time</p>
           </div>
           <p className="text-xl font-black text-slate-900 dark:text-white">3.2 Days</p>
@@ -116,7 +116,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-2xl shadow-sm">
           <div className="flex items-center gap-2 mb-2">
-            <BarChart3 size={14} className="text-indigo-500" />
+            <BarChart3 size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate- font-bold uppercase tracking-wider">Fleet Utilization</p>
           </div>
           <p className="text-xl font-black text-slate-900 dark:text-white">{metrics?.fleetUtilization || 78}%</p>
@@ -137,7 +137,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl p-6 shadow-sm">
           <h3 className="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-            <Users className="text-purple-500" size={18} /> Ecosystem Growth
+            <Users className="text-brand-500" size={18} /> Ecosystem Growth
           </h3>
           <div className="space-y-6">
             <div>
@@ -149,7 +149,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
                 <span className="text-[10px] font-bold text-emerald-500 bg-emerald-50 px-2 py-1 rounded">+18% MoM</span>
               </div>
               <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
-                <div className="bg-blue-500 h-2 rounded-full" style={{ width: '65%' }}></div>
+                <div className="bg-brand-500 h-2 rounded-full" style={{ width: '65%' }}></div>
               </div>
             </div>
             
@@ -162,7 +162,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
                 <span className="text-[10px] font-bold text-emerald-500 bg-emerald-50 px-2 py-1 rounded">+24% MoM</span>
               </div>
               <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2">
-                <div className="bg-purple-500 h-2 rounded-full" style={{ width: '85%' }}></div>
+                <div className="bg-brand-500 h-2 rounded-full" style={{ width: '85%' }}></div>
               </div>
             </div>
           </div>
@@ -178,7 +178,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
               { name: 'GUO Transport', loads: 289, rating: 4.8, revenue: '₦9.2M' },
               { name: 'Chisco Haulage', loads: 215, rating: 4.7, revenue: '₦7.8M' },
             ]).map((t: any, i: number) => (
-              <div key={i} className="flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800 rounded-xl hover:bg-blue-50 cursor-pointer hover:shadow-sm transition">
+              <div key={i} className="flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800 rounded-xl hover:bg-brand-50 cursor-pointer hover:shadow-sm transition">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">
                     #{i + 1}
@@ -216,13 +216,13 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <div className="p-4 border border-slate-100 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-800">
             <h4 className="font-bold text-slate-800 dark:text-slate- text-sm mb-1">Subscription Plans</h4>
             <p className="text-xs text-slate-500 dark:text-slate- mb-3">Basic, Premium, Enterprise tiers for shippers.</p>
-            <p className="text-lg font-black text-blue-600">₦{(metrics?.subscriptionRevenue || 4250000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
+            <p className="text-lg font-black text-brand-600">₦{(metrics?.subscriptionRevenue || 4250000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
           </div>
           
           <div className="p-4 border border-slate-100 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-800">
             <h4 className="font-bold text-slate-800 dark:text-slate- text-sm mb-1">Featured Transporters</h4>
             <p className="text-xs text-slate-500 dark:text-slate- mb-3">Sponsored listings & premium visibility.</p>
-            <p className="text-lg font-black text-purple-600">₦{(metrics?.featuredTransporterRevenue || 1850000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
+            <p className="text-lg font-black text-brand-600">₦{(metrics?.featuredTransporterRevenue || 1850000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
           </div>
           
           <div className="p-4 border border-slate-100 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-800">
@@ -234,7 +234,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <div className="p-4 border border-slate-100 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-800">
             <h4 className="font-bold text-slate-800 dark:text-slate- text-sm mb-1">Insurance Partnerships</h4>
             <p className="text-xs text-slate-500 dark:text-slate- mb-3">Commission from GiT insurance referrals.</p>
-            <p className="text-lg font-black text-indigo-600">₦{(metrics?.insuranceRevenue || 2100000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
+            <p className="text-lg font-black text-brand-600">₦{(metrics?.insuranceRevenue || 2100000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
           </div>
           
           <div className="p-4 border border-slate-100 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-800">

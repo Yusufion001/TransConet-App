@@ -54,7 +54,7 @@ export default function JobStatusFrame({ status, paymentStatus, isEscrowEnabled 
       <div className="relative">
         <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800  -translate-y-1/2 rounded-full" />
         <div 
-          className="absolute top-1/2 left-0 h-1 bg-blue-500 -translate-y-1/2 rounded-full transition-all duration-75"
+          className="absolute top-1/2 left-0 h-1 bg-brand-500 -translate-y-1/2 rounded-full transition-all duration-75"
           style={{ width: `${Math.max(0, (activeIndex / (steps.length - 1)) * 100)}%` }}
         />
         
@@ -68,14 +68,14 @@ export default function JobStatusFrame({ status, paymentStatus, isEscrowEnabled 
                 <div 
                   className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-colors duration-75 ${
                     isCompleted 
-                      ? 'bg-blue-500 border-blue-500 text-white shadow-md  shadow-blue-500/20' 
+                      ? 'bg-brand-500 border-brand-500 text-white shadow-md  shadow-blue-500/20' 
                       : 'bg-white dark:bg-slate-900  border-slate-200 dark:border-slate-700  text-slate-600 dark:text-slate-300'
                   }`}
                 >
                   {step.icon}
                 </div>
                 <span className={`text-[10px] font-bold tracking-wider uppercase ${
-                  isCurrent ? 'text-blue-600' : isCompleted ? 'text-slate-700 dark:text-slate-200 ' : 'text-slate-600 dark:text-slate-300'
+                  isCurrent ? 'text-brand-600' : isCompleted ? 'text-slate-700 dark:text-slate-200 ' : 'text-slate-600 dark:text-slate-300'
                 }`}>
                   {step.label}
                 </span>

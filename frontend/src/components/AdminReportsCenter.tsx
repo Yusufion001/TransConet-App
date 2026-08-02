@@ -41,9 +41,9 @@ export default function AdminReportsCenter() {
 
   const getTypeIcon = (type: string) => {
     switch (type) {
-      case 'FINANCIAL': return <PieChart size={16} className="text-indigo-500" />;
+      case 'FINANCIAL': return <PieChart size={16} className="text-brand-500" />;
       case 'OPERATIONAL': return <TrendingUp size={16} className="text-emerald-500" />;
-      case 'USER_ACTIVITY': return <BarChart2 size={16} className="text-blue-500" />;
+      case 'USER_ACTIVITY': return <BarChart2 size={16} className="text-brand-500" />;
       case 'SYSTEM_HEALTH': return <Activity size={16} className="text-amber-500" />;
       default: return <FileText size={16} />;
     }
@@ -75,18 +75,18 @@ export default function AdminReportsCenter() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <BarChart2 className="text-indigo-600" /> Reports Center
+            <BarChart2 className="text-brand-600" /> Reports Center
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Generate, schedule, and download advanced analytics and system reports.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-blue-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <Calendar size={16} /> Scheduled Reports
           </Button>
           <Button 
             onClick={handleGenerateReport}
             disabled={isGenerating}
-            className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+            className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
           >
             {isGenerating ? <RefreshCw size={16} className="animate-spin" /> : <Plus size={16} />}
             {isGenerating ? 'Generating...' : 'Generate New'}
@@ -97,7 +97,7 @@ export default function AdminReportsCenter() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <FileText size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Generated This Month</h3>
@@ -115,7 +115,7 @@ export default function AdminReportsCenter() {
         </div>
         <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-slate-800 text-indigo-400 rounded-xl">
+            <div className="p-2 bg-slate-800 text-brand-400 rounded-xl">
               <TrendingUp size={20} />
             </div>
             <h3 className="font-bold text-slate-300 dark:text-slate-300 text-sm">Most Exported Metric</h3>
@@ -163,7 +163,7 @@ export default function AdminReportsCenter() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredReports.map(report => (
-                <tr key={report.id || report?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                <tr key={report.id || report?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="font-bold text-sm text-slate-900 dark:text-white">{report.name}</div>
                     <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{report.id}</div>
@@ -177,7 +177,7 @@ export default function AdminReportsCenter() {
                   <td className="p-4">
                     <span className={`px-2 py-1 rounded text-[10px] font-black uppercase ${
                       report.format === 'PDF' ? 'bg-red-50 text-red-700' :
-                      report.format === 'CSV' ? 'bg-blue-50 text-blue-700' :
+                      report.format === 'CSV' ? 'bg-brand-50 text-brand-700' :
                       'bg-emerald-50 text-emerald-700'
                     }`}>
                       {report.format}
@@ -195,7 +195,7 @@ export default function AdminReportsCenter() {
                       <Button aria-label="Action" 
                         className={`p-2 rounded-lg transition-colors ${
                           report.status === 'READY' 
-                            ? 'text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-indigo-50' 
+                            ? 'text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:bg-brand-50' 
                             : 'text-slate-300 cursor-not-allowed'
                         }`}
                         title="Download"

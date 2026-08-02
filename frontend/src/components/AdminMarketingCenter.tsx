@@ -38,7 +38,7 @@ export default function AdminMarketingCenter() {
   const getStatusBadge = (status: string) => {
     switch(status) {
       case 'ACTIVE': return <span className="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><PlayCircle size={10} /> Active</span>;
-      case 'SCHEDULED': return <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Calendar size={10} /> Scheduled</span>;
+      case 'SCHEDULED': return <span className="bg-brand-100 text-brand-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Calendar size={10} /> Scheduled</span>;
       case 'COMPLETED': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate- px-2 py-0.5 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><CheckCircle2 size={10} /> Completed</span>;
       case 'PAUSED': return <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Clock size={10} /> Paused</span>;
       default: return null;
@@ -47,9 +47,9 @@ export default function AdminMarketingCenter() {
 
   const getTypeIcon = (type: string) => {
     switch(type) {
-      case 'PROMOTION': return <Megaphone size={16} className="text-indigo-500" />;
+      case 'PROMOTION': return <Megaphone size={16} className="text-brand-500" />;
       case 'DISCOUNT': return <Percent size={16} className="text-emerald-500" />;
-      case 'REFERRAL': return <Users size={16} className="text-blue-500" />;
+      case 'REFERRAL': return <Users size={16} className="text-brand-500" />;
       case 'SEASONAL': return <Target size={16} className="text-amber-500" />;
       default: return <Megaphone size={16} />;
     }
@@ -64,11 +64,11 @@ export default function AdminMarketingCenter() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Megaphone className="text-indigo-600" /> Marketing Center
+            <Megaphone className="text-brand-600" /> Marketing Center
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage campaigns, promotions, referrals, and track marketing ROI.</p>
         </div>
-        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+        <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
           <Plus size={16} /> New Campaign
         </Button>
       </div>
@@ -76,7 +76,7 @@ export default function AdminMarketingCenter() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Megaphone size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Campaigns</h3>
@@ -94,7 +94,7 @@ export default function AdminMarketingCenter() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <TrendingUp size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Avg. CAC</h3>
@@ -145,7 +145,7 @@ export default function AdminMarketingCenter() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredCampaigns.map(campaign => (
-                <tr key={campaign.id || campaign?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                <tr key={campaign.id || campaign?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="font-bold text-sm text-slate-900 dark:text-white">{campaign.name}</div>
                     <div className="text-xs text-slate-500 dark:text-slate- mt-1 flex items-center gap-1">
@@ -160,7 +160,7 @@ export default function AdminMarketingCenter() {
                     <div className="font-mono text-sm text-slate-800 dark:text-slate- font-bold">${campaign.budget.toLocaleString()}</div>
                     <div className="text-xs text-slate-500 dark:text-slate- mt-1">
                       <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 mb-1 overflow-hidden">
-                        <div className="bg-indigo-500 h-1.5 rounded-full" style={{ width: `${(Number(campaign.spent) / Number(campaign.budget)) * 100}%` }}></div>
+                        <div className="bg-brand-500 h-1.5 rounded-full" style={{ width: `${(Number(campaign.spent) / Number(campaign.budget)) * 100}%` }}></div>
                       </div>
                       ${campaign.spent.toLocaleString()} spent
                     </div>
@@ -176,7 +176,7 @@ export default function AdminMarketingCenter() {
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex justify-end gap-2">
-                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50">
+                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50">
                         <Edit2 size={16} />
                       </Button>
                       <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-red-600 transition-colors p-2 rounded-lg hover:bg-red-50">

@@ -20,7 +20,7 @@ export default function AdminSecurityCenter() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
           <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-            <div className="p-3 rounded-xl bg-purple-100 text-purple-700">
+            <div className="p-3 rounded-xl bg-brand-100 text-brand-700">
               <ShieldAlert size={24} />
             </div>
             <div>
@@ -40,7 +40,7 @@ export default function AdminSecurityCenter() {
               </div>
               <Button 
                 onClick={() => setMfaEnforced(!mfaEnforced)}
-                className={`w-12 h-6 rounded-full transition-colors relative ${mfaEnforced ? 'bg-purple-600' : 'bg-slate-300'}`}
+                className={`w-12 h-6 rounded-full transition-colors relative ${mfaEnforced ? 'bg-brand-600' : 'bg-slate-300'}`}
               >
                 <div className={`absolute top-1 bg-white dark:bg-slate-900 w-4 h-4 rounded-full transition-transform ${mfaEnforced ? 'left-7' : 'left-1'}`} />
               </Button>
@@ -66,7 +66,7 @@ export default function AdminSecurityCenter() {
 
         <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
           <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
-            <div className="p-3 rounded-xl bg-blue-100 text-blue-700">
+            <div className="p-3 rounded-xl bg-brand-100 text-brand-700">
               <History size={24} />
             </div>
             <div>

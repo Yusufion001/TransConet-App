@@ -122,13 +122,13 @@ export default function StateFilterOverlay({
                 {selectedState ? (
                   <Button 
                     onClick={() => { setSelectedState(null); setSearchQuery(""); }}
-                    className="flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 mb-1 transition-colors"
+                    className="flex items-center gap-2 text-sm font-bold text-brand-600 hover:text-brand-700 mb-1 transition-colors"
                   >
                     <ChevronLeft size={16} /> Back to States
                   </Button>
                 ) : null}
                 <h3 className="text-xl font-black text-slate-900 dark:text-white  flex items-center gap-2">
-                  {selectedState ? <Map className="text-blue-600 animate-pulse" size={20} /> : <Compass className="text-blue-600 animate-spin-slow" size={20} />}
+                  {selectedState ? <Map className="text-brand-600 animate-pulse" size={20} /> : <Compass className="text-brand-600 animate-spin-slow" size={20} />}
                   {selectedState ? `Specific location in ${selectedState}` : title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-  font-medium">
@@ -137,15 +137,15 @@ export default function StateFilterOverlay({
               </div>
               <Button 
                 onClick={handleClose}
-                className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-blue-600 border border-slate-200 dark:border-slate-700  rounded-xl text-slate-500 dark:text-slate-  hover:text-white transition cursor-pointer shrink-0"
+                className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-brand-600 border border-slate-200 dark:border-slate-700  rounded-xl text-slate-500 dark:text-slate-  hover:text-white transition cursor-pointer shrink-0"
               >
                 <X size={16} />
               </Button>
             </div>
 
             {/* SEARCH / CUSTOM INPUT */}
-            <div className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl flex items-center px-4 mb-5 group focus-within:border-blue-500 transition shrink-0">
-              <Search className="text-slate-500 dark:text-slate-  mr-2.5 shrink-0 group-focus-within:text-blue-600 transition" size={18} />
+            <div className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl flex items-center px-4 mb-5 group focus-within:border-brand-500 transition shrink-0">
+              <Search className="text-slate-500 dark:text-slate-  mr-2.5 shrink-0 group-focus-within:text-brand-600 transition" size={18} />
               <input
                 type="text"
                 className="flex-1 h-13 bg-transparent text-slate-900 dark:text-white  text-sm outline-none border-none placeholder-slate-500 focus:ring-0 focus:border-transparent font-medium"
@@ -176,7 +176,7 @@ export default function StateFilterOverlay({
                   onSelectState(`${searchQuery.trim()}, ${selectedState}`);
                   handleClose();
                 }}
-                className="w-full mb-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer shrink-0"
+                className="w-full mb-4 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer shrink-0"
               >
                 <MapPin size={16} /> Use "{searchQuery.trim()}" in {selectedState}
               </Button>
@@ -215,12 +215,12 @@ export default function StateFilterOverlay({
                     className="flex items-center justify-between bg-slate-50 dark:bg-slate-800  hover:bg-slate-100 :bg-slate-700 border border-slate-200 dark:border-slate-700  hover:border-slate-300 :border-slate-600 rounded-xl px-4 py-3.5 text-left transition-colors duration-75 group cursor-pointer"
                   >
                     <div className="flex items-center gap-2 min-w-0">
-                      <MapPin size={12} className="text-slate-500 dark:text-slate-  group-hover:text-blue-600 transition shrink-0" />
+                      <MapPin size={12} className="text-slate-500 dark:text-slate-  group-hover:text-brand-600 transition shrink-0" />
                       <span className="text-slate-800 dark:text-slate-100  group-hover:text-slate-900 dark:text-white  font-semibold text-xs truncate">
                         {item}
                       </span>
                     </div>
-                    <span className="text-slate-600 dark:text-slate-  group-hover:text-blue-600 font-bold text-[10px]  transition shrink-0">
+                    <span className="text-slate-600 dark:text-slate-  group-hover:text-brand-600 font-bold text-[10px]  transition shrink-0">
                       ➔
                     </span>
                   </Button>

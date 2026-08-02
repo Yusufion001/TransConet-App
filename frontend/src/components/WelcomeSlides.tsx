@@ -55,7 +55,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
       description: "Connect with verified transport providers and available cargo within seconds. Smart matching reduces empty return trips and saves time.",
       features: ["Verified Transporters", "Faster Matching", "Better Earnings"],
       illustration: (
-        <div className="relative w-full h-full bg-[#F5F7FA] overflow-hidden flex items-center justify-center rounded-b-[40px]">
+        <div className="relative w-full h-full bg-slate-50 overflow-hidden flex items-center justify-center rounded-b-[40px]">
           {/* Logistics warehouse background (subtle) */}
           <div 
             className="absolute inset-0 opacity-20"
@@ -65,7 +65,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
               backgroundPosition: 'center'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F5F7FA] via-transparent to-[#F5F7FA]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50" />
           
           {/* Smartphone */}
           <motion.div 
@@ -74,19 +74,19 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             transition={{ delay: 0.2, duration: 0.6, type: 'spring' }}
             className="absolute left-6 top-8 w-24 h-48 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-4 border-slate-100 dark:border-slate-800 flex flex-col overflow-hidden"
           >
-            <div className="h-4 bg-[#2563EB] w-full" />
+            <div className="h-4 bg-brand-600 w-full" />
             <div className="flex-1 p-2 space-y-2">
               <div className="h-2 w-3/4 bg-slate-200 rounded" />
-              <div className="h-10 w-full bg-[#F5F7FA] rounded-md border border-slate-100 dark:border-slate-800 flex items-center p-1">
-                 <div className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center">
-                    <Truck size={12} className="text-[#2563EB]" />
+              <div className="h-10 w-full bg-slate-50 rounded-md border border-slate-100 dark:border-slate-800 flex items-center p-1">
+                 <div className="w-6 h-6 bg-brand-100 rounded flex items-center justify-center">
+                    <Truck size={12} className="text-brand-600" />
                  </div>
                  <div className="ml-1 space-y-1">
                     <div className="h-1 w-8 bg-slate-300 rounded" />
                     <div className="h-1 w-6 bg-slate-200 rounded" />
                  </div>
               </div>
-              <div className="h-10 w-full bg-[#F5F7FA] rounded-md border border-slate-100 dark:border-slate-800" />
+              <div className="h-10 w-full bg-slate-50 rounded-md border border-slate-100 dark:border-slate-800" />
             </div>
           </motion.div>
 
@@ -107,11 +107,11 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             transition={{ delay: 0.4, duration: 0.7, type: 'spring', bounce: 0.2 }}
             className="absolute right-4 bottom-12 bg-white dark:bg-slate-900 p-3 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 flex items-center gap-3"
           >
-            <div className="w-12 h-12 bg-[#2563EB]/10 rounded-xl flex items-center justify-center">
-              <Truck size={24} className="text-[#2563EB]" />
+            <div className="w-12 h-12 bg-brand-600/10 rounded-xl flex items-center justify-center">
+              <Truck size={24} className="text-brand-600" />
             </div>
             <div>
-              <div className="text-xs font-bold text-[#1F2937]">Cargo Matched!</div>
+              <div className="text-xs font-bold text-slate-900">Cargo Matched!</div>
               <div className="text-[10px] text-slate-500 dark:text-slate-">2 mins ago</div>
             </div>
           </motion.div>
@@ -124,7 +124,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
       description: "Communicate, negotiate, and pay with confidence using our secure escrow system. Funds are released only upon successful delivery.",
       features: ["Verified Companies", "Secure Messaging", "Trusted Marketplace"],
       illustration: (
-        <div className="relative w-full h-full bg-[#F5F7FA] overflow-hidden flex items-center justify-center rounded-b-[40px]">
+        <div className="relative w-full h-full bg-slate-50 overflow-hidden flex items-center justify-center rounded-b-[40px]">
           {/* Industrial warehouse background (subtle) */}
           <div 
             className="absolute inset-0 opacity-20"
@@ -134,7 +134,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
               backgroundPosition: 'center'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F5F7FA] via-transparent to-[#F5F7FA]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50" />
 
           {/* Secure Document */}
           <motion.div
@@ -161,7 +161,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             transition={{ delay: 0.2, type: 'spring', bounce: 0.4 }}
             className="relative z-10 w-28 h-28 bg-white dark:bg-slate-900 rounded-3xl shadow-xl flex items-center justify-center border border-slate-100 dark:border-slate-800"
           >
-            <ShieldCheck size={56} className="text-[#2563EB]" />
+            <ShieldCheck size={56} className="text-brand-600" />
           </motion.div>
 
           {/* Lock Icon */}
@@ -182,7 +182,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
       description: "Monitor shipment progress with live truck location, route updates and estimated arrival times.",
       features: ["Live Location", "ETA Updates", "Smart Alerts"],
       illustration: (
-        <div className="relative w-full h-full bg-[#F5F7FA] overflow-hidden flex items-center justify-center rounded-b-[40px]">
+        <div className="relative w-full h-full bg-slate-50 overflow-hidden flex items-center justify-center rounded-b-[40px]">
           {/* Map background */}
           <div 
             className="absolute inset-0 opacity-30"
@@ -192,7 +192,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
               backgroundPosition: 'center'
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#F5F7FA] via-transparent to-[#F5F7FA]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-slate-50" />
 
           {/* GPS Route / Map Pin */}
           <motion.div
@@ -207,9 +207,9 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
                 opacity: [0.7, 1, 0.7]
               }}
               transition={{ repeat: Infinity, duration: 2 }}
-              className="absolute inset-0 bg-blue-400 rounded-full blur-md"
+              className="absolute inset-0 bg-brand-400 rounded-full blur-md"
             />
-            <MapPin size={48} className="text-[#2563EB] relative z-10" fill="white" />
+            <MapPin size={48} className="text-brand-600 relative z-10" fill="white" />
           </motion.div>
 
           {/* Mobile phone showing tracking */}
@@ -223,7 +223,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
               <Navigation size={20} className="text-emerald-600" />
             </div>
             <div>
-              <div className="text-sm font-bold text-[#1F2937]">15 mins away</div>
+              <div className="text-sm font-bold text-slate-900">15 mins away</div>
               <div className="text-xs text-slate-500 dark:text-slate-">On route to Lagos</div>
             </div>
           </motion.div>
@@ -236,7 +236,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
     <div className="relative w-full h-[100dvh] md:h-[800px] md:max-h-[90vh] md:w-[400px] mx-auto bg-white dark:bg-slate-900 md:rounded-[40px] md:shadow-2xl overflow-hidden flex flex-col font-sans">
       
       {/* Illustration Area (Top 45%) */}
-      <div className="relative h-[45%] w-full bg-[#F5F7FA] rounded-b-[40px]">
+      <div className="relative h-[45%] w-full bg-slate-50 rounded-b-[40px]">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={page}
@@ -278,7 +278,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             transition={{ duration: 0.3 }}
             className="flex-1 flex flex-col"
           >
-            <h1 className="text-3xl font-bold text-[#1F2937] mb-4 tracking-tight leading-tight">
+            <h1 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight leading-tight">
               {slides[page].headline}
             </h1>
             <p className="text-slate-500 dark:text-slate- text-[15px] leading-relaxed mb-8">
@@ -297,7 +297,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
                   <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
                     <Check size={14} className="text-emerald-600" />
                   </div>
-                  <span className="text-sm font-medium text-[#1F2937]">{feature}</span>
+                  <span className="text-sm font-medium text-slate-900">{feature}</span>
                 </motion.div>
               ))}
             </div>
@@ -312,7 +312,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
               <div 
                 key={i} 
                 className={`h-2 rounded-full transition-all duration-75 ${
-                  i === page ? 'w-8 bg-[#2563EB]' : 'w-2 bg-[#F5F7FA] border border-slate-200 dark:border-slate-700'
+                  i === page ? 'w-8 bg-brand-600' : 'w-2 bg-slate-50 border border-slate-200 dark:border-slate-700'
                 }`}
               />
             ))}
@@ -326,7 +326,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => onComplete()}
-                  className="w-full bg-[#2563EB] text-white rounded-full py-4 font-bold text-lg shadow-[0_8px_20px_rgba(21,101,192,0.3)] transition"
+                  className="w-full bg-brand-600 text-white rounded-full py-4 font-bold text-lg shadow-[0_8px_20px_rgba(21,101,192,0.3)] transition"
                 >
                   Get Started
                 </motion.button>
@@ -334,7 +334,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => onComplete()}
-                  className="w-full bg-[#F5F7FA] text-[#1F2937] rounded-full py-4 font-bold text-lg transition"
+                  className="w-full bg-slate-50 text-slate-900 rounded-full py-4 font-bold text-lg transition"
                 >
                   Sign In
                 </motion.button>
@@ -345,7 +345,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => paginate(1)}
-                  className="w-full bg-[#2563EB] text-white rounded-full py-4 font-bold text-lg shadow-[0_8px_20px_rgba(37,99,235,0.2)] transition"
+                  className="w-full bg-brand-600 text-white rounded-full py-4 font-bold text-lg shadow-[0_8px_20px_rgba(37,99,235,0.2)] transition"
                 >
                   Continue
                 </motion.button>

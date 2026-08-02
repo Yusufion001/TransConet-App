@@ -76,7 +76,7 @@ export default function AdminApiManagement() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
             <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-              <Server className="text-indigo-600" size={22} /> Third-Party API & Microservices Hub
+              <Server className="text-brand-600" size={22} /> Third-Party API & Microservices Hub
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate- mt-1">
               Real-time management, endpoint latency monitoring, and key rotation for all integrated platform services.
@@ -95,7 +95,7 @@ export default function AdminApiManagement() {
               <div key={api.id} className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700/80 hover:border-slate-300 transition-all space-y-3">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className={`p-2.5 rounded-xl shrink-0 ${api.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
+                    <div className={`p-2.5 rounded-xl shrink-0 ${api.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-brand-100 text-brand-700'}`}>
                       <Key size={20} />
                     </div>
                     <div>
@@ -124,7 +124,7 @@ export default function AdminApiManagement() {
                       className="text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 text-slate-800 dark:text-slate- font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50"
                     >
                       {testingId === api.id ? (
-                        <RefreshCw size={13} className="animate-spin text-blue-600" />
+                        <RefreshCw size={13} className="animate-spin text-brand-600" />
                       ) : (
                         <Zap size={13} className="text-amber-500" />
                       )}
@@ -143,7 +143,7 @@ export default function AdminApiManagement() {
                         const val = e.target.value;
                         setApis(prev => prev.map(a => a.id === api.id ? { ...a, key: val } : a));
                       }}
-                      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1 text-xs font-mono text-slate-800 dark:text-slate- flex-1 focus:outline-none focus:border-indigo-500 shadow-inner"
+                      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1 text-xs font-mono text-slate-800 dark:text-slate- flex-1 focus:outline-none focus:border-brand-500 shadow-inner"
                     />
                   </div>
 
@@ -161,7 +161,7 @@ export default function AdminApiManagement() {
 
         <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-">
-            <Shield size={16} className="text-indigo-600 shrink-0" />
+            <Shield size={16} className="text-brand-600 shrink-0" />
             <span>All API tokens are encrypted with AES-256 and protected under Supabase RLS.</span>
           </div>
 
@@ -174,7 +174,7 @@ export default function AdminApiManagement() {
             <Button
               onClick={handleSave}
               disabled={loading}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer shadow-md disabled:opacity-70"
+              className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer shadow-md disabled:opacity-70"
             >
               {loading ? <RefreshCw className="animate-spin" size={16} /> : <Save size={16} />}
               <span>Save Configuration</span>

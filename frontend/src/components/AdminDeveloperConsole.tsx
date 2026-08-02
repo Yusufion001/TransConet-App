@@ -75,21 +75,21 @@ export default function AdminDeveloperConsole() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Terminal className="text-indigo-600" /> Developer Console
+            <Terminal className="text-brand-600" /> Developer Console
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage API keys, configure webhooks, and monitor API traffic.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-blue-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <Code size={16} /> API Docs
           </Button>
           {activeSection === 'KEYS' && (
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
               <Plus size={16} /> Generate Key
             </Button>
           )}
           {activeSection === 'WEBHOOKS' && (
-            <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
               <Plus size={16} /> Add Webhook
             </Button>
           )}
@@ -99,7 +99,7 @@ export default function AdminDeveloperConsole() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-slate-800 rounded-xl text-indigo-400">
+            <div className="p-2 bg-slate-800 rounded-xl text-brand-400">
               <Activity size={20} />
             </div>
             <h3 className="font-bold text-slate-300 dark:text-slate-300 text-sm">Total API Requests</h3>
@@ -129,7 +129,7 @@ export default function AdminDeveloperConsole() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Webhook size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Webhooks</h3>
@@ -145,7 +145,7 @@ export default function AdminDeveloperConsole() {
             onClick={() => setActiveSection('KEYS')}
             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeSection === 'KEYS' 
-                ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
             }`}
           >
@@ -155,7 +155,7 @@ export default function AdminDeveloperConsole() {
             onClick={() => setActiveSection('WEBHOOKS')}
             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeSection === 'WEBHOOKS' 
-                ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
             }`}
           >
@@ -165,7 +165,7 @@ export default function AdminDeveloperConsole() {
             onClick={() => setActiveSection('LOGS')}
             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 whitespace-nowrap ${
               activeSection === 'LOGS' 
-                ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
             }`}
           >
@@ -189,7 +189,7 @@ export default function AdminDeveloperConsole() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {MOCK_API_KEYS.map(apiKey => (
-                    <tr key={apiKey.id || apiKey?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                    <tr key={apiKey.id || apiKey?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                       <td className="p-4">
                         <div className="font-bold text-sm text-slate-900 dark:text-white">{apiKey.name}</div>
                         <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{apiKey.id}</div>
@@ -199,10 +199,10 @@ export default function AdminDeveloperConsole() {
                           <code className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate- px-2 py-1 rounded text-xs font-mono">
                             {showKeyId === apiKey.id ? apiKey.prefix.replace('...', 'a1b2c3d4e5f6g7h8') : apiKey.prefix}
                           </code>
-                          <Button onClick={() => setShowKeyId(showKeyId === apiKey.id ? null : apiKey.id)} className="text-slate-400 dark:text-slate-400 hover:text-indigo-600">
+                          <Button onClick={() => setShowKeyId(showKeyId === apiKey.id ? null : apiKey.id)} className="text-slate-400 dark:text-slate-400 hover:text-brand-600">
                             {showKeyId === apiKey.id ? <EyeOff size={14} /> : <Eye size={14} />}
                           </Button>
-                          <Button onClick={() => copyToClipboard(apiKey.prefix)} className="text-slate-400 dark:text-slate-400 hover:text-indigo-600" title="Copy to clipboard">
+                          <Button onClick={() => copyToClipboard(apiKey.prefix)} className="text-slate-400 dark:text-slate-400 hover:text-brand-600" title="Copy to clipboard">
                             <Copy size={14} />
                           </Button>
                         </div>
@@ -248,7 +248,7 @@ export default function AdminDeveloperConsole() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {MOCK_WEBHOOKS.map(webhook => (
-                    <tr key={webhook.id || webhook?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                    <tr key={webhook.id || webhook?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                       <td className="p-4">
                         <div className="font-mono text-sm text-slate-700 dark:text-slate- truncate max-w-[250px]" title={webhook.url}>{webhook.url}</div>
                         <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{webhook.id}</div>
@@ -269,7 +269,7 @@ export default function AdminDeveloperConsole() {
                       <td className="p-4 text-sm text-slate-500 dark:text-slate-">{webhook.lastDelivery}</td>
                       <td className="p-4 text-right">
                         <div className="flex justify-end gap-2">
-                          <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50" title="Test Payload">
+                          <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50" title="Test Payload">
                             <RefreshCw size={16} />
                           </Button>
                           <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-red-600 transition-colors p-2 rounded-lg hover:bg-red-50">
@@ -302,12 +302,12 @@ export default function AdminDeveloperConsole() {
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {MOCK_LOGS.map(log => (
-                      <tr key={log.id || log?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                      <tr key={log.id || log?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                         <td className="p-4 text-sm text-slate-500 dark:text-slate- font-mono">{log.timestamp}</td>
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase w-12 text-center ${
-                              log.method === 'GET' ? 'bg-blue-100 text-blue-800' :
+                              log.method === 'GET' ? 'bg-brand-100 text-brand-800' :
                               log.method === 'POST' ? 'bg-emerald-100 text-emerald-800' :
                               'bg-amber-100 text-amber-800'
                             }`}>

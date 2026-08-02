@@ -51,7 +51,7 @@ export function lazyWithRetry<T extends ComponentType<any>>(
                     sessionStorage.removeItem(hasReloadedKey);
                     window.location.reload();
                   }}
-                  className="px-5 py-2.5 bg-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm0 text-white font-bold text-xs rounded-xl transition shadow-lg cursor-pointer"
+                  className="px-5 py-2.5 bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white font-bold text-xs rounded-xl transition shadow-lg cursor-pointer"
                 >
                   Reload Component
                 </button>

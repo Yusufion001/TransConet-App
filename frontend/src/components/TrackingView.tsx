@@ -50,26 +50,26 @@ export default function TrackingView({
         <h4 className="w-full text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider mb-2">Simulate Lifecycle Events</h4>
         
         {acceptedJob.status === 'QUOTE_ACCEPTED' && !detailsProvided && mode === 'SHIPPER' && (
-          <div className="w-full bg-blue-50 border border-blue-200 p-4 rounded-xl mb-4 space-y-4">
-            <h4 className="text-sm font-bold text-blue-900">Finalize Load: Provide Exact Details</h4>
-            <p className="text-xs text-blue-700">For security purposes, exact pickup and delivery details are only shared after you accept a bid.</p>
+          <div className="w-full bg-brand-50 border border-brand-200 p-4 rounded-xl mb-4 space-y-4">
+            <h4 className="text-sm font-bold text-brand-900">Finalize Load: Provide Exact Details</h4>
+            <p className="text-xs text-brand-700">For security purposes, exact pickup and delivery details are only shared after you accept a bid.</p>
             
             <div className="space-y-3">
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-">Pickup Information</label>
-                <input type="text" placeholder="Exact Pickup Address" value={pickupDetails.address} onChange={e => setPickupDetails({...pickupDetails, address: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500" />
+                <input type="text" placeholder="Exact Pickup Address" value={pickupDetails.address} onChange={e => setPickupDetails({...pickupDetails, address: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="date" value={pickupDetails.date} onChange={e => setPickupDetails({...pickupDetails, date: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500" />
-                  <input type="text" placeholder="Pickup Contact Phone" value={pickupDetails.contact} onChange={e => setPickupDetails({...pickupDetails, contact: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500" />
+                  <input type="date" value={pickupDetails.date} onChange={e => setPickupDetails({...pickupDetails, date: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
+                  <input type="text" placeholder="Pickup Contact Phone" value={pickupDetails.contact} onChange={e => setPickupDetails({...pickupDetails, contact: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
                 </div>
               </div>
 
               <div className="space-y-2">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-">Delivery Information</label>
-                <input type="text" placeholder="Exact Delivery Address" value={deliveryDetails.address} onChange={e => setDeliveryDetails({...deliveryDetails, address: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500" />
+                <input type="text" placeholder="Exact Delivery Address" value={deliveryDetails.address} onChange={e => setDeliveryDetails({...deliveryDetails, address: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
                 <div className="grid grid-cols-2 gap-2">
-                  <input type="date" value={deliveryDetails.date} onChange={e => setDeliveryDetails({...deliveryDetails, date: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500" />
-                  <input type="text" placeholder="Delivery Contact Phone" value={deliveryDetails.contact} onChange={e => setDeliveryDetails({...deliveryDetails, contact: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500" />
+                  <input type="date" value={deliveryDetails.date} onChange={e => setDeliveryDetails({...deliveryDetails, date: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
+                  <input type="text" placeholder="Delivery Contact Phone" value={deliveryDetails.contact} onChange={e => setDeliveryDetails({...deliveryDetails, contact: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
                 </div>
               </div>
               
@@ -78,7 +78,7 @@ export default function TrackingView({
                   if(!pickupDetails.address || !deliveryDetails.address) return alert('Please provide exact addresses for pickup and delivery.');
                   setDetailsProvided(true);
                 }}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg text-sm transition-colors"
+                className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2 rounded-lg text-sm transition-colors"
               >
                 Submit Details & Proceed
               </Button>
@@ -91,7 +91,7 @@ export default function TrackingView({
             <select 
               value={paymentProvider} 
               onChange={(e) => setPaymentProvider(e.target.value)}
-              className="text-xs p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-blue-500 bg-white dark:bg-slate-900"
+              className="text-xs p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500 bg-white dark:bg-slate-900"
             >
               <option value="paystack">Paystack</option>
               <option value="flutterwave">Flutterwave</option>
@@ -131,7 +131,7 @@ export default function TrackingView({
                 await api.patch(`/loads/${activeMatch?.id || acceptedJob?.id || ''}`, { status: 'TRANSIT_ONGOING' });
               } catch (e) { console.error(e); }
             }}
-            className="bg-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-3 py-2 rounded-lg"
+            className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-3 py-2 rounded-lg"
           >
             Driver Starts Transit
           </Button>
@@ -145,7 +145,7 @@ export default function TrackingView({
                 await api.patch(`/loads/${activeMatch?.id || acceptedJob?.id || ''}`, { status: 'DELIVERED' });
               } catch (e) { console.error(e); }
             }}
-            className="bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-2 rounded-lg"
+            className="bg-brand-600 hover:bg-brand-500 text-white text-xs font-bold px-3 py-2 rounded-lg"
           >
             Driver Completes Delivery
           </Button>

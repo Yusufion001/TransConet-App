@@ -41,7 +41,7 @@ export default function AdminPartnerManagement() {
     switch (status) {
       case 'ACTIVE': return <span className="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><CheckCircle2 size={12} /> Active</span>;
       case 'DEGRADED': return <span className="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><AlertTriangle size={12} /> Degraded</span>;
-      case 'MAINTENANCE': return <span className="bg-blue-100 text-blue-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Settings size={12} className="animate-spin" /> Maintenance</span>;
+      case 'MAINTENANCE': return <span className="bg-brand-100 text-brand-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Settings size={12} className="animate-spin" /> Maintenance</span>;
       case 'INACTIVE': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate- px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Power size={12} /> Inactive</span>;
       default: return null;
     }
@@ -50,8 +50,8 @@ export default function AdminPartnerManagement() {
   const getTypeIcon = (type: string) => {
     switch (type) {
       case 'PAYMENT': return <CreditCard size={18} className="text-emerald-500" />;
-      case 'IDENTITY': return <Shield size={18} className="text-indigo-500" />;
-      case 'INSURANCE': return <Handshake size={18} className="text-blue-500" />;
+      case 'IDENTITY': return <Shield size={18} className="text-brand-500" />;
+      case 'INSURANCE': return <Handshake size={18} className="text-brand-500" />;
       case 'SMS': return <MessageSquare size={18} className="text-amber-500" />;
       case 'TRACKING': return <MapPin size={18} className="text-pink-500" />;
       default: return <LinkIcon size={18} />;
@@ -67,11 +67,11 @@ export default function AdminPartnerManagement() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Handshake className="text-indigo-600" /> Partner Management
+            <Handshake className="text-brand-600" /> Partner Management
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage 3rd-party integrations, API health, and vendor configurations.</p>
         </div>
-        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+        <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
           <LinkIcon size={16} /> Add Integration
         </Button>
       </div>
@@ -79,7 +79,7 @@ export default function AdminPartnerManagement() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <LinkIcon size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Integrations</h3>
@@ -97,7 +97,7 @@ export default function AdminPartnerManagement() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <RefreshCw size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">API Calls (24h)</h3>
@@ -139,7 +139,7 @@ export default function AdminPartnerManagement() {
               placeholder="Search integrations..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
             />
           </div>
         </div>
@@ -158,7 +158,7 @@ export default function AdminPartnerManagement() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredPartners.map(partner => (
-                <tr key={partner.id || partner?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                <tr key={partner.id || partner?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-800 flex items-center justify-center">
@@ -184,10 +184,10 @@ export default function AdminPartnerManagement() {
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex justify-end gap-2">
-                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50" title="API Keys">
+                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50" title="API Keys">
                         <Key size={16} />
                       </Button>
-                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-indigo-600 transition-colors p-2 rounded-lg hover:bg-indigo-50" title="Settings">
+                      <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50" title="Settings">
                         <Settings size={16} />
                       </Button>
                     </div>

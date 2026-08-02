@@ -53,8 +53,8 @@ export default function AdminSubscriptionBilling() {
 
   const getPlanBadge = (plan: string) => {
     switch (plan) {
-      case 'ENTERPRISE': return <span className="bg-indigo-50 text-indigo-700 border border-indigo-200 px-2 py-0.5 rounded-md text-[10px] font-bold">Enterprise</span>;
-      case 'PRO': return <span className="bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded-md text-[10px] font-bold">Pro</span>;
+      case 'ENTERPRISE': return <span className="bg-brand-50 text-brand-700 border border-brand-200 px-2 py-0.5 rounded-md text-[10px] font-bold">Enterprise</span>;
+      case 'PRO': return <span className="bg-brand-50 text-brand-700 border border-brand-200 px-2 py-0.5 rounded-md text-[10px] font-bold">Pro</span>;
       case 'BASIC': return <span className="bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate- border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-md text-[10px] font-bold">Basic</span>;
       default: return null;
     }
@@ -65,11 +65,11 @@ export default function AdminSubscriptionBilling() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <CreditCard className="text-indigo-600" /> Subscription & Billing
+            <CreditCard className="text-brand-600" /> Subscription & Billing
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage recurring revenue, subscriber plans, and billing issues.</p>
         </div>
-        <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-blue-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+        <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
           <Download size={16} /> Export Report
         </Button>
       </div>
@@ -93,7 +93,7 @@ export default function AdminSubscriptionBilling() {
         
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Users size={20} />
             </div>
             <span className="flex items-center text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-lg">
@@ -162,7 +162,7 @@ export default function AdminSubscriptionBilling() {
               placeholder="Search subscribers..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
             />
           </div>
         </div>
@@ -181,7 +181,7 @@ export default function AdminSubscriptionBilling() {
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredSubscribers.map(sub => (
-                <tr key={sub.id || sub?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                <tr key={sub.id || sub?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="font-bold text-sm text-slate-900 dark:text-white">{sub.name}</div>
                     <div className="text-xs text-slate-500 dark:text-slate- mt-0.5">{sub.type} • {sub.id}</div>
@@ -199,7 +199,7 @@ export default function AdminSubscriptionBilling() {
                     {sub.nextBilling}
                   </td>
                   <td className="p-4 text-right">
-                    <Button className="text-indigo-600 hover:text-indigo-800 font-bold text-xs bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors">
+                    <Button className="text-brand-600 hover:text-brand-800 font-bold text-xs bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition-colors">
                       Manage
                     </Button>
                   </td>

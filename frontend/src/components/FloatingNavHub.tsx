@@ -166,7 +166,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
                       {isActive && (
                         <motion.div
                           layoutId="nav-highlight"
-                          className="absolute inset-0 bg-blue-600 rounded-2xl shadow-md z-0"
+                          className="absolute inset-0 bg-brand-600 rounded-2xl shadow-md z-0"
                           initial={false}
                           transition={{ type: "spring", stiffness: 400, damping: 30 }}
                         />
@@ -214,7 +214,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
             setIsOpen(!isOpen);
           }}
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors ${
-            isOpen ? 'bg-slate-900 text-white' : 'bg-blue-600 text-white'
+            isOpen ? 'bg-slate-900 text-white' : 'bg-brand-600 text-white'
           }`}
         >
           {isOpen ? <X size={26} strokeWidth={2.5} /> : <Menu size={26} strokeWidth={2.5} />}

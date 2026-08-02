@@ -72,38 +72,38 @@ export default function AdminAIAutomation() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Bot className="text-indigo-600" /> AI & Automation
+            <Bot className="text-brand-600" /> AI & Automation
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage intelligent workflows, automated load matching, and pricing engines.</p>
         </div>
-        <Button onClick={generateInsights} disabled={loadingInsights} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition-colors disabled:opacity-50">
+        <Button onClick={generateInsights} disabled={loadingInsights} className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-2 transition-colors disabled:opacity-50">
           {loadingInsights ? <Loader2 size={18} className="animate-spin" /> : <Sparkles size={18} />}
           Generate AI Insights
         </Button>
       </div>
       
       {insights && (
-        <div className="bg-indigo-50 border border-indigo-100 rounded-2xl p-5 shadow-sm animate-fade-in flex items-start gap-4">
-           <div className="p-2 bg-indigo-100 text-indigo-600 rounded-xl mt-1 shrink-0">
+        <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 shadow-sm animate-fade-in flex items-start gap-4">
+           <div className="p-2 bg-brand-100 text-brand-600 rounded-xl mt-1 shrink-0">
               <Info size={20} />
            </div>
            <div>
-              <h3 className="font-bold text-indigo-900 mb-1">Generated Analytical Insights</h3>
-              <p className="text-sm text-indigo-800 whitespace-pre-wrap">{insights}</p>
+              <h3 className="font-bold text-brand-900 mb-1">Generated Analytical Insights</h3>
+              <p className="text-sm text-brand-800 whitespace-pre-wrap">{insights}</p>
            </div>
         </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white border border-indigo-400 rounded-2xl p-5 shadow-sm">
+        <div className="bg-gradient-to-br from-brand-500 to-brand-600 text-white border border-brand-400 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-white dark:bg-slate-900/20 rounded-xl">
               <Sparkles size={20} />
             </div>
-            <h3 className="font-bold text-indigo-50 text-sm">Automated Matches</h3>
+            <h3 className="font-bold text-brand-50 text-sm">Automated Matches</h3>
           </div>
           <p className="text-3xl font-black">12,450</p>
-          <p className="text-xs text-indigo-200 mt-1">This month</p>
+          <p className="text-xs text-brand-200 mt-1">This month</p>
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
@@ -117,7 +117,7 @@ export default function AdminAIAutomation() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Brain size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Avg Model Accuracy</h3>
@@ -149,8 +149,8 @@ export default function AdminAIAutomation() {
                 onClick={() => setSelectedModel(model)}
                 className={`w-full text-left p-4 transition-all flex items-start justify-between gap-4 ${
                   selectedModel?.id === model.id 
-                    ? 'bg-indigo-50/50 border-l-4 border-indigo-500' 
-                    : 'bg-white dark:bg-slate-900 hover:bg-blue-50 cursor-pointer hover:shadow-sm border-l-4 border-transparent'
+                    ? 'bg-brand-50/50 border-l-4 border-brand-500' 
+                    : 'bg-white dark:bg-slate-900 hover:bg-brand-50 cursor-pointer hover:shadow-sm border-l-4 border-transparent'
                 }`}
               >
                 <div>
@@ -190,7 +190,7 @@ export default function AdminAIAutomation() {
                 </div>
                 <div className="bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-slate-100 dark:border-slate-800 col-span-2">
                   <div className="text-xs font-bold text-slate-500 dark:text-slate- uppercase mb-1">Business Impact</div>
-                  <div className="text-xl font-bold text-indigo-600">{selectedModel.impact}</div>
+                  <div className="text-xl font-bold text-brand-600">{selectedModel.impact}</div>
                 </div>
               </div>
 
@@ -205,7 +205,7 @@ export default function AdminAIAutomation() {
                     <Button 
                       onClick={() => toggleStatus(selectedModel.id, selectedModel.status)}
                       disabled={selectedModel.status === 'TRAINING'}
-                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${selectedModel.status === 'ACTIVE' ? 'bg-indigo-600' : 'bg-slate-300'} disabled:opacity-50 disabled:cursor-not-allowed`}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${selectedModel.status === 'ACTIVE' ? 'bg-brand-600' : 'bg-slate-300'} disabled:opacity-50 disabled:cursor-not-allowed`}
                     >
                       <span className={`inline-block h-4 w-4 transform rounded-full bg-white dark:bg-slate-900 transition-transform ${selectedModel.status === 'ACTIVE' ? 'translate-x-6' : 'translate-x-1'}`} />
                     </Button>

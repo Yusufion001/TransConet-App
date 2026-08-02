@@ -47,10 +47,10 @@ export default function AdminActivityTimeline() {
 
   const getEventIcon = (type: string) => {
     switch (type) {
-      case 'AUTH': return <Shield size={16} className="text-indigo-500" />;
+      case 'AUTH': return <Shield size={16} className="text-brand-500" />;
       case 'FINANCE': return <CreditCard size={16} className="text-emerald-500" />;
       case 'SYSTEM': return <Settings size={16} className="text-slate-500 dark:text-slate-" />;
-      case 'USER_ACTION': return <User size={16} className="text-blue-500" />;
+      case 'USER_ACTION': return <User size={16} className="text-brand-500" />;
       case 'SECURITY': return <AlertTriangle size={16} className="text-red-500" />;
       default: return <Activity size={16} className="text-slate-500 dark:text-slate-" />;
     }
@@ -58,10 +58,10 @@ export default function AdminActivityTimeline() {
 
   const getEventBg = (type: string) => {
     switch (type) {
-      case 'AUTH': return 'bg-indigo-50 border-indigo-100';
+      case 'AUTH': return 'bg-brand-50 border-brand-100';
       case 'FINANCE': return 'bg-emerald-50 border-emerald-100';
       case 'SYSTEM': return 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700';
-      case 'USER_ACTION': return 'bg-blue-50 border-blue-100';
+      case 'USER_ACTION': return 'bg-brand-50 border-brand-100';
       case 'SECURITY': return 'bg-red-50 border-red-100';
       default: return 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700';
     }
@@ -80,15 +80,15 @@ export default function AdminActivityTimeline() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Activity className="text-indigo-600" /> Activity Timeline
+            <Activity className="text-brand-600" /> Activity Timeline
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Audit logs, system events, and admin actions across the platform.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-blue-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <Calendar size={16} /> Date Range
           </Button>
-          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <Download size={16} /> Export Logs
           </Button>
         </div>
@@ -118,7 +118,7 @@ export default function AdminActivityTimeline() {
               placeholder="Search logs..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
             />
           </div>
         </div>
@@ -165,7 +165,7 @@ export default function AdminActivityTimeline() {
           
           {filteredEvents.length > 0 && (
             <div className="mt-4 flex justify-center">
-              <Button className="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+              <Button className="text-sm font-bold text-brand-600 hover:text-brand-800 transition-colors">
                 Load More Events
               </Button>
             </div>

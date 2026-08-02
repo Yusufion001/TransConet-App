@@ -30,11 +30,11 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
         >
           <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[#2563EB]">
+              <div className="w-10 h-10 rounded-full bg-brand-50 flex items-center justify-center text-brand-600">
                 {type === 'terms' ? <FileText size={20} /> : <ShieldCheck size={20} />}
               </div>
               <div>
-                <h3 className="font-bold text-[#1F2937] text-lg leading-tight">
+                <h3 className="font-bold text-slate-900 text-lg leading-tight">
                   {type === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate- font-medium">Last updated: July 2026</p>
@@ -71,7 +71,7 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
           <div className="p-5 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex justify-end">
             <Button 
               onClick={onClose}
-              className="px-6 py-2.5 bg-[#2563EB] text-white font-bold rounded-xl shadow-sm hover:bg-[#2563EB] transition-colors"
+              className="px-6 py-2.5 bg-brand-600 text-white font-bold rounded-xl shadow-sm hover:bg-brand-600 transition-colors"
             >
               I Understand
             </Button>

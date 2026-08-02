@@ -102,7 +102,7 @@ export default function AdminSupportCare() {
     switch(priority) {
       case 'URGENT': return <span className="text-red-600 bg-red-50 px-2 py-0.5 rounded text-xs font-bold border border-red-200">Urgent</span>;
       case 'HIGH': return <span className="text-orange-600 bg-orange-50 px-2 py-0.5 rounded text-xs font-bold border border-orange-200">High</span>;
-      case 'MEDIUM': return <span className="text-blue-600 bg-blue-50 px-2 py-0.5 rounded text-xs font-bold border border-blue-200">Medium</span>;
+      case 'MEDIUM': return <span className="text-brand-600 bg-brand-50 px-2 py-0.5 rounded text-xs font-bold border border-brand-200">Medium</span>;
       case 'LOW': return <span className="text-slate-600 dark:text-slate- bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold border border-slate-200 dark:border-slate-700">Low</span>;
       default: return null;
     }
@@ -137,7 +137,7 @@ export default function AdminSupportCare() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Headset className="text-indigo-600" /> Support & Customer Care
+            <Headset className="text-brand-600" /> Support & Customer Care
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage support tickets, complaints, and live chats.</p>
         </div>
@@ -173,7 +173,7 @@ export default function AdminSupportCare() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Star size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">CSAT Score</h3>
@@ -193,7 +193,7 @@ export default function AdminSupportCare() {
                 placeholder="Search tickets..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+                className="w-full pl-9 pr-4 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all"
               />
             </div>
             <div className="flex gap-2 overflow-x-auto hide-scrollbar">
@@ -203,8 +203,8 @@ export default function AdminSupportCare() {
                   onClick={() => setActiveFilter(filter as any)}
                   className={`px-3 py-1 rounded-lg text-xs font-bold whitespace-nowrap transition-all ${
                     activeFilter === filter 
-                      ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' 
-                      : 'text-slate-500 dark:text-slate-400 hover:bg-blue-50 cursor-pointer hover:shadow-sm border border-transparent'
+                      ? 'bg-brand-50 text-brand-700 border border-brand-200' 
+                      : 'text-slate-500 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm border border-transparent'
                   }`}
                 >
                   {filter.replace('_', ' ')}
@@ -220,8 +220,8 @@ export default function AdminSupportCare() {
                 onClick={() => setSelectedTicketId(ticket.id)}
                 className={`w-full text-left p-3 rounded-xl border transition-all ${
                   selectedTicket?.id === ticket.id 
-                    ? 'bg-indigo-50/50 border-indigo-300' 
-                    : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-slate-300 hover:bg-blue-50 cursor-pointer hover:shadow-sm'
+                    ? 'bg-brand-50/50 border-brand-300' 
+                    : 'bg-white dark:bg-slate-900 border-slate-100 dark:border-slate-800 hover:border-slate-300 hover:bg-brand-50 cursor-pointer hover:shadow-sm'
                 }`}
               >
                 <div className="flex justify-between items-start mb-2">
@@ -267,7 +267,7 @@ export default function AdminSupportCare() {
               </div>
               
               <div className="flex gap-2">
-                <Button aria-label="Action" className="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate- hover:text-indigo-600 hover:border-indigo-300 rounded-lg shadow-sm transition-colors" title="Call User">
+                <Button aria-label="Action" className="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate- hover:text-brand-600 hover:border-brand-300 rounded-lg shadow-sm transition-colors" title="Call User">
                   <PhoneCall size={18} />
                 </Button>
                 {selectedTicket.status !== 'RESOLVED' && (
@@ -283,11 +283,11 @@ export default function AdminSupportCare() {
                 <div key={idx} className={`flex ${msg.sender === 'SUPPORT' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[80%] rounded-2xl p-3 ${
                     msg.sender === 'SUPPORT' 
-                      ? 'bg-indigo-600 text-white rounded-tr-sm' 
+                      ? 'bg-brand-600 text-white rounded-tr-sm' 
                       : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-100 rounded-tl-sm shadow-sm'
                   }`}>
                     <div className="text-sm">{msg.text}</div>
-                    <div className={`text-[10px] mt-1 text-right ${msg.sender === 'SUPPORT' ? 'text-indigo-200' : 'text-slate-400 dark:text-slate-400'}`}>
+                    <div className={`text-[10px] mt-1 text-right ${msg.sender === 'SUPPORT' ? 'text-brand-200' : 'text-slate-400 dark:text-slate-400'}`}>
                       {msg.timestamp}
                     </div>
                   </div>
@@ -315,12 +315,12 @@ export default function AdminSupportCare() {
                     onChange={(e) => setReplyText(e.target.value)}
                     onKeyDown={(e) => e.key === 'Enter' && handleSendReply()}
                     placeholder="Type your reply here..." 
-                    className="flex-1 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                    className="flex-1 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500"
                   />
                   <Button aria-label="Action" 
                     onClick={handleSendReply}
                     disabled={!replyText.trim()}
-                    className="bg-indigo-600 disabled:bg-indigo-400 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl flex items-center justify-center transition-colors shadow-sm"
+                    className="bg-brand-600 disabled:bg-brand-400 hover:bg-brand-700 text-white px-4 py-2 rounded-xl flex items-center justify-center transition-colors shadow-sm"
                   >
                     <Send size={18} />
                   </Button>

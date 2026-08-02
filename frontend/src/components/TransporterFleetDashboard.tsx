@@ -48,7 +48,7 @@ export default function TransporterFleetDashboard() {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col bg-[#F8FAFC]">
+    <div className="w-full h-full flex flex-col bg-slate-50">
       <div className="p-4 md:p-6 pb-0 space-y-4 max-w-5xl mx-auto w-full">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -56,7 +56,7 @@ export default function TransporterFleetDashboard() {
             <h1 className="text-3xl font-black text-slate-800 dark:text-slate-">Fleet Operations</h1>
             <p className="text-sm text-slate-500 dark:text-slate-">Manage your trucks, drivers, earnings, and maintenance.</p>
           </div>
-          <Button className="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-blue-700 transition shadow-lg shadow-blue-500/20 flex items-center gap-2 w-fit">
+          <Button className="bg-brand-600 text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-brand-700 transition shadow-lg shadow-blue-500/20 flex items-center gap-2 w-fit">
             <Plus size={16} /> Add Asset
           </Button>
         </div>
@@ -75,7 +75,7 @@ export default function TransporterFleetDashboard() {
               onClick={() => setActiveTab(tab.id as any)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${
                 activeTab === tab.id 
-                  ? 'bg-blue-600 text-white shadow-md' 
+                  ? 'bg-brand-600 text-white shadow-md' 
                   : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100'
               }`}
             >
@@ -96,7 +96,7 @@ export default function TransporterFleetDashboard() {
                 <p className="text-xs text-slate-500 dark:text-slate- font-bold uppercase tracking-wider mb-1">Total Fleet</p>
                 <div className="flex items-end justify-between">
                   <h3 className="text-2xl font-black text-slate-800 dark:text-slate-">12</h3>
-                  <Truck className="text-blue-500" size={20} />
+                  <Truck className="text-brand-500" size={20} />
                 </div>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -110,7 +110,7 @@ export default function TransporterFleetDashboard() {
                 <p className="text-xs text-slate-500 dark:text-slate- font-bold uppercase tracking-wider mb-1">Total Drivers</p>
                 <div className="flex items-end justify-between">
                   <h3 className="text-2xl font-black text-slate-800 dark:text-slate-">15</h3>
-                  <Users className="text-indigo-500" size={20} />
+                  <Users className="text-brand-500" size={20} />
                 </div>
               </div>
               <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -138,7 +138,7 @@ export default function TransporterFleetDashboard() {
                 {[40, 60, 45, 80, 50, 90, 75].map((h, i) => (
                   <div key={i} className="w-full bg-slate-100 dark:bg-slate-800 rounded-t-lg relative group">
                     <div 
-                      className="absolute bottom-0 left-0 right-0 bg-blue-500 rounded-t-lg transition-all" 
+                      className="absolute bottom-0 left-0 right-0 bg-brand-500 rounded-t-lg transition-all" 
                       style={{ height: `${h}%` }}
                     >
                       <div className="opacity-0 group-hover:opacity-100 absolute -top-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-xs font-bold py-1 px-2 rounded shadow-lg transition-opacity whitespace-nowrap">
@@ -174,7 +174,7 @@ export default function TransporterFleetDashboard() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400" size={18} />
-              <input type="text" placeholder="Search trucks by plate or ID..." className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+              <input type="text" placeholder="Search trucks by plate or ID..." className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" />
             </div>
             
             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm">
@@ -191,22 +191,22 @@ export default function TransporterFleetDashboard() {
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {fleet.map((truck) => (
-                      <tr key={truck.id} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                      <tr key={truck.id} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                         <td className="p-4">
                           <div className="font-bold text-slate-800 dark:text-slate-">{truck.id}</div>
-                          <div className="text-xs text-blue-600 bg-blue-50 inline-block px-2 py-0.5 rounded mt-1 border border-blue-100 font-mono">{truck.plate}</div>
+                          <div className="text-xs text-brand-600 bg-brand-50 inline-block px-2 py-0.5 rounded mt-1 border border-brand-100 font-mono">{truck.plate}</div>
                         </td>
                         <td className="p-4 text-slate-600 dark:text-slate-">{truck.type}</td>
                         <td className="p-4">
                           <div className="flex items-center gap-1.5 mb-1">
-                            <span className={`w-2 h-2 rounded-full ${truck.status === 'In Transit' ? 'bg-blue-500' : truck.status === 'Available' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
+                            <span className={`w-2 h-2 rounded-full ${truck.status === 'In Transit' ? 'bg-brand-500' : truck.status === 'Available' ? 'bg-emerald-500' : 'bg-amber-500'}`}></span>
                             <span className="font-bold text-slate-800 dark:text-slate- text-xs">{truck.status}</span>
                           </div>
                           <div className="text-xs text-slate-500 dark:text-slate- flex items-center gap-1"><MapPin size={12}/> {truck.loc}</div>
                         </td>
                         <td className="p-4 text-slate-800 dark:text-slate- font-medium">{truck.driver}</td>
                         <td className="p-4 text-right">
-                          <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-blue-600 p-2"><MoreHorizontal size={18} /></Button>
+                          <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 p-2"><MoreHorizontal size={18} /></Button>
                         </td>
                       </tr>
                     ))}
@@ -221,7 +221,7 @@ export default function TransporterFleetDashboard() {
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
              <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400" size={18} />
-              <input type="text" placeholder="Search drivers by name or ID..." className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500" />
+              <input type="text" placeholder="Search drivers by name or ID..." className="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -238,7 +238,7 @@ export default function TransporterFleetDashboard() {
                       </div>
                     </div>
                     <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider ${
-                      driver.status === 'On Duty' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 
+                      driver.status === 'On Duty' ? 'bg-brand-50 text-brand-600 border border-brand-200' : 
                       driver.status === 'Available' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 
                       'bg-slate-100 text-slate-500 dark:text-slate-400 border border-slate-200 dark:border-slate-700'
                     }`}>
@@ -266,7 +266,7 @@ export default function TransporterFleetDashboard() {
                       )}
                       <span className={driver.license.includes('Renewal') ? 'text-rose-600 font-bold' : 'text-slate-600 dark:text-slate-300'}>{driver.license}</span>
                     </div>
-                    <Button className="text-blue-600 text-xs font-bold hover:underline">View Profile</Button>
+                    <Button className="text-brand-600 text-xs font-bold hover:underline">View Profile</Button>
                   </div>
                 </div>
               ))}
@@ -280,7 +280,7 @@ export default function TransporterFleetDashboard() {
              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl overflow-hidden shadow-sm">
                 <div className="p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex justify-between items-center">
                   <h3 className="font-bold text-slate-800 dark:text-slate-">Maintenance Schedule</h3>
-                  <Button className="text-blue-600 text-sm font-bold flex items-center gap-1"><Plus size={16}/> Log Service</Button>
+                  <Button className="text-brand-600 text-sm font-bold flex items-center gap-1"><Plus size={16}/> Log Service</Button>
                 </div>
                 <div className="divide-y divide-slate-100">
                    {[
@@ -288,7 +288,7 @@ export default function TransporterFleetDashboard() {
                      { truck: 'ABC-123YY', type: 'Brake Pad Replacement', date: 'Oct 12, 2026', status: 'Overdue', priority: 'high' },
                      { truck: 'KJA-234BB', type: 'Tire Rotation', date: 'Nov 02, 2026', status: 'Scheduled', priority: 'low' },
                    ].map((log, i) => (
-                     <div key={i} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-blue-50 cursor-pointer hover:shadow-sm transition">
+                     <div key={i} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition">
                        <div className="flex items-start gap-3">
                          <div className={`p-2 rounded-xl mt-1 ${
                            log.priority === 'high' ? 'bg-rose-100 text-rose-600' : 
@@ -310,7 +310,7 @@ export default function TransporterFleetDashboard() {
                          }`}>
                            {log.status}
                          </span>
-                         <Button className="text-slate-500 dark:text-slate- hover:text-blue-600 text-sm font-bold transition">Manage</Button>
+                         <Button className="text-slate-500 dark:text-slate- hover:text-brand-600 text-sm font-bold transition">Manage</Button>
                        </div>
                      </div>
                    ))}

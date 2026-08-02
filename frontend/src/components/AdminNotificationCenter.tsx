@@ -61,8 +61,8 @@ export default function AdminNotificationCenter() {
 
   const getChannelIcon = (type: string) => {
     switch(type) {
-      case 'PUSH': return <Smartphone size={16} className="text-indigo-500" />;
-      case 'EMAIL': return <Mail size={16} className="text-blue-500" />;
+      case 'PUSH': return <Smartphone size={16} className="text-brand-500" />;
+      case 'EMAIL': return <Mail size={16} className="text-brand-500" />;
       case 'SMS': return <MessageSquare size={16} className="text-emerald-500" />;
       case 'IN_APP': return <Bell size={16} className="text-amber-500" />;
       default: return <Bell size={16} />;
@@ -87,7 +87,7 @@ export default function AdminNotificationCenter() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
-            <Bell className="text-indigo-600" /> Notification Center
+            <Bell className="text-brand-600" /> Notification Center
           </h2>
           <p className="text-slate-500 dark:text-slate- text-sm mt-1">Broadcast messages, push notifications, and emails to users.</p>
         </div>
@@ -96,7 +96,7 @@ export default function AdminNotificationCenter() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-indigo-50 text-indigo-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Send size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Total Sent (30d)</h3>
@@ -114,7 +114,7 @@ export default function AdminNotificationCenter() {
         </div>
         <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+            <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <BarChart3 size={20} />
             </div>
             <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Open Rate</h3>
@@ -138,7 +138,7 @@ export default function AdminNotificationCenter() {
             onClick={() => setActiveTab('COMPOSE')}
             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
               activeTab === 'COMPOSE' 
-                ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
             }`}
           >
@@ -148,7 +148,7 @@ export default function AdminNotificationCenter() {
             onClick={() => setActiveTab('HISTORY')}
             className={`px-4 py-2 rounded-xl text-sm font-bold transition-all flex items-center gap-2 ${
               activeTab === 'HISTORY' 
-                ? 'bg-blue-600 text-white shadow-md border border-transparent' 
+                ? 'bg-brand-600 text-white shadow-md border border-transparent' 
                 : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 border border-transparent'
             }`}
           >
@@ -173,7 +173,7 @@ export default function AdminNotificationCenter() {
                         key={ch.id}
                         onClick={() => setChannel(ch.id as any)}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all ${
-                          channel === ch.id ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-blue-50 cursor-pointer hover:shadow-sm'
+                          channel === ch.id ? 'border-brand-500 bg-brand-50 text-brand-700' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm'
                         }`}
                       >
                         <ch.icon size={20} />
@@ -196,7 +196,7 @@ export default function AdminNotificationCenter() {
                         key={aud.id}
                         onClick={() => setAudience(aud.id as any)}
                         className={`p-3 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all ${
-                          audience === aud.id ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-blue-50 cursor-pointer hover:shadow-sm'
+                          audience === aud.id ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-500 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm'
                         }`}
                       >
                         <aud.icon size={20} />
@@ -213,7 +213,7 @@ export default function AdminNotificationCenter() {
                   type="text" 
                   value={title}
                   onChange={e => setTitle(e.target.value)}
-                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" 
+                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" 
                   placeholder="E.g., Special Holiday Promo!" 
                 />
               </div>
@@ -224,7 +224,7 @@ export default function AdminNotificationCenter() {
                   rows={6} 
                   value={message}
                   onChange={e => setMessage(e.target.value)}
-                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500" 
+                  className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" 
                   placeholder="Write your message here..."
                 ></textarea>
                 <p className="text-xs text-slate-500 dark:text-slate- mt-1 flex justify-end">{message.length} characters</p>
@@ -234,7 +234,7 @@ export default function AdminNotificationCenter() {
                 <Button 
                   onClick={handleSend}
                   disabled={!title || !message || isSending}
-                  className="bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white font-bold px-8 py-3 rounded-xl text-sm transition-colors flex items-center gap-2 shadow-sm"
+                  className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-300 text-white font-bold px-8 py-3 rounded-xl text-sm transition-colors flex items-center gap-2 shadow-sm"
                 >
                   {isSending ? (
                     <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span> Sending...</>
@@ -258,7 +258,7 @@ export default function AdminNotificationCenter() {
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {history.map(item => (
-                    <tr key={item.id || item?.id || Math.random()} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+                    <tr key={item.id || item?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                       <td className="p-4">
                         <div className="font-bold text-sm text-slate-900 dark:text-white">{item.title}</div>
                         <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{item.id}</div>

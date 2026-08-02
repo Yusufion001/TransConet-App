@@ -46,7 +46,7 @@ export const TransporterLoadsTable: React.FC<TransporterLoadsTableProps> = ({ lo
         </thead>
         <tbody className="divide-y divide-slate-100">
           {loads.map((load) => (
-            <tr key={load.id} className="hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
+            <tr key={load.id} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
               <td className="p-4">
                 <div className="font-bold text-slate-800 dark:text-slate-">{load.id}</div>
                 <div className="text-xs text-slate-500 dark:text-slate- mt-1 flex items-center gap-1">
@@ -55,7 +55,7 @@ export const TransporterLoadsTable: React.FC<TransporterLoadsTableProps> = ({ lo
               </td>
               <td className="p-4">
                 <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate- font-medium">
-                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                  <span className="w-2 h-2 rounded-full bg-brand-500"></span>
                   {load.origin}
                 </div>
                 <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate- font-medium mt-1">
@@ -79,13 +79,13 @@ export const TransporterLoadsTable: React.FC<TransporterLoadsTableProps> = ({ lo
                 <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
                   load.status === 'PENDING' ? 'bg-amber-50 text-amber-600 border-amber-200' : 
                   load.status === 'ACTIVE' ? 'bg-emerald-50 text-emerald-600 border-emerald-200' : 
-                  'bg-blue-50 text-blue-600 border-blue-200'
+                  'bg-brand-50 text-brand-600 border-brand-200'
                 }`}>
                   {load.status}
                 </span>
               </td>
               <td className="p-4 text-right">
-                <Button aria-label="View Details" className="p-2 text-slate-400 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50 cursor-pointer hover:shadow-sm rounded-lg transition-colors">
+                <Button aria-label="View Details" className="p-2 text-slate-400 dark:text-slate-400 hover:text-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg transition-colors">
                   <ChevronRight size={18} />
                 </Button>
               </td>
