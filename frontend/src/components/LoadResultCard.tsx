@@ -151,7 +151,7 @@ export default function LoadResultCard({
       <Button 
         onClick={handleAccept}
         disabled={status !== 'IDLE'}
-        className="w-full bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 disabled:bg-brand-800 disabled:opacity-70 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all duration-75 flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider border border-brand-500/20 shadow-lg  hover:scale-[1.01]"
+        className="w-full bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 disabled:bg-brand-800 disabled:opacity-70 text-white font-bold py-3.5 px-4 rounded-xl text-xs transition-all duration-75 flex items-center justify-center gap-2 cursor-pointer uppercase tracking-wider border border-brand-500/20 shadow-lg  hover:scale-[1.01] overflow-hidden"
       >
         {status === 'LOADING' ? (
           <>

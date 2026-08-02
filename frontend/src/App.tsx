@@ -184,12 +184,12 @@ export default function App() {
               <div className="absolute -inset-6 bg-gradient-to-tr from-brand-100/50 to-brand-50/50 rounded-full blur-3xl opacity-70 group-hover:opacity-100 transition duration-1000"></div>
               <div className="relative">
                 <span className="text-[36px] sm:text-[52px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center justify-center gap-0.5">
-                  <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+                  <span className="font-bold text-brand-900">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
                 </span>
                 <div className="flex items-center justify-center gap-3 mt-2">
-                  <div className="h-[1px] w-8 bg-gradient-to-r from-transparent to-brand-300"></div>
+                  <div className="h-[1px] w-8 bg-transparent"></div>
                   <p className="text-[9px] sm:text-[10px] text-slate-500 dark:text-slate-400 font-semibold tracking-[0.2em] uppercase">Connecting Cargo with Capacity</p>
-                  <div className="h-[1px] w-8 bg-gradient-to-l from-transparent to-brand-300"></div>
+                  <div className="h-[1px] w-8 bg-transparent"></div>
                 </div>
               </div>
             </div>
@@ -217,7 +217,7 @@ export default function App() {
           <div className="flex items-center gap-2 select-none">
             <div className="flex flex-col relative group">
               <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
-                <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+                <span className="font-bold text-brand-900">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
               </span>
               <p className="text-[7.5px] text-slate-500 dark:text-slate-400 font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
             </div>
@@ -226,7 +226,7 @@ export default function App() {
           <div className="flex items-center gap-2">
             <button
               onClick={handleLogout}
-              className="text-slate-400 dark:text-slate-400 hover:text-rose-500 p-1.5 hover:bg-slate-100 dark:bg-slate-800 :bg-slate-800 rounded-xl transition cursor-pointer"
+              className="text-slate-400 dark:text-slate-400 hover:text-red-500 p-1.5 bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition cursor-pointer"
               title="Sign Out"
             >
               <LogOut size={15} />
@@ -268,8 +268,8 @@ export default function App() {
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-12 px-4 text-center space-y-4">
-                <div className="bg-rose-500/10 p-4 rounded-full animate-pulse">
-                  <ShieldAlert size={44} className="text-rose-500" />
+                <div className="bg-red-500/10 p-4 rounded-full animate-pulse">
+                  <ShieldAlert size={44} className="text-red-500" />
                 </div>
                 <h3 className="text-lg font-black text-slate-900 dark:text-white  tracking-tight">Access Denied</h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400  leading-relaxed max-w-xs mx-auto">
@@ -330,7 +330,7 @@ export default function App() {
 
             <button
               onClick={() => setIsMobilePortalOpen(true)}
-              className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  hover:border-brand-500 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200  flex items-center gap-1.5 transition cursor-pointer shadow-sm"
+              className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  hover:border-brand-500 px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-200  flex items-center gap-1.5 transition cursor-pointer shadow-sm overflow-hidden"
             >
               <Smartphone size={12} className="text-brand-400" />
               <span>Mobile Test</span>
@@ -401,13 +401,13 @@ export default function App() {
           {isAuthenticated ? (
             <div className="flex-1 flex flex-col space-y-6 animate-in fade-in h-full">
               {/* Desktop Header */}
-              <header className="border-b border-slate-200 dark:border-slate-700  bg-white dark:bg-slate-900  backdrop-blur-md sticky top-0 z-40 rounded-3xl shadow-sm">
+              <header className="border-b border-slate-200 dark:border-slate-700  bg-white dark:bg-slate-900  backdrop-blur-md sticky top-0 z-40 rounded-3xl shadow-sm overflow-hidden">
                 <div className="px-6 h-16 flex items-center justify-between">
                   <div className="flex items-center gap-6">
                     <div className="flex items-center gap-2 select-none group cursor-pointer">
                       <div className="flex flex-col relative">
                         <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
-                          <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+                          <span className="font-bold text-brand-900">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
                         </span>
                         <p className="text-[7.5px] text-slate-500 dark:text-slate-400 font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
                       </div>
@@ -417,7 +417,7 @@ export default function App() {
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => setActiveView('account')}
-                      className="flex items-center gap-2 bg-white dark:bg-slate-900  border px-3 py-1.5 rounded-xl cursor-pointer transition border-slate-200 dark:border-slate-700 "
+                      className="flex items-center gap-2 bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800 border px-3 py-1.5 rounded-xl cursor-pointer transition border-slate-200 dark:border-slate-700 "
                     >
                       <User size={14} className="text-brand-400" />
                       <span className="text-xs font-mono">{userPhone}</span>
@@ -426,7 +426,7 @@ export default function App() {
                     
                     <button
                       onClick={handleLogout}
-                      className="text-slate-500 dark:text-slate-400  hover:text-red-400 p-2 rounded-xl hover:bg-slate-100 dark:bg-slate-800 :bg-slate-800 transition cursor-pointer"
+                      className="text-slate-500 dark:text-slate-400  hover:text-red-400 p-2 rounded-xl bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800 transition cursor-pointer"
                       title="Sign Out"
                     >
                       <LogOut size={18} />
@@ -506,9 +506,9 @@ export default function App() {
                          
                       />
                     ) : (
-                      <div className="flex flex-col items-center justify-center py-24 px-4 text-center space-y-4 bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm">
-                        <div className="bg-rose-500/10 p-5 rounded-full mb-2">
-                          <ShieldAlert size={56} className="text-rose-500" />
+                      <div className="flex flex-col items-center justify-center py-24 px-4 text-center space-y-4 bg-white dark:bg-slate-900 rounded-3xl p-8 shadow-sm overflow-hidden">
+                        <div className="bg-red-500/10 p-5 rounded-full mb-2">
+                          <ShieldAlert size={56} className="text-red-500" />
                         </div>
                         <h2 className="text-2xl md:text-3xl font-black">Access Denied</h2>
                         <p className="text-slate-500 dark:text-slate-400 leading-relaxed max-w-md mx-auto">
@@ -589,7 +589,7 @@ export default function App() {
             <div className="p-6 space-y-6">
               {/* QR Code Presentation */}
               <div className="flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-800  p-6 rounded-2xl border border-slate-200 dark:border-slate-700 ">
-                <div className="bg-white dark:bg-slate-900  p-4 rounded-xl shadow-lg ">
+                <div className="bg-white dark:bg-slate-900  p-4 rounded-xl shadow-lg  overflow-hidden">
                   <img 
                     src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(expoTunnelUrl)}`} 
                     alt="Mobile App QR Code"

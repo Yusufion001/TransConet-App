@@ -11,7 +11,7 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
       className="relative overflow-hidden rounded-[20px] bg-brand-600 text-white shadow-xl min-h-[220px] flex flex-col justify-between group"
     >
       {/* Background Image / SVG Illustration */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-brand-600 to-brand-700 overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-brand-600 overflow-hidden">
          {/* City Skyline */}
          <svg className="absolute bottom-0 w-full h-32 opacity-20" viewBox="0 0 400 100" preserveAspectRatio="none">
            <path d="M0,100 L0,50 L20,50 L20,30 L40,30 L40,60 L60,60 L60,20 L80,20 L80,45 L100,45 L100,10 L120,10 L120,55 L150,55 L150,25 L180,25 L180,60 L200,60 L200,15 L230,15 L230,40 L260,40 L260,30 L290,30 L290,70 L320,70 L320,20 L350,20 L350,50 L380,50 L380,35 L400,35 L400,100 Z" fill="var(--color-slate-400)" />

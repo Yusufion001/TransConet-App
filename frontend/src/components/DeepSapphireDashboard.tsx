@@ -109,8 +109,8 @@ export default function DeepSapphireDashboard({
   }, []);
 
   return (
-    <div className="w-full flex-1 flex flex-col bg-slate-50  pb-0">
-      <main className="p-4 pb-0 md:p-6 md:pb-0 space-y-6 max-w-4xl mx-auto w-full">
+    <div className="w-full flex-1 flex flex-col bg-slate-50  pb-32">
+      <main className="p-4 pb-32 md:p-6 md:pb-32 space-y-6 max-w-4xl mx-auto w-full">
         
         <PremiumHeader 
           userPhone={userPhone}

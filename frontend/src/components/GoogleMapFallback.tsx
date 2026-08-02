@@ -40,14 +40,14 @@ export default function GoogleMapFallback({
       </div>
 
       {/* Center Route Overlay */}
-      <div className="relative z-10 my-auto text-center bg-slate-950/80 backdrop-blur-md p-4 rounded-xl border border-slate-800 max-w-sm mx-auto shadow-2xl">
+      <div className="relative z-10 my-auto text-center bg-slate-950/80 backdrop-blur-md p-4 rounded-xl border border-slate-800 max-w-sm mx-auto shadow-2xl overflow-hidden">
         <div className="flex items-center justify-between gap-3 text-xs mb-2">
           <div className="flex items-center gap-1.5 text-emerald-400 font-bold truncate">
             <MapPin size={14} className="shrink-0" />
             <span className="truncate">{origin}</span>
           </div>
           <Navigation size={14} className="text-brand-400 shrink-0" />
-          <div className="flex items-center gap-1.5 text-rose-400 font-bold truncate">
+          <div className="flex items-center gap-1.5 text-red-400 font-bold truncate">
             <MapPin size={14} className="shrink-0" />
             <span className="truncate">{destination}</span>
           </div>

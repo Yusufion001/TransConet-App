@@ -30,7 +30,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
           className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg shadow-sm overflow-hidden flex flex-col"
         >
           {/* Header */}
-          <div className="relative h-32 bg-gradient-to-br from-brand-700 to-brand-900 p-6 flex flex-col justify-end overflow-hidden">
+          <div className="relative h-32 bg-brand-700 p-6 flex flex-col justify-end overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-slate-900/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
             <div className="absolute -top-12 -left-12 opacity-20">
               <Rocket size={120} className="text-white" />
@@ -121,7 +121,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
                 alert(`Redirecting to payment gateway for ${selectedPlan} plan...`);
                 onClose();
               }}
-              className="px-6 py-3 bg-gradient-to-r from-brand-700 to-brand-800 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:shadow-lg disabled:hover:translate-y-0 flex items-center gap-2"
+              className="px-6 py-3 bg-brand-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:hover:shadow-lg disabled:hover:translate-y-0 flex items-center gap-2 overflow-hidden"
             >
               Confirm & Pay <ChevronRight size={18} />
             </Button>

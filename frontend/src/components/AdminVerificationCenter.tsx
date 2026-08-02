@@ -117,7 +117,7 @@ export default function AdminVerificationCenter() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <AlertTriangle size={20} />
@@ -126,7 +126,7 @@ export default function AdminVerificationCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">42</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <UserCheck size={20} />
@@ -135,7 +135,7 @@ export default function AdminVerificationCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">1,248</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Truck size={20} />
@@ -144,7 +144,7 @@ export default function AdminVerificationCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">3,492</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <ShieldCheck size={20} />
@@ -156,7 +156,7 @@ export default function AdminVerificationCenter() {
       </div>
 
       {selectedRequest ? (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm animate-fade-in space-y-6">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm animate-fade-in space-y-6 overflow-hidden">
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="flex items-center gap-4">
               <Button onClick={() => setSelectedRequestId(null)} className="text-slate-400 hover:text-slate-600 dark:text-slate-400">
@@ -178,7 +178,7 @@ export default function AdminVerificationCenter() {
               </Button>
               <Button
                 onClick={() => handleApprove(selectedRequest.id)}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2 rounded-xl text-sm flex items-center gap-2 transition-colors shadow-sm"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2 rounded-xl text-sm flex items-center gap-2 transition-colors shadow-sm overflow-hidden"
               >
                 <CheckCircle2 size={16} /> Approve
               </Button>

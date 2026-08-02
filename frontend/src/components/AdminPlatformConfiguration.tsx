@@ -52,13 +52,13 @@ export default function AdminPlatformConfiguration() {
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage global system settings, operational parameters, and third-party integrations.</p>
         </div>
         <div className="flex gap-2">
-          <Button onClick={handleDiscard} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button onClick={handleDiscard} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <RotateCcw size={16} /> Discard Changes
           </Button>
           <Button 
             onClick={handleSave}
             disabled={isSaving || loading}
-            className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+            className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden"
           >
             {isSaving ? <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> : <Save size={16} />}
             {isSaving ? 'Saving...' : 'Save Configuration'}

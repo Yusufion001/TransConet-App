@@ -11,7 +11,7 @@ export const AdminSyncStatusBar = ({
   isSyncing: boolean; 
   onSync: () => void 
 }) => (
-  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+  <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 overflow-hidden">
     <div className="flex items-center gap-3">
       <div className="p-2 bg-emerald-100 text-emerald-700 rounded-xl">
         <Radio size={18} className="animate-pulse" />

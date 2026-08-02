@@ -16,7 +16,7 @@ export default function AdminSystemSettings() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm max-w-4xl mx-auto">
+    <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm max-w-4xl mx-auto overflow-hidden">
       <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-6">
         <Sliders className="text-brand-600" size={20} /> System Settings
       </h2>

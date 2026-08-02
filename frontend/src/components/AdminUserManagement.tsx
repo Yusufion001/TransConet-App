@@ -39,7 +39,7 @@ export default function AdminUserManagement() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
       <div className="flex justify-between items-center mb-6 border-b border-slate-100 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -110,7 +110,7 @@ export default function AdminUserManagement() {
                     <td className="py-3 px-4">
                       <span className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
                         user.status === 'ACTIVE' ? 'bg-emerald-100 text-emerald-700' : 
-                        user.status === 'SUSPENDED' ? 'bg-rose-100 text-rose-700' : 
+                        user.status === 'SUSPENDED' ? 'bg-red-100 text-red-700' : 
                         'bg-slate-100 text-slate-700 dark:text-slate-200'
                       }`}>
                         {user.status}
@@ -122,7 +122,7 @@ export default function AdminUserManagement() {
                           <CheckCircle2 size={16} />
                         </Button>
                       ) : user.status === 'ACTIVE' ? (
-                        <Button onClick={() => toggleStatus(user.id, user.status)} className="p-1.5 bg-rose-50 text-rose-600 rounded-lg hover:bg-rose-100" title="Suspend">
+                        <Button onClick={() => toggleStatus(user.id, user.status)} className="p-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100" title="Suspend">
                           <XCircle size={16} />
                         </Button>
                       ) : (
@@ -140,7 +140,7 @@ export default function AdminUserManagement() {
           {/* Mobile Card View */}
           <div className="md:hidden space-y-4">
             {users.map(user => (
-              <div key={user.id} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-[20px] shadow-sm space-y-3">
+              <div key={user.id} className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 p-4 rounded-[20px] shadow-sm space-y-3 overflow-hidden">
                 <div className="flex justify-between items-start">
                   <div>
                     <p className="font-bold text-slate-900 dark:text-white">{user.name}</p>
@@ -166,7 +166,7 @@ export default function AdminUserManagement() {
                     <span className="text-slate-500 dark:text-slate-400 block mb-1 text-[10px] uppercase">Status</span>
                     <span className={`px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${
                       user.status === 'ACTIVE' ? 'bg-emerald-100 text-emerald-700' : 
-                      user.status === 'SUSPENDED' ? 'bg-rose-100 text-rose-700' : 
+                      user.status === 'SUSPENDED' ? 'bg-red-100 text-red-700' : 
                       'bg-slate-100 text-slate-700 dark:text-slate-200'
                     }`}>
                       {user.status}
@@ -185,7 +185,7 @@ export default function AdminUserManagement() {
                         <CheckCircle2 size={16} />
                       </Button>
                     ) : user.status === 'ACTIVE' ? (
-                      <Button onClick={() => toggleStatus(user.id, user.status)} className="p-1.5 bg-rose-50 text-rose-600 rounded-lg hover:bg-rose-100" title="Suspend">
+                      <Button onClick={() => toggleStatus(user.id, user.status)} className="p-1.5 bg-red-50 text-red-600 rounded-lg hover:bg-red-100" title="Suspend">
                         <XCircle size={16} />
                       </Button>
                     ) : (

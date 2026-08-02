@@ -28,7 +28,7 @@ export default function DriverDashboard() {
   return (
     <div className="w-full h-full flex flex-col bg-slate-50">
       {/* Header */}
-      <div className="p-4 md:p-6 pb-0 space-y-4 max-w-lg mx-auto w-full">
+      <div className="p-4 md:p-6 pb-32 space-y-4 max-w-lg mx-auto w-full">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-black text-slate-800 dark:text-slate-400 tracking-tight">Driver Hub</h1>
@@ -74,7 +74,7 @@ export default function DriverDashboard() {
             {availableJobs.length === 0 ? (
               <div className="text-center p-8 text-slate-500 dark:text-slate-400">No jobs available right now.</div>
             ) : availableJobs.map((job) => (
-              <div key={job.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-[20px] shadow-sm">
+              <div key={job.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-[20px] shadow-sm overflow-hidden">
                 <div className="flex justify-between items-start mb-4">
                   <div className="inline-flex items-center gap-1.5 bg-brand-50 text-brand-700 px-2 py-1 rounded text-xs font-bold border border-brand-100">
                     <Clock size={12} /> {job.cargoType || 'Cargo'}
@@ -112,7 +112,7 @@ export default function DriverDashboard() {
                   }} className="flex-1 bg-brand-600 text-white font-bold py-3 rounded-xl hover:bg-brand-700 transition flex items-center justify-center gap-2">
                     <CheckSquare size={18} /> Accept
                   </Button>
-                  <Button className="flex-1 bg-rose-50 text-rose-600 font-bold py-3 rounded-xl hover:bg-rose-100 border border-rose-200 transition flex items-center justify-center gap-2">
+                  <Button className="flex-1 bg-red-50 text-red-600 font-bold py-3 rounded-xl hover:bg-red-100 border border-red-200 transition flex items-center justify-center gap-2">
                     <XCircle size={18} /> Decline
                   </Button>
                 </div>
@@ -141,7 +141,7 @@ export default function DriverDashboard() {
                   <Button className="flex-1 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-slate-100 transition">
                     <Navigation size={16} /> Navigate
                   </Button>
-                  <Button className="flex-1 bg-brand-500/30 border border-brand-400/30 text-brand-100 font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm0/50 transition">
+                  <Button className="flex-1 bg-brand-500/30 border border-brand-400/30 text-brand-100 font-bold py-2.5 rounded-xl text-sm flex items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm0/50 transition overflow-hidden">
                     <MessageCircle size={16} /> Chat
                   </Button>
                 </div>
@@ -149,13 +149,13 @@ export default function DriverDashboard() {
             </div>
 
             {/* Proof of Delivery / Update Status */}
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-[20px] shadow-sm">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-[20px] shadow-sm overflow-hidden">
               <h3 className="font-bold text-slate-800 dark:text-slate-400 mb-4 flex items-center gap-2">
                 <CheckCircle2 className="text-emerald-500" size={18} /> Update Trip Status
               </h3>
               
               <div className="grid grid-cols-2 gap-3 mb-6">
-                 <Button className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm hover:border-brand-200 hover:text-brand-600 transition group text-slate-600 dark:text-slate-400">
+                 <Button className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm hover:border-brand-200 hover:text-brand-600 transition group text-slate-600 dark:text-slate-400 overflow-hidden">
                     <Camera size={24} className="group-hover:scale-110 transition-transform" />
                     <span className="text-xs font-bold text-center">Upload Cargo<br/>Photos</span>
                  </Button>
@@ -165,7 +165,7 @@ export default function DriverDashboard() {
                  </Button>
               </div>
 
-              <Button className="w-full bg-emerald-600 text-white font-black py-3.5 rounded-xl hover:bg-emerald-700 transition shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2">
+              <Button className="w-full bg-emerald-600 text-white font-black py-3.5 rounded-xl hover:bg-emerald-700 transition shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 overflow-hidden">
                 Complete Delivery <CheckCircle2 size={18} />
               </Button>
             </div>
@@ -174,7 +174,7 @@ export default function DriverDashboard() {
 
         {activeTab === 'earnings' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-             <div className="bg-gradient-to-br from-brand-600 to-brand-700 p-6 rounded-[20px] text-white shadow-xl shadow-blue-900/20 relative overflow-hidden">
+             <div className="bg-brand-600 p-6 rounded-[20px] text-white shadow-xl shadow-blue-900/20 relative overflow-hidden">
                 <div className="relative z-10">
                   <p className="text-brand-100 font-bold uppercase tracking-wider text-xs mb-1">Available Balance</p>
                   <h2 className="text-4xl font-black tracking-tight">₦124,500<span className="text-xl text-brand-300">.00</span></h2>
@@ -219,7 +219,7 @@ export default function DriverDashboard() {
 
         {activeTab === 'documents' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-4">
-             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-[20px] shadow-sm">
+             <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-5 rounded-[20px] shadow-sm overflow-hidden">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-bold text-slate-800 dark:text-slate-400">Compliance Documents</h3>
                   <span className="bg-emerald-50 text-emerald-600 border border-emerald-200 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Verified</span>

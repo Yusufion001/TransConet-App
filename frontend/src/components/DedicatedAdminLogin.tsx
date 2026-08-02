@@ -69,9 +69,9 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
           </div>
 
           {error && (
-            <div className="bg-rose-50 border border-rose-100 p-4 rounded-xl flex items-start gap-3">
-              <AlertCircle size={18} className="text-rose-500 mt-0.5" />
-              <p className="text-sm text-rose-700">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</p>
+            <div className="bg-red-50 border border-red-100 p-4 rounded-xl flex items-start gap-3">
+              <AlertCircle size={18} className="text-red-500 mt-0.5" />
+              <p className="text-sm text-red-700">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</p>
             </div>
           )}
 

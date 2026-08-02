@@ -83,7 +83,7 @@ export default function AdminAIAutomation() {
       </div>
       
       {insights && (
-        <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 shadow-sm animate-fade-in flex items-start gap-4">
+        <div className="bg-brand-50 border border-brand-100 rounded-2xl p-5 shadow-sm animate-fade-in flex items-start gap-4 overflow-hidden">
            <div className="p-2 bg-brand-100 text-brand-600 rounded-xl mt-1 shrink-0">
               <Info size={20} />
            </div>
@@ -95,7 +95,7 @@ export default function AdminAIAutomation() {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-gradient-to-br from-brand-500 to-brand-600 text-white border border-brand-400 rounded-2xl p-5 shadow-sm">
+        <div className="bg-brand-500 text-white border border-brand-400 rounded-2xl p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-white dark:bg-slate-900/20 rounded-xl">
               <Sparkles size={20} />
@@ -105,7 +105,7 @@ export default function AdminAIAutomation() {
           <p className="text-3xl font-black">12,450</p>
           <p className="text-xs text-brand-200 mt-1">This month</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Zap size={20} />
@@ -115,7 +115,7 @@ export default function AdminAIAutomation() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">4,280<span className="text-sm text-slate-500 dark:text-slate-400 font-medium ml-1">hrs</span></p>
           <p className="text-xs text-emerald-600 mt-1 font-medium">+15% vs last month</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Brain size={20} />
@@ -125,7 +125,7 @@ export default function AdminAIAutomation() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">93.9%</p>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Across all active models</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Activity size={20} />
@@ -167,7 +167,7 @@ export default function AdminAIAutomation() {
         </div>
 
         {selectedModel ? (
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm flex flex-col w-full lg:w-1/2 animate-fade-in">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm flex flex-col w-full lg:w-1/2 animate-fade-in overflow-hidden">
             <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-2">

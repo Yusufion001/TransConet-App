@@ -161,7 +161,7 @@ export default function LocationAutocomplete({
         </div>
       </div>
       {apiError && (
-        <div className="text-xs text-rose-500 font-bold mt-1 absolute -bottom-5 left-0">
+        <div className="text-xs text-red-500 font-bold mt-1 absolute -bottom-5 left-0">
           {apiError && apiError !== null && typeof apiError === 'object' ? ((apiError as any).message || JSON.stringify(apiError)) : apiError}
         </div>
       )}

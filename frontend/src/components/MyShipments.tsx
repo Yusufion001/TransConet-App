@@ -53,7 +53,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
       ) : (
         <div className="space-y-6">
           {loads.map(load => (
-            <div key={load.id} className="border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-4">
+            <div key={load.id} className="border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-4 overflow-hidden">
               <div className="flex justify-between items-start">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
@@ -97,7 +97,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
                             <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase font-bold tracking-widest ${
                               bid.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
                               bid.status === 'ACCEPTED' ? 'bg-emerald-100 text-emerald-700' :
-                              'bg-rose-100 text-rose-700'
+                              'bg-red-100 text-red-700'
                             }`}>
                               {String(bid.status || '')}
                             </span>

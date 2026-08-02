@@ -92,7 +92,7 @@ export default function AdminVerificationFeed() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 md:p-8 shadow-sm max-w-4xl mx-auto space-y-6">
+    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 md:p-8 shadow-sm max-w-4xl mx-auto space-y-6 overflow-hidden">
       
       {/* Control Panel Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 dark:border-slate-700  pb-6">
@@ -121,11 +121,11 @@ export default function AdminVerificationFeed() {
 
       {/* Action Messages */}
       {error && (
-        <div className="flex items-start gap-3 bg-rose-950/40 border border-rose-900/50 p-4 rounded-2xl text-rose-300 text-xs font-medium animate-in fade-in slide-in-from-top-1 duration-75">
-          <AlertTriangle size={18} className="shrink-0 text-rose-400 mt-0.5" />
+        <div className="flex items-start gap-3 bg-red-950/40 border border-red-900/50 p-4 rounded-2xl text-red-300 text-xs font-medium animate-in fade-in slide-in-from-top-1 duration-75">
+          <AlertTriangle size={18} className="shrink-0 text-red-400 mt-0.5" />
           <div>
             <p className="font-bold">Execution Failed</p>
-            <p className="text-rose-400/80 mt-0.5">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</p>
+            <p className="text-red-400/80 mt-0.5">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</p>
           </div>
         </div>
       )}
@@ -163,7 +163,7 @@ export default function AdminVerificationFeed() {
           {pendingList.map((item) => (
             <div 
               key={item.id || item?.id || Math.random()} 
-              className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between space-y-4 transition-all duration-75 shadow-lg  group"
+              className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  hover:border-slate-700 rounded-2xl p-5 flex flex-col justify-between space-y-4 transition-all duration-75 shadow-lg  group overflow-hidden"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between border-b border-slate-300  pb-3">
@@ -216,7 +216,7 @@ export default function AdminVerificationFeed() {
                   type="button"
                   disabled={actionId === item.id}
                   onClick={() => handleUpdateStatus(item.id, 'REJECTED')}
-                  className="flex-1 bg-white dark:bg-slate-900  hover:bg-rose-950/40 border border-slate-200 dark:border-slate-700  hover:border-rose-900/50 text-slate-700 dark:text-slate-400  hover:text-rose-400 text-xs font-black py-3 px-4 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="flex-1 bg-white dark:bg-slate-900  hover:bg-red-950/40 border border-slate-200 dark:border-slate-700  hover:border-red-900/50 text-slate-700 dark:text-slate-400  hover:text-red-400 text-xs font-black py-3 px-4 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
                 >
                   <XCircle size={14} />
                   Reject Unit
@@ -226,7 +226,7 @@ export default function AdminVerificationFeed() {
                   type="button"
                   disabled={actionId === item.id}
                   onClick={() => handleUpdateStatus(item.id, 'APPROVED')}
-                  className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-900 dark:text-white  text-xs font-black py-3 px-4 rounded-xl shadow-lg  transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50"
+                  className="flex-1 bg-emerald-600 hover:bg-emerald-500 text-slate-900 dark:text-white  text-xs font-black py-3 px-4 rounded-xl shadow-lg  transition flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-50 overflow-hidden"
                 >
                   {actionId === item.id ? (
                     <Loader2 className="animate-spin text-slate-900 dark:text-white " size={14} />

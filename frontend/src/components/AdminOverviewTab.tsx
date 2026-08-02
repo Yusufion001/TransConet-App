@@ -39,7 +39,7 @@ export default function AdminOverviewTab({
   return (
     <div className="space-y-6">
       {dashboardError && (
-        <div className="bg-rose-50 dark:bg-rose-900/30 border border-rose-200 dark:border-rose-800 p-4 rounded-xl flex items-center gap-3 text-rose-700 dark:text-rose-400">
+        <div className="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 p-4 rounded-xl flex items-center gap-3 text-red-700 dark:text-red-400">
           <AlertCircle size={20} />
           <div>
             <h3 className="font-bold text-sm">Data Unavailable</h3>
@@ -49,7 +49,7 @@ export default function AdminOverviewTab({
       )}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-1 space-y-6">
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[20px] p-6 shadow-xl text-white">
+        <div className="bg-slate-900 rounded-[20px] p-6 shadow-xl text-white overflow-hidden">
           <div className="flex justify-between items-start mb-6">
             <div>
               <p className="text-xs text-slate-400 dark:text-slate-400 font-bold uppercase tracking-widest mb-1">Total System Revenue</p>
@@ -78,7 +78,7 @@ export default function AdminOverviewTab({
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">System Status</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">

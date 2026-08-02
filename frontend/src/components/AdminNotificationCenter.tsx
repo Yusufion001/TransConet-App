@@ -94,7 +94,7 @@ export default function AdminNotificationCenter() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Send size={20} />
@@ -103,7 +103,7 @@ export default function AdminNotificationCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">45.2K</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <CheckCircle size={20} />
@@ -112,7 +112,7 @@ export default function AdminNotificationCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">99.1%</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <BarChart3 size={20} />
@@ -121,7 +121,7 @@ export default function AdminNotificationCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">42.8%</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <AlertCircle size={20} />
@@ -234,7 +234,7 @@ export default function AdminNotificationCenter() {
                 <Button 
                   onClick={handleSend}
                   disabled={!title || !message || isSending}
-                  className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-300 text-white font-bold px-8 py-3 rounded-xl text-sm transition-colors flex items-center gap-2 shadow-sm"
+                  className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-300 text-white font-bold px-8 py-3 rounded-xl text-sm transition-colors flex items-center gap-2 shadow-sm overflow-hidden"
                 >
                   {isSending ? (
                     <><span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span> Sending...</>

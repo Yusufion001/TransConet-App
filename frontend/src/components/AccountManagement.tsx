@@ -156,7 +156,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
       {/* Toast Notification Container */}
       {uploadStage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-[20px] p-8 max-w-sm w-full mx-4 shadow-sm flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
+          <div className="bg-white dark:bg-slate-900 rounded-[20px] p-8 max-w-sm w-full mx-4 shadow-sm flex flex-col items-center text-center animate-in zoom-in-95 duration-200 overflow-hidden">
             <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center relative">
                <div className="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-blue-600 animate-spin"></div>
                {uploadStage === 'ENCRYPTING' ? <Lock className="text-brand-600" size={32} /> :
@@ -214,7 +214,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   </div>
                   
                   {showProfileOptions && (
-                    <div className="absolute top-full mt-2 left-0 bg-white dark:bg-slate-900  rounded-xl shadow-sm border border-slate-200 dark:border-slate-700  p-2 z-10 flex flex-col gap-1 w-40 text-sm">
+                    <div className="absolute top-full mt-2 left-0 bg-white dark:bg-slate-900  rounded-xl shadow-sm border border-slate-200 dark:border-slate-700  p-2 z-10 flex flex-col gap-1 w-40 text-sm overflow-hidden">
                       <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-400  font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
                         <Camera size={16} /> Take Selfie
                       </Button>
@@ -327,7 +327,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                     
                     <div className="flex flex-col gap-6 w-full">
                       {/* Tier 1 Box */}
-                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-5 shadow-sm ">
+                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-5 shadow-sm  overflow-hidden">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white  uppercase tracking-wider flex items-center gap-2">
                             <span className="bg-brand-600 text-slate-50 dark:text-slate-300 px-2 py-0.5 rounded text-[10px]">TIER 1</span>
@@ -359,7 +359,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                       </div>
 
                       {/* Business Verification (Optional) Box */}
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm ">
+                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm  overflow-hidden">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
                             <span className="bg-brand-600 text-white px-2 py-0.5 rounded text-[10px]">CORPORATE</span>
@@ -380,7 +380,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                         </label>
                       </div>
                       {/* Tier 2 Box */}
-                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-5 shadow-sm ">
+                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-5 shadow-sm  overflow-hidden">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white  uppercase tracking-wider flex items-center gap-2">
                             <span className="bg-brand-600 text-white px-2 py-0.5 rounded text-[10px]">TIER 2</span>
@@ -839,7 +839,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 ) : (
                   <Button 
                     onClick={() => setDeleteScheduled(true)}
-                    className="bg-red-600 hover:bg-red-700 text-slate-900 dark:text-white  text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xl transition shadow-lg  shadow-red-900/20 cursor-pointer"
+                    className="bg-red-600 hover:bg-red-700 text-slate-900 dark:text-white  text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xl transition shadow-lg  shadow-red-900/20 cursor-pointer overflow-hidden"
                   >
                     Confirm Permanent Deletion
                   </Button>
@@ -856,7 +856,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
       {/* Profile Preferences Modal Box */}
       {showConfigModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-75">
-          <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  w-full max-w-xl rounded-[20px] p-6 space-y-5 shadow-sm scale-in duration-75">
+          <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  w-full max-w-xl rounded-[20px] p-6 space-y-5 shadow-sm scale-in duration-75 overflow-hidden">
             <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700  pb-3">
               <div>
                 <h3 className="text-base font-black text-slate-900 dark:text-white  uppercase tracking-wider">Account Control Deck</h3>

@@ -72,7 +72,7 @@ export default function AdminApiManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6 overflow-hidden">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
             <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -121,7 +121,7 @@ export default function AdminApiManagement() {
                       type="button"
                       onClick={() => handleTestApi(api.id)}
                       disabled={testingId === api.id}
-                      className="text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 text-slate-800 dark:text-slate-400 font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50"
+                      className="text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 text-slate-800 dark:text-slate-400 font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50 overflow-hidden"
                     >
                       {testingId === api.id ? (
                         <RefreshCw size={13} className="animate-spin text-brand-600" />
@@ -174,7 +174,7 @@ export default function AdminApiManagement() {
             <Button
               onClick={handleSave}
               disabled={loading}
-              className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer shadow-md disabled:opacity-70"
+              className="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all cursor-pointer shadow-md disabled:opacity-70 overflow-hidden"
             >
               {loading ? <RefreshCw className="animate-spin" size={16} /> : <Save size={16} />}
               <span>Save Configuration</span>

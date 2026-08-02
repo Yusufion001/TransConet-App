@@ -84,7 +84,7 @@ export default function AdminBackupRecovery() {
         <Button 
           onClick={handleCreateBackup}
           disabled={isCreating}
-          className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+          className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden"
         >
           {isCreating ? <Clock size={16} className="animate-spin" /> : <Plus size={16} />}
           {isCreating ? 'Initiating...' : 'Create Backup'}
@@ -92,7 +92,7 @@ export default function AdminBackupRecovery() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <CheckCircle2 size={20} />
@@ -102,7 +102,7 @@ export default function AdminBackupRecovery() {
           <p className="text-xl font-black text-slate-900 dark:text-white mt-2">Today, 02:00 AM</p>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Daily System Snapshot (14.2 GB)</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <HardDrive size={20} />
@@ -112,7 +112,7 @@ export default function AdminBackupRecovery() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">426.5 GB</p>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Across 30 retained snapshots</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">

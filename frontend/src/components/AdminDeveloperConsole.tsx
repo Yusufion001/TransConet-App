@@ -80,16 +80,16 @@ export default function AdminDeveloperConsole() {
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage API keys, configure webhooks, and monitor API traffic.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <Code size={16} /> API Docs
           </Button>
           {activeSection === 'KEYS' && (
-            <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
               <Plus size={16} /> Generate Key
             </Button>
           )}
           {activeSection === 'WEBHOOKS' && (
-            <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+            <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
               <Plus size={16} /> Add Webhook
             </Button>
           )}
@@ -97,7 +97,7 @@ export default function AdminDeveloperConsole() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm">
+        <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-slate-800 rounded-xl text-brand-400">
               <Activity size={20} />
@@ -107,7 +107,7 @@ export default function AdminDeveloperConsole() {
           <p className="text-3xl font-black text-white">2.4M</p>
           <p className="text-xs text-slate-400 dark:text-slate-400 mt-1">Last 24 hours</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Clock size={20} />
@@ -117,7 +117,7 @@ export default function AdminDeveloperConsole() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">84ms</p>
           <p className="text-xs text-emerald-600 mt-1 font-medium">-12ms vs yesterday</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-red-50 text-red-600 rounded-xl">
               <AlertCircle size={20} />
@@ -127,7 +127,7 @@ export default function AdminDeveloperConsole() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">0.12%</p>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">4xx and 5xx responses</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Webhook size={20} />

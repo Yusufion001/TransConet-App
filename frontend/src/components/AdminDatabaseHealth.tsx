@@ -33,7 +33,7 @@ export default function AdminDatabaseHealth() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+      <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -76,7 +76,7 @@ export default function AdminDatabaseHealth() {
                         <CheckCircle2 size={12} /> ONLINE
                       </span>
                     ) : (
-                      <span className="flex items-center gap-1 text-xs font-bold text-rose-600">
+                      <span className="flex items-center gap-1 text-xs font-bold text-red-600">
                         <AlertCircle size={12} /> OFFLINE
                       </span>
                     )}

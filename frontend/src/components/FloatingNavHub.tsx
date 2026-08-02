@@ -133,7 +133,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-100 dark:border-slate-800 max-h-[70vh] overflow-y-auto"
+              className="absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-200 dark:border-slate-800 max-h-[70vh] overflow-y-auto overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 px-2">
@@ -142,7 +142,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
                   <DarkModeToggle />
                 <Button aria-label="Action" 
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full hover:bg-slate-200 transition-colors"
+                  className="p-1.5 bg-transparent text-slate-500 dark:text-slate-400 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                 >
                   <X size={16} strokeWidth={2.5} />
                 </Button>
@@ -158,15 +158,14 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
                       whileTap={{ scale: 0.9 }}
                       onClick={() => handleNavClick(item.id)}
                       className={`relative flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-colors ${
-                        isActive 
-                          ? 'text-white' 
+                        isActive ? 'text-brand-600' 
                           : 'bg-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:text-white'
                       }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="nav-highlight"
-                          className="absolute inset-0 bg-brand-600 rounded-2xl shadow-md z-0"
+                          className="absolute inset-0 bg-brand-50 dark:bg-brand-900/30 rounded-2xl z-0"
                           initial={false}
                           transition={{ type: "spring", stiffness: 400, damping: 30 }}
                         />

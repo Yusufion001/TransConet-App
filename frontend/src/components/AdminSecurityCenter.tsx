@@ -18,7 +18,7 @@ export default function AdminSecurityCenter() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6 overflow-hidden">
           <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="p-3 rounded-xl bg-brand-100 text-brand-700">
               <ShieldAlert size={24} />
@@ -64,7 +64,7 @@ export default function AdminSecurityCenter() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6 overflow-hidden">
           <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="p-3 rounded-xl bg-brand-100 text-brand-700">
               <History size={24} />
@@ -87,7 +87,7 @@ export default function AdminSecurityCenter() {
                 {log.status === 'Success' ? (
                   <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded uppercase">{log.status}</span>
                 ) : (
-                  <span className="text-[10px] font-bold text-rose-600 bg-rose-100 px-2 py-1 rounded uppercase">{log.status}</span>
+                  <span className="text-[10px] font-bold text-red-600 bg-red-100 px-2 py-1 rounded uppercase">{log.status}</span>
                 )}
               </div>
             ))}

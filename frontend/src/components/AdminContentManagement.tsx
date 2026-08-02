@@ -84,7 +84,7 @@ export default function AdminContentManagement() {
 
   if (isEditorOpen) {
     return (
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm animate-fade-in">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm animate-fade-in overflow-hidden">
         <div className="flex items-center gap-4 mb-6 pb-4 border-b border-slate-100 dark:border-slate-800">
           <Button aria-label="Action" onClick={closeEditor} className="text-slate-400 hover:text-slate-600 dark:text-slate-400 transition-colors">
             <ChevronRight size={24} className="rotate-180" />
@@ -136,7 +136,7 @@ export default function AdminContentManagement() {
           </h2>
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage banners, news, FAQs, and policies.</p>
         </div>
-        <Button onClick={handleCreateNew} className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+        <Button onClick={handleCreateNew} className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
           <Plus size={16} /> Create Content
         </Button>
       </div>

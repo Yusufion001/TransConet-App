@@ -85,10 +85,10 @@ export default function AdminActivityTimeline() {
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Audit logs, system events, and admin actions across the platform.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <Calendar size={16} /> Date Range
           </Button>
-          <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <Download size={16} /> Export Logs
           </Button>
         </div>
@@ -133,7 +133,7 @@ export default function AdminActivityTimeline() {
                 </div>
                 
                 {/* Content Card */}
-                <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 shadow-sm hover:shadow-sm transition-shadow">
+                <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-xl p-4 shadow-sm hover:shadow-sm transition-shadow overflow-hidden">
                   <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
                       <h4 className="font-bold text-slate-900 dark:text-white">{event.title}</h4>

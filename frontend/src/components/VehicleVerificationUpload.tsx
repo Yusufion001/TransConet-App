@@ -174,7 +174,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 md:p-8 shadow-sm max-w-2xl mx-auto space-y-6">
+    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 md:p-8 shadow-sm max-w-2xl mx-auto space-y-6 overflow-hidden">
       <div>
         <h3 className="text-xl font-black text-slate-900 dark:text-white  flex items-center gap-2">
           <Video className="text-brand-500 animate-pulse" size={24} /> Physical Asset Inspection
@@ -234,7 +234,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
             <Button aria-label="Action"
               onClick={handleRemoveFile}
               disabled={uploading}
-              className="p-2 bg-white dark:bg-slate-900  hover:bg-brand-600 border border-slate-200 dark:border-slate-700  text-rose-400 hover:text-rose-300 rounded-xl transition cursor-pointer disabled:opacity-50"
+              className="p-2 bg-white dark:bg-slate-900  hover:bg-brand-600 border border-slate-200 dark:border-slate-700  text-red-400 hover:text-red-300 rounded-xl transition cursor-pointer disabled:opacity-50"
             >
               <Trash2 size={16} />
             </Button>
@@ -277,11 +277,11 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
 
       {/* Dynamic Notifications Banner */}
       {error && (
-        <div className="flex items-start gap-3 bg-rose-950/40 border border-rose-900/50 p-4 rounded-2xl text-rose-300 text-xs font-medium animate-in fade-in slide-in-from-top-1 duration-75">
-          <AlertCircle size={18} className="shrink-0 mt-0.5 text-rose-400" />
+        <div className="flex items-start gap-3 bg-red-950/40 border border-red-900/50 p-4 rounded-2xl text-red-300 text-xs font-medium animate-in fade-in slide-in-from-top-1 duration-75">
+          <AlertCircle size={18} className="shrink-0 mt-0.5 text-red-400" />
           <div className="space-y-0.5">
             <p className="font-bold">Compliance Checklist Unmet</p>
-            <p className="text-rose-400/80 leading-relaxed">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</p>
+            <p className="text-red-400/80 leading-relaxed">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</p>
           </div>
         </div>
       )}

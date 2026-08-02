@@ -424,7 +424,7 @@ export default function SupportChatWidget({
             <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-brand-600/10 blur-2xl rounded-full" />
             
             <div className="flex items-center gap-3 relative z-10">
-              <div className="bg-gradient-to-br from-brand-600 to-brand-600 p-2 rounded-xl shadow-inner shadow-white/20">
+              <div className="bg-brand-600 p-2 rounded-xl shadow-inner shadow-white/20 overflow-hidden">
                 <Headset className="text-white" size={20} />
               </div>
               <div className="text-left">
@@ -520,7 +520,7 @@ export default function SupportChatWidget({
                       <Button
                         key={i}
                         onClick={() => handleStartWithCategory(cat)}
-                        className="bg-white dark:bg-slate-900  hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-800 border border-slate-200 dark:border-slate-700  hover:border-brand-500/50 p-3.5 rounded-xl text-left text-[11px] font-bold text-slate-700 dark:text-slate-400  transition-all flex items-center justify-between group cursor-pointer shadow-sm hover:shadow-sm"
+                        className="bg-white dark:bg-slate-900  hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-800 border border-slate-200 dark:border-slate-700  hover:border-brand-500/50 p-3.5 rounded-xl text-left text-[11px] font-bold text-slate-700 dark:text-slate-400  transition-all flex items-center justify-between group cursor-pointer shadow-sm hover:shadow-sm overflow-hidden"
                       >
                         <span>{cat}</span>
                         <ArrowRight size={14} className="text-slate-600 dark:text-slate-400  group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
@@ -651,7 +651,7 @@ export default function SupportChatWidget({
                         <div className="flex justify-between items-start gap-2 mb-1.5">
                           <span className={`px-2 py-0.5 rounded-full text-[8px] font-black uppercase tracking-wider ${
                             isUrgent 
-                              ? 'bg-rose-100 text-rose-700  ' 
+                              ? 'bg-red-100 text-red-700  ' 
                               : 'bg-slate-100 text-slate-600 dark:text-slate-300  '
                           }`}>
                             {notif.category}
@@ -673,7 +673,7 @@ export default function SupportChatWidget({
                             Source: {notif.authority}
                           </span>
                           {isUrgent && (
-                            <span className="text-rose-500 font-bold flex items-center gap-1 uppercase tracking-wider text-[8px]">
+                            <span className="text-red-500 font-bold flex items-center gap-1 uppercase tracking-wider text-[8px]">
                               <ShieldAlert size={11} />
                               Safety Critical
                             </span>
@@ -691,7 +691,7 @@ export default function SupportChatWidget({
           {activeTab === 'chat' && ticket && (
             <div className="border-t border-slate-200 dark:border-slate-700  p-3 bg-white dark:bg-slate-900  space-y-2">
               {ticket.status !== 'PENDING_ADMIN' ? (
-                <div className="flex justify-between items-center bg-slate-50 dark:bg-slate-800  rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-700  shadow-sm">
+                <div className="flex justify-between items-center bg-slate-50 dark:bg-slate-800  rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-700  shadow-sm overflow-hidden">
                   <div className="text-left space-y-0.5">
                     <p className="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-400 ">Require Human Assistance?</p>
                     <p className="text-[9px] text-slate-500 dark:text-slate-400 ">Escalate immediately to a real support manager</p>

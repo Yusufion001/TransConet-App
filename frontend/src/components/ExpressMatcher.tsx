@@ -155,7 +155,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
       {/* Toast Notification */}
       {toastNotification && (
         <div className="fixed bottom-4 right-4 z-50 animate-in slide-in-from-bottom-5 fade-in duration-300">
-          <div className="bg-slate-800 text-white p-4 rounded-xl shadow-2xl flex items-start gap-3 max-w-sm">
+          <div className="bg-slate-800 text-white p-4 rounded-xl shadow-2xl flex items-start gap-3 max-w-sm overflow-hidden">
             <div className="bg-brand-500/20 p-2 rounded-full mt-1">
               <Truck size={16} className="text-brand-400" />
             </div>
@@ -255,7 +255,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           }}
         />
       ) : !activeMatch && matchOptions.length === 0 ? (
-        <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 shadow-sm ">
+        <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 shadow-sm  overflow-hidden">
           <form onSubmit={handleActionSubmit} className={`grid grid-cols-1 md:grid-cols-${mode === 'SHIPPER' ? '3' : '2'} gap-4 items-end`}>
             <div>
               <LocationAutocomplete 
@@ -282,7 +282,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
             <Button
               type="submit"
               disabled={processing}
-              className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl transition shadow-md shadow-blue-500/10 text-sm cursor-pointer"
+              className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl transition shadow-md shadow-blue-500/10 text-sm cursor-pointer overflow-hidden"
             >
               {processing ? 'Matching Fleet...' : 'Find Match & Negotiate'}
             </Button>
@@ -313,7 +313,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">{mode === 'SHIPPER' ? 'Select a transport option that best fits your budget and risk preference.' : 'Select a cargo load that matches your truck capacity and route.'}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {matchOptions.map(option => (
-              <div key={option.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm hover:shadow-xl hover:border-brand-300 transition cursor-pointer flex flex-col" onClick={() => setActiveMatch(option)}>
+              <div key={option.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm hover:shadow-xl hover:border-brand-300 transition cursor-pointer flex flex-col overflow-hidden" onClick={() => setActiveMatch(option)}>
                 <div className="p-3 bg-brand-50 text-brand-600 rounded-xl w-fit mb-3">
                   {mode === 'SHIPPER' ? <Truck size={24} /> : <Briefcase size={24} />}
                 </div>
@@ -359,7 +359,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           <div className="flex justify-center">
             <Button
               onClick={handleReturnToDashboard}
-              className="flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-brand-600 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-brand-600 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer"
+              className="flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-brand-600 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-brand-600 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer overflow-hidden"
             >
               <RefreshCw size={12} /> Return to Dashboard
             </Button>

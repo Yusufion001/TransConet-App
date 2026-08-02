@@ -80,13 +80,13 @@ export default function AdminReportsCenter() {
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Generate, schedule, and download advanced analytics and system reports.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <Calendar size={16} /> Scheduled Reports
           </Button>
           <Button 
             onClick={handleGenerateReport}
             disabled={isGenerating}
-            className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+            className="bg-brand-600 hover:bg-brand-700 disabled:bg-brand-400 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden"
           >
             {isGenerating ? <RefreshCw size={16} className="animate-spin" /> : <Plus size={16} />}
             {isGenerating ? 'Generating...' : 'Generate New'}
@@ -95,7 +95,7 @@ export default function AdminReportsCenter() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <FileText size={20} />
@@ -104,7 +104,7 @@ export default function AdminReportsCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">142</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Calendar size={20} />
@@ -113,7 +113,7 @@ export default function AdminReportsCenter() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">18</p>
         </div>
-        <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm">
+        <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-slate-800 text-brand-400 rounded-xl">
               <TrendingUp size={20} />

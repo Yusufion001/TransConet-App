@@ -154,7 +154,7 @@ export default function RouteDistanceCalculator({
   if (!origin || !destination) return null;
 
   return (
-    <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm border border-slate-800 space-y-4">
+    <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm border border-slate-800 space-y-4 overflow-hidden">
       <div className="flex items-center justify-between border-b border-slate-800 pb-3">
         <div className="flex items-center gap-2 text-brand-400">
           <Navigation size={18} />

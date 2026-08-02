@@ -23,7 +23,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
       {/* Primary Financial & Volume KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex justify-between items-start mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-lg"><Truck size={16} /></div>
             <span className="text-[10px] font-bold text-emerald-500 flex items-center"><TrendingUp size={10} className="mr-0.5" />+12%</span>
@@ -32,7 +32,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-2xl font-black text-slate-900 dark:text-white">{metrics?.totalLoads || 0}</p>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex justify-between items-start mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-lg"><Activity size={16} /></div>
             <span className="text-[10px] font-bold text-emerald-500 flex items-center"><TrendingUp size={10} className="mr-0.5" />+8%</span>
@@ -41,7 +41,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-2xl font-black text-slate-900 dark:text-white">{Math.floor((metrics?.totalLoads || 0) * 0.35)}</p>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex justify-between items-start mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-lg"><DollarSign size={16} /></div>
             <span className="text-[10px] font-bold text-emerald-500 flex items-center"><TrendingUp size={10} className="mr-0.5" />+15%</span>
@@ -50,7 +50,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-2xl font-black text-slate-900 dark:text-white">₦{(metrics?.escrowTotal || 0).toLocaleString()}</p>
         </div>
         
-        <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-2xl shadow-sm">
+        <div className="bg-emerald-50 border border-emerald-100 p-4 rounded-2xl shadow-sm overflow-hidden">
           <div className="flex justify-between items-start mb-2">
             <div className="p-2 bg-emerald-100 text-emerald-700 rounded-lg"><TrendingUp size={16} /></div>
             <span className="text-[10px] font-bold text-emerald-600 flex items-center"><TrendingUp size={10} className="mr-0.5" />+22%</span>
@@ -62,7 +62,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
       {/* Secondary Operational KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle size={14} className="text-emerald-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Completed Deliveries</p>
@@ -71,7 +71,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 font-medium">{metrics?.fulfillmentRate || 0}% Fulfillment Rate</p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <Activity size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Platform Uptime</p>
@@ -79,7 +79,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-xl font-black text-slate-900 dark:text-white">99.99%</p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <Zap size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">AI Health</p>
@@ -87,7 +87,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-xl font-black text-slate-900 dark:text-white">98%</p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <Users size={14} className="text-pink-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Subscriptions</p>
@@ -97,7 +97,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           </p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <Star size={14} className="text-amber-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">CSAT Score</p>
@@ -105,7 +105,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-xl font-black text-slate-900 dark:text-white">4.8/5.0</p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <Clock size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Avg Delivery Time</p>
@@ -114,7 +114,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-[10px] text-emerald-500 mt-1 font-bold">-0.4 Days from last month</p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <BarChart3 size={14} className="text-brand-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Fleet Utilization</p>
@@ -123,7 +123,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <p className="text-[10px] text-emerald-500 mt-1 font-bold">+5% from last month</p>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 p-4 rounded-[20px] shadow-sm overflow-hidden">
           <div className="flex items-center gap-2 mb-2">
             <Star size={14} className="text-amber-500" />
             <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">Customer Satisfaction</p>
@@ -135,7 +135,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
       {/* Growth & Top Performers */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
           <h3 className="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
             <Users className="text-brand-500" size={18} /> Ecosystem Growth
           </h3>
@@ -168,7 +168,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
           <h3 className="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
             <Zap className="text-amber-500" size={18} /> Top Performing Transporters
           </h3>
@@ -178,7 +178,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
               { name: 'GUO Transport', loads: 289, rating: 4.8, revenue: '₦9.2M' },
               { name: 'Chisco Haulage', loads: 215, rating: 4.7, revenue: '₦7.8M' },
             ]).map((t: any, i: number) => (
-              <div key={i} className="flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800 rounded-xl hover:bg-brand-50 cursor-pointer hover:shadow-sm transition">
+              <div key={i} className="flex items-center justify-between p-3 border border-slate-100 dark:border-slate-800 rounded-xl hover:bg-brand-50 cursor-pointer hover:shadow-sm transition overflow-hidden">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">
                     #{i + 1}
@@ -201,7 +201,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
 
 
       {/* Monetization & Revenue Streams */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
         <h3 className="font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
           <DollarSign className="text-emerald-500" size={18} /> Revenue Streams & Monetization
         </h3>
@@ -240,7 +240,7 @@ export default function AdminAnalytics({ metrics }: { metrics: any }) {
           <div className="p-4 border border-slate-100 dark:border-slate-800 rounded-2xl bg-slate-50 dark:bg-slate-800">
             <h4 className="font-bold text-slate-800 dark:text-slate-400 text-sm mb-1">Fuel & Maintenance</h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 mb-3">Affiliate revenue from partner networks.</p>
-            <p className="text-lg font-black text-rose-600">₦{(metrics?.fuelMaintenanceRevenue || 650000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
+            <p className="text-lg font-black text-red-600">₦{(metrics?.fuelMaintenanceRevenue || 650000).toLocaleString()} <span className="text-[10px] text-slate-400 dark:text-slate-400 font-normal">/mo</span></p>
           </div>
         </div>
       </div>

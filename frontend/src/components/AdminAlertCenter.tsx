@@ -265,7 +265,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
         <div className="lg:col-span-1 space-y-6">
           
           {/* Health Score Panel */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-5 overflow-hidden">
             <div className="flex justify-between items-center">
               <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
                 <Server size={14} className="text-brand-600" /> Infrastructure Health
@@ -353,7 +353,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
           </div>
 
           {/* Simulation Playground Panel */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-4">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-4 overflow-hidden">
             <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
               <Sparkles className="text-brand-500" size={14} /> Diagnostic Playground
             </h3>
@@ -422,7 +422,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
         <div className="lg:col-span-2 space-y-6">
           
           {/* Table Diagnostics Grid */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-4">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-4 overflow-hidden">
             <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
               <Layers size={14} className="text-amber-500" /> Database Table Diagnostics
             </h3>
@@ -462,7 +462,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
           </div>
 
           {/* Core Detected Issues Panel */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-5 overflow-hidden">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-slate-100 dark:border-slate-800">
               <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
                 <AlertTriangle size={15} className="text-red-500" /> Detected Warnings & Recommendations

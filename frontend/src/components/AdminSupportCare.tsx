@@ -144,7 +144,7 @@ export default function AdminSupportCare() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-red-50 text-red-600 rounded-xl">
               <AlertCircle size={20} />
@@ -153,7 +153,7 @@ export default function AdminSupportCare() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">24</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Clock size={20} />
@@ -162,7 +162,7 @@ export default function AdminSupportCare() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">4h 12m</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <CheckCircle size={20} />
@@ -171,7 +171,7 @@ export default function AdminSupportCare() {
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">86</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Star size={20} />
@@ -247,7 +247,7 @@ export default function AdminSupportCare() {
 
         {/* Ticket Details & Chat */}
         {selectedTicket ? (
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm flex flex-col w-full lg:w-2/3 h-full animate-fade-in">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm flex flex-col w-full lg:w-2/3 h-full animate-fade-in overflow-hidden">
             <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-start justify-between bg-slate-50 dark:bg-slate-800/50 rounded-t-2xl gap-4">
               <div className="flex gap-3">
                 <Button onClick={() => setSelectedTicketId(null)} className="lg:hidden text-slate-400 hover:text-slate-600 dark:text-slate-400 mt-1">
@@ -320,7 +320,7 @@ export default function AdminSupportCare() {
                   <Button aria-label="Action" 
                     onClick={handleSendReply}
                     disabled={!replyText.trim()}
-                    className="bg-brand-600 disabled:bg-brand-400 hover:bg-brand-700 text-white px-4 py-2 rounded-xl flex items-center justify-center transition-colors shadow-sm"
+                    className="bg-brand-600 disabled:bg-brand-400 hover:bg-brand-700 text-white px-4 py-2 rounded-xl flex items-center justify-center transition-colors shadow-sm overflow-hidden"
                   >
                     <Send size={18} />
                   </Button>

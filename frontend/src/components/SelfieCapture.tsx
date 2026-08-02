@@ -163,12 +163,12 @@ export default function SelfieCapture({ onCapture, onCancel }: SelfieCaptureProp
                   <Button type="button" onClick={handleRetake} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-bold hover:bg-slate-200 transition">
                     <RefreshCw size={18} /> Retake
                   </Button>
-                  <Button type="button" onClick={handleConfirm} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-50 cursor-pointer hover:shadow-sm0 transition shadow-lg shadow-blue-500/30">
+                  <Button type="button" onClick={handleConfirm} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-50 cursor-pointer hover:shadow-sm0 transition shadow-lg shadow-blue-500/30 overflow-hidden">
                     <Check size={18} /> Confirm
                   </Button>
                 </>
               ) : (
-                <Button type="button" onClick={handleCapture} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-50 cursor-pointer hover:shadow-sm0 transition shadow-lg shadow-blue-500/30">
+                <Button type="button" onClick={handleCapture} className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-50 cursor-pointer hover:shadow-sm0 transition shadow-lg shadow-blue-500/30 overflow-hidden">
                   <Camera size={18} /> Capture
                 </Button>
               )}

@@ -14,11 +14,11 @@ export default function AdminDisputes() {
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <AlertOctagon className="text-rose-500" /> Dispute & Escrow Management
+            <AlertOctagon className="text-red-500" /> Dispute & Escrow Management
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">Review tickets, manage escrow holds, and issue resolutions.</p>
         </div>
@@ -26,7 +26,7 @@ export default function AdminDisputes() {
 
       <div className="space-y-4">
         {disputes.map(dispute => (
-          <div key={dispute.id} className={`border p-4 rounded-2xl ${dispute.status === 'RESOLVED' ? 'border-emerald-100 bg-emerald-50' : 'border-rose-100 bg-rose-50/30'}`}>
+          <div key={dispute.id} className={`border p-4 rounded-2xl ${dispute.status === 'RESOLVED' ? 'border-emerald-100 bg-emerald-50' : 'border-red-100 bg-red-50/30'}`}>
             <div className="flex justify-between items-start mb-3">
               <div>
                 <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
@@ -46,8 +46,8 @@ export default function AdminDisputes() {
 
             {dispute.status !== 'RESOLVED' && (
               <div className="flex gap-2 pt-3 border-t border-slate-200 dark:border-slate-700/50 mt-3">
-                <Button onClick={() => handleResolve(dispute.id, 'REFUND_CUSTOMER')} className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm flex items-center justify-center gap-1">
-                  <ArrowRight size={14} className="text-rose-500" /> Refund Customer
+                <Button onClick={() => handleResolve(dispute.id, 'REFUND_CUSTOMER')} className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 py-2 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm flex items-center justify-center gap-1 overflow-hidden">
+                  <ArrowRight size={14} className="text-red-500" /> Refund Customer
                 </Button>
                 <Button onClick={() => handleResolve(dispute.id, 'RELEASE_TRANSPORTER')} className="flex-1 bg-brand-600 border border-brand-600 py-2 rounded-xl text-xs font-bold text-white hover:bg-brand-700 flex items-center justify-center gap-1">
                   Release to Transporter <Wallet size={14} />

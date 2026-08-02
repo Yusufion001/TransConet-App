@@ -113,13 +113,13 @@ export default function AdminRolePermission() {
           <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage system administrators and their roles</p>
         </div>
         
-        <Button onClick={openNewAdminModal} className="bg-brand-600 hover:bg-brand-700 text-white rounded-xl px-4 py-2 flex items-center gap-2 text-sm font-bold shadow-sm transition">
+        <Button onClick={openNewAdminModal} className="bg-brand-600 hover:bg-brand-700 text-white rounded-xl px-4 py-2 flex items-center gap-2 text-sm font-bold shadow-sm transition overflow-hidden">
           <Plus size={16} /> New Admin
         </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Users size={20} />
@@ -129,7 +129,7 @@ export default function AdminRolePermission() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">{admins.length}</p>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Shield size={20} />
@@ -139,7 +139,7 @@ export default function AdminRolePermission() {
           <p className="text-3xl font-black text-slate-900 dark:text-white">{new Set(admins.map(a => a.role)).size}</p>
         </div>
         
-        <div className="bg-slate-900 border border-slate-800 text-white rounded-[20px] p-5 shadow-sm">
+        <div className="bg-slate-900 border border-slate-800 text-white rounded-[20px] p-5 shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-slate-800 text-brand-400 rounded-xl">
               <ShieldAlert size={20} />
@@ -203,7 +203,7 @@ export default function AdminRolePermission() {
                       </span>
                     </td>
                     <td className="p-4">
-                      <span className={`px-3 py-1 rounded-lg text-xs font-bold ${admin.isActive ? 'bg-emerald-50 text-emerald-700' : 'bg-rose-50 text-rose-700'}`}>
+                      <span className={`px-3 py-1 rounded-lg text-xs font-bold ${admin.isActive ? 'bg-emerald-50 text-emerald-700' : 'bg-red-50 text-red-700'}`}>
                         {admin.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </td>
@@ -309,7 +309,7 @@ export default function AdminRolePermission() {
               <Button 
                 onClick={handleSaveAdmin}
                 disabled={saving || (!editingAdmin.id && !editPassword)}
-                className="px-6 py-2.5 rounded-xl font-bold text-sm bg-brand-600 hover:bg-brand-700 text-white shadow-sm flex items-center gap-2 transition disabled:opacity-50"
+                className="px-6 py-2.5 rounded-xl font-bold text-sm bg-brand-600 hover:bg-brand-700 text-white shadow-sm flex items-center gap-2 transition disabled:opacity-50 overflow-hidden"
               >
                 {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
                 Save Admin

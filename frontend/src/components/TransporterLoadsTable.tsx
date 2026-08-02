@@ -32,7 +32,7 @@ export const TransporterLoadsTable: React.FC<TransporterLoadsTableProps> = ({ lo
   }
 
   return (
-    <div className="overflow-x-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm">
+    <div className="overflow-x-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden">
       <table className="w-full text-left text-sm whitespace-nowrap">
         <thead className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-xs uppercase tracking-wider">
           <tr>

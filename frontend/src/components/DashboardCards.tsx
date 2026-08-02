@@ -54,7 +54,7 @@ export const MyShipmentsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork: 
   >
     {/* Left graphic */}
     <div className="hidden md:flex w-[30%] bg-slate-50 dark:bg-slate-800/50 border-r border-slate-100 dark:border-slate-800 items-center justify-center p-8 relative">
-       <div className="w-24 h-24 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center transform group-hover:scale-105 group-hover:rotate-3 transition-transform duration-300">
+       <div className="w-24 h-24 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center transform group-hover:scale-105 group-hover:rotate-3 transition-transform duration-300 overflow-hidden">
          <Box size={40} strokeWidth={1.5} className="text-slate-700 dark:text-slate-300" />
        </div>
     </div>
@@ -141,7 +141,7 @@ export const TrackShipmentCard = ({
           id="tracking-input"
           type="text" 
           placeholder="Enter Waybill (TRP-502)" 
-          className="w-full h-12 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 pr-24 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-sm font-mono shadow-inner"
+          className="w-full h-12 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 pr-24 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-sm font-mono shadow-inner overflow-hidden"
           value={waybillInput}
           onChange={(e) => setWaybillInput(e.target.value)}
         />
@@ -155,8 +155,8 @@ export const TrackShipmentCard = ({
       </form>
       
       {trackingError && (
-        <p className="text-rose-600 dark:text-rose-400 text-xs mt-3 font-medium flex items-center gap-1">
-           <span className="w-1.5 h-1.5 rounded-full bg-rose-500"></span> {trackingError}
+        <p className="text-red-600 dark:text-red-400 text-xs mt-3 font-medium flex items-center gap-1">
+           <span className="w-1.5 h-1.5 rounded-full bg-red-500"></span> {trackingError}
         </p>
       )}
     </div>

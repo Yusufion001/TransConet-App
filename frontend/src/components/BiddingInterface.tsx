@@ -26,7 +26,7 @@ export default function BiddingInterface({
   if (!activeMatch) return null;
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm space-y-4">
+    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm space-y-4 overflow-hidden">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start gap-4">
           <div className="p-3 bg-brand-100 text-brand-600 rounded-xl shrink-0">

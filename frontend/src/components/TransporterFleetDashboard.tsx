@@ -49,14 +49,14 @@ export default function TransporterFleetDashboard() {
 
   return (
     <div className="w-full h-full flex flex-col bg-slate-50">
-      <div className="p-4 md:p-6 pb-0 space-y-4 max-w-5xl mx-auto w-full">
+      <div className="p-4 md:p-6 pb-32 space-y-4 max-w-5xl mx-auto w-full">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <h1 className="text-3xl font-black text-slate-800 dark:text-slate-400">Fleet Operations</h1>
             <p className="text-sm text-slate-500 dark:text-slate-400">Manage your trucks, drivers, earnings, and maintenance.</p>
           </div>
-          <Button className="bg-brand-600 text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-brand-700 transition shadow-lg shadow-blue-500/20 flex items-center gap-2 w-fit">
+          <Button className="bg-brand-600 text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-brand-700 transition shadow-lg shadow-blue-500/20 flex items-center gap-2 w-fit overflow-hidden">
             <Plus size={16} /> Add Asset
           </Button>
         </div>
@@ -92,38 +92,38 @@ export default function TransporterFleetDashboard() {
             
             {/* KPI Cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Total Fleet</p>
                 <div className="flex items-end justify-between">
                   <h3 className="text-2xl font-black text-slate-800 dark:text-slate-400">12</h3>
                   <Truck className="text-brand-500" size={20} />
                 </div>
               </div>
-              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Active Trips</p>
                 <div className="flex items-end justify-between">
                   <h3 className="text-2xl font-black text-slate-800 dark:text-slate-400">8</h3>
                   <MapPin className="text-emerald-500" size={20} />
                 </div>
               </div>
-              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Total Drivers</p>
                 <div className="flex items-end justify-between">
                   <h3 className="text-2xl font-black text-slate-800 dark:text-slate-400">15</h3>
                   <Users className="text-brand-500" size={20} />
                 </div>
               </div>
-              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
+              <div className="bg-white dark:bg-slate-900 p-4 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mb-1">Maint. Alerts</p>
                 <div className="flex items-end justify-between">
                   <h3 className="text-2xl font-black text-slate-800 dark:text-slate-400">2</h3>
-                  <AlertCircle className="text-rose-500" size={20} />
+                  <AlertCircle className="text-red-500" size={20} />
                 </div>
               </div>
             </div>
 
             {/* Earnings Chart */}
-            <div className="bg-white dark:bg-slate-900 p-5 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
+            <div className="bg-white dark:bg-slate-900 p-5 rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
               <div className="flex justify-between items-center mb-6">
                 <div>
                   <h3 className="text-lg font-bold text-slate-800 dark:text-slate-400">Revenue Analytics</h3>
@@ -226,7 +226,7 @@ export default function TransporterFleetDashboard() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {drivers.map(driver => (
-                <div key={driver.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm hover:shadow-sm transition">
+                <div key={driver.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm hover:shadow-sm transition overflow-hidden">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 dark:text-slate-400 font-bold">
@@ -260,11 +260,11 @@ export default function TransporterFleetDashboard() {
                   <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-center">
                     <div className="flex items-center gap-1.5 text-xs">
                       {driver.license.includes('Renewal') ? (
-                        <AlertCircle size={14} className="text-rose-500" />
+                        <AlertCircle size={14} className="text-red-500" />
                       ) : (
                         <CheckCircle2 size={14} className="text-emerald-500" />
                       )}
-                      <span className={driver.license.includes('Renewal') ? 'text-rose-600 font-bold' : 'text-slate-600 dark:text-slate-300'}>{driver.license}</span>
+                      <span className={driver.license.includes('Renewal') ? 'text-red-600 font-bold' : 'text-slate-600 dark:text-slate-300'}>{driver.license}</span>
                     </div>
                     <Button className="text-brand-600 text-xs font-bold hover:underline">View Profile</Button>
                   </div>
@@ -291,7 +291,7 @@ export default function TransporterFleetDashboard() {
                      <div key={i} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition">
                        <div className="flex items-start gap-3">
                          <div className={`p-2 rounded-xl mt-1 ${
-                           log.priority === 'high' ? 'bg-rose-100 text-rose-600' : 
+                           log.priority === 'high' ? 'bg-red-100 text-red-600' : 
                            log.priority === 'medium' ? 'bg-amber-100 text-amber-600' : 'bg-slate-100 text-slate-600 dark:text-slate-300'
                          }`}>
                            <Wrench size={18} />
@@ -305,7 +305,7 @@ export default function TransporterFleetDashboard() {
                        
                        <div className="flex md:flex-col items-center md:items-end justify-between md:justify-center gap-2 ml-11 md:ml-0">
                          <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider border ${
-                           log.status === 'Overdue' ? 'bg-rose-50 text-rose-600 border-rose-200' : 
+                           log.status === 'Overdue' ? 'bg-red-50 text-red-600 border-red-200' : 
                            log.status === 'Due Soon' ? 'bg-amber-50 text-amber-600 border-amber-200' : 'bg-emerald-50 text-emerald-600 border-emerald-200'
                          }`}>
                            {log.status}

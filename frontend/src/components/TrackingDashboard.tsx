@@ -103,7 +103,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
             <li>Paste your key and press Enter</li>
             </ol>
         </div>
-        <Button onClick={onClose} className="px-8 py-3 font-bold bg-rose-600 rounded-lg hover:bg-rose-500 transition shadow-lg">Close Dashboard</Button>
+        <Button onClick={onClose} className="px-8 py-3 font-bold bg-red-600 rounded-lg hover:bg-red-500 transition shadow-lg">Close Dashboard</Button>
       </div>
     );
   }
@@ -114,7 +114,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
         <div className="max-w-3xl mx-auto flex justify-between items-start">
           <Button aria-label="Action" 
             onClick={onClose}
-            className="w-12 h-12 bg-white dark:bg-slate-900/95 backdrop-blur-md rounded-[20px] shadow-sm flex items-center justify-center text-slate-700 dark:text-slate-400 hover:text-rose-500 transition-colors cursor-pointer pointer-events-auto"
+            className="w-12 h-12 bg-white dark:bg-slate-900/95 backdrop-blur-md rounded-[20px] shadow-sm flex items-center justify-center text-slate-700 dark:text-slate-400 hover:text-red-500 transition-colors cursor-pointer pointer-events-auto overflow-hidden"
           >
             <X size={24} strokeWidth={2.5} />
           </Button>
@@ -148,7 +148,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
         </APIProvider>
 
         {/* Radar overlay */}
-        <div className="absolute top-20 left-4 sm:left-6 z-10 bg-slate-900/90 border border-slate-700 p-3 rounded-xl backdrop-blur-md max-w-xs space-y-1 text-left pointer-events-none shadow-sm">
+        <div className="absolute top-20 left-4 sm:left-6 z-10 bg-slate-900/90 border border-slate-700 p-3 rounded-xl backdrop-blur-md max-w-xs space-y-1 text-left pointer-events-none shadow-sm overflow-hidden">
           <div className="flex items-center gap-1.5 text-xs text-brand-400 font-bold uppercase tracking-wider">
             <Radio size={12} className="animate-pulse" />
             Live GPS Telemetry
@@ -208,7 +208,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
                 </div>
               </div>
 
-              <div className="border border-slate-100 dark:border-slate-800 p-4 rounded-2xl flex items-center justify-between mb-6 shadow-sm bg-white dark:bg-slate-900">
+              <div className="border border-slate-100 dark:border-slate-800 p-4 rounded-2xl flex items-center justify-between mb-6 shadow-sm bg-white dark:bg-slate-900 overflow-hidden">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center relative">
                     <img src="https://ui-avatars.com/api/?name=Driver&background=1565C0&color=fff" alt="Driver" className="w-12 h-12 rounded-full" />

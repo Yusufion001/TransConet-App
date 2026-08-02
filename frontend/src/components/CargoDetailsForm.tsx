@@ -33,7 +33,7 @@ function OptionCard({ options, selected, onSelect, label }: { options: { label: 
       </Button>
 
       {isOpen && (
-        <div className="absolute z-10 top-[calc(100%+0.5rem)] left-0 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm p-4 grid grid-cols-2 md:grid-cols-3 gap-3 max-h-64 overflow-y-auto">
+        <div className="absolute z-10 top-[calc(100%+0.5rem)] left-0 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm p-4 grid grid-cols-2 md:grid-cols-3 gap-3 max-h-64 overflow-y-auto overflow-hidden">
           {options.map((opt) => (
             <Button
               type="button"
@@ -220,7 +220,7 @@ export default function CargoDetailsForm() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 p-5 md:p-8 rounded-[20px] border border-slate-200 dark:border-slate-700 space-y-8 shadow-sm">
+      <div className="bg-white dark:bg-slate-900 p-5 md:p-8 rounded-[20px] border border-slate-200 dark:border-slate-700 space-y-8 shadow-sm overflow-hidden">
         {/* Title */}
         <div className="flex gap-4 items-center">
             <div className="w-12 h-12 rounded-2xl bg-brand-900/30 border border-brand-500/30 flex items-center justify-center">
@@ -379,8 +379,8 @@ export default function CargoDetailsForm() {
         )}
 
         {submitError && (
-          <div className="p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-800 text-xs font-bold flex items-center gap-3">
-            <AlertCircle className="text-rose-600 shrink-0" size={20} />
+          <div className="p-4 bg-red-50 border border-red-200 rounded-2xl text-red-800 text-xs font-bold flex items-center gap-3">
+            <AlertCircle className="text-red-600 shrink-0" size={20} />
             <span>{submitError}</span>
           </div>
         )}
@@ -405,7 +405,7 @@ export default function CargoDetailsForm() {
         </div>
       </div>
 
-      <Button type="submit" className="w-full bg-gradient-to-r from-brand-600 to-emerald-500 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:opacity-90 shadow-lg shadow-blue-500/20 transition-all">
+      <Button type="submit" className="w-full bg-brand-600 text-white font-bold py-4 rounded-2xl flex items-center justify-center gap-2 hover:opacity-90 shadow-lg shadow-blue-500/20 transition-all overflow-hidden">
         <Send size={18} /> Post Cargo
       </Button>
       
@@ -413,7 +413,7 @@ export default function CargoDetailsForm() {
       {/* Calculated Options View */}
       {isCalculating && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-[20px] shadow-sm flex flex-col items-center gap-4">
+          <div className="bg-white dark:bg-slate-900 p-6 rounded-[20px] shadow-sm flex flex-col items-center gap-4 overflow-hidden">
             <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
             <p className="font-bold text-slate-800 dark:text-slate-400">Calculating transportation costs...</p>
           </div>
@@ -430,7 +430,7 @@ export default function CargoDetailsForm() {
             
             <div className="p-6 overflow-y-auto space-y-4">
               {calculatedOptions.map(opt => (
-                <div key={opt.id} className="border border-slate-200 dark:border-slate-700 rounded-xl p-5 hover:border-brand-500 hover:shadow-lg cursor-pointer transition flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div key={opt.id} className="border border-slate-200 dark:border-slate-700 rounded-xl p-5 hover:border-brand-500 hover:shadow-lg cursor-pointer transition flex flex-col md:flex-row md:items-center justify-between gap-4 overflow-hidden">
                   <div className="flex gap-4 items-center">
                     <div className="bg-brand-50 text-brand-600 p-4 rounded-xl">
                       <Truck size={24} />

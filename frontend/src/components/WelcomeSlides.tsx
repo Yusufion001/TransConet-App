@@ -95,7 +95,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.5, type: 'spring' }}
-            className="absolute right-12 top-12 w-12 h-12 bg-yellow-400 rounded-full shadow-lg flex items-center justify-center text-white"
+            className="absolute right-12 top-12 w-12 h-12 bg-amber-400 rounded-full shadow-lg flex items-center justify-center text-white"
           >
             <Zap size={24} fill="white" />
           </motion.div>
@@ -105,7 +105,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.7, type: 'spring', bounce: 0.2 }}
-            className="absolute right-4 bottom-12 bg-white dark:bg-slate-900 p-3 rounded-[20px] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-3"
+            className="absolute right-4 bottom-12 bg-white dark:bg-slate-900 p-3 rounded-[20px] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-3 overflow-hidden"
           >
             <div className="w-12 h-12 bg-brand-600/10 rounded-xl flex items-center justify-center">
               <Truck size={24} className="text-brand-600" />
@@ -141,7 +141,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, type: 'spring' }}
-            className="absolute left-10 top-16 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 rotate-[-10deg]"
+            className="absolute left-10 top-16 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 rotate-[-10deg] overflow-hidden"
           >
             <FileText size={32} className="text-slate-600 dark:text-slate-400" />
             <motion.div 
@@ -159,7 +159,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, type: 'spring', bounce: 0.4 }}
-            className="relative z-10 w-28 h-28 bg-white dark:bg-slate-900 rounded-[20px] shadow-sm flex items-center justify-center border border-slate-100 dark:border-slate-800"
+            className="relative z-10 w-28 h-28 bg-white dark:bg-slate-900 rounded-[20px] shadow-sm flex items-center justify-center border border-slate-100 dark:border-slate-800 overflow-hidden"
           >
             <ShieldCheck size={56} className="text-brand-600" />
           </motion.div>
@@ -217,7 +217,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, type: 'spring' }}
-            className="absolute bottom-8 right-8 bg-white dark:bg-slate-900 p-3 rounded-[20px] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-4 z-20"
+            className="absolute bottom-8 right-8 bg-white dark:bg-slate-900 p-3 rounded-[20px] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-4 z-20 overflow-hidden"
           >
             <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
               <Navigation size={20} className="text-emerald-600" />

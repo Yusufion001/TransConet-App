@@ -38,9 +38,7 @@ export const PremiumHeader = ({
     <header className="sticky top-0 z-40 w-full glass-panel border-b-0 border-x-0 border-t-0 border-slate-200 dark:border-slate-800 mb-8 px-6 py-4 flex items-center justify-between">
       
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-slate-900 dark:bg-brand-600 flex items-center justify-center shadow-sm">
-          <Package size={20} className="text-white" strokeWidth={2.5} />
-        </div>
+        <div className="flex items-center justify-center"><Package size={28} className="text-brand-600" strokeWidth={2.5} /></div>
         <div>
           <h1 className="text-xl font-display font-bold text-slate-900 dark:text-white tracking-tight">
             TransConet
@@ -62,7 +60,7 @@ export const PremiumHeader = ({
         >
           <Bell size={20} strokeWidth={2} />
           {unreadCount > 0 && (
-            <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-rose-500 border-2 border-white dark:border-slate-950 rounded-full"></span>
+            <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-red-500 border-2 border-white dark:border-slate-950 rounded-full"></span>
           )}
         </Button>
 
@@ -72,9 +70,7 @@ export const PremiumHeader = ({
             onClick={() => setShowProfile(!showProfile)}
             className="flex items-center gap-2 pl-2 pr-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-500"
           >
-            <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-300">
-              <UserRound size={16} strokeWidth={2} />
-            </div>
+            <div className="flex items-center justify-center text-slate-600 dark:text-slate-300"><UserRound size={20} strokeWidth={2} /></div>
             <span className="text-sm font-semibold hidden md:block text-slate-700 dark:text-slate-300">
               {userPhone}
             </span>
@@ -127,9 +123,9 @@ export const PremiumHeader = ({
                       // Trigger global logout event or navigate to login
                       window.location.href = '/login';
                     }}
-                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-colors text-left"
+                    className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors text-left"
                   >
-                    <LogOut size={18} className="text-rose-500" />
+                    <LogOut size={18} className="text-red-500" />
                     Sign Out
                   </button>
                 </div>

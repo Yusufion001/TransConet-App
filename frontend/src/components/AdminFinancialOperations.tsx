@@ -77,17 +77,17 @@ export default function AdminFinancialOperations() {
           <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage escrow accounts, approve payouts, and track revenue.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <FileText size={16} /> Invoices
           </Button>
-          <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm overflow-hidden">
             <Download size={16} /> Export Ledger
           </Button>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-slate-900 rounded-[20px] p-5 shadow-sm text-white flex flex-col justify-between">
+        <div className="bg-slate-900 rounded-[20px] p-5 shadow-sm text-white flex flex-col justify-between overflow-hidden">
           <div className="flex items-center gap-3 mb-4 text-slate-300 dark:text-slate-300">
             <div className="p-2 bg-slate-800 rounded-xl">
               <Briefcase size={20} />
@@ -100,7 +100,7 @@ export default function AdminFinancialOperations() {
           </div>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
@@ -115,7 +115,7 @@ export default function AdminFinancialOperations() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
@@ -130,7 +130,7 @@ export default function AdminFinancialOperations() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between overflow-hidden">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">

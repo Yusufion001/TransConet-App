@@ -48,7 +48,7 @@ export default function JobStatusFrame({ status, paymentStatus, isEscrowEnabled 
   }
 
   return (
-    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl p-5 shadow-sm ">
+    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl p-5 shadow-sm  overflow-hidden">
       <h3 className="text-sm font-bold text-slate-800 dark:text-slate-400  mb-4 tracking-tight uppercase">Job Lifecycle Tracking</h3>
       
       <div className="relative">

@@ -29,7 +29,7 @@ function InteractiveSelector({ options, selected, onSelect, label, placeholder }
       </Button>
 
       {isOpen && (
-        <div className="absolute z-50 w-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm max-h-60 overflow-y-auto p-2">
+        <div className="absolute z-50 w-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm max-h-60 overflow-y-auto p-2 overflow-hidden">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             {options.map((opt) => (
               <Button
@@ -160,11 +160,11 @@ export default function TransporterForm() {
   }
 
   return (
-    <div className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 p-4 md:p-10 space-y-8 max-w-3xl mx-auto rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 p-4 md:p-10 space-y-8 max-w-3xl mx-auto rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
       <div className="flex justify-between items-start">
         <div className="flex flex-col relative group">
           <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
-            <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
+            <span className="font-bold text-brand-900">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
           </span>
           <p className="text-[7.5px] text-slate-500 dark:text-slate-400 font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
         </div>
@@ -251,7 +251,7 @@ export default function TransporterForm() {
             
             <div className="space-y-4">
               {quickVehicles.map((vehicle, index) => (
-                <div key={vehicle.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-4 shadow-sm relative">
+                <div key={vehicle.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-4 shadow-sm relative overflow-hidden">
                   <div className="flex justify-between items-center mb-4">
                     <h4 className="font-bold text-slate-800 dark:text-slate-400 text-sm flex items-center gap-2">
                       <div className="w-6 h-6 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xs">{index + 1}</div>
@@ -261,7 +261,7 @@ export default function TransporterForm() {
                       <Button 
                         type="button" 
                         onClick={() => removeQuickVehicle(vehicle.id)}
-                        className="text-slate-400 dark:text-slate-400 hover:text-rose-500 transition p-1"
+                        className="text-slate-400 dark:text-slate-400 hover:text-red-500 transition p-1"
                       >
                         <Trash2 size={16} />
                       </Button>
@@ -313,7 +313,7 @@ export default function TransporterForm() {
               <Button 
                 type="button"
                 onClick={addQuickVehicle}
-                className="w-full py-3 md:py-4 border-2 border-dashed border-brand-200 text-brand-600 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm hover:border-brand-300 transition"
+                className="w-full py-3 md:py-4 border-2 border-dashed border-brand-200 text-brand-600 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm hover:border-brand-300 transition overflow-hidden"
               >
                 <Plus size={20} /> Add Another Vehicle
               </Button>
@@ -339,13 +339,13 @@ export default function TransporterForm() {
                 <Button 
                   type="button" 
                   onClick={handleDownloadTemplate}
-                  className="bg-white dark:bg-slate-900 text-brand-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm border border-brand-200 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition flex items-center gap-2"
+                  className="bg-white dark:bg-slate-900 text-brand-700 px-4 py-2 rounded-xl text-sm font-bold shadow-sm border border-brand-200 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition flex items-center gap-2 overflow-hidden"
                 >
                   <Download size={16} /> Template
                 </Button>
               </div>
 
-              <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-slate-300 border-dashed rounded-2xl cursor-pointer bg-white dark:bg-slate-900 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition">
+              <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-slate-300 border-dashed rounded-2xl cursor-pointer bg-white dark:bg-slate-900 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition overflow-hidden">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <FileSpreadsheet className="w-10 h-10 text-slate-400 dark:text-slate-400 mb-3" />
                   <p className="mb-2 text-sm text-slate-600 dark:text-slate-400 font-medium"><span className="font-bold text-brand-600">Click to upload</span> or drag and drop</p>
@@ -396,9 +396,9 @@ export default function TransporterForm() {
           </>
         )}
 
-        {errorMsg && <div className="text-rose-500 bg-rose-50 p-4 rounded-xl text-sm flex items-start gap-2 border border-rose-100"><AlertCircle size={16} className="mt-0.5 shrink-0"/> {errorMsg}</div>}
+        {errorMsg && <div className="text-red-500 bg-red-50 p-4 rounded-xl text-sm flex items-start gap-2 border border-red-100"><AlertCircle size={16} className="mt-0.5 shrink-0"/> {errorMsg}</div>}
 
-        <Button type="submit" disabled={isSubmitting} className="w-full bg-gradient-to-r from-brand-600 to-brand-600 text-white font-black py-4 rounded-2xl text-lg shadow-lg shadow-blue-500/25 hover:opacity-95 transition-opacity mt-4">
+        <Button type="submit" disabled={isSubmitting} className="w-full bg-brand-600 text-white font-black py-4 rounded-2xl text-lg shadow-lg shadow-blue-500/25 hover:opacity-95 transition-opacity mt-4 overflow-hidden">
           {isSubmitting ? 'Processing...' : (
             registrationMode === 'single' ? 'Register Fleet' : 
             registrationMode === 'quick' ? `Register ${quickVehicles.length} Vehicle${quickVehicles.length > 1 ? 's' : ''}` : 
