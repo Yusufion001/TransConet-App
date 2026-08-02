@@ -6,9 +6,18 @@ import { execSync } from 'child_process';
 // Configure dotenv to read our local clean .env file first
 
 import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const getDirname = () => {
+  try {
+    if (typeof __dirname !== 'undefined') return __dirname;
+    return path.dirname(fileURLToPath(import.meta.url));
+  } catch (e) {
+    return process.cwd();
+  }
+};
+const dir = getDirname();
 const envPath = path.resolve(process.cwd(), '.env');
+// Ignore dir for now
+const _ = dir;
 const envPath2 = path.resolve(process.cwd(), '../.env');
 dotenv.config({ path: envPath, override: true });
 dotenv.config({ path: envPath2, override: true });
