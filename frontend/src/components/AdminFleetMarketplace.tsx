@@ -59,7 +59,7 @@ export default function AdminFleetMarketplace() {
   const getVehicleStatusBadge = (status: string) => {
     switch (status) {
       case 'IN_TRANSIT': return <span className="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">In Transit</span>;
-      case 'IDLE': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate- px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Idle</span>;
+      case 'IDLE': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-400 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Idle</span>;
       case 'MAINTENANCE': return <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Maintenance</span>;
       default: return null;
     }
@@ -82,50 +82,50 @@ export default function AdminFleetMarketplace() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Map className="text-brand-600" /> Fleet & Marketplace
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Monitor active vehicles and available loads in the marketplace.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Monitor active vehicles and available loads in the marketplace.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Truck size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Total Fleet</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Total Fleet</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">1,248</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Navigation size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active on Duty</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Active on Duty</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">842</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Package size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Available Loads</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Available Loads</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">156</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <CheckCircle2 size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Completed Today</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Completed Today</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">312</p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex flex-col sm:flex-row justify-between gap-4">
           <div className="flex gap-2">
             <Button
@@ -166,24 +166,24 @@ export default function AdminFleetMarketplace() {
             <table className="w-full text-left border-collapse animate-fade-in">
               <thead>
                 <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Vehicle ID</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Plate & Type</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Driver</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Location</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Vehicle ID</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Plate & Type</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Driver</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Location</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {fleet.filter(v => v.plate.toLowerCase().includes(searchTerm.toLowerCase()) || v.id.toLowerCase().includes(searchTerm.toLowerCase())).map(vehicle => (
                   <tr key={vehicle.id || vehicle?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
-                    <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate- font-bold">{vehicle.id}</td>
+                    <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate-400 font-bold">{vehicle.id}</td>
                     <td className="p-4">
                       <div className="font-bold text-sm text-slate-900 dark:text-white">{vehicle.plate}</div>
-                      <div className="text-xs text-slate-500 dark:text-slate-">{vehicle.type}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400">{vehicle.type}</div>
                     </td>
-                    <td className="p-4 text-sm text-slate-700 dark:text-slate-">{vehicle.driver}</td>
-                    <td className="p-4 text-sm text-slate-700 dark:text-slate- flex items-center gap-1">
+                    <td className="p-4 text-sm text-slate-700 dark:text-slate-400">{vehicle.driver}</td>
+                    <td className="p-4 text-sm text-slate-700 dark:text-slate-400 flex items-center gap-1">
                       <Map size={14} className="text-slate-400 dark:text-slate-400" /> {vehicle.location}
                     </td>
                     <td className="p-4">{getVehicleStatusBadge(vehicle.status)}</td>
@@ -200,28 +200,28 @@ export default function AdminFleetMarketplace() {
             <table className="w-full text-left border-collapse animate-fade-in">
               <thead>
                 <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Load ID</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Route</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Shipper</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Details</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Load ID</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Route</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Shipper</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Details</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {loads.filter(l => l.id.toLowerCase().includes(searchTerm.toLowerCase()) || l.shipper.toLowerCase().includes(searchTerm.toLowerCase())).map(load => (
                   <tr key={load.id || load?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
-                    <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate- font-bold">{load.id}</td>
+                    <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate-400 font-bold">{load.id}</td>
                     <td className="p-4">
                       <div className="font-bold text-sm text-slate-900 dark:text-white">{load.origin}</div>
-                      <div className="text-xs text-slate-500 dark:text-slate- text-brand-600 flex items-center gap-1">
+                      <div className="text-xs text-slate-500 dark:text-slate-400 text-brand-600 flex items-center gap-1">
                         &rarr; {load.destination}
                       </div>
                     </td>
-                    <td className="p-4 text-sm text-slate-700 dark:text-slate-">{load.shipper}</td>
+                    <td className="p-4 text-sm text-slate-700 dark:text-slate-400">{load.shipper}</td>
                     <td className="p-4">
                       <div className="font-bold text-sm text-slate-900 dark:text-white">₦{load.price.toLocaleString()}</div>
-                      <div className="text-xs text-slate-500 dark:text-slate-">{load.weight}</div>
+                      <div className="text-xs text-slate-500 dark:text-slate-400">{load.weight}</div>
                     </td>
                     <td className="p-4">{getLoadStatusBadge(load.status)}</td>
                     <td className="p-4 text-right">

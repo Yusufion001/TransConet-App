@@ -72,7 +72,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.6, type: 'spring' }}
-            className="absolute left-6 top-8 w-24 h-48 bg-white dark:bg-slate-900 rounded-2xl shadow-xl border-4 border-slate-100 dark:border-slate-800 flex flex-col overflow-hidden"
+            className="absolute left-6 top-8 w-24 h-48 bg-white dark:bg-slate-900 rounded-[20px] shadow-sm border-4 border-slate-100 dark:border-slate-800 flex flex-col overflow-hidden"
           >
             <div className="h-4 bg-brand-600 w-full" />
             <div className="flex-1 p-2 space-y-2">
@@ -105,14 +105,14 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ x: 200, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.7, type: 'spring', bounce: 0.2 }}
-            className="absolute right-4 bottom-12 bg-white dark:bg-slate-900 p-3 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 flex items-center gap-3"
+            className="absolute right-4 bottom-12 bg-white dark:bg-slate-900 p-3 rounded-[20px] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-3"
           >
             <div className="w-12 h-12 bg-brand-600/10 rounded-xl flex items-center justify-center">
               <Truck size={24} className="text-brand-600" />
             </div>
             <div>
               <div className="text-xs font-bold text-slate-900">Cargo Matched!</div>
-              <div className="text-[10px] text-slate-500 dark:text-slate-">2 mins ago</div>
+              <div className="text-[10px] text-slate-500 dark:text-slate-400">2 mins ago</div>
             </div>
           </motion.div>
         </div>
@@ -141,9 +141,9 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3, type: 'spring' }}
-            className="absolute left-10 top-16 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-lg border border-slate-100 dark:border-slate-800 rotate-[-10deg]"
+            className="absolute left-10 top-16 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 rotate-[-10deg]"
           >
-            <FileText size={32} className="text-slate-600 dark:text-slate-" />
+            <FileText size={32} className="text-slate-600 dark:text-slate-400" />
             <motion.div 
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -159,7 +159,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2, type: 'spring', bounce: 0.4 }}
-            className="relative z-10 w-28 h-28 bg-white dark:bg-slate-900 rounded-3xl shadow-xl flex items-center justify-center border border-slate-100 dark:border-slate-800"
+            className="relative z-10 w-28 h-28 bg-white dark:bg-slate-900 rounded-[20px] shadow-sm flex items-center justify-center border border-slate-100 dark:border-slate-800"
           >
             <ShieldCheck size={56} className="text-brand-600" />
           </motion.div>
@@ -169,7 +169,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.6, type: 'spring' }}
-            className="absolute right-12 bottom-16 bg-white dark:bg-slate-900 p-3 rounded-full shadow-lg"
+            className="absolute right-12 bottom-16 bg-white dark:bg-slate-900 p-3 rounded-full shadow-sm"
           >
             <Lock size={20} className="text-white" />
           </motion.div>
@@ -217,14 +217,14 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4, type: 'spring' }}
-            className="absolute bottom-8 right-8 bg-white dark:bg-slate-900 p-3 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-800 flex items-center gap-4 z-20"
+            className="absolute bottom-8 right-8 bg-white dark:bg-slate-900 p-3 rounded-[20px] shadow-sm border border-slate-100 dark:border-slate-800 flex items-center gap-4 z-20"
           >
             <div className="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center">
               <Navigation size={20} className="text-emerald-600" />
             </div>
             <div>
               <div className="text-sm font-bold text-slate-900">15 mins away</div>
-              <div className="text-xs text-slate-500 dark:text-slate-">On route to Lagos</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400">On route to Lagos</div>
             </div>
           </motion.div>
         </div>
@@ -233,7 +233,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
   ];
 
   return (
-    <div className="relative w-full h-[100dvh] md:h-[800px] md:max-h-[90vh] md:w-[400px] mx-auto bg-white dark:bg-slate-900 md:rounded-[40px] md:shadow-2xl overflow-hidden flex flex-col font-sans">
+    <div className="relative w-full h-[100dvh] md:h-[800px] md:max-h-[90vh] md:w-[400px] mx-auto bg-white dark:bg-slate-900 md:rounded-[40px] md:shadow-sm overflow-hidden flex flex-col font-sans">
       
       {/* Illustration Area (Top 45%) */}
       <div className="relative h-[45%] w-full bg-slate-50 rounded-b-[40px]">
@@ -281,7 +281,7 @@ export default function WelcomeSlides({ onComplete }: WelcomeSlidesProps) {
             <h1 className="text-3xl font-bold text-slate-900 mb-4 tracking-tight leading-tight">
               {slides[page].headline}
             </h1>
-            <p className="text-slate-500 dark:text-slate- text-[15px] leading-relaxed mb-8">
+            <p className="text-slate-500 dark:text-slate-400 text-[15px] leading-relaxed mb-8">
               {slides[page].description}
             </p>
             

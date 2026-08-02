@@ -2,7 +2,7 @@ import React from 'react';
 import { Cpu, ShieldCheck } from 'lucide-react';
 
 export const AdminBrandConsole = () => (
-  <div className="bg-brand-600 border border-brand-500 rounded-3xl p-6 sm:p-8 relative overflow-hidden shadow-xl ">
+  <div className="bg-brand-600 border border-brand-500 rounded-[20px] p-6 sm:p-8 relative overflow-hidden shadow-xl ">
     <div className="absolute top-0 right-0 p-8 opacity-10">
       <Cpu size={160} className="text-white" />
     </div>

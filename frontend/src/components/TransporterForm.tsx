@@ -18,18 +18,18 @@ function InteractiveSelector({ options, selected, onSelect, label, placeholder }
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="space-y-2 relative">
-      {label && <label className="text-sm font-bold text-slate-600 dark:text-slate-">{label}</label>}
+      {label && <label className="text-sm font-bold text-slate-600 dark:text-slate-400">{label}</label>}
       <Button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full bg-white dark:bg-slate-900 p-3 md:p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- flex justify-between items-center text-left"
+        className="w-full bg-white dark:bg-slate-900 p-3 md:p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 flex justify-between items-center text-left"
       >
         <span className={selected ? 'text-slate-800 dark:text-slate-100 text-sm' : 'text-slate-500 dark:text-slate-400 text-sm'}>{selected || placeholder}</span>
         <ChevronDown className={`w-4 h-4 text-slate-600 dark:text-slate-300 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </Button>
 
       {isOpen && (
-        <div className="absolute z-50 w-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl max-h-60 overflow-y-auto p-2">
+        <div className="absolute z-50 w-full mt-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm max-h-60 overflow-y-auto p-2">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
             {options.map((opt) => (
               <Button
@@ -147,12 +147,12 @@ export default function TransporterForm() {
     if (registrationMode === 'bulk') vehicleCount = parsedTrucks.length;
 
     return (
-      <div className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate- p-8 rounded-3xl text-center space-y-4 max-w-2xl mx-auto border border-slate-200 dark:border-slate-700">
+      <div className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 p-8 rounded-[20px] text-center space-y-4 max-w-2xl mx-auto border border-slate-200 dark:border-slate-700">
         <div className="w-16 h-16 bg-emerald-600/20 text-emerald-500 rounded-2xl flex items-center justify-center mx-auto">
           <CheckCircle2 size={36} />
         </div>
-        <h2 className="text-2xl font-black text-slate-800 dark:text-slate-">Fleet Registration Submitted!</h2>
-        <p className="text-sm text-slate-600 dark:text-slate- max-w-md mx-auto">
+        <h2 className="text-2xl font-black text-slate-800 dark:text-slate-400">Fleet Registration Submitted!</h2>
+        <p className="text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto">
           Your fleet profile ({vehicleCount} vehicle{vehicleCount > 1 ? 's' : ''}) is queued for Admin review. Our verification team will reach out shortly.
         </p>
       </div>
@@ -160,21 +160,21 @@ export default function TransporterForm() {
   }
 
   return (
-    <div className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate- p-4 md:p-10 space-y-8 max-w-3xl mx-auto rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 p-4 md:p-10 space-y-8 max-w-3xl mx-auto rounded-[20px] border border-slate-200 dark:border-slate-700 shadow-sm">
       <div className="flex justify-between items-start">
         <div className="flex flex-col relative group">
           <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
             <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-900 to-brand-600">Trans</span><span className="text-slate-400 dark:text-slate-400">Conet</span>
           </span>
-          <p className="text-[7.5px] text-slate-500 dark:text-slate- font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
+          <p className="text-[7.5px] text-slate-500 dark:text-slate-400 font-bold tracking-[0.15em] uppercase pl-0.5 mt-[-2px]">Connecting Cargo with Capacity</p>
         </div>
         <div className="flex gap-3">
-          <Bell className="text-slate-600 dark:text-slate-" size={20}/>
-          <Share2 className="text-slate-600 dark:text-slate-" size={20}/>
+          <Bell className="text-slate-600 dark:text-slate-400" size={20}/>
+          <Share2 className="text-slate-600 dark:text-slate-400" size={20}/>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row mb-6 gap-1">
+      <div className="bg-white dark:bg-slate-900 p-1 rounded-[20px] border border-slate-200 dark:border-slate-700 flex flex-col md:flex-row mb-6 gap-1">
         <Button 
           onClick={() => { setRegistrationMode('single'); setErrorMsg(''); }}
           className={`flex-1 py-2.5 px-3 rounded-xl text-xs md:text-sm font-bold transition ${registrationMode === 'single' ? 'bg-brand-600 text-white shadow-md' : 'text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:text-slate-200 hover:bg-brand-50 cursor-pointer hover:shadow-sm'}`}
@@ -195,8 +195,8 @@ export default function TransporterForm() {
         </Button>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-slate-50 dark:bg-slate-800/50 p-4 md:p-6 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-6">
-        <h2 className="text-xl font-black text-slate-800 dark:text-slate- flex items-center gap-3">
+      <form onSubmit={handleSubmit} className="bg-slate-50 dark:bg-slate-800/50 p-4 md:p-6 rounded-[20px] border border-slate-200 dark:border-slate-700 space-y-6">
+        <h2 className="text-xl font-black text-slate-800 dark:text-slate-400 flex items-center gap-3">
           <Truck className="text-brand-500" size={24} /> 
           {registrationMode === 'single' && 'Register Vehicle'}
           {registrationMode === 'quick' && 'Quick Fleet Add'}
@@ -204,14 +204,14 @@ export default function TransporterForm() {
         </h2>
         
             <div className="space-y-4 pt-2 border-b border-slate-200 dark:border-slate-700 pb-6 mb-6">
-              <h3 className="font-bold text-slate-800 dark:text-slate- flex items-center gap-2"><Building2 size={18} className="text-brand-500"/> Corporate Registration (Optional)</h3>
-              <p className="text-slate-600 dark:text-slate- text-xs">Registering as a company? Provide your CAC details to unlock premium corporate clients.</p>
-              <input type="text" placeholder="Company Name" className="w-full bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500" />
-              <input type="text" placeholder="CAC Registration Number" className="w-full bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500" />
+              <h3 className="font-bold text-slate-800 dark:text-slate-400 flex items-center gap-2"><Building2 size={18} className="text-brand-500"/> Corporate Registration (Optional)</h3>
+              <p className="text-slate-600 dark:text-slate-400 text-xs">Registering as a company? Provide your CAC details to unlock premium corporate clients.</p>
+              <input type="text" placeholder="Company Name" className="w-full bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500" />
+              <input type="text" placeholder="CAC Registration Number" className="w-full bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500" />
             </div>
         {registrationMode === 'single' && (
           <>
-            <p className="text-slate-600 dark:text-slate- text-sm">Provide your vehicle details for quick verification and start receiving cargo opportunities.</p>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">Provide your vehicle details for quick verification and start receiving cargo opportunities.</p>
             <div className="space-y-4">
               <InteractiveSelector
                 label="Manufacturer / Brand"
@@ -229,17 +229,17 @@ export default function TransporterForm() {
                 onSelect={setTruckType}
               />
 
-              <label className="text-sm font-bold text-slate-600 dark:text-slate- block mt-4 mb-2">Official License Plate Number</label>
-              <input type="text" required placeholder="e.g., LSR-123XA" value={plateNumber} onChange={e => setPlateNumber(e.target.value.toUpperCase())} className="w-full bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" />
+              <label className="text-sm font-bold text-slate-600 dark:text-slate-400 block mt-4 mb-2">Official License Plate Number</label>
+              <input type="text" required placeholder="e.g., LSR-123XA" value={plateNumber} onChange={e => setPlateNumber(e.target.value.toUpperCase())} className="w-full bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" />
               
-              <label className="text-sm font-bold text-slate-600 dark:text-slate- block mt-4 mb-2">Maximum Payload Capacity (Optional)</label>
-              <input type="text" placeholder="e.g., 30 Tons" value={tonnage} onChange={e => setTonnage(e.target.value)} className="w-full bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" />
+              <label className="text-sm font-bold text-slate-600 dark:text-slate-400 block mt-4 mb-2">Maximum Payload Capacity (Optional)</label>
+              <input type="text" placeholder="e.g., 30 Tons" value={tonnage} onChange={e => setTonnage(e.target.value)} className="w-full bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" />
             </div>
 
             {/* Physical Asset Inspection */}
             <div className="space-y-3 pt-4 border-t border-slate-200 dark:border-slate-700 mt-6">
-                <h3 className="font-bold text-slate-800 dark:text-slate- flex items-center gap-2"><ShieldCheck size={18} className="text-brand-500"/> Physical Asset Inspection</h3>
-                <p className="text-slate-600 dark:text-slate- text-xs">Upload the following for quick verification.</p>
+                <h3 className="font-bold text-slate-800 dark:text-slate-400 flex items-center gap-2"><ShieldCheck size={18} className="text-brand-500"/> Physical Asset Inspection</h3>
+                <p className="text-slate-600 dark:text-slate-400 text-xs">Upload the following for quick verification.</p>
                 <VehicleVerificationUpload onUploadComplete={(url) => { setVideoUrl(url); setErrorMsg(''); }} />
             </div>
           </>
@@ -247,13 +247,13 @@ export default function TransporterForm() {
 
         {registrationMode === 'quick' && (
           <>
-            <p className="text-slate-600 dark:text-slate- text-sm">Add multiple vehicles directly from this page without needing an external spreadsheet.</p>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">Add multiple vehicles directly from this page without needing an external spreadsheet.</p>
             
             <div className="space-y-4">
               {quickVehicles.map((vehicle, index) => (
-                <div key={vehicle.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4 shadow-sm relative">
+                <div key={vehicle.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-4 shadow-sm relative">
                   <div className="flex justify-between items-center mb-4">
-                    <h4 className="font-bold text-slate-800 dark:text-slate- text-sm flex items-center gap-2">
+                    <h4 className="font-bold text-slate-800 dark:text-slate-400 text-sm flex items-center gap-2">
                       <div className="w-6 h-6 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-xs">{index + 1}</div>
                       Vehicle {index + 1}
                     </h4>
@@ -275,7 +275,7 @@ export default function TransporterForm() {
                         placeholder="Plate Number (e.g., KJA-123AA)" 
                         value={vehicle.plate} 
                         onChange={e => updateQuickVehicle(vehicle.id, 'plate', e.target.value.toUpperCase())} 
-                        className="w-full bg-slate-50 dark:bg-slate-800 p-3 text-sm rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" 
+                        className="w-full bg-slate-50 dark:bg-slate-800 p-3 text-sm rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" 
                         required
                       />
                     </div>
@@ -285,7 +285,7 @@ export default function TransporterForm() {
                         placeholder="Capacity (e.g., 30 Tons)" 
                         value={vehicle.tonnage} 
                         onChange={e => updateQuickVehicle(vehicle.id, 'tonnage', e.target.value)} 
-                        className="w-full bg-slate-50 dark:bg-slate-800 p-3 text-sm rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" 
+                        className="w-full bg-slate-50 dark:bg-slate-800 p-3 text-sm rounded-xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:bg-white dark:bg-slate-900 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500" 
                       />
                     </div>
                     <div>
@@ -328,7 +328,7 @@ export default function TransporterForm() {
 
         {registrationMode === 'bulk' && (
           <>
-            <p className="text-slate-600 dark:text-slate- text-sm">Upload multiple vehicles at once using our spreadsheet template. Ideal for large fleet operators.</p>
+            <p className="text-slate-600 dark:text-slate-400 text-sm">Upload multiple vehicles at once using our spreadsheet template. Ideal for large fleet operators.</p>
             
             <div className="space-y-4">
               <div className="bg-brand-50 p-4 rounded-2xl border border-brand-100 flex items-center justify-between">
@@ -348,20 +348,20 @@ export default function TransporterForm() {
               <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-slate-300 border-dashed rounded-2xl cursor-pointer bg-white dark:bg-slate-900 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition">
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <FileSpreadsheet className="w-10 h-10 text-slate-400 dark:text-slate-400 mb-3" />
-                  <p className="mb-2 text-sm text-slate-600 dark:text-slate- font-medium"><span className="font-bold text-brand-600">Click to upload</span> or drag and drop</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-">.CSV, .XLS, or .XLSX (Max. 10MB)</p>
+                  <p className="mb-2 text-sm text-slate-600 dark:text-slate-400 font-medium"><span className="font-bold text-brand-600">Click to upload</span> or drag and drop</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">.CSV, .XLS, or .XLSX (Max. 10MB)</p>
                 </div>
                 <input type="file" className="hidden" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onChange={handleBulkUpload} />
               </label>
 
               {bulkFile && (
-                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-4">
+                <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-4">
                   <div className="flex items-center justify-between mb-4 pb-4 border-b border-slate-100 dark:border-slate-800">
                     <div className="flex items-center gap-3">
                       <FileText className="text-emerald-500" size={24} />
                       <div>
-                        <p className="font-bold text-sm text-slate-800 dark:text-slate-">{bulkFile.name}</p>
-                        <p className="text-xs text-slate-500 dark:text-slate-">{(bulkFile.size / 1024).toFixed(1)} KB</p>
+                        <p className="font-bold text-sm text-slate-800 dark:text-slate-400">{bulkFile.name}</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">{(bulkFile.size / 1024).toFixed(1)} KB</p>
                       </div>
                     </div>
                     <CheckCircle2 className="text-emerald-500" size={20} />
@@ -369,7 +369,7 @@ export default function TransporterForm() {
                   
                   {parsedTrucks.length > 0 ? (
                     <div>
-                      <p className="text-xs font-bold text-slate-600 dark:text-slate- uppercase tracking-wider mb-3">Preview ({parsedTrucks.length} Vehicles Found)</p>
+                      <p className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider mb-3">Preview ({parsedTrucks.length} Vehicles Found)</p>
                       <div className="space-y-2 max-h-60 overflow-y-auto pr-2">
                         {parsedTrucks.map((truck, idx) => (
                           <div key={idx} className="flex items-center justify-between bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-sm">
@@ -377,9 +377,9 @@ export default function TransporterForm() {
                               <div className="bg-brand-100 text-brand-700 font-bold px-2 py-1 rounded text-xs">
                                 {truck.plate}
                               </div>
-                              <span className="text-slate-700 dark:text-slate- font-medium">{truck.brand}</span>
+                              <span className="text-slate-700 dark:text-slate-400 font-medium">{truck.brand}</span>
                             </div>
-                            <span className="text-slate-500 dark:text-slate- text-xs">{truck.type} • {truck.tonnage}T</span>
+                            <span className="text-slate-500 dark:text-slate-400 text-xs">{truck.type} • {truck.tonnage}T</span>
                           </div>
                         ))}
                       </div>
@@ -387,7 +387,7 @@ export default function TransporterForm() {
                   ) : (
                     <div className="flex items-center justify-center p-4">
                       <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-brand-600"></div>
-                      <span className="ml-3 text-sm text-slate-600 dark:text-slate-">Parsing fleet data...</span>
+                      <span className="ml-3 text-sm text-slate-600 dark:text-slate-400">Parsing fleet data...</span>
                     </div>
                   )}
                 </div>
@@ -409,19 +409,19 @@ export default function TransporterForm() {
         <div className="flex gap-4 p-4 bg-brand-50/50 rounded-2xl border border-brand-100/50 mt-4">
             <div className="flex flex-col items-center flex-1 gap-2 p-2">
                 <ShieldCheck className="text-brand-500"/>
-                <span className="text-[10px] text-center font-bold text-slate-600 dark:text-slate-">Verified Fleet</span>
+                <span className="text-[10px] text-center font-bold text-slate-600 dark:text-slate-400">Verified Fleet</span>
             </div>
             <div className="flex flex-col items-center flex-1 gap-2 p-2">
                 <Truck className="text-brand-500"/>
-                <span className="text-[10px] text-center font-bold text-slate-600 dark:text-slate-">Receive Cargo</span>
+                <span className="text-[10px] text-center font-bold text-slate-600 dark:text-slate-400">Receive Cargo</span>
             </div>
             <div className="flex flex-col items-center flex-1 gap-2 p-2">
                 <Zap className="text-brand-500"/>
-                <span className="text-[10px] text-center font-bold text-slate-600 dark:text-slate-">Quick Reg</span>
+                <span className="text-[10px] text-center font-bold text-slate-600 dark:text-slate-400">Quick Reg</span>
             </div>
         </div>
                 
-        <p className="text-center text-slate-500 dark:text-slate- text-[10px] flex items-center justify-center gap-1"><CheckCircle2 size={10} className="text-emerald-500"/> Your fleet profile will become visible upon verification.</p>
+        <p className="text-center text-slate-500 dark:text-slate-400 text-[10px] flex items-center justify-center gap-1"><CheckCircle2 size={10} className="text-emerald-500"/> Your fleet profile will become visible upon verification.</p>
       </form>
     </div>
   );

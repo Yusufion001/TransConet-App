@@ -40,7 +40,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
     if (this.state.hasError) {
       return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-6 text-left overflow-auto">
-          <div className="max-w-4xl p-8 bg-slate-900 border border-slate-800 rounded-2xl shadow-xl w-full">
+          <div className="max-w-4xl p-8 bg-slate-900 border border-slate-800 rounded-[20px] shadow-sm w-full">
             <h2 className="text-xl font-bold font-heading text-red-400 mb-2">Something went wrong</h2>
             <div className="text-red-400 mb-4 text-xs font-mono whitespace-pre-wrap">
               {this.state.error?.toString()}

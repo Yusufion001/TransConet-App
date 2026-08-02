@@ -222,7 +222,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
       case 'realtime':
         return <Terminal size={14} className="text-sky-500" />;
       default:
-        return <Server size={14} className="text-slate-500 dark:text-slate-" />;
+        return <Server size={14} className="text-slate-500 dark:text-slate-400" />;
     }
   };
 
@@ -234,7 +234,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
   return (
     <div id="admin-error-center" className="space-y-6 animate-fade-in">
       {/* Header card */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 relative overflow-hidden shadow-xl text-white">
+      <div className="bg-slate-900 border border-slate-800 rounded-[20px] p-6 relative overflow-hidden shadow-sm text-white">
         <div className="absolute top-0 right-0 p-6 opacity-5">
           <Terminal size={140} className="text-white" />
         </div>
@@ -265,15 +265,15 @@ CREATE POLICY "Public Read Access" ON storage.objects
         <div className="lg:col-span-1 space-y-6">
           
           {/* Health Score Panel */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-5">
             <div className="flex justify-between items-center">
-              <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate- flex items-center gap-2">
+              <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
                 <Server size={14} className="text-brand-600" /> Infrastructure Health
               </h3>
               <Button aria-label="Action" 
                 onClick={() => refetch()} 
                 disabled={loading}
-                className="p-1.5 hover:bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate- rounded-lg transition"
+                className="p-1.5 hover:bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-lg transition"
                 title="Force refresh diagnostics"
               >
                 <RefreshCw size={14} className={loading ? 'animate-spin text-brand-600' : ''} />
@@ -290,7 +290,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                       <div className="text-lg font-black text-emerald-600 flex items-center gap-1.5 justify-center">
                         <CheckCircle size={20} className="text-emerald-500" /> HEALTHY
                       </div>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-">All cloud systems fully operational.</p>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">All cloud systems fully operational.</p>
                     </div>
                   )}
 
@@ -299,7 +299,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                       <div className="text-lg font-black text-amber-600 flex items-center gap-1.5 justify-center">
                         <AlertTriangle size={20} className="text-amber-500" /> WARNINGS ACTIVE
                       </div>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-">Minor issues found, storage/replication limited.</p>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Minor issues found, storage/replication limited.</p>
                     </div>
                   )}
 
@@ -308,7 +308,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                       <div className="text-lg font-black text-red-600 flex items-center gap-1.5 justify-center">
                         <AlertCircle size={20} className="text-red-500" /> DEGRADED
                       </div>
-                      <p className="text-[10px] text-slate-500 dark:text-slate-">Critical errors blocking essential components.</p>
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400">Critical errors blocking essential components.</p>
                     </div>
                   )}
                 </div>
@@ -316,7 +316,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                 <div className="grid grid-cols-2 gap-3">
                   <div className="bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-800 p-3 rounded-xl">
                     <span className="text-[9px] text-slate-400 dark:text-slate-400 uppercase tracking-wider block">Latency</span>
-                    <span className="text-sm font-extrabold text-slate-700 dark:text-slate- font-mono">
+                    <span className="text-sm font-extrabold text-slate-700 dark:text-slate-400 font-mono">
                       {data.status.latencyMs > 0 ? `${data.status.latencyMs}ms` : 'Offline/Mock'}
                     </span>
                   </div>
@@ -346,26 +346,26 @@ CREATE POLICY "Public Read Access" ON storage.objects
                 </div>
               </div>
             ) : (
-              <div className="py-6 text-center text-xs text-slate-500 dark:text-slate- font-mono">
+              <div className="py-6 text-center text-xs text-slate-500 dark:text-slate-400 font-mono">
                 Scanning backend infrastructure...
               </div>
             )}
           </div>
 
           {/* Simulation Playground Panel */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-4">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-4">
             <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
               <Sparkles className="text-brand-500" size={14} /> Diagnostic Playground
             </h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate- leading-normal">
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-normal">
               Toggle specific backend failures below to test how the Error Center detects, warns, and guides resolution. Great for demonstrating app robustness!
             </p>
 
             <div className="space-y-2 pt-2">
               <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Missing Tables</span>
-                  <p className="text-[9px] text-slate-500 dark:text-slate-">Fakes complete postgres schema deletion</p>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Simulate Missing Tables</span>
+                  <p className="text-[9px] text-slate-500 dark:text-slate-400">Fakes complete postgres schema deletion</p>
                 </div>
                 <input 
                   type="checkbox" 
@@ -377,8 +377,8 @@ CREATE POLICY "Public Read Access" ON storage.objects
 
               <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Private Buckets</span>
-                  <p className="text-[9px] text-slate-500 dark:text-slate-">Triggers warnings on bucket permission levels</p>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Simulate Private Buckets</span>
+                  <p className="text-[9px] text-slate-500 dark:text-slate-400">Triggers warnings on bucket permission levels</p>
                 </div>
                 <input 
                   type="checkbox" 
@@ -390,8 +390,8 @@ CREATE POLICY "Public Read Access" ON storage.objects
 
               <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Auth Timeout</span>
-                  <p className="text-[9px] text-slate-500 dark:text-slate-">Simulates high-latency auth engine delay</p>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Simulate Auth Timeout</span>
+                  <p className="text-[9px] text-slate-500 dark:text-slate-400">Simulates high-latency auth engine delay</p>
                 </div>
                 <input 
                   type="checkbox" 
@@ -403,8 +403,8 @@ CREATE POLICY "Public Read Access" ON storage.objects
 
               <label className="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 hover:bg-brand-50 cursor-pointer transition">
                 <div className="space-y-0.5">
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-">Simulate Unconfigured State</span>
-                  <p className="text-[9px] text-slate-500 dark:text-slate-">Simulates zero API keys in local workspace</p>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">Simulate Unconfigured State</span>
+                  <p className="text-[9px] text-slate-500 dark:text-slate-400">Simulates zero API keys in local workspace</p>
                 </div>
                 <input 
                   type="checkbox" 
@@ -422,7 +422,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
         <div className="lg:col-span-2 space-y-6">
           
           {/* Table Diagnostics Grid */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-4">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-4">
             <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
               <Layers size={14} className="text-amber-500" /> Database Table Diagnostics
             </h3>
@@ -432,7 +432,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
                 {(Object.entries(data.tables) as [string, TableStatus][]).map(([tableName, status]) => (
                   <div key={tableName} className="border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 p-3 rounded-xl flex items-center justify-between">
                     <div className="space-y-0.5">
-                      <span className="text-xs font-bold text-slate-800 dark:text-slate- font-mono">{tableName}</span>
+                      <span className="text-xs font-bold text-slate-800 dark:text-slate-400 font-mono">{tableName}</span>
                       <div className="flex items-center gap-1">
                         <span className="text-[9px] font-medium text-slate-400 dark:text-slate-400 font-mono">
                           {status.exists ? `${status.rows} rows populated` : 'No connection'}
@@ -462,7 +462,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
           </div>
 
           {/* Core Detected Issues Panel */}
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm space-y-5">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-2 border-b border-slate-100 dark:border-slate-800">
               <h3 className="text-xs uppercase font-extrabold tracking-wider text-slate-900 dark:text-white flex items-center gap-1.5">
                 <AlertTriangle size={15} className="text-red-500" /> Detected Warnings & Recommendations
@@ -513,13 +513,13 @@ CREATE POLICY "Public Read Access" ON storage.objects
                               {issue.service}
                             </span>
                           </div>
-                          <p className="text-[11px] text-slate-500 dark:text-slate- leading-relaxed max-w-xl">
+                          <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed max-w-xl">
                             {issue.description}
                           </p>
                         </div>
                       </div>
 
-                      <Button className="text-slate-400 hover:text-slate-600 dark:text-slate- self-center">
+                      <Button className="text-slate-400 hover:text-slate-600 dark:text-slate-400 self-center">
                         {expandedIssue === issue.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </Button>
                     </div>
@@ -528,19 +528,19 @@ CREATE POLICY "Public Read Access" ON storage.objects
                     {expandedIssue === issue.id && (
                       <div className="p-4 bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 space-y-4 text-xs leading-relaxed animate-fade-in">
                         {/* Consequence card */}
-                        <div className="bg-red-50/50 border border-red-100 p-3 rounded-lg text-slate-800 dark:text-slate-">
+                        <div className="bg-red-50/50 border border-red-100 p-3 rounded-lg text-slate-800 dark:text-slate-400">
                           <strong className="text-red-700 block text-[10px] uppercase font-bold tracking-wider mb-1">
                             ⚠️ App/Platform Impact:
                           </strong>
-                          <p className="text-[11px] text-slate-600 dark:text-slate-">{issue.consequence}</p>
+                          <p className="text-[11px] text-slate-600 dark:text-slate-400">{issue.consequence}</p>
                         </div>
 
                         {/* Resolution instructions */}
-                        <div className="space-y-1 text-slate-800 dark:text-slate-">
+                        <div className="space-y-1 text-slate-800 dark:text-slate-400">
                           <strong className="text-brand-700 block text-[10px] uppercase font-bold tracking-wider mb-1">
                             💡 Recommended Troubleshooting Steps:
                           </strong>
-                          <p className="text-[11px] text-slate-600 dark:text-slate-">{issue.resolution}</p>
+                          <p className="text-[11px] text-slate-600 dark:text-slate-400">{issue.resolution}</p>
                         </div>
 
                         {/* SQL copy snippet */}
@@ -570,7 +570,7 @@ CREATE POLICY "Public Read Access" ON storage.objects
               ) : (
                 <div className="py-12 border-2 border-dashed border-slate-100 dark:border-slate-800 rounded-2xl flex flex-col items-center justify-center text-center space-y-2">
                   <CheckCircle size={28} className="text-emerald-500 animate-pulse" />
-                  <span className="text-xs font-bold text-slate-700 dark:text-slate-">No matching issues found!</span>
+                  <span className="text-xs font-bold text-slate-700 dark:text-slate-400">No matching issues found!</span>
                   <p className="text-[10px] text-slate-400 dark:text-slate-400 max-w-xs">Your checked filters contain clean bills of health. Use the playground options to simulate specific warnings.</p>
                 </div>
               )}

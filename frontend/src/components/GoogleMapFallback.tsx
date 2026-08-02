@@ -17,7 +17,7 @@ export default function GoogleMapFallback({
   title = 'Interactive GPS Route Vector Map'
 }: GoogleMapFallbackProps) {
   return (
-    <div className={`relative w-full ${height} bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-xl flex flex-col justify-between p-4 ${className}`}>
+    <div className={`relative w-full ${height} bg-slate-900 rounded-[20px] overflow-hidden border border-slate-800 shadow-sm flex flex-col justify-between p-4 ${className}`}>
       {/* Background SVG vector map grid */}
       <div className="absolute inset-0 opacity-25" style={{ backgroundImage: 'radial-gradient(#3B82F6 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
 

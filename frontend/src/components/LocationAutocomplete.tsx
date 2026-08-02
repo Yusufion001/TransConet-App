@@ -135,7 +135,7 @@ export default function LocationAutocomplete({
   return (
     <div ref={containerRef} className={`space-y-2 relative ${className}`}>
       {label && (
-        <label className="text-sm font-bold text-slate-800 dark:text-slate- flex items-center justify-between">
+        <label className="text-sm font-bold text-slate-800 dark:text-slate-400 flex items-center justify-between">
           <span className="flex items-center gap-2">
             {label} <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
           </span>
@@ -150,7 +150,7 @@ export default function LocationAutocomplete({
           onFocus={() => { if (predictions.length > 0) setIsOpen(true); }}
           placeholder={placeholder}
           required={required}
-          className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- text-sm font-medium focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition-all"
+          className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-[20px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 text-sm font-medium focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100 transition-all"
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
           {isLoading ? (
@@ -166,7 +166,7 @@ export default function LocationAutocomplete({
         </div>
       )}
       {isOpen && predictions.length > 0 && (
-        <div className="absolute z-50 top-[calc(100%+0.5rem)] left-0 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl overflow-hidden max-h-64 overflow-y-auto">
+        <div className="absolute z-50 top-[calc(100%+0.5rem)] left-0 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden max-h-64 overflow-y-auto">
           {predictions.map((p) => (
             <Button
               type="button"

@@ -111,7 +111,7 @@ export default function StateFilterOverlay({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-            className={`relative w-full ${isInline ? "max-w-none h-full" : "max-w-lg sm:max-w-xl"} bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-3xl shadow-2xl p-5 sm:p-6 flex flex-col h-[70vh] max-h-[600px] z-10`}
+            className={`relative w-full ${isInline ? "max-w-none h-full" : "max-w-lg sm:max-w-xl"} bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] shadow-sm p-5 sm:p-6 flex flex-col h-[70vh] max-h-[600px] z-10`}
           >
             {/* Handle Bar for mobile drag intent visual styling */}
             <div className="w-12 h-1.5 bg-slate-300  rounded-full mx-auto mb-4 sm:hidden shrink-0" />
@@ -131,13 +131,13 @@ export default function StateFilterOverlay({
                   {selectedState ? <Map className="text-brand-600 animate-pulse" size={20} /> : <Compass className="text-brand-600 animate-spin-slow" size={20} />}
                   {selectedState ? `Specific location in ${selectedState}` : title}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-  font-medium">
+                <p className="text-xs text-slate-500 dark:text-slate-400  font-medium">
                   {selectedState ? 'Select a city/LGA or enter a custom area' : subtitle}
                 </p>
               </div>
               <Button 
                 onClick={handleClose}
-                className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-brand-600 border border-slate-200 dark:border-slate-700  rounded-xl text-slate-500 dark:text-slate-  hover:text-white transition cursor-pointer shrink-0"
+                className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-brand-600 border border-slate-200 dark:border-slate-700  rounded-xl text-slate-500 dark:text-slate-400  hover:text-white transition cursor-pointer shrink-0"
               >
                 <X size={16} />
               </Button>
@@ -145,7 +145,7 @@ export default function StateFilterOverlay({
 
             {/* SEARCH / CUSTOM INPUT */}
             <div className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl flex items-center px-4 mb-5 group focus-within:border-brand-500 transition shrink-0">
-              <Search className="text-slate-500 dark:text-slate-  mr-2.5 shrink-0 group-focus-within:text-brand-600 transition" size={18} />
+              <Search className="text-slate-500 dark:text-slate-400  mr-2.5 shrink-0 group-focus-within:text-brand-600 transition" size={18} />
               <input
                 type="text"
                 className="flex-1 h-13 bg-transparent text-slate-900 dark:text-white  text-sm outline-none border-none placeholder-slate-500 focus:ring-0 focus:border-transparent font-medium"
@@ -163,7 +163,7 @@ export default function StateFilterOverlay({
               {searchQuery.length > 0 && (
                 <Button 
                   onClick={() => setSearchQuery('')}
-                  className="bg-slate-200  hover:bg-slate-300 :bg-slate-600 px-2.5 py-1 rounded-lg text-[10px] font-bold text-slate-700 dark:text-slate-  transition cursor-pointer uppercase tracking-wider shrink-0 ml-2"
+                  className="bg-slate-200  hover:bg-slate-300 :bg-slate-600 px-2.5 py-1 rounded-lg text-[10px] font-bold text-slate-700 dark:text-slate-400  transition cursor-pointer uppercase tracking-wider shrink-0 ml-2"
                 >
                   Clear
                 </Button>
@@ -215,12 +215,12 @@ export default function StateFilterOverlay({
                     className="flex items-center justify-between bg-slate-50 dark:bg-slate-800  hover:bg-slate-100 :bg-slate-700 border border-slate-200 dark:border-slate-700  hover:border-slate-300 :border-slate-600 rounded-xl px-4 py-3.5 text-left transition-colors duration-75 group cursor-pointer"
                   >
                     <div className="flex items-center gap-2 min-w-0">
-                      <MapPin size={12} className="text-slate-500 dark:text-slate-  group-hover:text-brand-600 transition shrink-0" />
+                      <MapPin size={12} className="text-slate-500 dark:text-slate-400  group-hover:text-brand-600 transition shrink-0" />
                       <span className="text-slate-800 dark:text-slate-100  group-hover:text-slate-900 dark:text-white  font-semibold text-xs truncate">
                         {item}
                       </span>
                     </div>
-                    <span className="text-slate-600 dark:text-slate-  group-hover:text-brand-600 font-bold text-[10px]  transition shrink-0">
+                    <span className="text-slate-600 dark:text-slate-400  group-hover:text-brand-600 font-bold text-[10px]  transition shrink-0">
                       ➔
                     </span>
                   </Button>
@@ -230,8 +230,8 @@ export default function StateFilterOverlay({
               {displayList.length === 0 && !selectedState && (
                 <div className="text-center py-12 space-y-2">
                   <span className="text-2xl block">📍</span>
-                  <p className="text-slate-500 dark:text-slate-  text-xs font-bold">No states found</p>
-                  <p className="text-slate-600 dark:text-slate-  text-[11px]">No logistics state matching "{searchQuery}" in Nigeria.</p>
+                  <p className="text-slate-500 dark:text-slate-400  text-xs font-bold">No states found</p>
+                  <p className="text-slate-600 dark:text-slate-400  text-[11px]">No logistics state matching "{searchQuery}" in Nigeria.</p>
                 </div>
               )}
             </div>

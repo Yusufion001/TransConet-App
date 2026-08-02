@@ -175,7 +175,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
         <h1 className="text-2xl font-black text-slate-900 dark:text-white  tracking-tight">
           {mode === 'SHIPPER' ? 'Find a Verified Truck Instantly' : 'Grab Premium Haulage Jobs Instantly'}
         </h1>
-        <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-  max-w-md mx-auto">
+        <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400  max-w-md mx-auto">
           Get a baseline price match, negotiate directly on the platform, or call to finalize your arrangement.
         </p>
       </div>
@@ -255,7 +255,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           }}
         />
       ) : !activeMatch && matchOptions.length === 0 ? (
-        <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl p-6 shadow-xl ">
+        <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 shadow-sm ">
           <form onSubmit={handleActionSubmit} className={`grid grid-cols-1 md:grid-cols-${mode === 'SHIPPER' ? '3' : '2'} gap-4 items-end`}>
             <div>
               <LocationAutocomplete 
@@ -310,15 +310,15 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
       ) : matchOptions.length > 0 && !activeMatch ? (
         <div className="space-y-4 animate-in fade-in zoom-in-95 duration-75">
           <h3 className="text-xl font-bold text-slate-900 dark:text-white">{mode === 'SHIPPER' ? 'Available Truck Options' : 'Available Load Matches'}</h3>
-          <p className="text-sm text-slate-500 dark:text-slate- mb-4">{mode === 'SHIPPER' ? 'Select a transport option that best fits your budget and risk preference.' : 'Select a cargo load that matches your truck capacity and route.'}</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">{mode === 'SHIPPER' ? 'Select a transport option that best fits your budget and risk preference.' : 'Select a cargo load that matches your truck capacity and route.'}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {matchOptions.map(option => (
-              <div key={option.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-lg hover:shadow-xl hover:border-brand-300 transition cursor-pointer flex flex-col" onClick={() => setActiveMatch(option)}>
+              <div key={option.id} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm hover:shadow-xl hover:border-brand-300 transition cursor-pointer flex flex-col" onClick={() => setActiveMatch(option)}>
                 <div className="p-3 bg-brand-50 text-brand-600 rounded-xl w-fit mb-3">
                   {mode === 'SHIPPER' ? <Truck size={24} /> : <Briefcase size={24} />}
                 </div>
                 <h4 className="font-bold text-slate-900 dark:text-white text-lg leading-tight">{option.title}</h4>
-                <p className="text-xs text-slate-500 dark:text-slate- mt-1 flex-1">{option.subtitle}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex-1">{option.subtitle}</p>
                 
                 <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-end justify-between">
                   <div>
@@ -351,15 +351,15 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           />
 
           <div className="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700 space-y-4 text-left">
-            <h4 className="text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Alternative Verified Market Loads On This Route</h4>
-            <p className="text-slate-500 dark:text-slate- text-sm">No alternative verified loads found on this route.</p>
+            <h4 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Alternative Verified Market Loads On This Route</h4>
+            <p className="text-slate-500 dark:text-slate-400 text-sm">No alternative verified loads found on this route.</p>
           </div>
 
           {/* Back Control */}
           <div className="flex justify-center">
             <Button
               onClick={handleReturnToDashboard}
-              className="flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-brand-600 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate- hover:text-brand-600 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer"
+              className="flex items-center gap-2 bg-white dark:bg-slate-900 hover:bg-brand-600 border border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 hover:text-brand-600 text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-sm cursor-pointer"
             >
               <RefreshCw size={12} /> Return to Dashboard
             </Button>

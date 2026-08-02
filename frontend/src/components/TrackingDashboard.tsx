@@ -114,7 +114,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
         <div className="max-w-3xl mx-auto flex justify-between items-start">
           <Button aria-label="Action" 
             onClick={onClose}
-            className="w-12 h-12 bg-white dark:bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-lg flex items-center justify-center text-slate-700 dark:text-slate- hover:text-rose-500 transition-colors cursor-pointer pointer-events-auto"
+            className="w-12 h-12 bg-white dark:bg-slate-900/95 backdrop-blur-md rounded-[20px] shadow-sm flex items-center justify-center text-slate-700 dark:text-slate-400 hover:text-rose-500 transition-colors cursor-pointer pointer-events-auto"
           >
             <X size={24} strokeWidth={2.5} />
           </Button>
@@ -148,7 +148,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
         </APIProvider>
 
         {/* Radar overlay */}
-        <div className="absolute top-20 left-4 sm:left-6 z-10 bg-slate-900/90 border border-slate-700 p-3 rounded-xl backdrop-blur-md max-w-xs space-y-1 text-left pointer-events-none shadow-xl">
+        <div className="absolute top-20 left-4 sm:left-6 z-10 bg-slate-900/90 border border-slate-700 p-3 rounded-xl backdrop-blur-md max-w-xs space-y-1 text-left pointer-events-none shadow-sm">
           <div className="flex items-center gap-1.5 text-xs text-brand-400 font-bold uppercase tracking-wider">
             <Radio size={12} className="animate-pulse" />
             Live GPS Telemetry
@@ -185,7 +185,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
                 </div>
                 <motion.div
                   animate={{ rotate: isSheetOpen ? 180 : 0 }}
-                  className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-"
+                  className="w-10 h-10 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-400"
                 >
                   <ChevronUp size={20} />
                 </motion.div>
@@ -195,13 +195,13 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
             <div className={`px-6 pb-8 pt-2 transition-opacity duration-75 ${isSheetOpen ? 'opacity-100' : 'opacity-0 pointer-events-none h-0'}`}>
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="bg-slate-50 p-4 rounded-2xl">
-                  <p className="text-[10px] text-slate-600 dark:text-slate- uppercase tracking-widest font-bold mb-1">ETA</p>
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 uppercase tracking-widest font-bold mb-1">ETA</p>
                   <p className="text-lg font-black text-slate-900 flex items-center gap-1.5">
                     <Clock size={16} className="text-brand-500" /> ~14h 20m
                   </p>
                 </div>
                 <div className="bg-slate-50 p-4 rounded-2xl">
-                  <p className="text-[10px] text-slate-600 dark:text-slate- uppercase tracking-widest font-bold mb-1">Cargo Weight</p>
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 uppercase tracking-widest font-bold mb-1">Cargo Weight</p>
                   <p className="text-lg font-black text-slate-900 flex items-center gap-1.5">
                     {loadData?.weightKg ? `${loadData.weightKg} kg` : '30 Tons'}
                   </p>
@@ -218,7 +218,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900">Assigned Transporter</h4>
-                    <p className="text-xs text-slate-500 dark:text-slate-">Verified Partner Network</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Verified Partner Network</p>
                   </div>
                 </div>
                 <div className="flex gap-2">
@@ -234,7 +234,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
               <div className="relative pl-6 space-y-6 before:absolute before:inset-y-2 before:left-2.5 before:w-0.5 before:bg-slate-200">
                 <div className="relative">
                   <span className="absolute -left-6 top-1 w-3 h-3 rounded-full bg-slate-300 ring-4 ring-white shadow-sm" />
-                  <p className="text-[10px] text-slate-600 dark:text-slate- font-bold uppercase tracking-widest mb-0.5">Origin</p>
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 font-bold uppercase tracking-widest mb-0.5">Origin</p>
                   <p className="font-bold text-slate-900 text-sm">{loadData?.origin || 'Lagos Port Terminal'}</p>
                 </div>
                 <div className="relative">
@@ -244,7 +244,7 @@ export default function TrackingDashboard({ shipmentId, onClose }: TrackingDashb
                 </div>
                 <div className="relative opacity-70">
                   <span className="absolute -left-6 top-1 w-3 h-3 rounded-full border-2 border-emerald-500 bg-white dark:bg-slate-900 ring-4 ring-white" />
-                  <p className="text-[10px] text-slate-600 dark:text-slate- font-bold uppercase tracking-widest mb-0.5">Destination</p>
+                  <p className="text-[10px] text-slate-600 dark:text-slate-400 font-bold uppercase tracking-widest mb-0.5">Destination</p>
                   <p className="font-bold text-slate-900 text-sm">{loadData?.destination || 'Kano Central Depot'}</p>
                 </div>
               </div>

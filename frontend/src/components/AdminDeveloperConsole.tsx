@@ -77,10 +77,10 @@ export default function AdminDeveloperConsole() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Terminal className="text-brand-600" /> Developer Console
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage API keys, configure webhooks, and monitor API traffic.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage API keys, configure webhooks, and monitor API traffic.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <Code size={16} /> API Docs
           </Button>
           {activeSection === 'KEYS' && (
@@ -97,7 +97,7 @@ export default function AdminDeveloperConsole() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-slate-900 text-white rounded-2xl p-5 shadow-sm">
+        <div className="bg-slate-900 text-white rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-slate-800 rounded-xl text-brand-400">
               <Activity size={20} />
@@ -107,39 +107,39 @@ export default function AdminDeveloperConsole() {
           <p className="text-3xl font-black text-white">2.4M</p>
           <p className="text-xs text-slate-400 dark:text-slate-400 mt-1">Last 24 hours</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Clock size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Avg. Latency</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Avg. Latency</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">84ms</p>
           <p className="text-xs text-emerald-600 mt-1 font-medium">-12ms vs yesterday</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-red-50 text-red-600 rounded-xl">
               <AlertCircle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Error Rate</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Error Rate</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">0.12%</p>
-          <p className="text-xs text-slate-500 dark:text-slate- mt-1">4xx and 5xx responses</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">4xx and 5xx responses</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Webhook size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Webhooks</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Active Webhooks</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">14</p>
-          <p className="text-xs text-slate-500 dark:text-slate- mt-1">Across 3 environments</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Across 3 environments</p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex gap-2 overflow-x-auto hide-scrollbar">
           <Button
             onClick={() => setActiveSection('KEYS')}
@@ -179,12 +179,12 @@ export default function AdminDeveloperConsole() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Name</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Secret Key</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Created</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Last Used</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Name</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Secret Key</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Created</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last Used</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -192,11 +192,11 @@ export default function AdminDeveloperConsole() {
                     <tr key={apiKey.id || apiKey?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                       <td className="p-4">
                         <div className="font-bold text-sm text-slate-900 dark:text-white">{apiKey.name}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{apiKey.id}</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">{apiKey.id}</div>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center gap-2">
-                          <code className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate- px-2 py-1 rounded text-xs font-mono">
+                          <code className="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 px-2 py-1 rounded text-xs font-mono">
                             {showKeyId === apiKey.id ? apiKey.prefix.replace('...', 'a1b2c3d4e5f6g7h8') : apiKey.prefix}
                           </code>
                           <Button onClick={() => setShowKeyId(showKeyId === apiKey.id ? null : apiKey.id)} className="text-slate-400 dark:text-slate-400 hover:text-brand-600">
@@ -207,12 +207,12 @@ export default function AdminDeveloperConsole() {
                           </Button>
                         </div>
                       </td>
-                      <td className="p-4 text-sm text-slate-500 dark:text-slate-">{apiKey.created}</td>
-                      <td className="p-4 text-sm text-slate-500 dark:text-slate-">{apiKey.lastUsed}</td>
+                      <td className="p-4 text-sm text-slate-500 dark:text-slate-400">{apiKey.created}</td>
+                      <td className="p-4 text-sm text-slate-500 dark:text-slate-400">{apiKey.lastUsed}</td>
                       <td className="p-4">
                         {apiKey.status === 'ACTIVE' 
                           ? <span className="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-[10px] font-black uppercase">Active</span>
-                          : <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate- px-2 py-0.5 rounded text-[10px] font-black uppercase">Revoked</span>
+                          : <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2 py-0.5 rounded text-[10px] font-black uppercase">Revoked</span>
                         }
                       </td>
                       <td className="p-4 text-right">
@@ -239,24 +239,24 @@ export default function AdminDeveloperConsole() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Endpoint URL</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Events</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Last Delivery</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Endpoint URL</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Events</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last Delivery</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
                   {MOCK_WEBHOOKS.map(webhook => (
                     <tr key={webhook.id || webhook?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                       <td className="p-4">
-                        <div className="font-mono text-sm text-slate-700 dark:text-slate- truncate max-w-[250px]" title={webhook.url}>{webhook.url}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{webhook.id}</div>
+                        <div className="font-mono text-sm text-slate-700 dark:text-slate-400 truncate max-w-[250px]" title={webhook.url}>{webhook.url}</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">{webhook.id}</div>
                       </td>
                       <td className="p-4">
                         <div className="flex flex-wrap gap-1 max-w-[200px]">
                           {webhook.events.map(ev => (
-                            <span key={ev} className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate- px-1.5 py-0.5 rounded text-[10px] font-mono">{ev}</span>
+                            <span key={ev} className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-1.5 py-0.5 rounded text-[10px] font-mono">{ev}</span>
                           ))}
                         </div>
                       </td>
@@ -266,7 +266,7 @@ export default function AdminDeveloperConsole() {
                           : <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded text-[10px] font-black uppercase flex items-center gap-1 w-fit"><AlertCircle size={10} /> Failing</span>
                         }
                       </td>
-                      <td className="p-4 text-sm text-slate-500 dark:text-slate-">{webhook.lastDelivery}</td>
+                      <td className="p-4 text-sm text-slate-500 dark:text-slate-400">{webhook.lastDelivery}</td>
                       <td className="p-4 text-right">
                         <div className="flex justify-end gap-2">
                           <Button aria-label="Action" className="text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-2 rounded-lg hover:bg-brand-50" title="Test Payload">
@@ -293,17 +293,17 @@ export default function AdminDeveloperConsole() {
                 <table className="w-full text-left border-collapse">
                   <thead>
                     <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Time</th>
-                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Method & Endpoint</th>
-                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Latency</th>
-                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Req ID</th>
+                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Time</th>
+                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Method & Endpoint</th>
+                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Latency</th>
+                      <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Req ID</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
                     {MOCK_LOGS.map(log => (
                       <tr key={log.id || log?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
-                        <td className="p-4 text-sm text-slate-500 dark:text-slate- font-mono">{log.timestamp}</td>
+                        <td className="p-4 text-sm text-slate-500 dark:text-slate-400 font-mono">{log.timestamp}</td>
                         <td className="p-4">
                           <div className="flex items-center gap-2">
                             <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase w-12 text-center ${
@@ -313,7 +313,7 @@ export default function AdminDeveloperConsole() {
                             }`}>
                               {log.method}
                             </span>
-                            <span className="font-mono text-sm text-slate-700 dark:text-slate-">{log.endpoint}</span>
+                            <span className="font-mono text-sm text-slate-700 dark:text-slate-400">{log.endpoint}</span>
                           </div>
                         </td>
                         <td className="p-4">
@@ -324,7 +324,7 @@ export default function AdminDeveloperConsole() {
                             {log.status}
                           </span>
                         </td>
-                        <td className="p-4 text-sm text-slate-500 dark:text-slate- font-mono">{log.latency}</td>
+                        <td className="p-4 text-sm text-slate-500 dark:text-slate-400 font-mono">{log.latency}</td>
                         <td className="p-4 text-right text-xs text-slate-400 dark:text-slate-400 font-mono">{log.id}</td>
                       </tr>
                     ))}

@@ -149,7 +149,7 @@ export default function AdminPortalGenerator({
         ))}
       </div>
 
-      <div className="bg-slate-50 dark:bg-slate-800/50 rounded-3xl p-1 md:p-4 min-h-[500px]">
+      <div className="bg-slate-50 dark:bg-slate-800/50 rounded-[20px] p-1 md:p-4 min-h-[500px]">
         <Suspense fallback={<div className="flex items-center justify-center h-64"><Loader2 className="animate-spin text-brand-600" size={32} /></div>}>
         {activeTab === 'OVERVIEW' && (
           <AdminOverviewTab 

@@ -27,7 +27,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 20, opacity: 0, scale: 0.95 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col"
+          className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg shadow-sm overflow-hidden flex flex-col"
         >
           {/* Header */}
           <div className="relative h-32 bg-gradient-to-br from-brand-700 to-brand-900 p-6 flex flex-col justify-end overflow-hidden">
@@ -54,13 +54,13 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
           </div>
 
           <div className="p-6 bg-slate-50 dark:bg-slate-800 flex-1">
-            <p className="text-sm text-slate-600 dark:text-slate- mb-6 font-medium">
+            <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 font-medium">
               Promote your cargo to our top-rated transporters and get matched up to 3x faster. Choose a promotion tier:
             </p>
 
             <div className="space-y-4">
               {/* Standard Boost */}
-              <label className={`block relative bg-white dark:bg-slate-900 border-2 rounded-2xl p-4 cursor-pointer transition-all ${selectedPlan === 'standard' ? 'border-purple-600 shadow-md ring-4 ring-purple-600/10' : 'border-slate-200 dark:border-slate-700 hover:border-purple-300'}`}>
+              <label className={`block relative bg-white dark:bg-slate-900 border-2 rounded-[20px] p-4 cursor-pointer transition-all ${selectedPlan === 'standard' ? 'border-purple-600 shadow-sm ring-4 ring-purple-600/10' : 'border-slate-200 dark:border-slate-700 hover:border-purple-300'}`}>
                 <input type="radio" name="boost_plan" className="sr-only" onChange={() => setSelectedPlan('standard')} checked={selectedPlan === 'standard'} />
                 <div className="flex justify-between items-start mb-2">
                   <div className="flex items-center gap-3">
@@ -69,7 +69,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
                     </div>
                     <div>
                       <h4 className="font-bold text-slate-900">Standard Boost</h4>
-                      <p className="text-xs text-slate-500 dark:text-slate- font-medium">Top 5 in search results for 24h</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Top 5 in search results for 24h</p>
                     </div>
                   </div>
                   <div className="text-right">
@@ -79,7 +79,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
               </label>
 
               {/* Premium Boost */}
-              <label className={`block relative bg-white dark:bg-slate-900 border-2 rounded-2xl p-4 cursor-pointer transition-all overflow-hidden ${selectedPlan === 'premium' ? 'border-amber-500 shadow-md ring-4 ring-amber-500/10' : 'border-slate-200 dark:border-slate-700 hover:border-amber-300'}`}>
+              <label className={`block relative bg-white dark:bg-slate-900 border-2 rounded-[20px] p-4 cursor-pointer transition-all overflow-hidden ${selectedPlan === 'premium' ? 'border-amber-500 shadow-sm ring-4 ring-amber-500/10' : 'border-slate-200 dark:border-slate-700 hover:border-amber-300'}`}>
                 <input type="radio" name="boost_plan" className="sr-only" onChange={() => setSelectedPlan('premium')} checked={selectedPlan === 'premium'} />
                 
                 {/* Popular Badge */}
@@ -96,7 +96,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
                       <h4 className="font-bold text-slate-900 flex items-center gap-1.5">
                         Priority Boost <TrendingUp size={14} className="text-amber-500" />
                       </h4>
-                      <p className="text-xs text-slate-500 dark:text-slate- font-medium">Pinned at the top + SMS Alerts to drivers</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Pinned at the top + SMS Alerts to drivers</p>
                     </div>
                   </div>
                   <div className="text-right mt-1">
@@ -110,7 +110,7 @@ export default function BoostLoadModal({ isOpen, onClose }: BoostLoadModalProps)
           <div className="p-5 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 flex justify-end gap-3">
             <Button 
               onClick={onClose}
-              className="px-5 py-3 text-slate-600 dark:text-slate- font-bold rounded-xl hover:bg-slate-100 dark:bg-slate-800 transition-colors"
+              className="px-5 py-3 text-slate-600 dark:text-slate-400 font-bold rounded-xl hover:bg-slate-100 dark:bg-slate-800 transition-colors"
             >
               Cancel
             </Button>

@@ -83,44 +83,44 @@ export default function AdminRiskFraud() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <ShieldAlert className="text-red-600" /> Risk & Fraud Operations
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Monitor suspicious activities, flag high-risk transactions, and protect the platform.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Monitor suspicious activities, flag high-risk transactions, and protect the platform.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-red-50 text-red-600 rounded-xl">
               <AlertOctagon size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Critical Alerts</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Critical Alerts</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{loading ? '-' : criticalCount}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Activity size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Investigations</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Active Investigations</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{loading ? '-' : investigatingCount}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate- rounded-xl">
+            <div className="p-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl">
               <UserX size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Blocked Accounts</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Blocked Accounts</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{loading ? '-' : blockedCount}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <ShieldAlert size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">System Health</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">System Health</h3>
           </div>
           <p className={`text-3xl font-black ${isHealthy ? 'text-emerald-600' : 'text-amber-600'}`}>
             {loading ? '-' : (isHealthy ? 'Secure' : 'Review')}
@@ -128,7 +128,7 @@ export default function AdminRiskFraud() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex flex-col sm:flex-row justify-between gap-4">
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit overflow-x-auto hide-scrollbar">
             {['ALL', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW'].map(level => (
@@ -161,30 +161,30 @@ export default function AdminRiskFraud() {
           <table className="w-full text-left border-collapse animate-fade-in">
             <thead>
               <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Alert ID & Time</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Entity Flagged</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Risk Level</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Reason</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Alert ID & Time</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Entity Flagged</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Risk Level</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Reason</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredAlerts.map(alert => (
                 <tr key={alert.id || alert?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
-                    <div className="font-mono text-sm text-slate-700 dark:text-slate- font-bold">{alert.id}</div>
-                    <div className="text-xs text-slate-500 dark:text-slate- mt-0.5">{alert.detectedAt}</div>
+                    <div className="font-mono text-sm text-slate-700 dark:text-slate-400 font-bold">{alert.id}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{alert.detectedAt}</div>
                   </td>
                   <td className="p-4">
                     <div className="font-bold text-sm text-slate-900 dark:text-white">{alert.entityName}</div>
-                    <div className="text-xs text-slate-500 dark:text-slate- mt-0.5">{alert.entityType}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{alert.entityType}</div>
                   </td>
                   <td className="p-4">
                     {getRiskBadge(alert.riskLevel)}
                   </td>
                   <td className="p-4">
-                    <div className="text-sm text-slate-700 dark:text-slate- max-w-xs truncate" title={alert.reason}>
+                    <div className="text-sm text-slate-700 dark:text-slate-400 max-w-xs truncate" title={alert.reason}>
                       {alert.reason}
                     </div>
                   </td>
@@ -218,7 +218,7 @@ export default function AdminRiskFraud() {
               ))}
               {filteredAlerts.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-">
+                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-400">
                     No alerts found matching your criteria.
                   </td>
                 </tr>

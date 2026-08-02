@@ -89,50 +89,50 @@ export default function AdminNotificationCenter() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Bell className="text-brand-600" /> Notification Center
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Broadcast messages, push notifications, and emails to users.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Broadcast messages, push notifications, and emails to users.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Send size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Total Sent (30d)</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Total Sent (30d)</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">45.2K</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <CheckCircle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Delivery Rate</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Delivery Rate</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">99.1%</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <BarChart3 size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Open Rate</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Open Rate</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">42.8%</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <AlertCircle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Failed Delivery</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Failed Delivery</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">142</p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex gap-2">
           <Button
             onClick={() => setActiveTab('COMPOSE')}
@@ -161,7 +161,7 @@ export default function AdminNotificationCenter() {
             <div className="max-w-3xl space-y-6 animate-fade-in">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-2">Delivery Channel</label>
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-2">Delivery Channel</label>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { id: 'IN_APP', label: 'In-App', icon: Bell },
@@ -184,7 +184,7 @@ export default function AdminNotificationCenter() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-2">Target Audience</label>
+                  <label className="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-2">Target Audience</label>
                   <div className="grid grid-cols-2 gap-2">
                     {[
                       { id: 'ALL', label: 'All Users', icon: Users },
@@ -208,7 +208,7 @@ export default function AdminNotificationCenter() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-1">Message Title</label>
+                <label className="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-1">Message Title</label>
                 <input 
                   type="text" 
                   value={title}
@@ -219,7 +219,7 @@ export default function AdminNotificationCenter() {
               </div>
               
               <div>
-                <label className="block text-sm font-bold text-slate-700 dark:text-slate- mb-1">Message Body</label>
+                <label className="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-1">Message Body</label>
                 <textarea 
                   rows={6} 
                   value={message}
@@ -227,7 +227,7 @@ export default function AdminNotificationCenter() {
                   className="w-full border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500" 
                   placeholder="Write your message here..."
                 ></textarea>
-                <p className="text-xs text-slate-500 dark:text-slate- mt-1 flex justify-end">{message.length} characters</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex justify-end">{message.length} characters</p>
               </div>
 
               <div className="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
@@ -249,11 +249,11 @@ export default function AdminNotificationCenter() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Campaign</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Channel & Audience</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Sent At</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Metrics</th>
-                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Campaign</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Channel & Audience</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Sent At</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Metrics</th>
+                    <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -261,26 +261,26 @@ export default function AdminNotificationCenter() {
                     <tr key={item.id || item?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                       <td className="p-4">
                         <div className="font-bold text-sm text-slate-900 dark:text-white">{item.title}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate- font-mono mt-0.5">{item.id}</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">{item.id}</div>
                       </td>
                       <td className="p-4">
                         <div className="flex items-center gap-2 mb-1">
                           {getChannelIcon(item.channel)}
-                          <span className="text-xs font-bold text-slate-700 dark:text-slate-">{item.channel}</span>
+                          <span className="text-xs font-bold text-slate-700 dark:text-slate-400">{item.channel}</span>
                         </div>
-                        <div className="text-xs text-slate-500 dark:text-slate- flex items-center gap-1">
+                        <div className="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
                           <Users size={12} /> {item.targetAudience}
                         </div>
                       </td>
-                      <td className="p-4 text-sm text-slate-500 dark:text-slate-">
+                      <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                         {item.sentAt}
                       </td>
                       <td className="p-4">
                         <div className="text-xs space-y-1">
-                          <div className="flex justify-between gap-4"><span className="text-slate-500 dark:text-slate-">Sent:</span> <span className="font-bold text-slate-700 dark:text-slate-">{item.metrics.sent.toLocaleString()}</span></div>
-                          <div className="flex justify-between gap-4"><span className="text-slate-500 dark:text-slate-">Delivered:</span> <span className="font-bold text-slate-700 dark:text-slate-">{item.metrics.delivered.toLocaleString()}</span></div>
+                          <div className="flex justify-between gap-4"><span className="text-slate-500 dark:text-slate-400">Sent:</span> <span className="font-bold text-slate-700 dark:text-slate-400">{item.metrics.sent.toLocaleString()}</span></div>
+                          <div className="flex justify-between gap-4"><span className="text-slate-500 dark:text-slate-400">Delivered:</span> <span className="font-bold text-slate-700 dark:text-slate-400">{item.metrics.delivered.toLocaleString()}</span></div>
                           {item.metrics.opened !== undefined && (
-                            <div className="flex justify-between gap-4"><span className="text-slate-500 dark:text-slate-">Opened:</span> <span className="font-bold text-slate-700 dark:text-slate-">{item.metrics.opened.toLocaleString()}</span></div>
+                            <div className="flex justify-between gap-4"><span className="text-slate-500 dark:text-slate-400">Opened:</span> <span className="font-bold text-slate-700 dark:text-slate-400">{item.metrics.opened.toLocaleString()}</span></div>
                           )}
                         </div>
                       </td>

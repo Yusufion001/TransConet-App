@@ -18,24 +18,24 @@ export default function AdminSecurityCenter() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
           <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="p-3 rounded-xl bg-brand-100 text-brand-700">
               <ShieldAlert size={24} />
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Security Policies</h2>
-              <p className="text-xs text-slate-500 dark:text-slate-">Configure global authentication and access limits</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Configure global authentication and access limits</p>
             </div>
           </div>
           
           <div className="space-y-4">
             <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
-                <Lock size={18} className="text-slate-500 dark:text-slate-" />
+                <Lock size={18} className="text-slate-500 dark:text-slate-400" />
                 <div>
-                  <h4 className="font-bold text-slate-800 dark:text-slate- text-sm">Require MFA for Admins</h4>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-">Enforce Multi-Factor Authentication</p>
+                  <h4 className="font-bold text-slate-800 dark:text-slate-400 text-sm">Require MFA for Admins</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">Enforce Multi-Factor Authentication</p>
                 </div>
               </div>
               <Button 
@@ -48,13 +48,13 @@ export default function AdminSecurityCenter() {
 
             <div className="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-800">
               <div className="flex items-center gap-3">
-                <Key size={18} className="text-slate-500 dark:text-slate-" />
+                <Key size={18} className="text-slate-500 dark:text-slate-400" />
                 <div>
-                  <h4 className="font-bold text-slate-800 dark:text-slate- text-sm">Session Timeout</h4>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-">Auto-logout idle sessions</p>
+                  <h4 className="font-bold text-slate-800 dark:text-slate-400 text-sm">Session Timeout</h4>
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400">Auto-logout idle sessions</p>
                 </div>
               </div>
-              <select className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-700 dark:text-slate- focus:outline-none focus:border-purple-500">
+              <select className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 text-sm font-medium text-slate-700 dark:text-slate-400 focus:outline-none focus:border-purple-500">
                 <option>15 Minutes</option>
                 <option>30 Minutes</option>
                 <option>1 Hour</option>
@@ -64,14 +64,14 @@ export default function AdminSecurityCenter() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
           <div className="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="p-3 rounded-xl bg-brand-100 text-brand-700">
               <History size={24} />
             </div>
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white">Recent Admin Logins</h2>
-              <p className="text-xs text-slate-500 dark:text-slate-">Monitor super-admin access records</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Monitor super-admin access records</p>
             </div>
           </div>
 
@@ -81,8 +81,8 @@ export default function AdminSecurityCenter() {
             ) : recentLogins.map((log, i) => (
               <div key={i} className="flex justify-between items-center p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-800 animate-fade-in">
                 <div>
-                  <h4 className="font-bold text-slate-800 dark:text-slate- text-xs">{log.email}</h4>
-                  <p className="text-[10px] text-slate-500 dark:text-slate- font-mono mt-0.5">{log.ip} &bull; {new Date(log.time).toLocaleString()}</p>
+                  <h4 className="font-bold text-slate-800 dark:text-slate-400 text-xs">{log.email}</h4>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">{log.ip} &bull; {new Date(log.time).toLocaleString()}</p>
                 </div>
                 {log.status === 'Success' ? (
                   <span className="text-[10px] font-bold text-emerald-600 bg-emerald-100 px-2 py-1 rounded uppercase">{log.status}</span>

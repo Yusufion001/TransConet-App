@@ -52,50 +52,50 @@ export default function AdminFeatureManagement() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <ToggleRight className="text-brand-600" /> Feature Management
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Control feature flags, manage phased rollouts, and enable beta programs.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Control feature flags, manage phased rollouts, and enable beta programs.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <ToggleRight size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Total Features</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Total Features</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{features.length}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <CheckCircle2 size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Flags</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Active Flags</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{features.filter(f => f.enabled).length}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Users size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Beta Features</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Beta Features</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{features.filter(f => f.audience === 'BETA_USERS').length}</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Activity size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">A/B Tests</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">A/B Tests</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">2</p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex flex-col sm:flex-row justify-between gap-4">
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit overflow-x-auto hide-scrollbar">
             {['ALL_FILTERS', 'ALL', 'BETA_USERS', 'INTERNAL_ONLY', 'PREMIUM_ONLY'].map(aud => (
@@ -128,12 +128,12 @@ export default function AdminFeatureManagement() {
           <table className="w-full text-left border-collapse animate-fade-in">
             <thead>
               <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Feature</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Rollout</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Audience</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Last Updated</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Settings</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Feature</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Rollout</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Audience</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last Updated</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Settings</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -141,7 +141,7 @@ export default function AdminFeatureManagement() {
                 <tr key={feature.id || feature?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
                     <div className="font-bold text-sm text-slate-900 dark:text-white">{feature.name}</div>
-                    <div className="text-xs text-slate-500 dark:text-slate- mt-0.5 truncate max-w-xs">{feature.description}</div>
+                    <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 truncate max-w-xs">{feature.description}</div>
                     <div className="font-mono text-[10px] text-slate-400 dark:text-slate-400 mt-1">{feature.id}</div>
                   </td>
                   <td className="p-4">
@@ -149,13 +149,13 @@ export default function AdminFeatureManagement() {
                       <div className="flex-1 w-24 bg-slate-100 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
                         <div className={`h-1.5 rounded-full ${feature.enabled ? 'bg-brand-500' : 'bg-slate-300'}`} style={{ width: `${feature.rolloutPercentage}%` }}></div>
                       </div>
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-">{feature.rolloutPercentage}%</span>
+                      <span className="text-xs font-bold text-slate-700 dark:text-slate-400">{feature.rolloutPercentage}%</span>
                     </div>
                   </td>
                   <td className="p-4">
                     {getAudienceBadge(feature.audience)}
                   </td>
-                  <td className="p-4 text-sm text-slate-500 dark:text-slate-">
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                     {feature.lastUpdated}
                   </td>
                   <td className="p-4">
@@ -175,7 +175,7 @@ export default function AdminFeatureManagement() {
               ))}
               {filteredFeatures.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-">
+                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-400">
                     No features found matching your criteria.
                   </td>
                 </tr>

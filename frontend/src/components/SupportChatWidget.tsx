@@ -414,12 +414,12 @@ export default function SupportChatWidget({
           id="customer-support-panel" 
           className={
             inline
-              ? "w-full h-[600px] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-sm rounded-3xl flex flex-col overflow-hidden animate-in fade-in duration-75"
-              : "fixed bottom-24 right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[calc(100vh-8rem)] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-2xl rounded-2xl flex flex-col overflow-hidden transition-all duration-75 z-50 animate-in slide-in-from-bottom-5 fade-in duration-75"
+              ? "w-full h-[600px] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-sm rounded-[20px] flex flex-col overflow-hidden animate-in fade-in duration-75"
+              : "fixed bottom-24 right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[calc(100vh-8rem)] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-2xl rounded-[20px] flex flex-col overflow-hidden transition-all duration-75 z-50 animate-in slide-in-from-bottom-5 fade-in duration-75"
           }
         >
           {/* Header Panel */}
-          <div className="bg-slate-900 px-5 py-4 flex items-center justify-between text-white border-b border-slate-200 dark:border-slate-700 shadow-md relative overflow-hidden">
+          <div className="bg-slate-900 px-5 py-4 flex items-center justify-between text-white border-b border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-brand-600/10 blur-2xl rounded-full" />
             <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 bg-brand-600/10 blur-2xl rounded-full" />
             
@@ -431,7 +431,7 @@ export default function SupportChatWidget({
                 <h4 className="text-sm font-bold tracking-tight">TransConet Support</h4>
                 <div className="flex items-center gap-1.5 mt-0.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-                  <span className="text-[10px] text-slate-600 dark:text-slate- font-medium font-sans uppercase tracking-wider">AI & Support Active</span>
+                  <span className="text-[10px] text-slate-600 dark:text-slate-400 font-medium font-sans uppercase tracking-wider">AI & Support Active</span>
                 </div>
               </div>
             </div>
@@ -456,7 +456,7 @@ export default function SupportChatWidget({
               {!inline && (
                 <Button 
                   onClick={() => setIsOpen(false)}
-                  className="text-slate-600 dark:text-slate- hover:text-white p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer"
+                  className="text-slate-600 dark:text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition cursor-pointer"
                 >
                   <X size={16} />
                 </Button>
@@ -500,7 +500,7 @@ export default function SupportChatWidget({
               loading ? (
                 <div className="flex-1 flex flex-col items-center justify-center space-y-3 p-6">
                   <RefreshCw className="text-brand-600 animate-spin" size={24} />
-                  <span className="text-xs text-slate-500 dark:text-slate-  font-mono">Initializing secure connection...</span>
+                  <span className="text-xs text-slate-500 dark:text-slate-400  font-mono">Initializing secure connection...</span>
                 </div>
               ) : !ticket ? (
                 // Ticket Configuration state
@@ -510,7 +510,7 @@ export default function SupportChatWidget({
                       <Sparkles size={12} className="text-brand-600 " /> Platform Diagnostics
                     </span>
                     <h3 className="text-lg font-bold tracking-tight text-slate-900 dark:text-white ">How can we assist you today?</h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-  leading-relaxed">
+                    <p className="text-xs text-slate-500 dark:text-slate-400  leading-relaxed">
                       Select a category below to initiate an automated resolution thread. If unresolved, you can escalate directly to an enterprise support manager.
                     </p>
                   </div>
@@ -520,10 +520,10 @@ export default function SupportChatWidget({
                       <Button
                         key={i}
                         onClick={() => handleStartWithCategory(cat)}
-                        className="bg-white dark:bg-slate-900  hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-800 border border-slate-200 dark:border-slate-700  hover:border-brand-500/50 p-3.5 rounded-xl text-left text-[11px] font-bold text-slate-700 dark:text-slate-  transition-all flex items-center justify-between group cursor-pointer shadow-sm hover:shadow-md"
+                        className="bg-white dark:bg-slate-900  hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-800 border border-slate-200 dark:border-slate-700  hover:border-brand-500/50 p-3.5 rounded-xl text-left text-[11px] font-bold text-slate-700 dark:text-slate-400  transition-all flex items-center justify-between group cursor-pointer shadow-sm hover:shadow-sm"
                       >
                         <span>{cat}</span>
-                        <ArrowRight size={14} className="text-slate-600 dark:text-slate-  group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight size={14} className="text-slate-600 dark:text-slate-400  group-hover:text-brand-500 group-hover:translate-x-1 transition-all" />
                       </Button>
                     ))}
                   </div>
@@ -540,7 +540,7 @@ export default function SupportChatWidget({
 
                   {/* Categories Tag Indicator */}
                   <div className="text-center">
-                    <span className="inline-block text-[9px] font-bold uppercase bg-slate-200  text-slate-600 dark:text-slate-  px-2.5 py-0.5 rounded-full">
+                    <span className="inline-block text-[9px] font-bold uppercase bg-slate-200  text-slate-600 dark:text-slate-400  px-2.5 py-0.5 rounded-full">
                       Category: {ticket.category}
                     </span>
                   </div>
@@ -564,7 +564,7 @@ export default function SupportChatWidget({
                               </span>
                             )
                           )}
-                          <span className="text-[10px] text-slate-500 dark:text-slate- ">{msg.senderName}</span>
+                          <span className="text-[10px] text-slate-500 dark:text-slate-400 ">{msg.senderName}</span>
                         </div>
                         
                         <div className={`p-3 rounded-2xl max-w-[85%] text-xs leading-relaxed text-left shadow-sm  ${
@@ -582,7 +582,7 @@ export default function SupportChatWidget({
 
                   {/* Bot Typing Indicator */}
                   {botTyping && (
-                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-  animate-pulse text-[10px] font-mono pl-1">
+                    <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400  animate-pulse text-[10px] font-mono pl-1">
                       <Bot size={14} className="text-brand-500 animate-bounce" />
                       <span>TransConet AI is thinking...</span>
                     </div>
@@ -608,10 +608,10 @@ export default function SupportChatWidget({
                       <Radio size={12} className="animate-pulse text-emerald-500" />
                       Live Feed Monitor
                     </span>
-                    <span className="text-[9px] font-mono text-slate-600 dark:text-slate-">Nigeria Standard Time</span>
+                    <span className="text-[9px] font-mono text-slate-600 dark:text-slate-400">Nigeria Standard Time</span>
                   </div>
                   <h3 className="text-sm font-black text-slate-900 dark:text-white ">Safety & Route Alerts</h3>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-  leading-normal">
+                  <p className="text-[11px] text-slate-500 dark:text-slate-400  leading-normal">
                     Operational notifications curated by TransConet operations and Federal Road Safety Corps (FRSC).
                   </p>
                 </div>
@@ -656,19 +656,19 @@ export default function SupportChatWidget({
                           }`}>
                             {notif.category}
                           </span>
-                          <span className="text-[9px] text-slate-600 dark:text-slate- font-medium font-mono">{notif.time}</span>
+                          <span className="text-[9px] text-slate-600 dark:text-slate-400 font-medium font-mono">{notif.time}</span>
                         </div>
 
                         <h4 className="font-bold text-xs text-slate-900 dark:text-white  leading-snug">
                           {notif.title}
                         </h4>
 
-                        <p className="text-[11px] text-slate-500 dark:text-slate-  mt-1 leading-normal">
+                        <p className="text-[11px] text-slate-500 dark:text-slate-400  mt-1 leading-normal">
                           {notif.text}
                         </p>
 
                         <div className="mt-3 pt-2.5 border-t border-slate-100 dark:border-slate-800  flex justify-between items-center text-[10px]">
-                          <span className="text-slate-600 dark:text-slate- font-semibold flex items-center gap-1">
+                          <span className="text-slate-600 dark:text-slate-400 font-semibold flex items-center gap-1">
                             <ShieldCheck size={11} className="text-emerald-500" />
                             Source: {notif.authority}
                           </span>
@@ -693,13 +693,13 @@ export default function SupportChatWidget({
               {ticket.status !== 'PENDING_ADMIN' ? (
                 <div className="flex justify-between items-center bg-slate-50 dark:bg-slate-800  rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-700  shadow-sm">
                   <div className="text-left space-y-0.5">
-                    <p className="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate- ">Require Human Assistance?</p>
-                    <p className="text-[9px] text-slate-500 dark:text-slate- ">Escalate immediately to a real support manager</p>
+                    <p className="text-[10px] font-black uppercase tracking-wider text-slate-700 dark:text-slate-400 ">Require Human Assistance?</p>
+                    <p className="text-[9px] text-slate-500 dark:text-slate-400 ">Escalate immediately to a real support manager</p>
                   </div>
                   <Button
                     onClick={handleEscalateToAdmin}
                     disabled={escalating}
-                    className="bg-slate-900  hover:bg-slate-800 :bg-slate-100 dark:bg-slate-800 text-white  text-[10px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-lg cursor-pointer transition-all flex items-center gap-1.5 hover:scale-105 disabled:opacity-50 shadow-md"
+                    className="bg-slate-900  hover:bg-slate-800 :bg-slate-100 dark:bg-slate-800 text-white  text-[10px] font-bold uppercase tracking-wider px-3.5 py-2 rounded-lg cursor-pointer transition-all flex items-center gap-1.5 hover:scale-105 disabled:opacity-50 shadow-sm"
                   >
                     {escalating ? <RefreshCw size={12} className="animate-spin" /> : 'Talk to Human'}
                   </Button>
@@ -731,7 +731,7 @@ export default function SupportChatWidget({
                 <Button aria-label="Action"
                   type="submit"
                   disabled={!messageText.trim() || ticket.status === 'CLOSED'}
-                  className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white p-2 rounded-xl transition flex items-center justify-center cursor-pointer disabled:opacity-40"
+                  className="bg-brand-600 hover:bg-brand-700 disabled:bg-slate-300 disabled:text-white disabled:opacity-100 text-white p-2 rounded-xl transition flex items-center justify-center cursor-pointer"
                 >
                   <Send size={15} />
                 </Button>

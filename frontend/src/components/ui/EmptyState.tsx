@@ -16,7 +16,7 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
   onAction,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center p-12 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm rounded-2xl my-6">
+    <div className="flex flex-col items-center justify-center p-12 text-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 shadow-sm rounded-[20px] my-6">
       {/* Icon Wrapper */}
       <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-slate-50 dark:bg-slate-800 text-brand-500 border border-slate-100 dark:border-slate-700 shadow-inner">
         {icon || (
@@ -27,12 +27,12 @@ export const EmptyState: React.FC<EmptyStateProps> = ({
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-bold text-slate-800 dark:text-slate- mb-1">
+      <h3 className="text-lg font-bold text-slate-800 dark:text-slate-400 mb-1">
         {title}
       </h3>
 
       {/* Description */}
-      <p className="text-sm text-slate-500 dark:text-slate- max-w-md mb-6 leading-relaxed">
+      <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mb-6 leading-relaxed">
         {description}
       </p>
 

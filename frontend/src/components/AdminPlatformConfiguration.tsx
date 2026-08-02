@@ -49,10 +49,10 @@ export default function AdminPlatformConfiguration() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Sliders className="text-brand-600" /> Platform Configuration
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage global system settings, operational parameters, and third-party integrations.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage global system settings, operational parameters, and third-party integrations.</p>
         </div>
         <div className="flex gap-2">
-          <Button onClick={handleDiscard} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button onClick={handleDiscard} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <RotateCcw size={16} /> Discard Changes
           </Button>
           <Button 
@@ -66,7 +66,7 @@ export default function AdminPlatformConfiguration() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[600px]">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col md:flex-row min-h-[600px]">
         
         {/* Settings Navigation */}
         <div className="w-full md:w-64 bg-slate-50 dark:bg-slate-800 border-r border-slate-100 dark:border-slate-800 p-4 space-y-1">
@@ -120,20 +120,20 @@ export default function AdminPlatformConfiguration() {
             <div className="max-w-2xl space-y-8 animate-fade-in">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">General Information</h3>
-                <p className="text-sm text-slate-500 dark:text-slate- mb-4">Basic platform details and contact information.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Basic platform details and contact information.</p>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-slate-700 dark:text-slate-">Platform Name</label>
+                      <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Platform Name</label>
                       <input type="text" value={formData.platformName || 'LoadGigs'} onChange={e => handleChange('platformName', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-slate-700 dark:text-slate-">Support Email</label>
+                      <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Support Email</label>
                       <input type="email" value={formData.supportEmail || 'support@loadgigs.com'} onChange={e => handleChange('supportEmail', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                     </div>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">Support Phone Number</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Support Phone Number</label>
                     <input type="text" value={formData.supportPhone || '+234 (800) 123-4567'} onChange={e => handleChange('supportPhone', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                   </div>
                 </div>
@@ -141,10 +141,10 @@ export default function AdminPlatformConfiguration() {
 
               <div className="border-t border-slate-100 dark:border-slate-800 pt-8">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Localization</h3>
-                <p className="text-sm text-slate-500 dark:text-slate- mb-4">Default currency, timezone, and regional formats.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Default currency, timezone, and regional formats.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">Default Currency</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Default Currency</label>
                     <select value={formData.currency || 'NGN'} onChange={e => handleChange('currency', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900">
                       <option value="NGN">Nigerian Naira (₦)</option>
                       <option value="USD">US Dollar ($)</option>
@@ -153,7 +153,7 @@ export default function AdminPlatformConfiguration() {
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">System Timezone</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">System Timezone</label>
                     <select value={formData.timezone || 'Africa/Lagos'} onChange={e => handleChange('timezone', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900">
                       <option value="Africa/Lagos">Africa/Lagos (WAT)</option>
                       <option value="UTC">UTC</option>
@@ -169,22 +169,22 @@ export default function AdminPlatformConfiguration() {
             <div className="max-w-2xl space-y-8 animate-fade-in">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Matching & Pricing</h3>
-                <p className="text-sm text-slate-500 dark:text-slate- mb-4">Configure algorithmic thresholds and platform fees.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Configure algorithmic thresholds and platform fees.</p>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-slate-700 dark:text-slate-">Platform Escrow Fee (%)</label>
+                      <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Platform Escrow Fee (%)</label>
                       <input type="number" value={formData.escrowFee || '3.5'} onChange={e => handleChange('escrowFee', e.target.value)} step="0.1" className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-sm font-bold text-slate-700 dark:text-slate-">Max Auto-Match Radius (km)</label>
+                      <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Max Auto-Match Radius (km)</label>
                       <input type="number" value={formData.matchRadius || '50'} onChange={e => handleChange('matchRadius', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                     </div>
                   </div>
                   <div className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800">
                     <div>
                       <h4 className="font-bold text-slate-900 dark:text-white text-sm">Dynamic Surge Pricing</h4>
-                      <p className="text-xs text-slate-500 dark:text-slate- mt-0.5">Automatically adjust prices based on regional demand</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Automatically adjust prices based on regional demand</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked={formData.surgePricing === 'true' || formData.surgePricing === undefined} onChange={e => handleChange('surgePricing', e.target.checked ? 'true' : 'false')} className="sr-only peer" />
@@ -196,14 +196,14 @@ export default function AdminPlatformConfiguration() {
 
               <div className="border-t border-slate-100 dark:border-slate-800 pt-8">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Disputes & Escalations</h3>
-                <p className="text-sm text-slate-500 dark:text-slate- mb-4">Rules for resolving conflicts between shippers and drivers.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Rules for resolving conflicts between shippers and drivers.</p>
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">Auto-Resolve Inactive Disputes (Days)</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Auto-Resolve Inactive Disputes (Days)</label>
                     <input type="number" value={formData.autoResolveDays || '7'} onChange={e => handleChange('autoResolveDays', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">Default Payout Window (Hours)</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Default Payout Window (Hours)</label>
                     <input type="number" value={formData.payoutWindow || '24'} onChange={e => handleChange('payoutWindow', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                   </div>
                 </div>
@@ -215,12 +215,12 @@ export default function AdminPlatformConfiguration() {
             <div className="max-w-2xl space-y-8 animate-fade-in">
               <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Authentication Policies</h3>
-                <p className="text-sm text-slate-500 dark:text-slate- mb-4">Enforce security standards for admin and user accounts.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Enforce security standards for admin and user accounts.</p>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-xl">
                     <div>
                       <h4 className="font-bold text-slate-900 dark:text-white text-sm">Require 2FA for all Admins</h4>
-                      <p className="text-xs text-slate-500 dark:text-slate- mt-0.5">Mandatory two-factor authentication via Authenticator app</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Mandatory two-factor authentication via Authenticator app</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked={formData.require2FA === 'true'} onChange={e => handleChange('require2FA', e.target.checked ? 'true' : 'false')} className="sr-only peer" />
@@ -230,7 +230,7 @@ export default function AdminPlatformConfiguration() {
                   <div className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-xl">
                     <div>
                       <h4 className="font-bold text-slate-900 dark:text-white text-sm">Enforce Biometrics for Transporters</h4>
-                      <p className="text-xs text-slate-500 dark:text-slate- mt-0.5">Require Face ID / Fingerprint on mobile app launch</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Require Face ID / Fingerprint on mobile app launch</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" checked={formData.enforceBiometrics === 'true'} onChange={e => handleChange('enforceBiometrics', e.target.checked ? 'true' : 'false')} className="sr-only peer" />
@@ -242,14 +242,14 @@ export default function AdminPlatformConfiguration() {
 
               <div className="border-t border-slate-100 dark:border-slate-800 pt-8">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-1">Session & Access limits</h3>
-                <p className="text-sm text-slate-500 dark:text-slate- mb-4">Control session durations and login thresholds.</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">Control session durations and login thresholds.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">Admin Session Timeout (Mins)</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Admin Session Timeout (Mins)</label>
                     <input type="number" value={formData.adminSessionTimeout || '30'} onChange={e => handleChange('adminSessionTimeout', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700 dark:text-slate-">Max Failed Login Attempts</label>
+                    <label className="text-sm font-bold text-slate-700 dark:text-slate-400">Max Failed Login Attempts</label>
                     <input type="number" value={formData.maxFailedLogins || '5'} onChange={e => handleChange('maxFailedLogins', e.target.value)} className="w-full px-4 py-2 border border-slate-200 dark:border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 bg-white dark:bg-slate-900" />
                   </div>
                 </div>
@@ -267,14 +267,14 @@ export default function AdminPlatformConfiguration() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Payment Gateway (Paystack)</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate- mt-1 max-w-sm">Process escrow deposits, payouts, and card tokenization.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-sm">Process escrow deposits, payouts, and card tokenization.</p>
                     <div className="mt-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                       <span className="text-xs font-bold text-emerald-700 uppercase">Connected</span>
                     </div>
                   </div>
                 </div>
-                <Button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate- text-sm font-bold rounded-xl transition-colors shrink-0">Configure</Button>
+                <Button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-400 text-sm font-bold rounded-xl transition-colors shrink-0">Configure</Button>
               </div>
 
               <div className="p-5 border border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-slate-900 hover:border-brand-200 transition-colors">
@@ -284,14 +284,14 @@ export default function AdminPlatformConfiguration() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">SMS Gateway (Twilio)</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate- mt-1 max-w-sm">Send OTPs, driver assignment alerts, and tracking links via SMS.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-sm">Send OTPs, driver assignment alerts, and tracking links via SMS.</p>
                     <div className="mt-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                       <span className="text-xs font-bold text-emerald-700 uppercase">Connected</span>
                     </div>
                   </div>
                 </div>
-                <Button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate- text-sm font-bold rounded-xl transition-colors shrink-0">Configure</Button>
+                <Button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-400 text-sm font-bold rounded-xl transition-colors shrink-0">Configure</Button>
               </div>
 
               <div className="p-5 border border-slate-200 dark:border-slate-700 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white dark:bg-slate-900 hover:border-brand-200 transition-colors">
@@ -301,10 +301,10 @@ export default function AdminPlatformConfiguration() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Email Service (SendGrid)</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate- mt-1 max-w-sm">Transactional emails, weekly reports, and marketing campaigns.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-sm">Transactional emails, weekly reports, and marketing campaigns.</p>
                     <div className="mt-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-slate-300"></span>
-                      <span className="text-xs font-bold text-slate-500 dark:text-slate- uppercase">Not Configured</span>
+                      <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase">Not Configured</span>
                     </div>
                   </div>
                 </div>
@@ -318,14 +318,14 @@ export default function AdminPlatformConfiguration() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 dark:text-white">Google Maps Platform</h4>
-                    <p className="text-sm text-slate-500 dark:text-slate- mt-1 max-w-sm">Routing, distance matrix, and geocoding for accurate pricing.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-sm">Routing, distance matrix, and geocoding for accurate pricing.</p>
                     <div className="mt-3 flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                       <span className="text-xs font-bold text-emerald-700 uppercase">Connected</span>
                     </div>
                   </div>
                 </div>
-                <Button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate- text-sm font-bold rounded-xl transition-colors shrink-0">Configure</Button>
+                <Button className="px-4 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-400 text-sm font-bold rounded-xl transition-colors shrink-0">Configure</Button>
               </div>
 
             </div>

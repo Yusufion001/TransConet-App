@@ -112,61 +112,61 @@ export default function AdminVerificationCenter() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <ShieldCheck className="text-brand-600" /> Identity & Verification
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Approve drivers, transport companies, and vehicle documents.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Approve drivers, transport companies, and vehicle documents.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <AlertTriangle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Pending Verifications</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Pending Verifications</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">42</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <UserCheck size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Verified Drivers</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Verified Drivers</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">1,248</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Truck size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Verified Vehicles</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Verified Vehicles</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">3,492</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <ShieldCheck size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Verified Companies</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Verified Companies</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">315</p>
         </div>
       </div>
 
       {selectedRequest ? (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm animate-fade-in space-y-6">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm animate-fade-in space-y-6">
           <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
             <div className="flex items-center gap-4">
-              <Button onClick={() => setSelectedRequestId(null)} className="text-slate-400 hover:text-slate-600 dark:text-slate-">
+              <Button onClick={() => setSelectedRequestId(null)} className="text-slate-400 hover:text-slate-600 dark:text-slate-400">
                 <ChevronRight size={24} className="rotate-180" />
               </Button>
               <div>
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   {selectedRequest.name} {getStatusBadge(selectedRequest.status)}
                 </h3>
-                <p className="text-sm text-slate-500 dark:text-slate- font-mono mt-1">ID: {selectedRequest.id} • Submitted {selectedRequest.submittedAt}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 font-mono mt-1">ID: {selectedRequest.id} • Submitted {selectedRequest.submittedAt}</p>
               </div>
             </div>
             <div className="flex gap-2">
@@ -186,7 +186,7 @@ export default function AdminVerificationCenter() {
           </div>
 
           <div>
-            <h4 className="font-bold text-slate-700 dark:text-slate- mb-4">Submitted Documents</h4>
+            <h4 className="font-bold text-slate-700 dark:text-slate-400 mb-4">Submitted Documents</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {selectedRequest.documents.map((doc, idx) => (
                 <div key={idx} className="border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex flex-col justify-between group hover:border-brand-300 transition-colors bg-slate-50 dark:bg-slate-800">
@@ -195,15 +195,15 @@ export default function AdminVerificationCenter() {
                       <FileText size={20} />
                     </div>
                     <div>
-                      <p className="font-bold text-sm text-slate-800 dark:text-slate-">{doc.name}</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-">{doc.type}</p>
+                      <p className="font-bold text-sm text-slate-800 dark:text-slate-400">{doc.name}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">{doc.type}</p>
                     </div>
                   </div>
                   <div className="mt-4 flex gap-2">
-                    <Button className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- text-xs font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
+                    <Button className="flex-1 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 text-xs font-bold py-1.5 rounded-lg flex items-center justify-center gap-1 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
                       <Eye size={14} /> View
                     </Button>
-                    <Button aria-label="Action" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- px-2 py-1.5 rounded-lg flex items-center justify-center hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
+                    <Button aria-label="Action" className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 px-2 py-1.5 rounded-lg flex items-center justify-center hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
                       <Download size={14} />
                     </Button>
                   </div>
@@ -221,7 +221,7 @@ export default function AdminVerificationCenter() {
           </div>
         </div>
       ) : (
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden">
           <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50 dark:bg-slate-800/50">
             <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit">
               {['ALL', 'DRIVER', 'COMPANY', 'VEHICLE'].map(type => (
@@ -254,19 +254,19 @@ export default function AdminVerificationCenter() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800">
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Request ID</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Entity</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Type</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Submitted</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Action</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Request ID</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Entity</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Type</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Submitted</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Action</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filteredRequests.map(req => (
                   <tr key={req.id || req?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                     <td className="p-4">
-                      <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-">{req.id}</span>
+                      <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-400">{req.id}</span>
                     </td>
                     <td className="p-4 font-bold text-sm text-slate-900 dark:text-white">
                       {req.name}
@@ -274,10 +274,10 @@ export default function AdminVerificationCenter() {
                     <td className="p-4">
                       <div className="flex items-center gap-2">
                         {getTypeIcon(req.type)}
-                        <span className="text-xs font-bold text-slate-600 dark:text-slate-">{req.type}</span>
+                        <span className="text-xs font-bold text-slate-600 dark:text-slate-400">{req.type}</span>
                       </div>
                     </td>
-                    <td className="p-4 text-sm text-slate-500 dark:text-slate-">
+                    <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                       {req.submittedAt}
                     </td>
                     <td className="p-4">
@@ -295,7 +295,7 @@ export default function AdminVerificationCenter() {
                 ))}
                 {filteredRequests.length === 0 && (
                   <tr>
-                    <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-">
+                    <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-400">
                       No verification requests found matching your filters.
                     </td>
                   </tr>

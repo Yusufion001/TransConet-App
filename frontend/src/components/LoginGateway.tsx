@@ -357,7 +357,7 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                   <div className="mx-auto w-16 h-16 bg-brand-50 rounded-full flex items-center justify-center mb-4">
                     <Lock size={32} className="text-brand-600" />
                   </div>
-                  <p className="text-[14px] text-slate-500 dark:text-slate-">
+                  <p className="text-[14px] text-slate-500 dark:text-slate-400">
                     {resetStep === 1 
                       ? "Enter your email address to receive a secure reset token." 
                       : resetStep === 2
@@ -488,7 +488,7 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                   )}
 
                   <div className="relative group w-full">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate- group-focus-within:text-brand-600 transition-colors">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors">
                       <Smartphone size={20} strokeWidth={2} />
                     </div>
                     <input 
@@ -497,12 +497,12 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                       placeholder="Mobile Number"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
-                      className="w-full h-[52px] pl-[3rem] pr-4 bg-slate-50 border border-slate-200 dark:border-slate-700/60 rounded-2xl text-[14px] focus:outline-none focus:bg-white dark:bg-slate-900 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all text-slate-900 placeholder:text-slate-600 dark:text-slate- font-medium"
+                      className="w-full h-[52px] pl-[3rem] pr-4 bg-slate-50 border border-slate-200 dark:border-slate-700/60 rounded-2xl text-[14px] focus:outline-none focus:bg-white dark:bg-slate-900 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all text-slate-900 placeholder:text-slate-600 dark:text-slate-400 font-medium"
                     />
                   </div>
                   
                   <div className="relative group w-full">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate- group-focus-within:text-brand-600 transition-colors">
+                    <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors">
                       <Lock size={20} strokeWidth={2} />
                     </div>
                     <input
@@ -511,12 +511,12 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                       value={pin}
                       onChange={(e) => setPin(e.target.value)}
                       maxLength={6} placeholder="Password"
-                      className="w-full h-[52px] pl-[3rem] pr-10 bg-slate-50 border border-slate-200 dark:border-slate-700/60 rounded-2xl text-[14px] focus:outline-none focus:bg-white dark:bg-slate-900 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all text-slate-900 placeholder:text-slate-600 dark:text-slate- font-medium"
+                      className="w-full h-[52px] pl-[3rem] pr-10 bg-slate-50 border border-slate-200 dark:border-slate-700/60 rounded-2xl text-[14px] focus:outline-none focus:bg-white dark:bg-slate-900 focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all text-slate-900 placeholder:text-slate-600 dark:text-slate-400 font-medium"
                     />
                     <Button 
                       type="button" 
                       onClick={() => setShowPassword(!showPassword)} 
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate- hover:text-brand-600 transition-colors p-1.5 cursor-pointer"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 dark:text-slate-400 hover:text-brand-600 transition-colors p-1.5 cursor-pointer"
                     >
                       {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                     </Button>
@@ -554,37 +554,37 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
 
                   <div className="flex items-center justify-center my-1 relative">
                     <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-200 dark:border-slate-700"></div></div>
-                    <div className="relative flex justify-center"><span className="px-3 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate- text-[11px] font-bold tracking-widest uppercase">OR</span></div>
+                    <div className="relative flex justify-center"><span className="px-3 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-[11px] font-bold tracking-widest uppercase">OR</span></div>
                   </div>
 
-                  <Button type="button" onClick={handleGoogleLogin} className="w-full h-[50px] bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center gap-2.5 border border-slate-200 dark:border-slate-700 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors shadow-sm cursor-pointer">
+                  <Button type="button" onClick={handleGoogleLogin} className="w-full h-[50px] bg-white dark:bg-slate-900 rounded-[20px] flex items-center justify-center gap-2.5 border border-slate-200 dark:border-slate-700 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors shadow-sm cursor-pointer">
                     <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                     <span className="text-[14px] font-bold text-slate-900">Continue with Google</span>
                   </Button>
 
                   <div className="flex flex-col items-center justify-center pt-1 gap-1">
                     <div className="text-[13px]">
-                      <span className="text-slate-500 dark:text-slate- font-medium">Don't have an account? </span>
+                      <span className="text-slate-500 dark:text-slate-400 font-medium">Don't have an account? </span>
                       <Button type="button" onClick={() => { setIsSignUpMode(true); setSignUpStep(1); }} className="text-brand-600 font-bold cursor-pointer hover:underline">Sign Up</Button>
                     </div>
-                    <div className="flex items-center justify-center gap-3 text-[10.5px] text-slate-600 dark:text-slate- pt-1 font-medium">
+                    <div className="flex items-center justify-center gap-3 text-[10.5px] text-slate-600 dark:text-slate-400 pt-1 font-medium">
                       <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'terms'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><FileText size={12} /> Terms</Button>
-                      <span className="text-slate-600 dark:text-slate-">•</span>
+                      <span className="text-slate-600 dark:text-slate-400">•</span>
                       <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'privacy'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><ShieldCheck size={12} /> Privacy</Button>
                     </div>
                     
                     {/* Social Icons Below Privacy Policy */}
                     <div className="flex items-center gap-4 mt-1 mb-0">
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <Linkedin size={15} strokeWidth={2} />
                       </a>
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <Facebook size={15} strokeWidth={2} />
                       </a>
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <TikTokIcon size={15} />
                       </a>
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <Twitter size={15} strokeWidth={2} />
                       </a>
                     </div>
@@ -617,14 +617,14 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                       <span className="text-[16px] leading-none pb-0.5 font-bold">+</span>
                     </div>
                   </div>
-                  <span className="text-[10px] text-slate-500 dark:text-slate- mt-2 font-medium">Upload Profile Photo</span>
+                  <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-2 font-medium">Upload Profile Photo</span>
                     
                   {showProfileOptions && (
-                    <div className="absolute top-full mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-2 z-10 flex flex-col gap-1 w-40 text-sm">
-                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg text-slate-700 dark:text-slate- font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
+                    <div className="absolute top-full mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-2 z-10 flex flex-col gap-1 w-40 text-sm">
+                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg text-slate-700 dark:text-slate-400 font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
                         <Camera size={16} /> Take Selfie
                       </Button>
-                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg text-slate-700 dark:text-slate- font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
+                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg text-slate-700 dark:text-slate-400 font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
                         <UploadCloud size={16} /> Upload Photo
                       </Button>
                     </div>
@@ -637,11 +637,11 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                   <div className="flex gap-2">
                     <div className="relative w-1/2 group">
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><UserRound size={16} strokeWidth={2} /></div>
-                      <input required placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate- font-medium shadow-sm" />
+                      <input required placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate-400 font-medium shadow-sm" />
                     </div>
                     <div className="relative w-1/2 group">
                       <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><UserRound size={16} strokeWidth={2} /></div>
-                      <input required placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate- font-medium shadow-sm" />
+                      <input required placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate-400 font-medium shadow-sm" />
                     </div>
                   </div>
                   
@@ -649,16 +649,16 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors">
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                     </div>
-                    <input required type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate- font-medium shadow-sm" />
+                    <input required type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate-400 font-medium shadow-sm" />
                   </div>
                   
                   <div className="relative group">
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><Smartphone size={16} strokeWidth={2} /></div>
-                    <input required type="tel" placeholder="Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate- font-medium font-mono shadow-sm" />
+                    <input required type="tel" placeholder="Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate-400 font-medium font-mono shadow-sm" />
                   </div>
                   <div className="relative group">
                     <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><Lock size={16} strokeWidth={2} /></div>
-                    <input type={showPassword ? "text" : "password"} required maxLength={6} placeholder="Password" value={pin} onChange={(e) => setPin(e.target.value)} className="w-full h-[48px] pl-9 pr-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate- font-medium font-mono shadow-sm" />
+                    <input type={showPassword ? "text" : "password"} required maxLength={6} placeholder="Password" value={pin} onChange={(e) => setPin(e.target.value)} className="w-full h-[48px] pl-9 pr-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 placeholder:text-slate-500 dark:text-slate-400 font-medium font-mono shadow-sm" />
                     <Button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-1"><EyeOff size={16} /></Button>
                   </div>
                   <motion.button whileTap={{ scale: 0.98 }} type="submit" disabled={loading} className="w-full h-[50px] bg-brand-600 hover:bg-brand-700 rounded-xl flex items-center justify-center transition-all disabled:opacity-70 text-white font-bold text-[15px] cursor-pointer relative shadow-sm mt-1">
@@ -666,34 +666,34 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                   </motion.button>
                   <div className="flex items-center justify-center my-1 relative">
                     <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-slate-200 dark:border-slate-700"></div></div>
-                    <div className="relative flex justify-center"><span className="px-3 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate- text-[11px] font-bold tracking-widest uppercase">OR</span></div>
+                    <div className="relative flex justify-center"><span className="px-3 bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 text-[11px] font-bold tracking-widest uppercase">OR</span></div>
                   </div>
 
-                  <Button type="button" onClick={handleGoogleLogin} className="w-full h-[50px] bg-white dark:bg-slate-900 rounded-2xl flex items-center justify-center gap-2.5 border border-slate-200 dark:border-slate-700 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors shadow-sm cursor-pointer">
+                  <Button type="button" onClick={handleGoogleLogin} className="w-full h-[50px] bg-white dark:bg-slate-900 rounded-[20px] flex items-center justify-center gap-2.5 border border-slate-200 dark:border-slate-700 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors shadow-sm cursor-pointer">
                     <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
                     <span className="text-[14px] font-bold text-slate-900">Continue with Google</span>
                   </Button>
 
                   <div className="flex flex-col items-center justify-center mt-1 gap-1">
-                    <div className="text-[13px]"><span className="text-slate-500 dark:text-slate- font-medium">Already have an account? </span><Button type="button" onClick={() => setIsSignUpMode(false)} className="text-brand-600 font-bold cursor-pointer hover:underline">Sign In</Button></div>
-                    <div className="flex items-center justify-center gap-3 text-[10px] text-slate-600 dark:text-slate- mt-1 font-medium">
+                    <div className="text-[13px]"><span className="text-slate-500 dark:text-slate-400 font-medium">Already have an account? </span><Button type="button" onClick={() => setIsSignUpMode(false)} className="text-brand-600 font-bold cursor-pointer hover:underline">Sign In</Button></div>
+                    <div className="flex items-center justify-center gap-3 text-[10px] text-slate-600 dark:text-slate-400 mt-1 font-medium">
                       <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'terms'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><FileText size={12} /> Terms</Button>
-                      <span className="text-slate-600 dark:text-slate-">•</span>
+                      <span className="text-slate-600 dark:text-slate-400">•</span>
                       <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'privacy'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><ShieldCheck size={12} /> Privacy</Button>
                     </div>
 
                     {/* Social Icons Below Privacy Policy */}
                     <div className="flex items-center gap-4 mt-1 mb-0">
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <Linkedin size={15} strokeWidth={2} />
                       </a>
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <Facebook size={15} strokeWidth={2} />
                       </a>
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <TikTokIcon size={15} />
                       </a>
-                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate- hover:text-brand-600 hover:border-brand-600 transition-colors">
+                      <a aria-label="Link" href="#" className="w-8 h-8 rounded-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-500 dark:text-slate-400 hover:text-brand-600 hover:border-brand-600 transition-colors">
                         <Twitter size={15} strokeWidth={2} />
                       </a>
                     </div>

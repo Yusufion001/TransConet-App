@@ -49,7 +49,7 @@ export default function AdminOverviewTab({
       )}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-1 space-y-6">
-        <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl p-6 shadow-xl text-white">
+        <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-[20px] p-6 shadow-xl text-white">
           <div className="flex justify-between items-start mb-6">
             <div>
               <p className="text-xs text-slate-400 dark:text-slate-400 font-bold uppercase tracking-widest mb-1">Total System Revenue</p>
@@ -78,23 +78,23 @@ export default function AdminOverviewTab({
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm">
           <h3 className="text-sm font-bold text-slate-900 dark:text-white mb-4 uppercase tracking-wider">System Status</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-">Database Engine</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">Database Engine</span>
               <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase px-2 py-1 rounded bg-emerald-100 text-emerald-700">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Supabase PG
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-">AI Logic Layer</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">AI Logic Layer</span>
               <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase px-2 py-1 rounded bg-emerald-100 text-emerald-700">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Gemini Pro
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-">Location Services</span>
+              <span className="text-xs font-bold text-slate-600 dark:text-slate-400">Location Services</span>
               <span className="inline-flex items-center gap-1 text-[10px] font-black uppercase px-2 py-1 rounded bg-emerald-100 text-emerald-700">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" /> Active
               </span>
@@ -106,15 +106,15 @@ export default function AdminOverviewTab({
       <div className="lg:col-span-2 space-y-6">
         {currentRole === 'ADMIN' && (
           <>
-            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-md space-y-4 relative overflow-hidden">
+            <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm space-y-4 relative overflow-hidden">
               <div className="relative z-10">
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
                   <Radio className="text-emerald-500" size={20} /> Broadcast Announcements
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate- mb-6">Instantly push live network-wide notifications to all customer and transporter dashboards.</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">Instantly push live network-wide notifications to all customer and transporter dashboards.</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="space-y-1">
-                    <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-">Broadcast Title</label>
+                    <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400">Broadcast Title</label>
                     <input 
                       type="text" 
                       value={broadcastTitle}
@@ -124,7 +124,7 @@ export default function AdminOverviewTab({
                     />
                   </div>
                   <div className="space-y-1">
-                    <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-">Category Tag</label>
+                    <label className="text-[10px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400">Category Tag</label>
                     <select 
                       value={broadcastCategory}
                       onChange={e => setBroadcastCategory(e.target.value)}

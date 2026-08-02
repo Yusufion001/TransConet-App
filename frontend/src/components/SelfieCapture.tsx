@@ -91,7 +91,7 @@ export default function SelfieCapture({ onCapture, onCancel }: SelfieCaptureProp
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl overflow-hidden max-w-sm w-full shadow-2xl border border-slate-200 dark:border-slate-700">
+      <div className="bg-white dark:bg-slate-900 rounded-[20px] overflow-hidden max-w-sm w-full shadow-sm border border-slate-200 dark:border-slate-700">
         <div className="flex justify-between items-center p-4 border-b border-slate-200 dark:border-slate-700">
           <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <Camera size={20} className="text-brand-500" /> Take Selfie
@@ -118,7 +118,7 @@ export default function SelfieCapture({ onCapture, onCancel }: SelfieCaptureProp
                 </p>
                 {error && error ? ((error as any).message || JSON.stringify(error)) : error}
               </div>
-              <p className="text-[13px] text-slate-500 dark:text-slate- mb-4 font-medium">
+              <p className="text-[13px] text-slate-500 dark:text-slate-400 mb-4 font-medium">
                 Please upload a photo from your device or use a demo selfie to bypass this step:
               </p>
               <div className="flex flex-col gap-2.5 w-full mb-2">
@@ -132,7 +132,7 @@ export default function SelfieCapture({ onCapture, onCancel }: SelfieCaptureProp
                 <Button
                   type="button"
                   onClick={handleUseMock}
-                  className="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate- hover:bg-slate-100 border border-slate-200 dark:border-slate-700 font-bold text-sm transition"
+                  className="w-full h-11 flex items-center justify-center gap-2 rounded-xl bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-400 hover:bg-slate-100 border border-slate-200 dark:border-slate-700 font-bold text-sm transition"
                 >
                   <Image size={16} /> Use Demo Selfie
                 </Button>
@@ -160,7 +160,7 @@ export default function SelfieCapture({ onCapture, onCancel }: SelfieCaptureProp
             <div className="flex gap-3 w-full">
               {image ? (
                 <>
-                  <Button type="button" onClick={handleRetake} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate- font-bold hover:bg-slate-200 transition">
+                  <Button type="button" onClick={handleRetake} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-400 font-bold hover:bg-slate-200 transition">
                     <RefreshCw size={18} /> Retake
                   </Button>
                   <Button type="button" onClick={handleConfirm} className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-600 text-white font-bold hover:bg-brand-50 cursor-pointer hover:shadow-sm0 transition shadow-lg shadow-blue-500/30">

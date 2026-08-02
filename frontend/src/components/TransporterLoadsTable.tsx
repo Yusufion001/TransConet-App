@@ -32,9 +32,9 @@ export const TransporterLoadsTable: React.FC<TransporterLoadsTableProps> = ({ lo
   }
 
   return (
-    <div className="overflow-x-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm">
+    <div className="overflow-x-auto bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm">
       <table className="w-full text-left text-sm whitespace-nowrap">
-        <thead className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate- font-bold text-xs uppercase tracking-wider">
+        <thead className="bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-slate-500 dark:text-slate-400 font-bold text-xs uppercase tracking-wider">
           <tr>
             <th className="p-4 rounded-tl-2xl">Load ID & Cargo</th>
             <th className="p-4">Route</th>
@@ -48,29 +48,29 @@ export const TransporterLoadsTable: React.FC<TransporterLoadsTableProps> = ({ lo
           {loads.map((load) => (
             <tr key={load.id} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
               <td className="p-4">
-                <div className="font-bold text-slate-800 dark:text-slate-">{load.id}</div>
-                <div className="text-xs text-slate-500 dark:text-slate- mt-1 flex items-center gap-1">
+                <div className="font-bold text-slate-800 dark:text-slate-400">{load.id}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 mt-1 flex items-center gap-1">
                   <Truck size={12} /> {load.cargoType} • {load.weight}
                 </div>
               </td>
               <td className="p-4">
-                <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate- font-medium">
+                <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-400 font-medium">
                   <span className="w-2 h-2 rounded-full bg-brand-500"></span>
                   {load.origin}
                 </div>
-                <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate- font-medium mt-1">
+                <div className="flex items-center gap-1.5 text-slate-700 dark:text-slate-400 font-medium mt-1">
                   <MapPin size={12} className="text-emerald-500 ml-0.5" />
                   {load.destination}
                 </div>
               </td>
-              <td className="p-4 text-slate-600 dark:text-slate-">
+              <td className="p-4 text-slate-600 dark:text-slate-400">
                 <div className="flex items-center gap-1.5">
                   <Calendar size={14} className="text-slate-400 dark:text-slate-400" />
                   {load.pickupDate}
                 </div>
               </td>
               <td className="p-4">
-                <div className="font-bold text-slate-800 dark:text-slate- flex items-center gap-1">
+                <div className="font-bold text-slate-800 dark:text-slate-400 flex items-center gap-1">
                   <DollarSign size={14} className="text-emerald-600" />
                   {load.price}
                 </div>

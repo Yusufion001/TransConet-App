@@ -8,7 +8,7 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative overflow-hidden rounded-[24px] bg-brand-600 text-white shadow-xl min-h-[220px] flex flex-col justify-between group"
+      className="relative overflow-hidden rounded-[20px] bg-brand-600 text-white shadow-xl min-h-[220px] flex flex-col justify-between group"
     >
       {/* Background Image / SVG Illustration */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-brand-600 to-brand-700 overflow-hidden">
@@ -82,7 +82,7 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
         </div>
         
         <div className="flex items-center gap-4 mt-auto">
-          <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-2 bg-white dark:bg-slate-900 text-brand-700 px-5 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-white/10 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
+          <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-2 bg-white dark:bg-slate-900 text-brand-700 px-5 py-2.5 rounded-full font-bold text-sm shadow-sm shadow-white/10 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
             Find Transport <div className="bg-brand-600 text-white p-1 rounded-full"><Search size={14} /></div>
           </Button>
           <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-1 text-sm font-semibold text-brand-100 hover:text-white transition-colors">

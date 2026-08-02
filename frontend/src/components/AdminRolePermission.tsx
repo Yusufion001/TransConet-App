@@ -110,7 +110,7 @@ export default function AdminRolePermission() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-black text-slate-900 dark:text-white">Admin Management</h2>
-          <p className="text-sm text-slate-500 dark:text-slate- mt-1">Manage system administrators and their roles</p>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage system administrators and their roles</p>
         </div>
         
         <Button onClick={openNewAdminModal} className="bg-brand-600 hover:bg-brand-700 text-white rounded-xl px-4 py-2 flex items-center gap-2 text-sm font-bold shadow-sm transition">
@@ -119,27 +119,27 @@ export default function AdminRolePermission() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Users size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Total Admins</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Total Admins</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{admins.length}</p>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Shield size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Roles</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Active Roles</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">{new Set(admins.map(a => a.role)).size}</p>
         </div>
         
-        <div className="bg-slate-900 border border-slate-800 text-white rounded-2xl p-5 shadow-sm">
+        <div className="bg-slate-900 border border-slate-800 text-white rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-slate-800 text-brand-400 rounded-xl">
               <ShieldAlert size={20} />
@@ -150,7 +150,7 @@ export default function AdminRolePermission() {
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex flex-col sm:flex-row justify-between gap-4">
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit overflow-x-auto hide-scrollbar">
             <Button
@@ -184,11 +184,11 @@ export default function AdminRolePermission() {
             <table className="w-full text-left border-collapse animate-fade-in">
               <thead>
                 <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Email</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Role</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Last Login</th>
-                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Email</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Role</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last Login</th>
+                  <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -207,7 +207,7 @@ export default function AdminRolePermission() {
                         {admin.isActive ? 'Active' : 'Inactive'}
                       </span>
                     </td>
-                    <td className="p-4 text-sm text-slate-500 dark:text-slate-">
+                    <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                       {admin.lastLoginAt ? new Date(admin.lastLoginAt).toLocaleString() : 'Never'}
                     </td>
                     <td className="p-4 text-right">
@@ -224,7 +224,7 @@ export default function AdminRolePermission() {
                 ))}
                 {filteredAdmins.length === 0 && (
                   <tr>
-                    <td colSpan={5} className="p-8 text-center text-slate-500 dark:text-slate-">
+                    <td colSpan={5} className="p-8 text-center text-slate-500 dark:text-slate-400">
                       No admins found.
                     </td>
                   </tr>
@@ -237,19 +237,19 @@ export default function AdminRolePermission() {
 
       {isModalOpen && editingAdmin && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm animate-in fade-in duration-200">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
+          <div className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-md overflow-hidden shadow-sm animate-in zoom-in-95 duration-200">
             <div className="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
               <h3 className="font-black text-xl text-slate-900 dark:text-white">
                 {editingAdmin.id ? 'Edit Admin' : 'New Admin'}
               </h3>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:text-slate- p-2 rounded-full hover:bg-slate-100 dark:bg-slate-800 transition">
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-slate-600 dark:text-slate-400 p-2 rounded-full hover:bg-slate-100 dark:bg-slate-800 transition">
                 <X size={20} />
               </button>
             </div>
             
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-xs font-bold text-slate-500 dark:text-slate- mb-1.5 uppercase">Email Address</label>
+                <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase">Email Address</label>
                 <input 
                   type="email" 
                   value={editingAdmin.email}
@@ -260,7 +260,7 @@ export default function AdminRolePermission() {
               </div>
               
               <div>
-                <label className="block text-xs font-bold text-slate-500 dark:text-slate- mb-1.5 uppercase">Admin Role</label>
+                <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase">Admin Role</label>
                 <select 
                   value={editingAdmin.role}
                   onChange={(e) => setEditingAdmin({...editingAdmin, role: e.target.value})}
@@ -273,7 +273,7 @@ export default function AdminRolePermission() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-500 dark:text-slate- mb-1.5 uppercase">
+                <label className="block text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5 uppercase">
                   {editingAdmin.id ? 'New Password (leave blank to keep current)' : 'Password'}
                 </label>
                 <input 
@@ -294,7 +294,7 @@ export default function AdminRolePermission() {
                     onChange={(e) => setEditingAdmin({...editingAdmin, isActive: e.target.checked})}
                     className="w-4 h-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
                   />
-                  <label htmlFor="isActive" className="text-sm font-bold text-slate-700 dark:text-slate-">Account Active</label>
+                  <label htmlFor="isActive" className="text-sm font-bold text-slate-700 dark:text-slate-400">Account Active</label>
                 </div>
               )}
             </div>
@@ -302,7 +302,7 @@ export default function AdminRolePermission() {
             <div className="p-6 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex justify-end gap-3">
               <Button 
                 onClick={() => setIsModalOpen(false)}
-                className="px-6 py-2.5 rounded-xl font-bold text-sm text-slate-600 dark:text-slate- hover:bg-slate-200 transition"
+                className="px-6 py-2.5 rounded-xl font-bold text-sm text-slate-600 dark:text-slate-400 hover:bg-slate-200 transition"
               >
                 Cancel
               </Button>

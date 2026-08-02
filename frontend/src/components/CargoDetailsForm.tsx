@@ -12,28 +12,28 @@ function OptionCard({ options, selected, onSelect, label }: { options: { label: 
 
   return (
     <div className="space-y-3 relative">
-      <label className="text-sm font-bold text-slate-800 dark:text-slate- flex items-center gap-2">
+      <label className="text-sm font-bold text-slate-800 dark:text-slate-400 flex items-center gap-2">
         {label} <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
       </label>
       
       <Button 
         type="button" 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-slate-500 transition-colors text-left"
+        className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] hover:border-slate-500 transition-colors text-left"
       >
         {selectedOption ? (
            <div className="flex items-center gap-3">
              <span className="text-brand-500">{selectedOption.icon}</span>
-             <span className="text-slate-800 dark:text-slate- font-medium">{selectedOption.label}</span>
+             <span className="text-slate-800 dark:text-slate-400 font-medium">{selectedOption.label}</span>
            </div>
         ) : (
-           <span className="text-slate-600 dark:text-slate- font-medium text-sm">Select {label}...</span>
+           <span className="text-slate-600 dark:text-slate-400 font-medium text-sm">Select {label}...</span>
         )}
         <ChevronRight className={`text-slate-600 dark:text-slate-300 transition-transform ${isOpen ? 'rotate-90' : ''}`} size={20} />
       </Button>
 
       {isOpen && (
-        <div className="absolute z-10 top-[calc(100%+0.5rem)] left-0 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-2xl p-4 grid grid-cols-2 md:grid-cols-3 gap-3 max-h-64 overflow-y-auto">
+        <div className="absolute z-10 top-[calc(100%+0.5rem)] left-0 w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm p-4 grid grid-cols-2 md:grid-cols-3 gap-3 max-h-64 overflow-y-auto">
           {options.map((opt) => (
             <Button
               type="button"
@@ -205,7 +205,7 @@ export default function CargoDetailsForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate- p-4 md:p-8 space-y-6 max-w-2xl mx-auto min-h-screen">
+    <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-400 p-4 md:p-8 space-y-6 max-w-2xl mx-auto min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-start mb-6">
         <div>
@@ -215,30 +215,30 @@ export default function CargoDetailsForm() {
           <p className="text-emerald-500 text-xs mt-1 flex items-center gap-1"><CheckCircle size={12}/> All cargo protected. Every mile matters.</p>
         </div>
         <div className="flex gap-3">
-          <Button aria-label="Action" type="button" className="p-2 bg-slate-800/50 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-800 transition"><Bell className="text-slate-600 dark:text-slate-" size={18}/></Button>
-          <Button aria-label="Action" type="button" className="p-2 bg-slate-800/50 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-800 transition"><Share2 className="text-slate-600 dark:text-slate-" size={18}/></Button>
+          <Button aria-label="Action" type="button" className="p-2 bg-slate-800/50 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-800 transition"><Bell className="text-slate-600 dark:text-slate-400" size={18}/></Button>
+          <Button aria-label="Action" type="button" className="p-2 bg-slate-800/50 rounded-full border border-slate-200 dark:border-slate-700 hover:bg-slate-800 transition"><Share2 className="text-slate-600 dark:text-slate-400" size={18}/></Button>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 p-5 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 space-y-8 shadow-2xl">
+      <div className="bg-white dark:bg-slate-900 p-5 md:p-8 rounded-[20px] border border-slate-200 dark:border-slate-700 space-y-8 shadow-sm">
         {/* Title */}
         <div className="flex gap-4 items-center">
             <div className="w-12 h-12 rounded-2xl bg-brand-900/30 border border-brand-500/30 flex items-center justify-center">
                 <Box className="text-brand-500" size={24} />
             </div>
             <div>
-                <h2 className="text-xl font-bold text-slate-800 dark:text-slate-">Cargo Details</h2>
-                <p className="text-slate-600 dark:text-slate- text-sm">Provide accurate information for better matches</p>
+                <h2 className="text-xl font-bold text-slate-800 dark:text-slate-400">Cargo Details</h2>
+                <p className="text-slate-600 dark:text-slate-400 text-sm">Provide accurate information for better matches</p>
             </div>
         </div>
         
         {/* Cargo Name */}
         <div className="space-y-3">
-          <label className="text-sm font-bold text-slate-800 dark:text-slate- flex items-center gap-2">
+          <label className="text-sm font-bold text-slate-800 dark:text-slate-400 flex items-center gap-2">
             Cargo Name <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
           </label>
           <div className="relative">
-            <input name="name" placeholder="Enter cargo name" onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:outline-none focus:border-emerald-500/50 transition-colors" required />
+            <input name="name" placeholder="Enter cargo name" onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-[20px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:outline-none focus:border-emerald-500/50 transition-colors" required />
             <Package className="absolute right-4 top-1/2 -translate-y-1/2 text-emerald-500/70" size={20} />
           </div>
         </div>
@@ -261,24 +261,24 @@ export default function CargoDetailsForm() {
         
         {/* Cargo Description */}
         <div className="space-y-3">
-          <label className="text-sm font-bold text-slate-800 dark:text-slate- flex items-center gap-2">
+          <label className="text-sm font-bold text-slate-800 dark:text-slate-400 flex items-center gap-2">
             Cargo Description <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
           </label>
           <div className="relative">
-            <textarea name="description" placeholder="Describe your cargo in detail" onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- min-h-[120px] focus:outline-none focus:border-emerald-500/50 transition-colors" required />
+            <textarea name="description" placeholder="Describe your cargo in detail" onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-4 pr-12 rounded-[20px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 min-h-[120px] focus:outline-none focus:border-emerald-500/50 transition-colors" required />
             <FileText className="absolute right-4 bottom-4 text-emerald-500/70" size={20} />
           </div>
         </div>
 
         {/* Total Weight */}
         <div className="space-y-3">
-            <label className="text-sm font-bold text-slate-800 dark:text-slate- flex items-center gap-2">
+            <label className="text-sm font-bold text-slate-800 dark:text-slate-400 flex items-center gap-2">
               Total Weight ({formData.weightUnit}) <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             </label>
             <div className="relative flex items-center">
-              <input type="number" name="weight" placeholder="Enter total weight" onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-4 pr-24 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate- focus:outline-none focus:border-emerald-500/50 transition-colors" required />
+              <input type="number" name="weight" placeholder="Enter total weight" onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-4 pr-24 rounded-[20px] border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-400 focus:outline-none focus:border-emerald-500/50 transition-colors" required />
               <div className="absolute right-4 flex items-center gap-2">
-                 <select name="weightUnit" value={formData.weightUnit} onChange={handleChange} className="bg-transparent text-slate-600 dark:text-slate- outline-none text-sm cursor-pointer">
+                 <select name="weightUnit" value={formData.weightUnit} onChange={handleChange} className="bg-transparent text-slate-600 dark:text-slate-400 outline-none text-sm cursor-pointer">
                     <option value="kg" className="bg-slate-900">kg</option>
                     <option value="tons" className="bg-slate-900">tons</option>
                     <option value="g" className="bg-slate-900">g</option>
@@ -305,20 +305,20 @@ export default function CargoDetailsForm() {
 
         {/* Pickup Details Card */}
         <div className="space-y-3">
-          <Button type="button" onClick={() => setShowPickup(!showPickup)} className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-slate-500 transition-colors text-left">
+          <Button type="button" onClick={() => setShowPickup(!showPickup)} className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] hover:border-slate-500 transition-colors text-left">
               <div className="flex items-center gap-4">
                   <div className="p-2 bg-emerald-500/10 rounded-xl">
                       <MapPin className="text-emerald-500" size={20} />
                   </div>
                   <div>
-                      <h3 className="text-slate-800 dark:text-slate- font-bold text-sm">Pickup Address (Google Maps Autocomplete)</h3>
-                      <p className="text-slate-600 dark:text-slate- text-xs">Search exact hub, port, city or state across Nigeria</p>
+                      <h3 className="text-slate-800 dark:text-slate-400 font-bold text-sm">Pickup Address (Google Maps Autocomplete)</h3>
+                      <p className="text-slate-600 dark:text-slate-400 text-xs">Search exact hub, port, city or state across Nigeria</p>
                   </div>
               </div>
               <ChevronRight className={`text-slate-600 dark:text-slate-300 transition-transform ${showPickup ? 'rotate-90' : ''}`} size={20} />
           </Button>
           {showPickup && (
-            <div className="bg-white dark:bg-slate-900 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl space-y-4">
+            <div className="bg-white dark:bg-slate-900 p-4 border border-slate-200 dark:border-slate-700 rounded-[20px] space-y-4">
                 <LocationAutocomplete 
                   label="Pickup Location"
                   placeholder="Type pickup city, state or hub (e.g. Apapa Port, Lagos)"
@@ -327,7 +327,7 @@ export default function CargoDetailsForm() {
                   iconColor="text-emerald-500"
                 />
                 <div className="grid grid-cols-1 gap-3">
-                    <input type="date" name="pickupDate" value={formData.pickupDate} onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate- focus:outline-none focus:border-emerald-500/50" />
+                    <input type="date" name="pickupDate" value={formData.pickupDate} onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 focus:outline-none focus:border-emerald-500/50" />
                 </div>
             </div>
           )}
@@ -335,20 +335,20 @@ export default function CargoDetailsForm() {
         
         {/* Delivery Details Card */}
         <div className="space-y-3">
-          <Button type="button" onClick={() => setShowDelivery(!showDelivery)} className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl hover:border-slate-500 transition-colors text-left">
+          <Button type="button" onClick={() => setShowDelivery(!showDelivery)} className="w-full flex items-center justify-between p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] hover:border-slate-500 transition-colors text-left">
               <div className="flex items-center gap-4">
                   <div className="p-2 bg-brand-500/10 rounded-xl">
                       <MapPin className="text-brand-500" size={20} />
                   </div>
                   <div>
-                      <h3 className="text-slate-800 dark:text-slate- font-bold text-sm">Delivery Address (Google Maps Autocomplete)</h3>
-                      <p className="text-slate-600 dark:text-slate- text-xs">Search exact destination location</p>
+                      <h3 className="text-slate-800 dark:text-slate-400 font-bold text-sm">Delivery Address (Google Maps Autocomplete)</h3>
+                      <p className="text-slate-600 dark:text-slate-400 text-xs">Search exact destination location</p>
                   </div>
               </div>
               <ChevronRight className={`text-slate-600 dark:text-slate-300 transition-transform ${showDelivery ? 'rotate-90' : ''}`} size={20} />
           </Button>
           {showDelivery && (
-            <div className="bg-white dark:bg-slate-900 p-4 border border-slate-200 dark:border-slate-700 rounded-2xl space-y-4">
+            <div className="bg-white dark:bg-slate-900 p-4 border border-slate-200 dark:border-slate-700 rounded-[20px] space-y-4">
                 <LocationAutocomplete 
                   label="Delivery Location"
                   placeholder="Type delivery destination (e.g. Challenge, Ibadan)"
@@ -357,7 +357,7 @@ export default function CargoDetailsForm() {
                   iconColor="text-brand-500"
                 />
                 <div className="grid grid-cols-1 gap-3">
-                    <input type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-3 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate- focus:outline-none focus:border-emerald-500/50" />
+                    <input type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} className="w-full bg-white dark:bg-slate-900 p-3 rounded-2xl border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 focus:outline-none focus:border-emerald-500/50" />
                 </div>
             </div>
           )}
@@ -388,20 +388,20 @@ export default function CargoDetailsForm() {
 
       {/* Trust Indicators */}
       <div className="grid grid-cols-3 gap-3">
-        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-[20px] border border-slate-200 dark:border-slate-700">
             <ShieldCheck className="text-emerald-500" size={24}/>
-            <span className="text-xs text-slate-800 dark:text-slate- font-bold text-center">Secure & Verified</span>
-            <span className="text-[10px] text-slate-600 dark:text-slate- text-center leading-tight">Your cargo is protected</span>
+            <span className="text-xs text-slate-800 dark:text-slate-400 font-bold text-center">Secure & Verified</span>
+            <span className="text-[10px] text-slate-600 dark:text-slate-400 text-center leading-tight">Your cargo is protected</span>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-[20px] border border-slate-200 dark:border-slate-700">
             <Target className="text-brand-500" size={24}/>
-            <span className="text-xs text-slate-800 dark:text-slate- font-bold text-center">Smart Matching</span>
-            <span className="text-[10px] text-slate-600 dark:text-slate- text-center leading-tight">Get the best transporters</span>
+            <span className="text-xs text-slate-800 dark:text-slate-400 font-bold text-center">Smart Matching</span>
+            <span className="text-[10px] text-slate-600 dark:text-slate-400 text-center leading-tight">Get the best transporters</span>
         </div>
-        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700">
+        <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-[20px] border border-slate-200 dark:border-slate-700">
             <Leaf className="text-emerald-500" size={24}/>
-            <span className="text-xs text-slate-800 dark:text-slate- font-bold text-center">Eco Friendly</span>
-            <span className="text-[10px] text-slate-600 dark:text-slate- text-center leading-tight">Lower emissions, better future</span>
+            <span className="text-xs text-slate-800 dark:text-slate-400 font-bold text-center">Eco Friendly</span>
+            <span className="text-[10px] text-slate-600 dark:text-slate-400 text-center leading-tight">Lower emissions, better future</span>
         </div>
       </div>
 
@@ -413,19 +413,19 @@ export default function CargoDetailsForm() {
       {/* Calculated Options View */}
       {isCalculating && (
         <div className="fixed inset-0 z-50 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl flex flex-col items-center gap-4">
+          <div className="bg-white dark:bg-slate-900 p-6 rounded-[20px] shadow-sm flex flex-col items-center gap-4">
             <div className="w-8 h-8 border-4 border-brand-600 border-t-transparent rounded-full animate-spin"></div>
-            <p className="font-bold text-slate-800 dark:text-slate-">Calculating transportation costs...</p>
+            <p className="font-bold text-slate-800 dark:text-slate-400">Calculating transportation costs...</p>
           </div>
         </div>
       )}
 
       {calculatedOptions.length > 0 && (
         <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex flex-col justify-end md:justify-center p-0 md:p-6">
-          <div className="bg-white dark:bg-slate-900 md:rounded-2xl rounded-t-2xl w-full max-w-3xl mx-auto flex flex-col max-h-[90vh]">
+          <div className="bg-white dark:bg-slate-900 md:rounded-[20px] rounded-t-2xl w-full max-w-3xl mx-auto flex flex-col max-h-[90vh]">
             <div className="p-6 border-b border-slate-200 dark:border-slate-700">
               <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Select Transport Option</h2>
-              <p className="text-slate-500 dark:text-slate- text-sm mt-1">Based on your pickup and delivery locations.</p>
+              <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Based on your pickup and delivery locations.</p>
             </div>
             
             <div className="p-6 overflow-y-auto space-y-4">
@@ -437,7 +437,7 @@ export default function CargoDetailsForm() {
                     </div>
                     <div>
                       <h3 className="font-bold text-slate-900 dark:text-white text-lg">{opt.title}</h3>
-                      <p className="text-slate-500 dark:text-slate- text-sm">{opt.subtitle}</p>
+                      <p className="text-slate-500 dark:text-slate-400 text-sm">{opt.subtitle}</p>
                     </div>
                   </div>
                   <div className="text-left md:text-right">
@@ -455,7 +455,7 @@ export default function CargoDetailsForm() {
                   setCalculatedOptions([]);
                   alert('Option selected! Proceeding to matching...');
                 }} 
-                className="bg-slate-200 text-slate-700 dark:text-slate- hover:bg-slate-300 font-bold px-6 py-3 rounded-xl transition"
+                className="bg-slate-200 text-slate-700 dark:text-slate-400 hover:bg-slate-300 font-bold px-6 py-3 rounded-xl transition"
               >
                 Cancel
               </Button>

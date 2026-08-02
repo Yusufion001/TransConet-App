@@ -56,15 +56,15 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-800 p-4">
-      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-700 overflow-hidden">
+      <div className="max-w-md w-full bg-white dark:bg-slate-900 rounded-[20px] shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden">
         <div className="p-8 space-y-6">
           <div className="flex flex-col items-center justify-center space-y-4">
-            <div className="bg-slate-900 p-4 rounded-2xl text-white">
+            <div className="bg-slate-900 p-4 rounded-[20px] text-white">
                <Shield size={32} />
             </div>
             <div className="text-center">
               <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">Admin Portal</h1>
-              <p className="text-sm text-slate-500 dark:text-slate- mt-1">Authorized Personnel Only</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Authorized Personnel Only</p>
             </div>
           </div>
 
@@ -79,7 +79,7 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
             {!requireMfa ? (
               <>
                 <div className="space-y-1">
-                  <label className="text-[11px] font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Admin Email</label>
+                  <label className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Admin Email</label>
                   <input
                     type="email"
                     value={email}
@@ -91,7 +91,7 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
                 </div>
                 
                 <div className="space-y-1 relative">
-                  <label className="text-[11px] font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Password</label>
+                  <label className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Password</label>
                   <input
                     type={showPassword ? "text" : "password"}
                     value={password}
@@ -103,7 +103,7 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
                   <button 
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-7 p-1 text-slate-400 hover:text-slate-600 dark:text-slate- transition"
+                    className="absolute right-3 top-7 p-1 text-slate-400 hover:text-slate-600 dark:text-slate-400 transition"
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -111,7 +111,7 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
               </>
             ) : (
               <div className="space-y-1">
-                <label className="text-[11px] font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Two-Factor Auth Code</label>
+                <label className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Two-Factor Auth Code</label>
                 <div className="flex relative">
                    <div className="absolute left-3 top-3 text-slate-400 dark:text-slate-400"><Smartphone size={18} /></div>
                    <input
@@ -123,7 +123,7 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
                      maxLength={6}
                    />
                 </div>
-                <p className="text-xs text-slate-500 dark:text-slate- text-center mt-2">A verification token has been sent to yusufjimoh969@gmail.com. Please enter it below to approve this login.</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 text-center mt-2">A verification token has been sent to yusufjimoh969@gmail.com. Please enter it below to approve this login.</p>
               </div>
             )}
 
@@ -139,7 +139,7 @@ export default function DedicatedAdminLogin({ onLoginSuccess }: { onLoginSuccess
               )}
             </button>
           </form>
-          <div className="mt-4 text-center text-xs text-slate-500 dark:text-slate-">
+          <div className="mt-4 text-center text-xs text-slate-500 dark:text-slate-400">
             <p>Demo Credentials: <b>admin@transconet.com</b> / <b>SecureAdmin123!</b></p>
           </div>
         </div>

@@ -93,7 +93,7 @@ export default function AdminSupportCare() {
       case 'OPEN': return <span className="bg-red-100 text-red-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Open</span>;
       case 'IN_PROGRESS': return <span className="bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">In Progress</span>;
       case 'RESOLVED': return <span className="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Resolved</span>;
-      case 'CLOSED': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate- px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Closed</span>;
+      case 'CLOSED': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-400 px-2 py-0.5 rounded-full text-[10px] font-black uppercase">Closed</span>;
       default: return null;
     }
   };
@@ -103,7 +103,7 @@ export default function AdminSupportCare() {
       case 'URGENT': return <span className="text-red-600 bg-red-50 px-2 py-0.5 rounded text-xs font-bold border border-red-200">Urgent</span>;
       case 'HIGH': return <span className="text-orange-600 bg-orange-50 px-2 py-0.5 rounded text-xs font-bold border border-orange-200">High</span>;
       case 'MEDIUM': return <span className="text-brand-600 bg-brand-50 px-2 py-0.5 rounded text-xs font-bold border border-brand-200">Medium</span>;
-      case 'LOW': return <span className="text-slate-600 dark:text-slate- bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold border border-slate-200 dark:border-slate-700">Low</span>;
+      case 'LOW': return <span className="text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-bold border border-slate-200 dark:border-slate-700">Low</span>;
       default: return null;
     }
   };
@@ -139,52 +139,52 @@ export default function AdminSupportCare() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Headset className="text-brand-600" /> Support & Customer Care
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage support tickets, complaints, and live chats.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage support tickets, complaints, and live chats.</p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-red-50 text-red-600 rounded-xl">
               <AlertCircle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Open Tickets</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Open Tickets</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">24</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <Clock size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Avg. Resolution</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Avg. Resolution</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">4h 12m</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <CheckCircle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Resolved Today</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Resolved Today</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">86</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <Star size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">CSAT Score</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">CSAT Score</h3>
           </div>
-          <p className="text-3xl font-black text-slate-900 dark:text-white">4.8<span className="text-sm text-slate-500 dark:text-slate- font-medium">/5</span></p>
+          <p className="text-3xl font-black text-slate-900 dark:text-white">4.8<span className="text-sm text-slate-500 dark:text-slate-400 font-medium">/5</span></p>
         </div>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 h-[600px]">
         {/* Ticket List */}
-        <div className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm flex-col w-full ${selectedTicket ? 'hidden lg:flex lg:w-1/3' : 'flex'}`}>
+        <div className={`bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm flex-col w-full ${selectedTicket ? 'hidden lg:flex lg:w-1/3' : 'flex'}`}>
           <div className="p-4 border-b border-slate-100 dark:border-slate-800">
             <div className="relative mb-4">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400" size={16} />
@@ -225,12 +225,12 @@ export default function AdminSupportCare() {
                 }`}
               >
                 <div className="flex justify-between items-start mb-2">
-                  <span className="font-mono text-xs font-bold text-slate-500 dark:text-slate-">{ticket.id}</span>
+                  <span className="font-mono text-xs font-bold text-slate-500 dark:text-slate-400">{ticket.id}</span>
                   {getStatusBadge(ticket.status)}
                 </div>
                 <h4 className="font-bold text-sm text-slate-900 dark:text-white truncate mb-1">{ticket.subject}</h4>
                 <div className="flex justify-between items-center text-xs">
-                  <div className="flex items-center gap-1 text-slate-600 dark:text-slate-">
+                  <div className="flex items-center gap-1 text-slate-600 dark:text-slate-400">
                     <User size={12} /> <span className="truncate max-w-[100px]">{ticket.user}</span>
                   </div>
                   <span className="text-slate-400 dark:text-slate-400">{ticket.lastUpdated}</span>
@@ -238,7 +238,7 @@ export default function AdminSupportCare() {
               </Button>
             ))}
             {filteredTickets.length === 0 && (
-              <div className="text-center text-slate-500 dark:text-slate- py-8 text-sm">
+              <div className="text-center text-slate-500 dark:text-slate-400 py-8 text-sm">
                 No tickets found.
               </div>
             )}
@@ -247,10 +247,10 @@ export default function AdminSupportCare() {
 
         {/* Ticket Details & Chat */}
         {selectedTicket ? (
-          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm flex flex-col w-full lg:w-2/3 h-full animate-fade-in">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm flex flex-col w-full lg:w-2/3 h-full animate-fade-in">
             <div className="p-4 border-b border-slate-100 dark:border-slate-800 flex items-start justify-between bg-slate-50 dark:bg-slate-800/50 rounded-t-2xl gap-4">
               <div className="flex gap-3">
-                <Button onClick={() => setSelectedTicketId(null)} className="lg:hidden text-slate-400 hover:text-slate-600 dark:text-slate- mt-1">
+                <Button onClick={() => setSelectedTicketId(null)} className="lg:hidden text-slate-400 hover:text-slate-600 dark:text-slate-400 mt-1">
                   <ChevronRight size={20} className="rotate-180" />
                 </Button>
                 <div>
@@ -259,7 +259,7 @@ export default function AdminSupportCare() {
                     {getStatusBadge(selectedTicket.status)}
                     {getPriorityBadge(selectedTicket.priority)}
                   </div>
-                  <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-">
+                  <div className="flex items-center gap-4 text-sm text-slate-600 dark:text-slate-400">
                     <span className="flex items-center gap-1"><User size={14} /> {selectedTicket.user} ({selectedTicket.role})</span>
                     <span className="flex items-center gap-1"><AlertCircle size={14} /> {selectedTicket.category}</span>
                   </div>
@@ -267,7 +267,7 @@ export default function AdminSupportCare() {
               </div>
               
               <div className="flex gap-2">
-                <Button aria-label="Action" className="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate- hover:text-brand-600 hover:border-brand-300 rounded-lg shadow-sm transition-colors" title="Call User">
+                <Button aria-label="Action" className="p-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:text-brand-600 hover:border-brand-300 rounded-lg shadow-sm transition-colors" title="Call User">
                   <PhoneCall size={18} />
                 </Button>
                 {selectedTicket.status !== 'RESOLVED' && (
@@ -304,7 +304,7 @@ export default function AdminSupportCare() {
 
             <div className="p-4 border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-b-2xl">
               {selectedTicket.status === 'RESOLVED' || selectedTicket.status === 'CLOSED' ? (
-                <div className="text-center text-slate-500 dark:text-slate- text-sm font-medium py-2">
+                <div className="text-center text-slate-500 dark:text-slate-400 text-sm font-medium py-2">
                   This ticket is closed. Reopen to send a message.
                 </div>
               ) : (
@@ -333,8 +333,8 @@ export default function AdminSupportCare() {
             <div className="w-16 h-16 bg-slate-100 dark:bg-slate-800 text-slate-400 dark:text-slate-400 rounded-full flex items-center justify-center mb-4">
               <MessageSquare size={32} />
             </div>
-            <h3 className="text-lg font-bold text-slate-700 dark:text-slate-">Select a Ticket</h3>
-            <p className="text-slate-500 dark:text-slate- text-sm mt-1 max-w-sm text-center">Choose a ticket from the list to view details, reply, or resolve the issue.</p>
+            <h3 className="text-lg font-bold text-slate-700 dark:text-slate-400">Select a Ticket</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-1 max-w-sm text-center">Choose a ticket from the list to view details, reply, or resolve the issue.</p>
           </div>
         )}
       </div>

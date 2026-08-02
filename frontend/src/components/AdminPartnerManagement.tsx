@@ -42,7 +42,7 @@ export default function AdminPartnerManagement() {
       case 'ACTIVE': return <span className="bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><CheckCircle2 size={12} /> Active</span>;
       case 'DEGRADED': return <span className="bg-amber-100 text-amber-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><AlertTriangle size={12} /> Degraded</span>;
       case 'MAINTENANCE': return <span className="bg-brand-100 text-brand-800 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Settings size={12} className="animate-spin" /> Maintenance</span>;
-      case 'INACTIVE': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate- px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Power size={12} /> Inactive</span>;
+      case 'INACTIVE': return <span className="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 px-2.5 py-1 rounded-full text-[10px] font-black uppercase flex items-center gap-1 w-fit"><Power size={12} /> Inactive</span>;
       default: return null;
     }
   };
@@ -69,7 +69,7 @@ export default function AdminPartnerManagement() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Handshake className="text-brand-600" /> Partner Management
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage 3rd-party integrations, API health, and vendor configurations.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage 3rd-party integrations, API health, and vendor configurations.</p>
         </div>
         <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
           <LinkIcon size={16} /> Add Integration
@@ -77,45 +77,45 @@ export default function AdminPartnerManagement() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <LinkIcon size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Active Integrations</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Active Integrations</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">14</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
               <Activity size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Avg. API Uptime</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Avg. API Uptime</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">99.8%</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
               <RefreshCw size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">API Calls (24h)</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">API Calls (24h)</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">6.8M</p>
         </div>
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm">
           <div className="flex items-center gap-3 mb-2">
             <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
               <AlertTriangle size={20} />
             </div>
-            <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Degraded Services</h3>
+            <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Degraded Services</h3>
           </div>
           <p className="text-3xl font-black text-slate-900 dark:text-white">1</p>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 flex flex-col sm:flex-row justify-between gap-4">
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit overflow-x-auto hide-scrollbar">
             {['ALL', 'PAYMENT', 'IDENTITY', 'INSURANCE', 'SMS', 'TRACKING'].map(type => (
@@ -148,12 +148,12 @@ export default function AdminPartnerManagement() {
           <table className="w-full text-left border-collapse animate-fade-in">
             <thead>
               <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Partner & Type</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Uptime (30d)</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">API Volume</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Last Sync</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Settings</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Partner & Type</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Uptime (30d)</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">API Volume</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Last Sync</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Settings</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -166,20 +166,20 @@ export default function AdminPartnerManagement() {
                       </div>
                       <div>
                         <div className="font-bold text-sm text-slate-900 dark:text-white">{partner.name}</div>
-                        <div className="text-xs text-slate-500 dark:text-slate- mt-0.5">{partner.type} Integration</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{partner.type} Integration</div>
                       </div>
                     </div>
                   </td>
                   <td className="p-4">
                     {getStatusBadge(partner.status)}
                   </td>
-                  <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate- font-bold">
+                  <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate-400 font-bold">
                     {partner.uptime}
                   </td>
-                  <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate-">
+                  <td className="p-4 font-mono text-sm text-slate-700 dark:text-slate-400">
                     {partner.apiCalls} <span className="text-xs font-sans font-normal text-slate-400 dark:text-slate-400">calls</span>
                   </td>
-                  <td className="p-4 text-sm text-slate-500 dark:text-slate-">
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                     {partner.lastSync}
                   </td>
                   <td className="p-4 text-right">
@@ -196,7 +196,7 @@ export default function AdminPartnerManagement() {
               ))}
               {filteredPartners.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-">
+                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-400">
                     No partner integrations found matching your criteria.
                   </td>
                 </tr>

@@ -47,7 +47,7 @@ export default function AdminLiveTrips() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-80px)] bg-slate-900 rounded-3xl overflow-hidden shadow-sm border border-slate-700">
+    <div className="flex flex-col h-[calc(100vh-80px)] bg-slate-900 rounded-[20px] overflow-hidden shadow-sm border border-slate-700">
       <header className="p-4 bg-slate-800 text-white flex justify-between items-center border-b border-slate-700">
         <div>
           <h2 className="text-xl font-bold flex items-center gap-2">

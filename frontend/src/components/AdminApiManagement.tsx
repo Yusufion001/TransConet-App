@@ -72,17 +72,17 @@ export default function AdminApiManagement() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
+      <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm space-y-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-4">
           <div>
             <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
               <Server className="text-brand-600" size={22} /> Third-Party API & Microservices Hub
             </h2>
-            <p className="text-xs text-slate-500 dark:text-slate- mt-1">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
               Real-time management, endpoint latency monitoring, and key rotation for all integrated platform services.
             </p>
           </div>
-          <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-">
+          <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-xl text-xs font-bold text-slate-700 dark:text-slate-400">
             <Activity size={14} className="text-emerald-500 animate-pulse" />
             <span>7 Microservices Online</span>
           </div>
@@ -101,7 +101,7 @@ export default function AdminApiManagement() {
                     <div>
                       <div className="flex items-center gap-2">
                         <h4 className="font-bold text-slate-900 dark:text-white text-sm">{api.name}</h4>
-                        <span className="bg-slate-200/70 text-slate-700 dark:text-slate- text-[10px] font-bold px-2 py-0.5 rounded-md">
+                        <span className="bg-slate-200/70 text-slate-700 dark:text-slate-400 text-[10px] font-bold px-2 py-0.5 rounded-md">
                           {api.category}
                         </span>
                       </div>
@@ -121,7 +121,7 @@ export default function AdminApiManagement() {
                       type="button"
                       onClick={() => handleTestApi(api.id)}
                       disabled={testingId === api.id}
-                      className="text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 text-slate-800 dark:text-slate- font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50"
+                      className="text-xs bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:bg-slate-100 text-slate-800 dark:text-slate-400 font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm disabled:opacity-50"
                     >
                       {testingId === api.id ? (
                         <RefreshCw size={13} className="animate-spin text-brand-600" />
@@ -135,7 +135,7 @@ export default function AdminApiManagement() {
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2 border-t border-slate-200 dark:border-slate-700/60">
                   <div className="flex items-center gap-2 flex-1">
-                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate- uppercase">Secret Key / Token:</span>
+                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase">Secret Key / Token:</span>
                     <input
                       type="text"
                       defaultValue={api.key}
@@ -143,7 +143,7 @@ export default function AdminApiManagement() {
                         const val = e.target.value;
                         setApis(prev => prev.map(a => a.id === api.id ? { ...a, key: val } : a));
                       }}
-                      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1 text-xs font-mono text-slate-800 dark:text-slate- flex-1 focus:outline-none focus:border-brand-500 shadow-inner"
+                      className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1 text-xs font-mono text-slate-800 dark:text-slate-400 flex-1 focus:outline-none focus:border-brand-500 shadow-inner"
                     />
                   </div>
 
@@ -160,7 +160,7 @@ export default function AdminApiManagement() {
         </div>
 
         <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-">
+          <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
             <Shield size={16} className="text-brand-600 shrink-0" />
             <span>All API tokens are encrypted with AES-256 and protected under Supabase RLS.</span>
           </div>

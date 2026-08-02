@@ -74,10 +74,10 @@ export default function AdminFinancialOperations() {
           <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight flex items-center gap-2">
             <Wallet className="text-brand-600" /> Financial Operations
           </h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Manage escrow accounts, approve payouts, and track revenue.</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Manage escrow accounts, approve payouts, and track revenue.</p>
         </div>
         <div className="flex gap-2">
-          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate- hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
+          <Button className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-400 hover:bg-brand-50 cursor-pointer hover:shadow-sm px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
             <FileText size={16} /> Invoices
           </Button>
           <Button className="bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-sm">
@@ -87,7 +87,7 @@ export default function AdminFinancialOperations() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-slate-900 rounded-2xl p-5 shadow-sm text-white flex flex-col justify-between">
+        <div className="bg-slate-900 rounded-[20px] p-5 shadow-sm text-white flex flex-col justify-between">
           <div className="flex items-center gap-3 mb-4 text-slate-300 dark:text-slate-300">
             <div className="p-2 bg-slate-800 rounded-xl">
               <Briefcase size={20} />
@@ -100,13 +100,13 @@ export default function AdminFinancialOperations() {
           </div>
         </div>
         
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
                 <DollarSign size={20} />
               </div>
-              <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Platform Revenue</h3>
+              <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Platform Revenue</h3>
             </div>
           </div>
           <div>
@@ -115,38 +115,38 @@ export default function AdminFinancialOperations() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-amber-50 text-amber-600 rounded-xl">
                 <Clock size={20} />
               </div>
-              <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Pending Payouts</h3>
+              <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Pending Payouts</h3>
             </div>
           </div>
           <div>
             <p className="text-3xl font-black text-slate-900 dark:text-white">₦12.4M</p>
-            <p className="text-xs text-slate-500 dark:text-slate- mt-1 font-medium">45 requests awaiting approval</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">45 requests awaiting approval</p>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm flex flex-col justify-between">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-brand-50 text-brand-600 rounded-xl">
                 <ArrowRightLeft size={20} />
               </div>
-              <h3 className="font-bold text-slate-700 dark:text-slate- text-sm">Processed (24h)</h3>
+              <h3 className="font-bold text-slate-700 dark:text-slate-400 text-sm">Processed (24h)</h3>
             </div>
           </div>
           <div>
             <p className="text-3xl font-black text-slate-900 dark:text-white">₦45.1M</p>
-            <p className="text-xs text-slate-500 dark:text-slate- mt-1 font-medium">1,204 transactions</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">1,204 transactions</p>
           </div>
         </div>
       </div>
 
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm overflow-hidden flex flex-col">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] shadow-sm overflow-hidden flex flex-col">
         <div className="p-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 overflow-x-auto hide-scrollbar flex justify-between gap-4">
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl w-fit min-w-max">
             {['ALL', 'ESCROW_DEPOSIT', 'PAYOUT', 'COMMISSION', 'REFUND'].map(tab => (
@@ -179,12 +179,12 @@ export default function AdminFinancialOperations() {
           <table className="w-full text-left border-collapse animate-fade-in">
             <thead>
               <tr className="border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900">
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Transaction ID</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Type & User</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Amount</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Status</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider">Date</th>
-                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider text-right">Actions</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Transaction ID</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Type & User</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Amount</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Date</th>
+                <th className="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -201,13 +201,13 @@ export default function AdminFinancialOperations() {
               {filteredTransactions.map(trx => (
                 <tr key={trx.id || trx?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800">
                   <td className="p-4">
-                    <div className="font-mono text-sm text-slate-700 dark:text-slate- font-bold">{trx.id}</div>
+                    <div className="font-mono text-sm text-slate-700 dark:text-slate-400 font-bold">{trx.id}</div>
                     <div className="text-xs text-slate-400 dark:text-slate-400 font-mono mt-0.5">Ref: {trx.reference}</div>
                   </td>
                   <td className="p-4">
                     <div className="flex items-center gap-2 mb-1">
                       {getTypeIcon(trx.type)}
-                      <span className="text-xs font-bold text-slate-700 dark:text-slate-">{trx.type.replace('_', ' ')}</span>
+                      <span className="text-xs font-bold text-slate-700 dark:text-slate-400">{trx.type.replace('_', ' ')}</span>
                     </div>
                     <div className="text-sm font-medium text-slate-900 dark:text-white">{trx.user}</div>
                   </td>
@@ -219,7 +219,7 @@ export default function AdminFinancialOperations() {
                   <td className="p-4">
                     {getStatusBadge(trx.status)}
                   </td>
-                  <td className="p-4 text-sm text-slate-500 dark:text-slate-">
+                  <td className="p-4 text-sm text-slate-500 dark:text-slate-400">
                     {trx.date}
                   </td>
                   <td className="p-4 text-right">
@@ -238,7 +238,7 @@ export default function AdminFinancialOperations() {
               ))}
               {filteredTransactions.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-">
+                  <td colSpan={6} className="p-8 text-center text-slate-500 dark:text-slate-400">
                     No transactions found matching your filters.
                   </td>
                 </tr>

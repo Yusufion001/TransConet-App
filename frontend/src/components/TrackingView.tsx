@@ -47,7 +47,7 @@ export default function TrackingView({
       </div>
 
       <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 flex flex-wrap gap-2">
-        <h4 className="w-full text-xs font-bold text-slate-500 dark:text-slate- uppercase tracking-wider mb-2">Simulate Lifecycle Events</h4>
+        <h4 className="w-full text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Simulate Lifecycle Events</h4>
         
         {acceptedJob.status === 'QUOTE_ACCEPTED' && !detailsProvided && mode === 'SHIPPER' && (
           <div className="w-full bg-brand-50 border border-brand-200 p-4 rounded-xl mb-4 space-y-4">
@@ -56,7 +56,7 @@ export default function TrackingView({
             
             <div className="space-y-3">
               <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-700 dark:text-slate-">Pickup Information</label>
+                <label className="text-xs font-bold text-slate-700 dark:text-slate-400">Pickup Information</label>
                 <input type="text" placeholder="Exact Pickup Address" value={pickupDetails.address} onChange={e => setPickupDetails({...pickupDetails, address: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
                 <div className="grid grid-cols-2 gap-2">
                   <input type="date" value={pickupDetails.date} onChange={e => setPickupDetails({...pickupDetails, date: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
@@ -65,7 +65,7 @@ export default function TrackingView({
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-bold text-slate-700 dark:text-slate-">Delivery Information</label>
+                <label className="text-xs font-bold text-slate-700 dark:text-slate-400">Delivery Information</label>
                 <input type="text" placeholder="Exact Delivery Address" value={deliveryDetails.address} onChange={e => setDeliveryDetails({...deliveryDetails, address: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
                 <div className="grid grid-cols-2 gap-2">
                   <input type="date" value={deliveryDetails.date} onChange={e => setDeliveryDetails({...deliveryDetails, date: e.target.value})} className="w-full text-sm p-2 rounded-lg border border-slate-300 focus:outline-none focus:border-brand-500" />
@@ -168,7 +168,7 @@ export default function TrackingView({
 
         <Button 
           onClick={() => setAcceptedJob(null)}
-          className="bg-slate-200 hover:bg-slate-300 text-slate-700 dark:text-slate- text-xs font-bold px-3 py-2 rounded-lg ml-auto"
+          className="bg-slate-200 hover:bg-slate-300 text-slate-700 dark:text-slate-400 text-xs font-bold px-3 py-2 rounded-lg ml-auto"
         >
           Reset Demo
         </Button>

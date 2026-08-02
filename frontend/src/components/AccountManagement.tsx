@@ -151,12 +151,12 @@ export default function AccountManagement({ initialSection = null }: AccountMana
   };
 
   return (
-    <div className="w-full h-full flex flex-col max-w-7xl mx-auto sm:p-5 text-slate-700 dark:text-slate-  antialiased flex-1">
+    <div className="w-full h-full flex flex-col max-w-7xl mx-auto sm:p-5 text-slate-700 dark:text-slate-400  antialiased flex-1">
       
       {/* Toast Notification Container */}
       {uploadStage && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm">
-          <div className="bg-white dark:bg-slate-900 rounded-3xl p-8 max-w-sm w-full mx-4 shadow-2xl flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
+          <div className="bg-white dark:bg-slate-900 rounded-[20px] p-8 max-w-sm w-full mx-4 shadow-sm flex flex-col items-center text-center animate-in zoom-in-95 duration-200">
             <div className="w-20 h-20 rounded-full mb-6 flex items-center justify-center relative">
                <div className="absolute inset-0 rounded-full border-4 border-slate-100 dark:border-slate-800 border-t-blue-600 animate-spin"></div>
                {uploadStage === 'ENCRYPTING' ? <Lock className="text-brand-600" size={32} /> :
@@ -164,7 +164,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <ShieldCheck className="text-emerald-500" size={32} />}
             </div>
             <h3 className="text-lg font-black text-slate-900 dark:text-white mb-2">Secure Processing</h3>
-            <p className="text-sm font-bold text-slate-500 dark:text-slate-">{uploadProgressText}</p>
+            <p className="text-sm font-bold text-slate-500 dark:text-slate-400">{uploadProgressText}</p>
           </div>
         </div>
       )}
@@ -206,7 +206,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={(e) => { handleProfilePictureUpload(e); setShowProfileOptions(false); }} />
                   <div className="relative group cursor-pointer" onClick={() => setShowProfileOptions(!showProfileOptions)}>
                     <div className="w-[64px] h-[64px] bg-slate-200  rounded-full overflow-hidden border-2 border-slate-200 dark:border-slate-700  flex items-center justify-center transition-all shadow-sm group-hover:border-brand-500">
-                      {profilePicture ? <img src={profilePicture} alt="Profile" className="w-full h-full object-cover" /> : <UserRound className="w-8 h-8 text-slate-600 dark:text-slate- group-hover:text-brand-500" />}
+                      {profilePicture ? <img src={profilePicture} alt="Profile" className="w-full h-full object-cover" /> : <UserRound className="w-8 h-8 text-slate-600 dark:text-slate-400 group-hover:text-brand-500" />}
                     </div>
                     <div className="absolute -bottom-1 -right-1 bg-brand-600 w-[24px] h-[24px] rounded-full flex items-center justify-center text-white border-[2px] border-white  shadow-sm">
                       <Camera size={12} />
@@ -214,11 +214,11 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   </div>
                   
                   {showProfileOptions && (
-                    <div className="absolute top-full mt-2 left-0 bg-white dark:bg-slate-900  rounded-xl shadow-lg border border-slate-200 dark:border-slate-700  p-2 z-10 flex flex-col gap-1 w-40 text-sm">
-                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-  font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
+                    <div className="absolute top-full mt-2 left-0 bg-white dark:bg-slate-900  rounded-xl shadow-sm border border-slate-200 dark:border-slate-700  p-2 z-10 flex flex-col gap-1 w-40 text-sm">
+                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-400  font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
                         <Camera size={16} /> Take Selfie
                       </Button>
-                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-  font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
+                      <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm :bg-slate-700 rounded-lg text-slate-700 dark:text-slate-400  font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
                         <UploadCloud size={16} /> Upload Photo
                       </Button>
                     </div>
@@ -232,7 +232,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 onClick={() => setShowConfigModal(true)} 
                 className="w-12 h-12 rounded-full bg-slate-200  border-[3px] border-white  shadow flex items-center justify-center cursor-pointer hover:scale-105 transition"
               >
-                <Settings2 size={24} className="text-slate-600 dark:text-slate- " />
+                <Settings2 size={24} className="text-slate-600 dark:text-slate-400 " />
               </Button>
             </div>
 
@@ -253,12 +253,12 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                ].map((item) => (
                  <Button key={item.id || item?.id || Math.random()} onClick={() => setActiveSection(item.id as any)} className="w-full flex items-center justify-between py-4 border-b border-slate-200 dark:border-slate-700  last:border-0 hover:bg-white dark:bg-slate-900/50 :bg-slate-800/50 transition cursor-pointer">
                    <div className="flex items-center gap-5 text-slate-900 dark:text-white ">
-                     <div className="text-slate-700 dark:text-slate- ">
+                     <div className="text-slate-700 dark:text-slate-400 ">
                        {item.icon}
                      </div>
                      <span className="font-bold text-base">{item.title}</span>
                    </div>
-                   <span className="text-slate-600 dark:text-slate- font-black text-xl leading-none">&rsaquo;</span>
+                   <span className="text-slate-600 dark:text-slate-400 font-black text-xl leading-none">&rsaquo;</span>
                  </Button>
                ))}
             </div>
@@ -270,7 +270,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
         {activeSection && (
           <div className="absolute inset-0 bg-white dark:bg-slate-900  z-10 flex flex-col h-full animate-in slide-in-from-right-full duration-75">
             <div className="flex items-center gap-4 p-5 border-b border-slate-200 dark:border-slate-700  shrink-0">
-              <Button onClick={() => setActiveSection(null)} className="p-2 -ml-2 text-slate-700 dark:text-slate-  hover:bg-slate-100 dark:bg-slate-800 :bg-slate-800 rounded-full transition cursor-pointer">
+              <Button onClick={() => setActiveSection(null)} className="p-2 -ml-2 text-slate-700 dark:text-slate-400  hover:bg-slate-100 dark:bg-slate-800 :bg-slate-800 rounded-full transition cursor-pointer">
                 <ArrowLeft size={24} />
               </Button>
               <h2 className="text-xl font-black text-slate-900 dark:text-white  tracking-tight">
@@ -304,7 +304,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                       <Shield size={40} className="text-emerald-600" />
                     </div>
                     <h3 className="text-xl font-black text-slate-900 dark:text-white  uppercase tracking-wider">Account Verified</h3>
-                    <p className="text-sm text-slate-500 dark:text-slate-  max-w-sm">
+                    <p className="text-sm text-slate-500 dark:text-slate-400  max-w-sm">
                       Your identity and commercial haulage certificates have been successfully cross-referenced with the logistics grid.
                     </p>
                     <div className="inline-flex items-center gap-2 bg-emerald-500/20 text-emerald-600 border border-emerald-500/30 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider mt-4">
@@ -316,42 +316,42 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                     <div className="w-16 h-16 border-4 border-slate-200 dark:border-slate-700  border-t-blue-500 rounded-full animate-spin"></div>
                     <div>
                       <h3 className="text-base font-bold text-slate-900 dark:text-white  uppercase tracking-wider mb-2">Analyzing Documents</h3>
-                      <p className="text-xs text-slate-500 dark:text-slate- ">Verifying security watermarks and cross-referencing national logistics databases...</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 ">Verifying security watermarks and cross-referencing national logistics databases...</p>
                     </div>
                   </div>
                 ) : (
                   <div className="space-y-6">
-                    <p className="text-sm text-slate-500 dark:text-slate-  leading-relaxed">
+                    <p className="text-sm text-slate-500 dark:text-slate-400  leading-relaxed">
                       Upload your valid government-issued ID and structural integrity certificates for your commercial vehicles to unlock full access to the TransConet load board.
                     </p>
                     
                     <div className="flex flex-col gap-6 w-full">
                       {/* Tier 1 Box */}
-                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl p-5 shadow-sm ">
+                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-5 shadow-sm ">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white  uppercase tracking-wider flex items-center gap-2">
                             <span className="bg-brand-600 text-slate-50 dark:text-slate-300 px-2 py-0.5 rounded text-[10px]">TIER 1</span>
                             Basic Compliance
                           </h4>
-                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase">Required</span>
+                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase">Required</span>
                         </div>
-                        <p className="text-xs text-slate-500 dark:text-slate-  mb-4 leading-relaxed">
+                        <p className="text-xs text-slate-500 dark:text-slate-400  mb-4 leading-relaxed">
                           Identity verification, valid vehicle certificates, and fleet physical inspection appointment.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-brand-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
                             <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                              <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
-                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-brand-500">Government ID</span></p>
-                              <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">PNG, JPG, PDF</p>
+                              <Image size={20} className="text-slate-600 dark:text-slate-400 group-hover:text-brand-500 mb-2 transition" />
+                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-400  font-bold"><span className="text-brand-500">Government ID</span></p>
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400  font-mono">PNG, JPG, PDF</p>
                             </div>
                             <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'driverLicense')} />
                           </label>
                           <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-brand-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
                             <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                              <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
-                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-brand-500">Vehicle Certificate</span></p>
-                              <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">PNG, JPG, PDF</p>
+                              <Image size={20} className="text-slate-600 dark:text-slate-400 group-hover:text-brand-500 mb-2 transition" />
+                              <p className="mb-1 text-xs text-slate-700 dark:text-slate-400  font-bold"><span className="text-brand-500">Vehicle Certificate</span></p>
+                              <p className="text-[10px] text-slate-500 dark:text-slate-400  font-mono">PNG, JPG, PDF</p>
                             </div>
                             <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'vehicleRegistration')} />
                           </label>
@@ -359,43 +359,43 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                       </div>
 
                       {/* Business Verification (Optional) Box */}
-                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl p-5 shadow-sm ">
+                      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-5 shadow-sm ">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
                             <span className="bg-brand-600 text-white px-2 py-0.5 rounded text-[10px]">CORPORATE</span>
                             Business Verification (CAC / NIN)
                           </h4>
-                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate- uppercase">Optional</span>
+                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase">Optional</span>
                         </div>
-                        <p className="text-xs text-slate-500 dark:text-slate- mb-4 leading-relaxed">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 mb-4 leading-relaxed">
                           Upload your Corporate Affairs Commission (CAC) certificate or National ID to establish corporate trust and unlock enterprise shippers.
                         </p>
                         <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300 hover:border-purple-500 rounded-xl bg-slate-50 dark:bg-slate-800 hover:bg-white dark:bg-slate-900 transition cursor-pointer group">
                           <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                            <Building2 size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
-                            <p className="mb-1 text-xs text-slate-700 dark:text-slate- font-bold"><span className="text-brand-500">Upload CAC / NIN</span></p>
-                            <p className="text-[10px] text-slate-500 dark:text-slate- font-mono">PNG, JPG, PDF</p>
+                            <Building2 size={20} className="text-slate-600 dark:text-slate-400 group-hover:text-brand-500 mb-2 transition" />
+                            <p className="mb-1 text-xs text-slate-700 dark:text-slate-400 font-bold"><span className="text-brand-500">Upload CAC / NIN</span></p>
+                            <p className="text-[10px] text-slate-500 dark:text-slate-400 font-mono">PNG, JPG, PDF</p>
                           </div>
                           <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'cac')} />
                         </label>
                       </div>
                       {/* Tier 2 Box */}
-                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl p-5 shadow-sm ">
+                      <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-5 shadow-sm ">
                         <div className="flex justify-between items-center mb-4">
                           <h4 className="text-sm font-bold text-slate-900 dark:text-white  uppercase tracking-wider flex items-center gap-2">
                             <span className="bg-brand-600 text-white px-2 py-0.5 rounded text-[10px]">TIER 2</span>
                             Premium Haulage
                           </h4>
-                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase">Optional</span>
+                          <span className="text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase">Optional</span>
                         </div>
-                        <p className="text-xs text-slate-500 dark:text-slate-  mb-4 leading-relaxed">
+                        <p className="text-xs text-slate-500 dark:text-slate-400  mb-4 leading-relaxed">
                           Goods in Transit (GiT) Insurance. Required for high-value cargo assignments and priority matching.
                         </p>
                         <label className="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-slate-300  hover:border-brand-500 rounded-xl bg-slate-50 dark:bg-slate-800  hover:bg-white dark:bg-slate-900  transition cursor-pointer group">
                           <div className="flex flex-col items-center justify-center pt-4 pb-4 text-center">
-                            <Image size={20} className="text-slate-600 dark:text-slate- group-hover:text-brand-500 mb-2 transition" />
-                            <p className="mb-1 text-xs text-slate-700 dark:text-slate-  font-bold"><span className="text-brand-500">Upload GiT Insurance</span></p>
-                            <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">PNG, JPG, PDF</p>
+                            <Image size={20} className="text-slate-600 dark:text-slate-400 group-hover:text-brand-500 mb-2 transition" />
+                            <p className="mb-1 text-xs text-slate-700 dark:text-slate-400  font-bold"><span className="text-brand-500">Upload GiT Insurance</span></p>
+                            <p className="text-[10px] text-slate-500 dark:text-slate-400  font-mono">PNG, JPG, PDF</p>
                           </div>
                           <input type="file" className="hidden" accept="image/*,.pdf" onChange={(e) => handleDocumentUpload(e, 'gitInsurance')} />
                         </label>
@@ -410,7 +410,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'ABOUT' && (
             <div className="space-y-4">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  border-b border-slate-200 dark:border-slate-700  pb-2">Ecosystem Profile</h2>
-              <div className="space-y-3 text-xs text-slate-500 dark:text-slate-  leading-relaxed">
+              <div className="space-y-3 text-xs text-slate-500 dark:text-slate-400  leading-relaxed">
                 <p>TransConet is a "Digital market platform " designed to seamlessly close the gap between cargo owners (customers) and commercial truck drivers or fleet owners (transporters). Our ecosystem streamlines freight procurement by providing a secure, transparent, and efficient platform for matching available loads with verified transport vehicles.</p>
                 <p>By integrating automated onboarding, role-based interfaces, and direct communication lines, TransConet eliminates middle-man friction, optimizes fleet transit capacity, and creates a reliable trust network for regional haulage operations.</p>
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white  mt-4 mb-2">Corporate Governance</h3>
@@ -429,7 +429,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <Shield size={20} className="text-brand-500" />
                 Safety
               </h2>
-              <div className="space-y-6 text-sm text-slate-600 dark:text-slate-  leading-relaxed">
+              <div className="space-y-6 text-sm text-slate-600 dark:text-slate-400  leading-relaxed">
                 <p>
                   At TransConet, safety is the foundation of our marketplace. We are committed to creating a secure, transparent, and trustworthy digital environment where shippers and transport providers can connect with confidence. While TransConet serves as a technology platform that facilitates connections between users and does not directly operate transport services, we actively promote industry best practices and implement measures that enhance safety, accountability, and professionalism.
                 </p>
@@ -523,7 +523,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 Service Quality
               </h2>
 
-              <div className="space-y-6 text-sm text-slate-600 dark:text-slate-  leading-relaxed">
+              <div className="space-y-6 text-sm text-slate-600 dark:text-slate-400  leading-relaxed">
                 <p>
                   TransConet is built on the principles of trust, reliability, transparency, efficiency, and professionalism, delivering a premium digital logistics marketplace that creates value for both shippers and transport providers.
                 </p>
@@ -626,27 +626,27 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           )}
           {/* SECTION PRIVACY POLICY */}
           {activeSection === 'PRIVACY' && (
-            <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar text-xs text-slate-500 dark:text-slate-  leading-relaxed">
+            <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar text-xs text-slate-500 dark:text-slate-400  leading-relaxed">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  border-b border-slate-200 dark:border-slate-700  pb-2">TransConet – Privacy Policy</h2>
               
               <div className="space-y-3">
                 <p><strong>1. Information We Collect</strong><br/>
                 To connect users and provide accurate logistical positioning, we collect:</p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>Account Details:</strong> Name, email address, phone number, and company profile.</li>
                   <li><strong>Usage and Location Data:</strong> Real-time location data (GPS), device details, IP addresses, and app interaction logs necessary to facilitate connections between transport seekers and providers.</li>
                 </ul>
 
                 <p className="mt-4"><strong>2. How We Use Your Data</strong><br/>
                 We limit data usage strictly to:</p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li>Connecting transport providers with customers based on location and logistics needs.</li>
                   <li>Preventing fraudulent activities, platform abuse, and security breaches.</li>
                   <li>Communicating vital service status updates, safety alerts, and account-related notices.</li>
                 </ul>
 
                 <p className="mt-4"><strong>3. Sharing and Protection</strong></p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>User-to-User Sharing:</strong> To facilitate a connection, relevant contact information and real-time locations are shared with the matching party (customer or transporter) on the platform.</li>
                   <li><strong>Data Security:</strong> We employ standard encryption protocols, firewalls, and limited-access databases to ensure your personal and business records remain safe from unauthorized external access.</li>
                   <li><strong>Data Rights:</strong> You can view, update, or request the deletion of your personal data at any time through your Account Settings inside the app.</li>
@@ -655,7 +655,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <div className="mt-6 pt-4 border-t border-slate-200 dark:border-slate-700 ">
                   <p><strong>Contact & Support</strong><br/>
                   For any questions regarding these terms, data protection compliance, or to report platform abuse, please contact our team:</p>
-                  <ul className="list-disc pl-4 space-y-1 mt-2 text-slate-500 dark:text-slate- ">
+                  <ul className="list-disc pl-4 space-y-1 mt-2 text-slate-500 dark:text-slate-400 ">
                     <li><strong>General Inquiries:</strong> info@transconet.com</li>
                     <li><strong>Customer Support:</strong> support@transconet.com</li>
                   </ul>
@@ -666,12 +666,12 @@ export default function AccountManagement({ initialSection = null }: AccountMana
 
           {/* SECTION TERMS AND CONDITIONS */}
           {activeSection === 'TERMS' && (
-            <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar text-xs text-slate-500 dark:text-slate-  leading-relaxed">
+            <div className="space-y-4 max-h-[480px] overflow-y-auto pr-2 custom-scrollbar text-xs text-slate-500 dark:text-slate-400  leading-relaxed">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  border-b border-slate-200 dark:border-slate-700  pb-2">TransConet – Terms of Service</h2>
               
               <div className="space-y-3">
                 <p><strong>1. Your Account</strong></p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>Eligibility:</strong> You must be a human over the age of 18 to create an account. Automated registrations ("bots") are strictly prohibited.</li>
                   <li><strong>Accuracy:</strong> You must provide an accurate name, valid email address, and active phone number during registration.</li>
                   <li><strong>Security:</strong> You are entirely responsible for keeping your password and account secure. TransConet cannot and will not be liable for any loss or damage arising from your failure to maintain account security.</li>
@@ -679,27 +679,27 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 </ul>
 
                 <p className="mt-4"><strong>2. Independent Relationship (No Transaction Interference)</strong></p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>Platform Role:</strong> TransConet is purely a technology platform connecting independent parties. Unless the Escrow Payment option is utilized, we do not manage, interfere with, dictate, or process payments for the transport transactions between transporters and customers.</li>
                   <li><strong>User Dispute Release:</strong> Any agreements, pricing, payments, or services negotiated outside of the Escrow Payment system are strictly between the transporter and the customer. TransConet holds zero liability for any financial disputes, non-payments, or service failures between users in such cases.</li>
                 </ul>
 
                 <p className="mt-4"><strong>3. Escrow Payment Services</strong></p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>Optional Service:</strong> Users may opt to use our secure Escrow Payment feature. When enabled, the shipper's payment is held securely in an escrow account.</li>
                   <li><strong>Release of Funds:</strong> Funds are released to the transporter only upon satisfactory confirmation of delivery by the shipper or through our dispute resolution process.</li>
                   <li><strong>Disputes:</strong> Any disputes regarding escrowed funds will be handled in accordance with our Dispute Resolution Policy.</li>
                 </ul>
 
                 <p className="mt-4"><strong>4. Modifications and Termination</strong></p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>Changes:</strong> We reserve the right to modify, update, or temporarily discontinue features of the app at any time.</li>
                   <li><strong>Inactive Accounts:</strong> TransConet reserves the right to terminate unverified or free accounts that remain completely inactive for more than 60 consecutive days.</li>
                   <li><strong>Breach:</strong> We may suspend or terminate your access immediately if you violate these terms or engage in behavior that puts the platform or other users at risk.</li>
                 </ul>
 
                 <p className="mt-4"><strong>5. Liability and Jurisdiction</strong></p>
-                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate- ">
+                <ul className="list-disc pl-4 space-y-1 text-slate-500 dark:text-slate-400 ">
                   <li><strong>Warranty:</strong> The service is provided "as is" and "as available" without any explicit or implied warranties.</li>
                   <li><strong>Limitation:</strong> TransConet will not be liable for any indirect, incidental, or consequential damages resulting from your use or inability to use the platform, including any physical or financial incidents occurring during a connection made via the app.</li>
                   <li><strong>Governing Law:</strong> These terms are governed by the laws of the Federal Republic of Nigeria. Any disputes regarding the platform itself will be resolved exclusively within the appropriate courts in Nigeria.</li>
@@ -712,7 +712,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'DISPUTE' && (
             <div className="space-y-4">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  border-b border-slate-200 dark:border-slate-700  pb-2">Report a System Dispute</h2>
-              <p className="text-xs text-slate-500 dark:text-slate- ">
+              <p className="text-xs text-slate-500 dark:text-slate-400 ">
                 Did a platform user breach safety protocol, submit false plate configurations, or display unprofessional behavior? Log it directly into our administrative tracking ledger:
               </p>
 
@@ -724,11 +724,11 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <form onSubmit={(e) => { e.preventDefault(); setDisputeFiled(true); }} className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Target Match ID or Number</label>
-                      <input required type="text" placeholder="e.g., #TC-88931" className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-xl text-xs px-3 py-2.5 text-slate-900 dark:text-white  focus:outline-none" />
+                      <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Target Match ID or Number</label>
+                      <input required type="text" placeholder="e.g., #TC-88931" className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl text-xs px-3 py-2.5 text-slate-900 dark:text-white  focus:outline-none" />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Nature of Violation</label>
+                      <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Nature of Violation</label>
                       <select required className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-xl text-xs px-3 py-2.5 text-slate-900 dark:text-white  focus:outline-none">
                         <option value="">Select Category...</option>
                         <option value="PLATE">Incorrect License Plate Number</option>
@@ -738,8 +738,8 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Incident Narration</label>
-                    <textarea required rows={3} placeholder="Provide specific operational details..." className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-xl text-xs p-3 text-slate-900 dark:text-white  focus:outline-none" />
+                    <label className="block text-[10px] font-bold text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Incident Narration</label>
+                    <textarea required rows={3} placeholder="Provide specific operational details..." className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl text-xs p-3 text-slate-900 dark:text-white  focus:outline-none" />
                   </div>
                   <Button type="submit" className="bg-amber-600 hover:bg-amber-700 text-slate-900 dark:text-white  text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition cursor-pointer">
                     File Investigation Report
@@ -753,7 +753,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
           {activeSection === 'SUPPORT' && (
             <div className="space-y-5">
               <h2 className="text-xl font-black text-slate-900 dark:text-white  border-b border-slate-200 dark:border-slate-700  pb-2">Technical & Support Desk</h2>
-              <p className="text-xs text-slate-500 dark:text-slate-  leading-relaxed">
+              <p className="text-xs text-slate-500 dark:text-slate-400  leading-relaxed">
                 Need architectural support, API assistance, or direct validation for your fleet stickers? Reach our monitoring desk through our official corporate mail networks:
               </p>
               
@@ -763,7 +763,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   <a href="mailto:Support@transconet.com" className="text-slate-900 dark:text-white  text-sm font-bold font-mono hover:underline break-all block">
                     Support@transconet.com
                   </a>
-                  <p className="text-[10px] text-slate-500 dark:text-slate- ">Best for immediate driver account issues or sticker re-verifications.</p>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 ">Best for immediate driver account issues or sticker re-verifications.</p>
                 </div>
 
                 <div className="bg-slate-50 dark:bg-slate-800  p-4 rounded-xl border border-slate-200 dark:border-slate-700  space-y-2">
@@ -785,21 +785,21 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                 <Landmark size={20} className="text-brand-500" />
                 Escrow Settlement Bank Account
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate- ">
+              <p className="text-xs text-slate-500 dark:text-slate-400 ">
                 Please provide the bank account details where your Escrow payments will be settled upon delivery confirmation.
               </p>
 
               <div className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-2xl p-5 space-y-4">
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Bank Name</label>
+                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Bank Name</label>
                   <input type="text" value={bankName} onChange={(e) => setBankName(e.target.value)} placeholder="e.g., Guaranty Trust Bank" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none focus:border-brand-500" />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Account Number</label>
+                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Account Number</label>
                   <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} placeholder="e.g., 0123456789" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none font-mono focus:border-brand-500" />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Account Name</label>
+                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Account Name</label>
                   <input type="text" value={accountName} onChange={(e) => setAccountName(e.target.value)} placeholder="e.g., John Doe Logistics" className="w-full bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none focus:border-brand-500" />
                 </div>
                 <Button 
@@ -828,7 +828,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
               <h2 className="text-xl font-black text-red-400 flex items-center gap-2">
                 <Trash2 size={22} /> Permanent Account Purge
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-  leading-relaxed">
+              <p className="text-xs text-slate-500 dark:text-slate-400  leading-relaxed">
                 Warning: Triggering this command will completely erase your profile credentials, vehicle arrays, active route listings, and matching logs from our active environment. This action is **irreversible** and complies fully with data safety standards.
               </p>
               <div className="pt-2">
@@ -856,11 +856,11 @@ export default function AccountManagement({ initialSection = null }: AccountMana
       {/* Profile Preferences Modal Box */}
       {showConfigModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-in fade-in duration-75">
-          <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  w-full max-w-xl rounded-2xl p-6 space-y-5 shadow-2xl scale-in duration-75">
+          <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  w-full max-w-xl rounded-[20px] p-6 space-y-5 shadow-sm scale-in duration-75">
             <div className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700  pb-3">
               <div>
                 <h3 className="text-base font-black text-slate-900 dark:text-white  uppercase tracking-wider">Account Control Deck</h3>
-                <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono">Synchronize your active database profile attributes</p>
+                <p className="text-[10px] text-slate-500 dark:text-slate-400  font-mono">Synchronize your active database profile attributes</p>
               </div>
               <Button onClick={() => setShowConfigModal(false)} className="p-1.5 bg-slate-50 dark:bg-slate-800  hover:bg-brand-100 hover:text-brand-600 border border-slate-200 dark:border-slate-700  rounded-lg text-slate-500 dark:text-slate-400  hover:text-slate-900 dark:text-white  transition cursor-pointer">
                 <X size={16} />
@@ -871,19 +871,19 @@ export default function AccountManagement({ initialSection = null }: AccountMana
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 
                 <div>
-                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Legal Name</label>
+                  <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Legal Name</label>
                   <input type="text" value={fullName} onChange={e => setFullName(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none" />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-  uppercase tracking-wider mb-1">Mobile Connection String</label>
+                <label className="block text-[10px] font-mono text-slate-500 dark:text-slate-400  uppercase tracking-wider mb-1">Mobile Connection String</label>
                 <input type="tel" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} className="w-full bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-xl px-3 py-2.5 text-slate-900 dark:text-white  text-xs focus:outline-none font-mono" />
               </div>
             </div>
 
             <div className="flex gap-3 justify-end pt-2 border-t border-slate-200 dark:border-slate-700 ">
-              <Button onClick={() => setShowConfigModal(false)} className="px-4 py-2 bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  hover:bg-brand-100 hover:text-brand-600 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-  transition cursor-pointer">Cancel</Button>
+              <Button onClick={() => setShowConfigModal(false)} className="px-4 py-2 bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  hover:bg-brand-100 hover:text-brand-600 rounded-xl text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400  transition cursor-pointer">Cancel</Button>
               <Button onClick={handleSaveParameters} className="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold uppercase tracking-wider transition flex items-center gap-2 cursor-pointer">
                 <Save size={14} /> Save Parameters
               </Button>

@@ -89,7 +89,7 @@ export const PremiumHeader = ({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.98 }}
                 transition={{ duration: 0.15, ease: "easeOut" }}
-                className="absolute right-0 mt-3 w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl enterprise-shadow z-50 overflow-hidden origin-top-right"
+                className="absolute right-0 mt-3 w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-[20px] enterprise-shadow z-50 overflow-hidden origin-top-right"
               >
                 <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/30">
                   <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Signed in as</p>

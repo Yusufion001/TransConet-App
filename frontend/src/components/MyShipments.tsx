@@ -29,13 +29,13 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
   }, []);
 
   return (
-    <div className="bg-white dark:bg-slate-900 min-h-screen text-slate-800 dark:text-slate- p-4 md:p-8 space-y-6 max-w-4xl mx-auto">
+    <div className="bg-white dark:bg-slate-900 min-h-screen text-slate-800 dark:text-slate-400 p-4 md:p-8 space-y-6 max-w-4xl mx-auto">
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold">My Posted Cargo</h2>
-          <p className="text-slate-500 dark:text-slate- text-sm mt-1">Review active loads and incoming transporter bids</p>
+          <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Review active loads and incoming transporter bids</p>
         </div>
-        <Button onClick={fetchLoads} disabled={loading} className="p-2 rounded-lg hover:bg-slate-100 dark:bg-slate-800 transition text-slate-600 dark:text-slate-">
+        <Button onClick={fetchLoads} disabled={loading} className="p-2 rounded-lg hover:bg-slate-100 dark:bg-slate-800 transition text-slate-600 dark:text-slate-400">
           <RefreshCw className={loading ? "animate-spin" : ""} size={20} />
         </Button>
       </div>
@@ -47,8 +47,8 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
       ) : loads.length === 0 ? (
         <div className="text-center bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-12">
           <Package className="mx-auto text-slate-300 dark:text-slate-300 mb-4" size={48} />
-          <h3 className="text-lg font-bold text-slate-700 dark:text-slate-">No Cargo Posted Yet</h3>
-          <p className="text-sm text-slate-500 dark:text-slate- mt-2">Post your first cargo to start receiving bids from transporters.</p>
+          <h3 className="text-lg font-bold text-slate-700 dark:text-slate-400">No Cargo Posted Yet</h3>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">Post your first cargo to start receiving bids from transporters.</p>
         </div>
       ) : (
         <div className="space-y-6">
@@ -66,7 +66,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
                       {load.status}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-">
+                  <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
                     <span className="flex items-center gap-1"><MapPin size={12}/> {load.origin} &rarr; {load.destination}</span>
                     <span className="flex items-center gap-1"><Package size={12}/> {load.weightKg}kg</span>
                   </div>
@@ -84,7 +84,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
               {/* Bids Section */}
               {load.bids && load.bids.length > 0 ? (
                 <div className="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 border border-slate-100 dark:border-slate-800">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate- mb-3 flex items-center gap-2">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center gap-2">
                     <Truck size={14} /> Incoming Bids ({load.bids.length})
                   </h4>
                   <div className="space-y-3">
@@ -93,7 +93,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
                         <div>
                           <p className="font-bold text-sm">₦{Number(bid.amount || 0).toLocaleString()}</p>
                           <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs text-slate-500 dark:text-slate-">{bid.driver?.phoneNumber || 'Unknown Transporter'}</span>
+                            <span className="text-xs text-slate-500 dark:text-slate-400">{bid.driver?.phoneNumber || 'Unknown Transporter'}</span>
                             <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase font-bold tracking-widest ${
                               bid.status === 'PENDING' ? 'bg-amber-100 text-amber-700' :
                               bid.status === 'ACCEPTED' ? 'bg-emerald-100 text-emerald-700' :
@@ -119,7 +119,7 @@ export default function MyShipments({ onAcceptBid, onViewTracking }: MyShipments
                   </div>
                 </div>
               ) : (
-                <div className="text-sm text-slate-500 dark:text-slate- italic bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
+                <div className="text-sm text-slate-500 dark:text-slate-400 italic bg-slate-50 dark:bg-slate-800 p-3 rounded-xl border border-slate-100 dark:border-slate-800">
                   Waiting for transporters to place bids...
                 </div>
               )}

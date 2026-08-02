@@ -133,16 +133,16 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-3xl p-4 shadow-2xl border border-slate-100 dark:border-slate-800 max-h-[70vh] overflow-y-auto"
+              className="absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-100 dark:border-slate-800 max-h-[70vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 px-2">
-                <h3 className="text-sm font-bold text-slate-800 dark:text-slate- uppercase tracking-wider">Menu</h3>
+                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-400 uppercase tracking-wider">Menu</h3>
                 <div className="flex items-center gap-2">
                   <DarkModeToggle />
                 <Button aria-label="Action" 
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate- rounded-full hover:bg-slate-200 transition-colors"
+                  className="p-1.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full hover:bg-slate-200 transition-colors"
                 >
                   <X size={16} strokeWidth={2.5} />
                 </Button>
@@ -213,8 +213,8 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
             // Framer motion drag usually suppresses onClick, but just to be safe
             setIsOpen(!isOpen);
           }}
-          className={`w-14 h-14 rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors ${
-            isOpen ? 'bg-slate-900 text-white' : 'bg-brand-600 text-white'
+          className={`w-14 h-14 hover:bg-brand-700 shadow-md  rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors ${
+            isOpen ? 'bg-slate-900 text-white' : 'bg-brand-600 text-white hover:bg-brand-700'
           }`}
         >
           {isOpen ? <X size={26} strokeWidth={2.5} /> : <Menu size={26} strokeWidth={2.5} />}

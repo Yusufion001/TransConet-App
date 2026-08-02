@@ -90,9 +90,9 @@ export default function LoadResultCard({
       <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4">
         <div>
           <h4 className="text-slate-900 dark:text-white  font-black text-lg tracking-tight">{commodity}</h4>
-          <p className="text-slate-500 dark:text-slate-  text-xs font-semibold mt-1 flex items-center gap-2">
+          <p className="text-slate-500 dark:text-slate-400  text-xs font-semibold mt-1 flex items-center gap-2">
             <span>{weight}</span>
-            <span className="text-slate-600 dark:text-slate- ">•</span>
+            <span className="text-slate-600 dark:text-slate-400 ">•</span>
             <span className="text-brand-600 uppercase tracking-wider text-[10px] bg-brand-500/10 border border-brand-500/20 px-2 py-0.5 rounded-md font-mono">{truckType}</span>
           </p>
         </div>
@@ -107,8 +107,8 @@ export default function LoadResultCard({
         {/* Origin dot */}
         <div className="absolute left-[-5px] top-1 w-2.5 h-2.5 rounded-full bg-brand-400 ring-4 ring-brand-400/20" />
         <div className="space-y-0.5">
-          <span className="text-slate-500 dark:text-slate-  text-[10px] uppercase font-bold tracking-widest block">Pickup Origin</span>
-          <span className="text-slate-800 dark:text-slate-  text-sm font-bold flex items-center gap-1">
+          <span className="text-slate-500 dark:text-slate-400  text-[10px] uppercase font-bold tracking-widest block">Pickup Origin</span>
+          <span className="text-slate-800 dark:text-slate-400  text-sm font-bold flex items-center gap-1">
             <MapPin size={12} className="text-brand-600" />
             {origin}
           </span>
@@ -117,8 +117,8 @@ export default function LoadResultCard({
         {/* Destination dot */}
         <div className="absolute left-[-5px] bottom-1 w-2.5 h-2.5 rounded-full bg-brand-500 ring-4 ring-brand-500/20" />
         <div className="space-y-0.5">
-          <span className="text-slate-500 dark:text-slate-  text-[10px] uppercase font-bold tracking-widest block">Dropoff Destination</span>
-          <span className="text-slate-800 dark:text-slate-  text-sm font-bold flex items-center gap-1">
+          <span className="text-slate-500 dark:text-slate-400  text-[10px] uppercase font-bold tracking-widest block">Dropoff Destination</span>
+          <span className="text-slate-800 dark:text-slate-400  text-sm font-bold flex items-center gap-1">
             <MapPin size={12} className="text-brand-600" />
             {destination}
           </span>
@@ -129,11 +129,11 @@ export default function LoadResultCard({
       {isShipperView && status === 'IDLE' && (
         <div className="mb-4 bg-slate-100 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  p-3 rounded-lg flex items-center justify-between">
           <div>
-            <span className="text-xs font-bold text-slate-800 dark:text-slate-  flex items-center gap-1.5">
+            <span className="text-xs font-bold text-slate-800 dark:text-slate-400  flex items-center gap-1.5">
               <ShieldCheck size={14} className="text-brand-600" />
               Enable Escrow Payment Protection
             </span>
-            <span className="text-[10px] text-slate-500 dark:text-slate-  block mt-0.5">Secure funds until delivery is confirmed</span>
+            <span className="text-[10px] text-slate-500 dark:text-slate-400  block mt-0.5">Secure funds until delivery is confirmed</span>
           </div>
           <label className="relative inline-flex items-center cursor-pointer">
             <input 

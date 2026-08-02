@@ -42,14 +42,14 @@ export default function JobStatusFrame({ status, paymentStatus, isEscrowEnabled 
   if (status === 'AVAILABLE') {
     return (
       <div className="bg-slate-50 dark:bg-slate-800  border border-slate-200 dark:border-slate-700  rounded-xl p-4 text-center">
-        <p className="text-slate-500 dark:text-slate-  text-sm font-medium">Waiting for quotes...</p>
+        <p className="text-slate-500 dark:text-slate-400  text-sm font-medium">Waiting for quotes...</p>
       </div>
     );
   }
 
   return (
     <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-xl p-5 shadow-sm ">
-      <h3 className="text-sm font-bold text-slate-800 dark:text-slate-  mb-4 tracking-tight uppercase">Job Lifecycle Tracking</h3>
+      <h3 className="text-sm font-bold text-slate-800 dark:text-slate-400  mb-4 tracking-tight uppercase">Job Lifecycle Tracking</h3>
       
       <div className="relative">
         <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-100 dark:bg-slate-800  -translate-y-1/2 rounded-full" />

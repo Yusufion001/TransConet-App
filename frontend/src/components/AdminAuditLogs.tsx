@@ -23,13 +23,13 @@ export default function AdminAuditLogs() {
   );
 
   return (
-    <div className="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
+    <div className="bg-white dark:bg-slate-900 rounded-[20px] p-6 border border-slate-200 dark:border-slate-700 shadow-sm">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <FileText className="text-slate-600 dark:text-slate-" size={20} /> System Audit Logs
+            <FileText className="text-slate-600 dark:text-slate-400" size={20} /> System Audit Logs
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate- mt-1">Immutable trail of all administrative actions</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Immutable trail of all administrative actions</p>
         </div>
         
         <div className="relative">
@@ -63,25 +63,25 @@ export default function AdminAuditLogs() {
               </tr>
             ) : filteredLogs.map(log => (
               <tr key={log.id || log?.id || Math.random()} className="hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors border-b border-slate-100 dark:border-slate-800 animate-fade-in">
-                <td className="py-3 pr-4 font-semibold text-slate-800 dark:text-slate-">
+                <td className="py-3 pr-4 font-semibold text-slate-800 dark:text-slate-400">
                   <div className="flex items-center gap-2">
                     {log.type === 'SECURITY' && <Shield size={14} className="text-brand-500" />}
                     {log.type === 'FINANCE' && <AlertTriangle size={14} className="text-amber-500" />}
                     {log.type === 'COMPLIANCE' && <UserCheck size={14} className="text-brand-500" />}
-                    {(!log.type || log.type === 'SYSTEM' || log.type === 'INFO') && <FileText size={14} className="text-slate-500 dark:text-slate-" />}
+                    {(!log.type || log.type === 'SYSTEM' || log.type === 'INFO') && <FileText size={14} className="text-slate-500 dark:text-slate-400" />}
                     {log.title}
                   </div>
                 </td>
-                <td className="py-3 px-4 text-slate-600 dark:text-slate- font-mono text-xs">{log.user || 'System'}</td>
-                <td className="py-3 px-4 text-slate-600 dark:text-slate- text-xs truncate max-w-[200px]" title={typeof log.description === 'string' ? log.description : JSON.stringify(log.description)}>
+                <td className="py-3 px-4 text-slate-600 dark:text-slate-400 font-mono text-xs">{log.user || 'System'}</td>
+                <td className="py-3 px-4 text-slate-600 dark:text-slate-400 text-xs truncate max-w-[200px]" title={typeof log.description === 'string' ? log.description : JSON.stringify(log.description)}>
                   {typeof log.description === 'string' ? log.description : JSON.stringify(log.description)}
                 </td>
-                <td className="py-3 pl-4 text-right text-xs text-slate-500 dark:text-slate-">{new Date(log.timestamp).toLocaleString()}</td>
+                <td className="py-3 pl-4 text-right text-xs text-slate-500 dark:text-slate-400">{new Date(log.timestamp).toLocaleString()}</td>
               </tr>
             ))}
             {!loading && filteredLogs.length === 0 && (
               <tr>
-                <td colSpan={4} className="py-8 text-center text-slate-500 dark:text-slate- text-sm">
+                <td colSpan={4} className="py-8 text-center text-slate-500 dark:text-slate-400 text-sm">
                   No logs found matching your search.
                 </td>
               </tr>

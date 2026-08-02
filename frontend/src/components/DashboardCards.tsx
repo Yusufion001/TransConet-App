@@ -50,7 +50,7 @@ export const MyShipmentsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork: 
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.1 }}
     onClick={onNavigateToNetwork}
-    className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-shadow cursor-pointer flex flex-col md:flex-row group"
+    className="relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-sm transition-shadow cursor-pointer flex flex-col md:flex-row group"
   >
     {/* Left graphic */}
     <div className="hidden md:flex w-[30%] bg-slate-50 dark:bg-slate-800/50 border-r border-slate-100 dark:border-slate-800 items-center justify-center p-8 relative">
@@ -80,7 +80,7 @@ export const BoostLoadCard = ({ onBoostClick }: { onBoostClick: () => void }) =>
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.2 }}
     onClick={onBoostClick}
-    className="relative overflow-hidden rounded-2xl bg-slate-900 text-white shadow-xl cursor-pointer group flex flex-col md:flex-row"
+    className="relative overflow-hidden rounded-2xl bg-slate-900 text-white shadow-sm cursor-pointer group flex flex-col md:flex-row"
   >
     {/* Background Pattern */}
     <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.05)_50%,transparent_75%,transparent_100%)] bg-[length:20px_20px] pointer-events-none"></div>
@@ -141,7 +141,7 @@ export const TrackShipmentCard = ({
           id="tracking-input"
           type="text" 
           placeholder="Enter Waybill (TRP-502)" 
-          className="w-full h-12 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl px-4 pr-24 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-sm font-mono shadow-inner"
+          className="w-full h-12 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 pr-24 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-all text-sm font-mono shadow-inner"
           value={waybillInput}
           onChange={(e) => setWaybillInput(e.target.value)}
         />

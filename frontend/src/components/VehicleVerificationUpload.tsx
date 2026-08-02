@@ -174,12 +174,12 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
   };
 
   return (
-    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-3xl p-6 md:p-8 shadow-2xl max-w-2xl mx-auto space-y-6">
+    <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 md:p-8 shadow-sm max-w-2xl mx-auto space-y-6">
       <div>
         <h3 className="text-xl font-black text-slate-900 dark:text-white  flex items-center gap-2">
           <Video className="text-brand-500 animate-pulse" size={24} /> Physical Asset Inspection
         </h3>
-        <p className="text-xs text-slate-500 dark:text-slate-  mt-1.5 leading-relaxed">
+        <p className="text-xs text-slate-500 dark:text-slate-400  mt-1.5 leading-relaxed">
           Upload a clear 15-second clip walking around your transport haulage unit showing registration plates, active running motor, and structural cargo containment integrity.
         </p>
       </div>
@@ -205,14 +205,14 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
             className="hidden"
             onChange={handleFileChange}
           />
-          <div className="p-4 bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-2xl mb-4 text-brand-600">
+          <div className="p-4 bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] mb-4 text-brand-600">
             <UploadCloud size={32} />
           </div>
           <p className="text-sm font-bold text-slate-900 dark:text-white  mb-1">Drag and drop your inspection clip here</p>
-          <p className="text-xs text-slate-500 dark:text-slate-  mb-4 font-medium">or click to browse your local video documents</p>
-          <div className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  px-3 py-1.5 rounded-full text-[10px] font-semibold text-slate-500 dark:text-slate-  uppercase tracking-wider">
+          <p className="text-xs text-slate-500 dark:text-slate-400  mb-4 font-medium">or click to browse your local video documents</p>
+          <div className="inline-flex items-center gap-1.5 bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  px-3 py-1.5 rounded-full text-[10px] font-semibold text-slate-500 dark:text-slate-400  uppercase tracking-wider">
             <span>MP4, MOV, WEBM</span>
-            <span className="text-slate-600 dark:text-slate- ">•</span>
+            <span className="text-slate-600 dark:text-slate-400 ">•</span>
             <span>Min 15 seconds</span>
           </div>
         </div>
@@ -226,7 +226,7 @@ export default function VehicleVerificationUpload({ onUploadComplete }: VehicleV
               </div>
               <div>
                 <p className="text-xs font-bold text-slate-900 dark:text-white  max-w-[200px] truncate">{file.name}</p>
-                <p className="text-[10px] text-slate-500 dark:text-slate-  font-mono mt-0.5">
+                <p className="text-[10px] text-slate-500 dark:text-slate-400  font-mono mt-0.5">
                   {(file.size / (1024 * 1024)).toFixed(2)} MB • {videoDuration ? `${videoDuration.toFixed(1)}s` : 'Reading...'}
                 </p>
               </div>

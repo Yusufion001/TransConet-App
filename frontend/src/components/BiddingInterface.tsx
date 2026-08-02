@@ -26,7 +26,7 @@ export default function BiddingInterface({
   if (!activeMatch) return null;
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-2xl space-y-4">
+    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm space-y-4">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-start gap-4">
           <div className="p-3 bg-brand-100 text-brand-600 rounded-xl shrink-0">
@@ -34,7 +34,7 @@ export default function BiddingInterface({
           </div>
           <div>
             <h3 className="text-xl font-bold text-slate-900 dark:text-white">{activeMatch.title}</h3>
-            <p className="text-xs text-slate-500 dark:text-slate- mt-0.5">{activeMatch.subtitle}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{activeMatch.subtitle}</p>
             {negotiationStatus && (
               <p className="text-xs font-bold text-amber-400 mt-2 bg-amber-950/40 border border-amber-900/50 px-2 py-1 rounded w-fit">
                 ⚠️ {negotiationStatus}

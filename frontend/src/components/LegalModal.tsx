@@ -26,7 +26,7 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
           animate={{ y: 0, opacity: 1, scale: 1 }}
           exit={{ y: 20, opacity: 0, scale: 0.95 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white dark:bg-slate-900 rounded-3xl w-full max-w-lg shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
+          className="bg-white dark:bg-slate-900 rounded-[20px] w-full max-w-lg shadow-sm overflow-hidden flex flex-col max-h-[85vh]"
         >
           <div className="flex items-center justify-between p-5 border-b border-slate-100 dark:border-slate-800">
             <div className="flex items-center gap-2">
@@ -37,18 +37,18 @@ export default function LegalModal({ isOpen, onClose, type }: LegalModalProps) {
                 <h3 className="font-bold text-slate-900 text-lg leading-tight">
                   {type === 'terms' ? 'Terms of Service' : 'Privacy Policy'}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate- font-medium">Last updated: July 2026</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Last updated: July 2026</p>
               </div>
             </div>
             <Button aria-label="Action" 
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 flex items-center justify-center text-slate-500 dark:text-slate- transition-colors"
+              className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-colors"
             >
               <X size={18} />
             </Button>
           </div>
 
-          <div className="p-6 overflow-y-auto flex-1 text-sm text-slate-600 dark:text-slate- space-y-4">
+          <div className="p-6 overflow-y-auto flex-1 text-sm text-slate-600 dark:text-slate-400 space-y-4">
             {type === 'terms' ? (
               <>
                 <p><strong>1. Acceptance of Terms</strong><br/>By accessing and using TransConet, you accept and agree to be bound by the terms and provision of this agreement.</p>

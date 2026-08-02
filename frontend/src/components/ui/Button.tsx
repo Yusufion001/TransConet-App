@@ -15,18 +15,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-semibold transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-500 disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap';
     
     const variants = {
-      primary: 'bg-slate-900 text-white hover:bg-slate-800 shadow-sm dark:bg-brand-600 dark:hover:bg-brand-500 dark:text-white',
-      secondary: 'bg-slate-100 text-slate-900 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700',
-      danger: 'bg-rose-600 text-white hover:bg-rose-700 shadow-sm',
+      primary: 'bg-brand-600 text-white hover:bg-brand-700 shadow-sm',
+      secondary: 'bg-white text-brand-600 border border-brand-600 hover:bg-brand-50 shadow-sm dark:bg-slate-900 dark:border-brand-600 dark:text-brand-600 dark:hover:bg-slate-800',
+      danger: 'bg-red-600 text-white hover:bg-red-700 shadow-sm',
       ghost: 'bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
       outline: 'bg-transparent text-slate-700 border border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-800 shadow-sm',
       glass: 'bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 text-slate-900 dark:text-white hover:bg-white/80 dark:hover:bg-slate-900/80 shadow-sm'
     };
     
     const sizes = {
-      sm: 'h-9 px-4 text-xs rounded-lg',
+      sm: 'h-9 px-4 text-xs rounded-xl',
       md: 'h-11 px-6 text-sm rounded-xl',
-      lg: 'h-14 px-8 text-base rounded-2xl',
+      lg: 'h-14 px-8 text-base rounded-xl',
       icon: 'h-11 w-11 rounded-xl'
     };
     
