@@ -20,6 +20,7 @@ const verifyCaptcha = (token: string) => {
 export const adminLogin = async (req: Request, res: Response): Promise<any> => {
   try {
     const { email, password, captchaToken, mfaToken } = req.body;
+    console.log('Login attempt:', { email, origin: req.headers.origin });
 
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password are required.' });

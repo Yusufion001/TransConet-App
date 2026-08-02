@@ -8,10 +8,10 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
     <motion.div 
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative overflow-hidden rounded-[24px] bg-blue-600 text-white shadow-xl min-h-[220px] flex flex-col justify-between group"
+      className="relative overflow-hidden rounded-[24px] bg-brand-600 text-white shadow-xl min-h-[220px] flex flex-col justify-between group"
     >
       {/* Background Image / SVG Illustration */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-600 to-blue-700 overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-gradient-to-br from-brand-600 to-brand-700 overflow-hidden">
          {/* City Skyline */}
          <svg className="absolute bottom-0 w-full h-32 opacity-20" viewBox="0 0 400 100" preserveAspectRatio="none">
            <path d="M0,100 L0,50 L20,50 L20,30 L40,30 L40,60 L60,60 L60,20 L80,20 L80,45 L100,45 L100,10 L120,10 L120,55 L150,55 L150,25 L180,25 L180,60 L200,60 L200,15 L230,15 L230,40 L260,40 L260,30 L290,30 L290,70 L320,70 L320,20 L350,20 L350,50 L380,50 L380,35 L400,35 L400,100 Z" fill="#94A3B8" />
@@ -74,7 +74,7 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
             Live
           </div>
           <h2 className="text-2xl md:text-3xl font-bold mb-3">Market Operations</h2>
-          <ul className="text-sm text-blue-100 max-w-[320px] leading-relaxed mb-6 space-y-2">
+          <ul className="text-sm text-brand-100 max-w-[320px] leading-relaxed mb-6 space-y-2">
             <li><strong>Post Cargo:</strong> Initiate new shipment requests to the marketplace.</li>
             <li><strong>Find Transporters:</strong> Browse and connect with trusted transport providers.</li>
             <li><strong>Quote Comparison:</strong> View and compare real-time shipping rates and bids.</li>
@@ -82,10 +82,10 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
         </div>
         
         <div className="flex items-center gap-4 mt-auto">
-          <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-2 bg-white dark:bg-slate-900 text-blue-700 px-5 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-white/10 hover:bg-blue-50 cursor-pointer hover:shadow-sm transition-colors">
-            Find Transport <div className="bg-blue-600 text-white p-1 rounded-full"><Search size={14} /></div>
+          <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-2 bg-white dark:bg-slate-900 text-brand-700 px-5 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-white/10 hover:bg-brand-50 cursor-pointer hover:shadow-sm transition-colors">
+            Find Transport <div className="bg-brand-600 text-white p-1 rounded-full"><Search size={14} /></div>
           </Button>
-          <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-1 text-sm font-semibold text-blue-100 hover:text-white transition-colors">
+          <Button onClick={() => { if (onNavigateToNetwork) onNavigateToNetwork(); }} className="flex items-center gap-1 text-sm font-semibold text-brand-100 hover:text-white transition-colors">
             Go to Marketplace <ArrowRight size={16} />
           </Button>
         </div>
@@ -93,8 +93,8 @@ export const HeroFindLoadsCard = ({ onNavigateToNetwork }: { onNavigateToNetwork
       
       {/* Map pin */}
       <div className="absolute right-6 md:right-12 top-6 z-10 flex flex-col items-center">
-         <div className="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-blue-900 animate-bounce border-4 border-[#1F2937]">
-            <MapPin size={28} className="fill-white text-blue-600" />
+         <div className="w-14 h-14 bg-brand-600 text-white rounded-full flex items-center justify-center shadow-2xl shadow-brand-900 animate-bounce border-4 border-[#1F2937]">
+            <MapPin size={28} className="fill-white text-brand-600" />
          </div>
       </div>
     </motion.div>

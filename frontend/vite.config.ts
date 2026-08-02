@@ -51,7 +51,7 @@ export default defineConfig(() => {
         "/api": "http://127.0.0.1:3001"
       },
       hmr: process.env.DISABLE_HMR !== 'true',
-      watch: process.env.DISABLE_HMR === 'true' ? null : {},
+      watch: process.env.DISABLE_HMR === 'true' ? null : { ignored: ['**/node_modules/**', '**/.git/**'] },
     },
   };
 });

@@ -591,7 +591,6 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
                   </div>
                 </form>
                 <div className="mt-6 text-center">
-                   <button onClick={() => window.location.assign('/admin/login')} className="text-[10px] text-slate-400 hover:text-slate-600 dark:text-slate- font-medium uppercase tracking-widest transition-colors flex items-center justify-center gap-1 mx-auto"><Shield size={12} /> Admin Portal</button>
                 </div>
               </motion.div>
             ) : (

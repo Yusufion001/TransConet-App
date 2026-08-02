@@ -1,6 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { getAdminFleet, getAdminLoads, getAdminAiModels, getAdminDatabaseHealth, getAdminRedisMonitoring, getAdminBackupHistory, getAdminDeveloperLogs, getAdminNotifications, getAdminMarketing, getAdminContent, getAdminPartners, getAdminVerifications } from '../controllers/adminController';
 import { verifyVehicle, getSystemStatus, getAdminMetrics, getSupabaseDiagnostics, getUsers, updateUserStatus, triggerBackup, getHealth, getApiManagementKeys, testApiEndpoint, getAdminSubscriptions, getAdminReports, getAdminAuditLogs, getAdminRiskAlerts, updateRiskAlertStatus, getAdminSecurityEvents, getAdminPlatformConfig, updateAdminPlatformConfig } from '../controllers/adminController';
+import { legacyCleanup } from '../controllers/adminCleanupController';
 import { generateAdminInsights } from '../controllers/aiOptimizationController';
 import { authenticateToken, requireRole } from '../middleware/authMiddleware';
 import { authenticateAdminOrSuper, requireSpecificAdminRole } from '../middleware/adminAuthMiddleware';
@@ -26,6 +27,7 @@ router.get('/ai-insights', requireSpecificAdminRole(['SUPER_ADMIN', 'PLATFORM_AD
 
 // Endpoint for administrative metrics and environment detection
 router.get('/system-status', requireSpecificAdminRole(['SUPER_ADMIN', 'DEVELOPER', 'PLATFORM_ADMIN']), getSystemStatus);
+router.get('/system', requireSpecificAdminRole(['SUPER_ADMIN', 'DEVELOPER', 'PLATFORM_ADMIN']), getSystemStatus);
 
 // Endpoint for performing deep Supabase diagnostics scans
 router.get('/supabase-diagnostics', requireSpecificAdminRole(['SUPER_ADMIN', 'DEVELOPER']), getSupabaseDiagnostics);
@@ -38,8 +40,8 @@ router.post('/verify-vehicle/:vehicleId', requireSpecificAdminRole(['SUPER_ADMIN
 router.patch('/verify-vehicle/:vehicleId', requireSpecificAdminRole(['SUPER_ADMIN', 'COMPLIANCE_ADMIN']), verifyVehicle);
 
 // Endpoints for User & Compliance Management
-router.get('/users', requireSpecificAdminRole(['SUPER_ADMIN', 'SUPPORT_ADMIN', 'COMPLIANCE_ADMIN', 'PLATFORM_ADMIN']), getUsers);
-router.patch('/users/:userId/status', requireSpecificAdminRole(['SUPER_ADMIN', 'SUPPORT_ADMIN', 'COMPLIANCE_ADMIN']), updateUserStatus);
+router.get('/users', requireSpecificAdminRole(['SUPER_ADMIN', 'SUPPORT_ADMIN']), getUsers);
+router.patch('/users/:userId/status', requireSpecificAdminRole(['SUPER_ADMIN', 'SUPPORT_ADMIN']), updateUserStatus);
 router.get('/verifications', requireSpecificAdminRole(['SUPER_ADMIN', 'COMPLIANCE_ADMIN', 'PLATFORM_ADMIN']), getAdminVerifications);
 
 // Endpoint for Admins/Developers to generate a complete user activity statement
@@ -70,6 +72,10 @@ router.get('/user-statement/:userId', requireSpecificAdminRole(['SUPER_ADMIN', '
 });
 
 
+// Dedicated Finance and Compliance routes
+router.get('/finance', requireSpecificAdminRole(['SUPER_ADMIN', 'FINANCE_ADMIN']), (req, res) => res.json({ status: 'Finance module active' }));
+router.get('/compliance', requireSpecificAdminRole(['SUPER_ADMIN', 'COMPLIANCE_ADMIN']), (req, res) => res.json({ status: 'Compliance module active' }));
+
 // Endpoints for Subscriptions, Reports, and Audit Logs
 router.get('/subscriptions', requireSpecificAdminRole(['SUPER_ADMIN', 'FINANCE_ADMIN', 'PLATFORM_ADMIN']), getAdminSubscriptions);
 router.get('/reports', requireSpecificAdminRole(['SUPER_ADMIN', 'FINANCE_ADMIN', 'PLATFORM_ADMIN', 'SUPPORT_ADMIN']), getAdminReports);
@@ -97,5 +103,7 @@ router.get('/notifications', requireSpecificAdminRole(['SUPER_ADMIN', 'PLATFORM_
 router.get('/marketing', requireSpecificAdminRole(['SUPER_ADMIN', 'PLATFORM_ADMIN', 'FINANCE_ADMIN']), getAdminMarketing);
 router.get('/content', requireSpecificAdminRole(['SUPER_ADMIN', 'PLATFORM_ADMIN', 'SUPPORT_ADMIN']), getAdminContent);
 router.get('/partners', requireSpecificAdminRole(['SUPER_ADMIN', 'PLATFORM_ADMIN', 'FINANCE_ADMIN']), getAdminPartners);
+
+router.post('/system/legacy-cleanup', requireSpecificAdminRole(['SUPER_ADMIN']), legacyCleanup);
 
 export default router;

@@ -20,7 +20,7 @@ const LOCKOUT_DURATION_MS = 160 * 1000; // 15 minutes
 export const requestOTP = async (req: Request, res: Response): Promise<any> => {
   try {
     const rawPhone = req.body.phoneNumber !== undefined && req.body.phoneNumber !== null ? String(req.body.phoneNumber) : '';
-    const sanitizedPhone = rawPhone.trim();
+    console.log('User Login attempt:', { rawPhone, origin: req.headers.origin }); const sanitizedPhone = rawPhone.trim();
 
     if (!sanitizedPhone || sanitizedPhone.length < 10) {
       return res.status(400).json({ error: 'Please supply a valid phone number.' });
@@ -55,7 +55,7 @@ export const verifyOTP = async (req: Request, res: Response): Promise<any> => {
     const rawPhone = req.body.phoneNumber !== undefined && req.body.phoneNumber !== null ? String(req.body.phoneNumber) : '';
     const rawOTP = req.body.otpCode !== undefined && req.body.otpCode !== null ? String(req.body.otpCode) : '';
 
-    const sanitizedPhone = rawPhone.trim();
+    console.log('User Login attempt:', { rawPhone, origin: req.headers.origin }); const sanitizedPhone = rawPhone.trim();
     const sanitizedOTP = rawOTP.trim();
 
     if (!sanitizedPhone || !sanitizedOTP) {
@@ -156,7 +156,7 @@ export const switchRole = async (req: Request, res: Response): Promise<any> => {
 export const checkPhoneStatus = async (req: Request, res: Response): Promise<any> => {
   try {
     const rawPhone = req.body.phoneNumber !== undefined && req.body.phoneNumber !== null ? String(req.body.phoneNumber) : '';
-    const sanitizedPhone = rawPhone.trim();
+    console.log('User Login attempt:', { rawPhone, origin: req.headers.origin }); const sanitizedPhone = rawPhone.trim();
     if (!sanitizedPhone || sanitizedPhone.length < 10) {
       return res.status(400).json({ error: 'Please supply a valid phone number.' });
     }
@@ -191,7 +191,7 @@ export const loginPin = async (req: Request, res: Response): Promise<any> => {
     const rawPhone = req.body.phoneNumber !== undefined && req.body.phoneNumber !== null ? String(req.body.phoneNumber) : '';
     const rawPin = req.body.pin !== undefined && req.body.pin !== null ? String(req.body.pin) : '';
 
-    const sanitizedPhone = rawPhone.trim();
+    console.log('User Login attempt:', { rawPhone, origin: req.headers.origin }); const sanitizedPhone = rawPhone.trim();
     const sanitizedPin = rawPin.trim();
 
     if (!sanitizedPhone || !sanitizedPin || sanitizedPin.length < 6) {
@@ -269,7 +269,7 @@ export const registerPin = async (req: Request, res: Response): Promise<any> => 
     const rawEmail = req.body.email !== undefined && req.body.email !== null ? String(req.body.email) : '';
     const rawRole = req.body.role === 'TRANSPORTER' ? 'TRANSPORTER' : 'CUSTOMER';
 
-    const sanitizedPhone = rawPhone.trim();
+    console.log('User Login attempt:', { rawPhone, origin: req.headers.origin }); const sanitizedPhone = rawPhone.trim();
     const sanitizedPin = rawPin.trim();
 
     if (!sanitizedPhone || !sanitizedPin || sanitizedPin.length < 6) {
