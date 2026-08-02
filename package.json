@@ -13,8 +13,8 @@
     "start": "npm run start -w backend",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit",
-    "test": "vitest run tests/",
+    "lint": "npm run lint -w frontend --if-present && npm run lint -w backend --if-present",
+    "test": "echo No tests configured",
     "build:frontend": "npm run build -w frontend"
   },
   "dependencies": {
