@@ -159,7 +159,8 @@ async function startServer() {
   });
 
   app.get('/api/csrf-token', (req, res) => {
-    csrfProtection(req, res, () => {
+    csrfProtection(req, res, (err) => {
+      if (err) return res.status(500).json({ error: err.message, stack: err.stack });
       try {
         const token = typeof req.csrfToken === 'function' ? req.csrfToken() : '';
         if (!token) throw new Error('CSRF disabled');
