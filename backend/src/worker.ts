@@ -1,6 +1,9 @@
 import dotenv from 'dotenv';
 import path from 'path';
-dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
+dotenv.config({ path: require('path').join(__dirname, '../../.env'), override: true });
+dotenv.config({ path: require('path').join(__dirname, '../../../.env'), override: true });
+dotenv.config({ path: require('path').resolve(process.cwd(), '.env'), override: true });
+dotenv.config({ override: true });
 import winston from 'winston';
 import { startEmbeddingRetryWorker } from './workers/embeddingRetryWorker';
 import { startWorkers } from './services/queueService';

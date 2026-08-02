@@ -2,7 +2,11 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 // Load variables from .env file
-dotenv.config({ path: path.resolve(process.cwd(), '../.env'), override: true });
+const envPath = path.resolve(process.cwd(), '.env');
+const envPath2 = path.resolve(process.cwd(), '../.env');
+dotenv.config({ path: envPath, override: true });
+dotenv.config({ path: envPath2, override: true });
+dotenv.config({ path: path.resolve(process.cwd(), '.env'), override: true });
 dotenv.config({ override: true }); // fallback
 
 // Fallbacks for test environment when .env is not present (e.g. in CI)
