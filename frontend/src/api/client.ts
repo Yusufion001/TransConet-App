@@ -10,29 +10,37 @@ const api = axios.create({
   withCredentials: true,
 });
 
+let csrfFetchPromise: Promise<void> | null = null;
 export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
-  try {
-    const baseUrl = import.meta.env.VITE_API_URL || '';
-    const response = await fetch(`${baseUrl}/api/csrf-token`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-      },
-      credentials: 'include'
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  if (csrfFetchPromise) return csrfFetchPromise;
+
+  const performFetch = async (r = retries, b = backoff): Promise<void> => {
+    try {
+      const baseUrl = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${baseUrl}/api/csrf-token`, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+        },
+        credentials: 'include'
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      csrfToken = data.csrfToken;
+    } catch (err: any) {
+      if (r > 0) {
+        console.warn(`CSRF fetch failed, retrying in ${b}ms...`);
+        await new Promise(res => setTimeout(res, b));
+        return performFetch(r - 1, b * 1.5);
+      }
+      console.error('CSRF Token fetch failed permanently:', err?.message || err, err);
     }
-    const data = await response.json();
-    csrfToken = data.csrfToken;
-  } catch (err: any) {
-    if (retries > 0) {
-      console.warn(`CSRF fetch failed, retrying in ${backoff}ms...`);
-      await new Promise(r => setTimeout(r, backoff));
-      return fetchCsrfToken(retries - 1, backoff * 1.5);
-    }
-    console.error('CSRF Token fetch failed permanently:', err?.message || err, err);
-  }
+  };
+
+  csrfFetchPromise = performFetch().finally(() => { csrfFetchPromise = null; });
+  return csrfFetchPromise;
 };
 api.interceptors.request.use(
   async (config) => {
