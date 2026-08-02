@@ -10,7 +10,7 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export const fetchCsrfToken = async () => {
+export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
   try {
     const baseUrl = import.meta.env.VITE_API_URL || '';
     const response = await fetch(`${baseUrl}/api/csrf-token`, {
@@ -26,6 +26,11 @@ export const fetchCsrfToken = async () => {
     const data = await response.json();
     csrfToken = data.csrfToken;
   } catch (err: any) {
+    if (retries > 0) {
+      console.warn(`CSRF fetch failed, retrying in ${backoff}ms...`);
+      await new Promise(r => setTimeout(r, backoff));
+      return fetchCsrfToken(retries - 1, backoff * 1.5);
+    }
     console.error('CSRF Token fetch failed permanently:', err?.message || err, err);
   }
 };
