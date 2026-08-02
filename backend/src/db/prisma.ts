@@ -7,7 +7,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 export const rlsContext = new AsyncLocalStorage<{ userId: string; role: string }>();
 
 const rawConnectionString = process.env.DATABASE_URL || '';
-const connectionString = rawConnectionString.replace(/[?&]sslmode=[^&]+/g, '');
+const connectionString = rawConnectionString.replace(/[?&]sslmode=[^&]+/g, '').replace(/&/, (match, offset, str) => str.indexOf('?') === -1 ? '?' : '&');
 const pool = new Pool({ connectionString, ssl: { rejectUnauthorized: false } });
 const adapter = new PrismaPg(pool);
 

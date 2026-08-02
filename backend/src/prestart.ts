@@ -72,7 +72,7 @@ if (process.env.DATABASE_URL) {
       import("@prisma/client").then(async ({ PrismaClient }) => {
         const { Pool } = await import('pg');
         const { PrismaPg } = await import('@prisma/adapter-pg');
-        const pool = new Pool({ connectionString: process.env.CHECK_DB_URL.replace(/[?&]sslmode=[^&]+/g, ''), ssl: { rejectUnauthorized: false } });
+        const pool = new Pool({ connectionString: process.env.CHECK_DB_URL.replace(/[?&]sslmode=[^&]+/g, '').replace(/&/, (match, offset, str) => str.indexOf('?') === -1 ? '?' : '&'), ssl: { rejectUnauthorized: false } });
         const adapter = new PrismaPg(pool);
         const prisma = new PrismaClient({ adapter });
         prisma.$queryRawUnsafe("SELECT 1")
