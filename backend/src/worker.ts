@@ -1,9 +1,14 @@
 import dotenv from 'dotenv';
 import path from 'path';
-dotenv.config({ path: require('path').join(__dirname, '../../.env'), override: true });
-dotenv.config({ path: require('path').join(__dirname, '../../../.env'), override: true });
-dotenv.config({ path: require('path').resolve(process.cwd(), '.env'), override: true });
-dotenv.config({ override: true });
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const envPath = path.resolve(process.cwd(), '.env');
+const envPath2 = path.resolve(process.cwd(), '../.env');
+dotenv.config({ path: envPath, override: true });
+dotenv.config({ path: envPath2, override: true });
+
 import winston from 'winston';
 import { startEmbeddingRetryWorker } from './workers/embeddingRetryWorker';
 import { startWorkers } from './services/queueService';

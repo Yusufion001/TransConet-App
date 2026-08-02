@@ -4,10 +4,15 @@ import path from 'path';
 import { execSync } from 'child_process';
 
 // Configure dotenv to read our local clean .env file first
-dotenv.config({ path: require('path').join(__dirname, '../../.env'), override: true });
-dotenv.config({ path: require('path').join(__dirname, '../../../.env'), override: true });
-dotenv.config({ path: require('path').resolve(process.cwd(), '.env'), override: true });
-dotenv.config({ override: true });
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const envPath = path.resolve(process.cwd(), '.env');
+const envPath2 = path.resolve(process.cwd(), '../.env');
+dotenv.config({ path: envPath, override: true });
+dotenv.config({ path: envPath2, override: true });
+
 
 function sanitizeDatabaseUrl(url: string | undefined): string | undefined {
   if (!url) return url;
