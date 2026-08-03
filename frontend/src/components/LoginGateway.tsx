@@ -30,7 +30,7 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
   const [role, setRole] = useState<'SHIPPER' | 'TRANSPORTER'>('SHIPPER');
   const [signUpStep, setSignUpStep] = useState<1 | 2>(1);
   const [pin, setPin] = useState('');
-  const { loginWithPin, registerWithPin, resetPasswordRequest, resetPasswordConfirm, error: authError, setError: setAuthError } = useAuth();
+  const { loginWithPin, registerWithPin, resetPasswordRequest, resetPasswordConfirm } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [message, setMessage] = useState<string | null>(null);
@@ -89,12 +89,9 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
     }
 
     try {
-      const response = await api.post('/auth/login-pin', { 
-        phoneNumber: formattedPhone, 
-        pin: pin 
-      });
+      const response = await loginWithPin(formattedPhone, pin);
       
-      const { token } = response.data;
+      const { token } = response;
       onLoginSuccess(token, formattedPhone);
     } catch (err: any) {
       setError((typeof err.response?.data?.error === 'object' ? JSON.stringify(err.response?.data?.error) : err.response?.data?.error) || 'Incorrect phone number or password.');
@@ -150,14 +147,15 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
     }
 
     try {
-      const response = await api.post('/auth/register-pin', { 
-        phoneNumber: formattedPhone, 
-        email: email.trim() || `${formattedPhone}@transconet.com`,
-        pin: pin,
-        role: role 
-      });
+      const response = await registerWithPin(
+        formattedPhone,
+        pin,
+        email.trim() || `${formattedPhone}@transconet.com`,
+        role,
+        `${firstName.trim()} ${lastName.trim()}`.trim()
+      );
       
-      const { token } = response.data;
+      const { token } = response;
       onLoginSuccess(token, formattedPhone);
     } catch (err: any) {
       setError((typeof err.response?.data?.error === 'object' ? JSON.stringify(err.response?.data?.error) : err.response?.data?.error) || 'Registration failed. Try again.');
@@ -180,8 +178,7 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
     }
 
     try {
-      // In a real app this would call: await api.post('/auth/forgot-password', { email: formattedEmail });
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+      await resetPasswordRequest(formattedEmail);
       setResetStep(2);
       setMessage(`A secure reset token has been sent to ${formattedEmail}. Please check your inbox.`);
     } catch (err: any) {
@@ -210,8 +207,7 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
     }
 
     try {
-      // In a real app this would call: await api.post('/auth/reset-password', { email, token: resetToken, newPassword });
-      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+      await resetPasswordConfirm(email.trim(), resetToken, newPassword);
       setResetStep(3);
       setMessage('Password successfully reset. You can now login with your new credentials.');
       setTimeout(() => {
