@@ -149,10 +149,25 @@ async function startServer() {
   app.use(express.json({ limit: '10mb' }));
   app.use(cookieParser());
   
-  const csrfProtection = csurf({ cookie: { httpOnly: true, secure: true, sameSite: 'none' } });
+  const csrfProtection = csurf({
+    cookie: {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+    }
+  });
   app.use('/api', (req, res, next) => {
-    // Skip CSRF for OPTIONS, health check, csrf-token, or Bearer-authenticated requests (stateless JWTs)
-    if (req.method === 'OPTIONS' || req.path === '/health' || req.path === '/csrf-token' || req.path === '/payments/webhook/paystack' || req.headers.authorization) {
+    // Skip CSRF for OPTIONS, health check, csrf-token, auth endpoints, webhooks,
+    // or Bearer-authenticated requests (stateless JWTs). Login/register cannot
+    // bootstrap a bearer token yet and must not depend on cross-site CSRF cookies.
+    if (
+      req.method === 'OPTIONS' ||
+      req.path === '/health' ||
+      req.path === '/csrf-token' ||
+      req.path.startsWith('/auth/') ||
+      req.path === '/payments/webhook/paystack' ||
+      req.headers.authorization
+    ) {
       return next();
     }
     csrfProtection(req, res, next);

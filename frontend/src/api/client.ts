@@ -2,8 +2,17 @@ import axios from 'axios';
 
 let csrfToken = '';
 
+const normalizeApiBaseUrl = (rawUrl?: string) => {
+  const trimmedUrl = rawUrl?.trim().replace(/\/+$/, '') || '';
+
+  if (!trimmedUrl) return '/api';
+  return trimmedUrl.endsWith('/api') ? trimmedUrl : `${trimmedUrl}/api`;
+};
+
+const API_BASE_URL = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,8 +25,7 @@ export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
 
   const performFetch = async (r = retries, b = backoff): Promise<void> => {
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      const response = await fetch(`${baseUrl}/api/csrf-token`, {
+      const response = await fetch(`${API_BASE_URL}/csrf-token`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -36,6 +44,7 @@ export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
         return performFetch(r - 1, b * 1.5);
       }
       console.error('CSRF Token fetch failed permanently:', err?.message || err, err);
+      throw err;
     }
   };
 
