@@ -32,11 +32,44 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
+:root {
+  --tc-space-1: 4px;
+  --tc-space-2: 8px;
+  --tc-space-3: 12px;
+  --tc-space-4: 16px;
+  --tc-space-6: 24px;
+  --tc-space-8: 32px;
+  --tc-space-10: 40px;
+  --tc-space-12: 48px;
+  --tc-space-16: 64px;
+  --tc-space-20: 80px;
+  --tc-container: min(100% - 48px, 1360px);
+  --tc-auth-width: min(100%, 480px);
+  --tc-reading-width: min(100%, 800px);
+  --tc-hero-width: min(100%, 650px);
+  --tc-control-height: 56px;
+  --tc-radius-control: 12px;
+  --tc-radius-card: 28px;
+}
+
+html { font-size: 100%; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: #f8fafc;
+  color: #172033;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 @layer base {
   body { @apply bg-slate-50 text-slate-900 antialiased font-sans selection:bg-brand-200 selection:text-brand-900; }
   .dark body { @apply bg-slate-950 text-slate-50 selection:bg-brand-900 selection:text-brand-100; }
   h1, h2, h3, h4, h5, h6 { @apply font-display tracking-tight text-slate-900 dark:text-slate-50 font-bold; }
   button, input, textarea, select { @apply font-sans; }
+  input, textarea, select { font-size: 16px; }
 }
 
 @layer utilities {
@@ -44,44 +77,96 @@
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .glass-panel { @apply bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-white/20 dark:border-slate-800/50 shadow-sm; }
   .enterprise-shadow { @apply shadow-[0_2px_8px_-2px_rgba(15,23,42,0.08),0_4px_16px_-4px_rgba(15,23,42,0.04)]; }
+  .tc-container { width: var(--tc-container); margin-inline: auto; }
+  .tc-auth-width { width: var(--tc-auth-width); }
+  .tc-reading-width { width: var(--tc-reading-width); }
+  .tc-hero-width { width: var(--tc-hero-width); }
+  .tc-control { min-height: var(--tc-control-height); }
+  .tc-card { border-radius: var(--tc-radius-card); }
 }
 
 @layer base {
   button:not(:disabled), .cursor-pointer:not(:disabled), [role="button"]:not(:disabled) { @apply transition-all duration-200 active:scale-[0.98]; }
 }
 
-/* Keep onboarding and authentication within the viewport without clipping controls. */
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) > #root,
-body:has([class~="min-h-[100dvh"][class~="overflow-x-hidden"]) > #root { height: 100dvh; min-height: 100dvh; overflow: hidden; }
+/* TransConet responsive foundation: compact <600, medium 600–1023, expanded >=1024. */
+@media (max-width: 599px) {
+  :root {
+    --tc-container: min(100% - 48px, 1360px);
+    --tc-auth-width: min(100%, 480px);
+    --tc-control-height: 56px;
+  }
 
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]),
-body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) { overflow: hidden; }
+  h1 { font-size: clamp(32px, 8.5vw, 36px); line-height: 1.08; }
+  h2 { font-size: clamp(28px, 7.5vw, 32px); line-height: 1.12; }
+  h3 { font-size: clamp(22px, 6vw, 24px); line-height: 1.18; }
 
-/* Compact the welcome illustration while leaving the bottom navigation visible. */
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="h-[45%]"] { flex-basis: 40%; min-height: 0; }
-
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] {
-  min-height: 0;
-  padding: clamp(12px, 2.5vh, 24px) clamp(20px, 6vw, 32px) clamp(10px, 2vh, 20px);
+  .tc-responsive-page { padding-inline: 24px; }
+  .tc-responsive-grid { grid-template-columns: 1fr; }
 }
 
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] h1 { margin-bottom: clamp(6px, 1.2vh, 12px); font-size: clamp(22px, 5.8vw, 30px); }
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] p { margin-bottom: clamp(8px, 1.5vh, 16px); font-size: clamp(13px, 3.5vw, 15px); line-height: 1.4; }
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="mt-8"][class~="flex"][class~="flex-col"] { margin-top: clamp(6px, 1.5vh, 14px); gap: clamp(6px, 1.2vh, 12px); }
+@media (min-width: 600px) and (max-width: 1023px) {
+  :root {
+    --tc-container: min(100% - 64px, 1360px);
+    --tc-auth-width: min(100%, 480px);
+    --tc-control-height: 56px;
+  }
 
-/* Sign in / Sign up card compaction. */
-body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] { max-height: calc(100dvh - 142px); }
+  h1 { font-size: clamp(40px, 5.5vw, 48px); line-height: 1.06; }
+  h2 { font-size: clamp(32px, 4.5vw, 40px); line-height: 1.1; }
+  h3 { font-size: clamp(24px, 3.5vw, 28px); line-height: 1.15; }
 
-@media (max-height: 820px) {
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] { padding: 16px 20px; }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] h2 { font-size: 24px; }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="h-14"] { height: 48px; }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="my-5"] { margin-top: 9px; margin-bottom: 9px; }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="mt-5"] { margin-top: 9px; }
+  .tc-responsive-page { padding-inline: clamp(32px, 5vw, 40px); }
+  .tc-responsive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
+@media (min-width: 1024px) {
+  :root {
+    --tc-container: min(100% - clamp(80px, 8vw, 128px), 1360px);
+    --tc-auth-width: min(100%, 480px);
+    --tc-control-height: 56px;
+  }
+
+  h1 { font-size: clamp(52px, 4.2vw, 60px); line-height: 1.04; }
+  h2 { font-size: clamp(40px, 3.2vw, 48px); line-height: 1.08; }
+  h3 { font-size: clamp(28px, 2.2vw, 32px); line-height: 1.12; }
+
+  .tc-responsive-page { padding-inline: clamp(40px, 5vw, 64px); }
+  .tc-responsive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Fluid typography helpers for components that opt into the global system. */
+.tc-hero-title { font-size: clamp(32px, 4.2vw, 60px); line-height: 1.04; }
+.tc-page-title { font-size: clamp(28px, 3.2vw, 48px); line-height: 1.08; }
+.tc-section-title { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.12; }
+.tc-card-title { font-size: clamp(18px, 1.6vw, 24px); line-height: 1.2; }
+.tc-body { font-size: clamp(15px, 1.2vw, 18px); line-height: 1.55; }
+.tc-label { font-size: clamp(13px, 1vw, 15px); line-height: 1.4; }
+.tc-meta { font-size: clamp(12px, 0.9vw, 14px); line-height: 1.4; }
+
+/* Authentication surfaces: fluid width, never device-specific. */
+.tc-auth-card {
+  width: var(--tc-auth-width);
+  max-width: 480px;
+  border-radius: var(--tc-radius-card);
+  padding: clamp(24px, 3vw, 32px);
+}
+
+.tc-auth-input,
+.tc-auth-button {
+  width: 100%;
+  min-height: 52px;
+  height: clamp(52px, 5.5vw, 56px);
+  border-radius: var(--tc-radius-control);
+}
+
+/* Welcome/authentication pages may use natural vertical scrolling. Short
+   viewports compress through fluid sizing rather than clipping controls. */
 @media (max-height: 700px) {
-  body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="h-[45%]"] { flex-basis: 34%; }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] { max-height: calc(100dvh - 112px); padding: 12px 16px; }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] h2 { font-size: 21px; }
+  :root { --tc-control-height: 52px; }
+  .tc-auth-card { padding-block: 20px; }
+}
+
+@media (orientation: landscape) and (max-width: 1023px) {
+  .tc-responsive-page { padding-block: 24px; }
 }
