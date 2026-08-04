@@ -1,14 +1,4 @@
-import OpenAI from 'openai';
-
 export type TransConetRole = 'CUSTOMER' | 'TRANSPORTER';
-
-export type AiAction = {
-  name: string;
-  description: string;
-  requiresApproval: true;
-};
-
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 const ROLE_RULES: Record<TransConetRole, string[]> = {
   CUSTOMER: [
@@ -56,21 +46,33 @@ export async function respondToUser(input: {
 }): Promise<string> {
   assertSingleRole(input.role);
 
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error('OPENAI_API_KEY is not configured on the backend.');
-  }
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) throw new Error('OPENAI_API_KEY is not configured on the backend.');
 
-  const response = await client.responses.create({
-    model: process.env.OPENAI_MODEL || 'gpt-5',
-    instructions: buildTransConetSystemPrompt(input.role),
-    input: [
-      ...(input.conversation || []).map((item) => ({
-        role: item.role,
-        content: item.content,
-      })),
-      { role: 'user', content: input.message },
-    ],
+  const response = await fetch('https://api.openai.com/v1/responses', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model: process.env.OPENAI_MODEL || 'gpt-5',
+      instructions: buildTransConetSystemPrompt(input.role),
+      input: [
+        ...(input.conversation || []).map((item) => ({
+          role: item.role,
+          content: item.content,
+        })),
+        { role: 'user', content: input.message },
+      ],
+    }),
   });
 
-  return response.output_text || 'I could not complete that request. Please try again.';
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(`OpenAI request failed (${response.status}): ${detail.slice(0, 500)}`);
+  }
+
+  const data = await response.json() as { output_text?: string };
+  return data.output_text || 'I could not complete that request. Please try again.';
 }
