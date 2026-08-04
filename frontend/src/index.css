@@ -33,18 +33,10 @@
 }
 
 @layer base {
-  body {
-    @apply bg-slate-50 text-slate-900 antialiased font-sans selection:bg-brand-200 selection:text-brand-900;
-  }
-  .dark body {
-    @apply bg-slate-950 text-slate-50 selection:bg-brand-900 selection:text-brand-100;
-  }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight text-slate-900 dark:text-slate-50 font-bold;
-  }
-  button, input, textarea, select {
-    @apply font-sans;
-  }
+  body { @apply bg-slate-50 text-slate-900 antialiased font-sans selection:bg-brand-200 selection:text-brand-900; }
+  .dark body { @apply bg-slate-950 text-slate-50 selection:bg-brand-900 selection:text-brand-100; }
+  h1, h2, h3, h4, h5, h6 { @apply font-display tracking-tight text-slate-900 dark:text-slate-50 font-bold; }
+  button, input, textarea, select { @apply font-sans; }
 }
 
 @layer utilities {
@@ -55,92 +47,41 @@
 }
 
 @layer base {
-  button:not(:disabled), .cursor-pointer:not(:disabled), [role="button"]:not(:disabled) {
-    @apply transition-all duration-200 active:scale-[0.98];
-  }
+  button:not(:disabled), .cursor-pointer:not(:disabled), [role="button"]:not(:disabled) { @apply transition-all duration-200 active:scale-[0.98]; }
 }
 
-/* Keep onboarding and authentication inside one viewport without changing
-   scrolling behavior elsewhere in the application. */
+/* Keep onboarding and authentication within the viewport without clipping controls. */
 body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) > #root,
-body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) > #root {
-  height: 100dvh;
-  min-height: 100dvh;
-  overflow: hidden;
-}
+body:has([class~="min-h-[100dvh"][class~="overflow-x-hidden"]) > #root { height: 100dvh; min-height: 100dvh; overflow: hidden; }
 
 body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]),
-body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) {
-  overflow: hidden;
-}
+body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) { overflow: hidden; }
 
-/* Three welcome slides */
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="h-[45%]"] {
-  flex-basis: 42%;
-}
+/* Compact the welcome illustration while leaving the bottom navigation visible. */
+body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="h-[45%]"] { flex-basis: 40%; min-height: 0; }
 
 body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] {
   min-height: 0;
-  padding: clamp(14px, 3vh, 28px) clamp(20px, 6vw, 32px) clamp(12px, 2.5vh, 24px);
-  overflow: hidden;
+  padding: clamp(12px, 2.5vh, 24px) clamp(20px, 6vw, 32px) clamp(10px, 2vh, 20px);
 }
 
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] h1 {
-  margin-bottom: clamp(8px, 1.5vh, 16px);
-  font-size: clamp(22px, 5.8vw, 30px);
-}
+body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] h1 { margin-bottom: clamp(6px, 1.2vh, 12px); font-size: clamp(22px, 5.8vw, 30px); }
+body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] p { margin-bottom: clamp(8px, 1.5vh, 16px); font-size: clamp(13px, 3.5vw, 15px); line-height: 1.4; }
+body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="mt-8"][class~="flex"][class~="flex-col"] { margin-top: clamp(6px, 1.5vh, 14px); gap: clamp(6px, 1.2vh, 12px); }
 
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="px-8"][class~="pt-8"][class~="pb-10"] p {
-  margin-bottom: clamp(10px, 2vh, 20px);
-  font-size: clamp(13px, 3.5vw, 15px);
-  line-height: 1.45;
-}
-
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="mt-8"][class~="flex"][class~="flex-col"] {
-  margin-top: clamp(8px, 2vh, 18px);
-  gap: clamp(8px, 1.5vh, 14px);
-}
-
-body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="py-4"][class~="font-bold"][class~="text-lg"] {
-  padding-top: clamp(10px, 1.8vh, 16px);
-  padding-bottom: clamp(10px, 1.8vh, 16px);
-  font-size: clamp(15px, 4vw, 18px);
-}
-
-/* Sign in / Sign up */
-body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] {
-  max-height: calc(100dvh - 142px);
-  overflow: hidden;
-}
+/* Sign in / Sign up card compaction. */
+body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] { max-height: calc(100dvh - 142px); }
 
 @media (max-height: 820px) {
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] {
-    padding: 16px 20px;
-  }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] h2 {
-    font-size: 24px;
-  }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="h-14"] {
-    height: 48px;
-  }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="my-5"] {
-    margin-top: 9px;
-    margin-bottom: 9px;
-  }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="mt-5"] {
-    margin-top: 9px;
-  }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] { padding: 16px 20px; }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] h2 { font-size: 24px; }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="h-14"] { height: 48px; }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="my-5"] { margin-top: 9px; margin-bottom: 9px; }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="mt-5"] { margin-top: 9px; }
 }
 
 @media (max-height: 700px) {
-  body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="h-[45%]"] {
-    flex-basis: 36%;
-  }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] {
-    max-height: calc(100dvh - 112px);
-    padding: 12px 16px;
-  }
-  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] h2 {
-    font-size: 21px;
-  }
+  body:has([class~="h-[100dvh]"][class~="md:h-[800px]"]) [class~="h-[45%]"] { flex-basis: 34%; }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] { max-height: calc(100dvh - 112px); padding: 12px 16px; }
+  body:has([class~="min-h-[100dvh]"][class~="overflow-x-hidden"]) [class~="max-w-[520px]"] h2 { font-size: 21px; }
 }
