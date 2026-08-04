@@ -91,51 +91,32 @@ body {
 
 /* TransConet responsive foundation: compact <600, medium 600–1023, expanded >=1024. */
 @media (max-width: 599px) {
-  :root {
-    --tc-container: min(100% - 48px, 1360px);
-    --tc-auth-width: min(100%, 480px);
-    --tc-control-height: 56px;
-  }
-
+  :root { --tc-container: min(100% - 48px, 1360px); --tc-auth-width: min(100%, 480px); --tc-control-height: 56px; }
   h1 { font-size: clamp(32px, 8.5vw, 36px); line-height: 1.08; }
   h2 { font-size: clamp(28px, 7.5vw, 32px); line-height: 1.12; }
   h3 { font-size: clamp(22px, 6vw, 24px); line-height: 1.18; }
-
   .tc-responsive-page { padding-inline: 24px; }
   .tc-responsive-grid { grid-template-columns: 1fr; }
 }
 
 @media (min-width: 600px) and (max-width: 1023px) {
-  :root {
-    --tc-container: min(100% - 64px, 1360px);
-    --tc-auth-width: min(100%, 480px);
-    --tc-control-height: 56px;
-  }
-
+  :root { --tc-container: min(100% - 64px, 1360px); --tc-auth-width: min(100%, 480px); --tc-control-height: 56px; }
   h1 { font-size: clamp(40px, 5.5vw, 48px); line-height: 1.06; }
   h2 { font-size: clamp(32px, 4.5vw, 40px); line-height: 1.1; }
   h3 { font-size: clamp(24px, 3.5vw, 28px); line-height: 1.15; }
-
   .tc-responsive-page { padding-inline: clamp(32px, 5vw, 40px); }
   .tc-responsive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (min-width: 1024px) {
-  :root {
-    --tc-container: min(100% - clamp(80px, 8vw, 128px), 1360px);
-    --tc-auth-width: min(100%, 480px);
-    --tc-control-height: 56px;
-  }
-
+  :root { --tc-container: min(100% - clamp(80px, 8vw, 128px), 1360px); --tc-auth-width: min(100%, 480px); --tc-control-height: 56px; }
   h1 { font-size: clamp(52px, 4.2vw, 60px); line-height: 1.04; }
   h2 { font-size: clamp(40px, 3.2vw, 48px); line-height: 1.08; }
   h3 { font-size: clamp(28px, 2.2vw, 32px); line-height: 1.12; }
-
   .tc-responsive-page { padding-inline: clamp(40px, 5vw, 64px); }
   .tc-responsive-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* Fluid typography helpers for components that opt into the global system. */
 .tc-hero-title { font-size: clamp(32px, 4.2vw, 60px); line-height: 1.04; }
 .tc-page-title { font-size: clamp(28px, 3.2vw, 48px); line-height: 1.08; }
 .tc-section-title { font-size: clamp(22px, 2.2vw, 32px); line-height: 1.12; }
@@ -144,29 +125,93 @@ body {
 .tc-label { font-size: clamp(13px, 1vw, 15px); line-height: 1.4; }
 .tc-meta { font-size: clamp(12px, 0.9vw, 14px); line-height: 1.4; }
 
-/* Authentication surfaces: fluid width, never device-specific. */
-.tc-auth-card {
-  width: var(--tc-auth-width);
-  max-width: 480px;
-  border-radius: var(--tc-radius-card);
-  padding: clamp(24px, 3vw, 32px);
-}
+.tc-auth-card { width: var(--tc-auth-width); max-width: 480px; border-radius: var(--tc-radius-card); padding: clamp(24px, 3vw, 32px); }
+.tc-auth-input, .tc-auth-button { width: 100%; min-height: 52px; height: clamp(52px, 5.5vw, 56px); border-radius: var(--tc-radius-control); }
 
-.tc-auth-input,
-.tc-auth-button {
-  width: 100%;
-  min-height: 52px;
-  height: clamp(52px, 5.5vw, 56px);
-  border-radius: var(--tc-radius-control);
-}
-
-/* Welcome/authentication pages may use natural vertical scrolling. Short
-   viewports compress through fluid sizing rather than clipping controls. */
 @media (max-height: 700px) {
   :root { --tc-control-height: 52px; }
   .tc-auth-card { padding-block: 20px; }
 }
 
-@media (orientation: landscape) and (max-width: 1023px) {
-  .tc-responsive-page { padding-block: 24px; }
+@media (orientation: landscape) and (max-width: 1023px) { .tc-responsive-page { padding-block: 24px; } }
+
+/* Apply the fluid system to the existing authentication implementation without
+   replacing its authentication state, routes, API calls, or validation. */
+.auth-responsive-shell { width: var(--tc-container); margin-inline: auto; }
+
+/* Existing LoginGateway cards and controls. */
+.max-w-\[520px\] { width: var(--tc-auth-width); max-width: 480px; }
+.max-w-\[520px\].rounded-\[28px\] { padding: clamp(24px, 3vw, 32px); }
+
+/* Keep existing controls touch-friendly and fluid. */
+.max-w-\[520px\] input,
+.max-w-\[520px\] button.h-14,
+.max-w-\[520px\] .h-14 {
+  min-height: 52px;
+  height: clamp(52px, 5.5vw, 56px);
+}
+
+.max-w-\[520px\] input { font-size: 16px; }
+.max-w-\[520px\] label > span:first-child { font-size: clamp(13px, 1vw, 15px); }
+.max-w-\[520px\] h2 { font-size: clamp(28px, 3.2vw, 40px); line-height: 1.1; }
+.max-w-\[520px\] p { line-height: 1.5; }
+
+/* The existing auth page remains naturally scrollable on compact screens;
+   this avoids clipping Sign Up while preserving comfortable 24px gutters. */
+@media (max-width: 599px) {
+  .max-w-\[520px\] { width: 100%; max-width: 480px; }
+  .max-w-\[520px\].rounded-\[28px\] { padding: 24px; }
+  .max-w-\[520px\] h2 { font-size: clamp(28px, 7.5vw, 32px); }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .max-w-\[520px\] { max-width: 480px; }
+  .max-w-\[520px\].rounded-\[28px\] { padding: 28px; }
+}
+
+@media (min-width: 1024px) {
+  .max-w-\[520px\] { max-width: 480px; }
+}
+
+/* Welcome slides: fluid type and illustration sizing without removing slide
+   controls or forcing a device-specific viewport height. */
+@media (max-width: 599px) {
+  [class*="rounded-b-[40px]"] { border-bottom-left-radius: clamp(24px, 8vw, 40px); border-bottom-right-radius: clamp(24px, 8vw, 40px); }
+  [class*="rounded-b-[40px]"] h1 { font-size: clamp(32px, 8.5vw, 36px); }
+  [class*="rounded-b-[40px]"] p { font-size: 16px; line-height: 1.5; }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  [class*="rounded-b-[40px]"] h1 { font-size: clamp(40px, 5.5vw, 48px); }
+  [class*="rounded-b-[40px]"] p { font-size: 17px; line-height: 1.5; }
+}
+
+@media (min-width: 1024px) {
+  [class*="rounded-b-[40px]"] h1 { font-size: clamp(52px, 4.2vw, 60px); max-width: 650px; }
+  [class*="rounded-b-[40px]"] p { font-size: 18px; line-height: 1.55; max-width: 650px; }
+}
+
+/* Shared layout primitives for existing and future product screens. */
+.tc-content-container { width: var(--tc-container); margin-inline: auto; }
+.tc-form-container { width: var(--tc-auth-width); max-width: 480px; margin-inline: auto; }
+.tc-reading-container { width: var(--tc-reading-width); margin-inline: auto; }
+.tc-hero-container { width: var(--tc-hero-width); }
+.tc-touch-target { min-width: 48px; min-height: 48px; }
+.tc-primary-control { min-height: 52px; height: clamp(52px, 5.5vw, 56px); border-radius: 12px; }
+
+/* Avoid horizontal overflow at every breakpoint, while leaving vertical
+   scrolling available for long registration/content flows. */
+html, body, #root { max-width: 100%; }
+body { overflow-x: hidden; }
+
+@media (max-width: 599px) {
+  .tc-content-container, .tc-form-container { max-width: calc(100vw - 48px); }
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+  .tc-content-container { max-width: calc(100vw - 64px); }
+}
+
+@media (min-width: 1024px) {
+  .tc-content-container { max-width: min(calc(100vw - clamp(80px, 8vw, 128px)), 1360px); }
 }
