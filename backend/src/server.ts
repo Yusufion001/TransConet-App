@@ -39,6 +39,7 @@ import kycRoutes from './routes/kycRoutes';
 import paymentRoutes from './routes/paymentRoutes';
 import aiOptimizationRoutes from './routes/aiOptimizationRoutes';
 import transconetAiRoutes from './routes/transconetAiRoutes';
+import transconetActionRoutes from './routes/transconetActionRoutes';
 import { rateLimitMiddleware } from './middleware/rateLimiter';
 
 const logger = winston.createLogger({
@@ -153,6 +154,7 @@ async function startServer() {
   app.use('/api/payments', paymentRoutes);
   app.use('/api/ai', aiOptimizationRoutes);
   app.use('/api/transconet-ai', transconetAiRoutes);
+  app.use('/api/transconet-actions', transconetActionRoutes);
 
   app.use('/api/*', (req, res) => res.status(404).json({ error: 'API endpoint not found.' }));
 
