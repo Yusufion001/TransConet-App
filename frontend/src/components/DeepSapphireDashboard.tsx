@@ -59,14 +59,14 @@ export default function DeepSapphireDashboard({ onNavigateToNetwork, onNavigateT
   }, []);
 
   return (
-    <div className="tc-dashboard flex min-h-0 w-full flex-1 flex-col bg-slate-50 pb-24 sm:pb-32">
+    <div className="tc-dashboard flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-x-clip bg-slate-50 pb-24 sm:pb-32">
       <main className="tc-dashboard-main tc-content-container w-full min-w-0 py-3 sm:py-4 md:py-6">
         <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork} />
-        <section className="tc-dashboard-grid mt-4 sm:mt-6" aria-label="TransConet dashboard">
-          <HeroFindLoadsCard onNavigateToNetwork={onNavigateToNetwork} />
-          <MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork} />
-          <TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} />
-          <BoostLoadCard onBoostClick={() => setIsBoostModalOpen(true)} />
+        <section className="tc-dashboard-grid mt-4 w-full min-w-0 sm:mt-6" aria-label="TransConet dashboard">
+          <div className="min-w-0 w-full"><HeroFindLoadsCard onNavigateToNetwork={onNavigateToNetwork} /></div>
+          <div className="min-w-0 w-full"><MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork} /></div>
+          <div className="min-w-0 w-full"><TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} /></div>
+          <div className="min-w-0 w-full"><BoostLoadCard onBoostClick={() => setIsBoostModalOpen(true)} /></div>
         </section>
       </main>
 
