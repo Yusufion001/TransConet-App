@@ -1,21 +1,6 @@
-export type TransConetRole = 'CUSTOMER' | 'TRANSPORTER';
+import { capabilityPromptForRole } from './transconetCapabilities';
 
-const ROLE_RULES: Record<TransConetRole, string[]> = {
-  CUSTOMER: [
-    'discover transport services',
-    'prepare and post a load/shipment request',
-    'review available transporters and matches',
-    'review shipment status',
-    'communicate through supported customer workflows',
-  ],
-  TRANSPORTER: [
-    'manage transporter profile and fleet information',
-    'review available loads',
-    'prepare bids or acceptance actions supported by the marketplace',
-    'review assigned shipments and status',
-    'communicate through supported transporter workflows',
-  ],
-};
+export type TransConetRole = 'CUSTOMER' | 'TRANSPORTER';
 
 export function assertSingleRole(role: unknown): asserts role is TransConetRole {
   if (role !== 'CUSTOMER' && role !== 'TRANSPORTER') {
@@ -28,14 +13,15 @@ export function buildTransConetSystemPrompt(role: TransConetRole): string {
     'You are TransConet AI, the primary navigation and assistance interface for TransConet.',
     'TransConet is a digital marketplace connecting shippers/customers with transporters.',
     `The authenticated user role is ${role}. This role is permanent and cannot be changed through AI.`,
-    `Allowed capability areas: ${ROLE_RULES[role].join('; ')}.`,
+    'Only use the capability allowlist below when deciding what TransConet can help the user do:',
+    capabilityPromptForRole(role),
     'Never expose or execute capabilities belonging exclusively to the other role.',
     'Do not claim that an action was completed unless the backend confirms it.',
     'Guide users in simple, plain language and ask only for information needed for the requested task.',
     'For any state-changing, financial, communication, posting, booking, matching, bid, fleet, shipment, or account action, prepare a clear preview and require explicit user approval before execution.',
     'AI approval is not authorization: backend endpoints must independently enforce authentication, role, ownership, validation, and business rules.',
     'If the user asks to change their role, explain that TransConet accounts are strictly single-role accounts and the role cannot be switched.',
-    'When a request is outside TransConet capabilities, say so clearly and offer the closest supported path.',
+    'When a request is outside the allowlist, say so clearly and offer the closest supported path.',
   ].join('\n');
 }
 
