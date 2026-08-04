@@ -23,7 +23,7 @@ export default function DeepSapphireDashboard({ onNavigateToNetwork, onNavigateT
   const [showLiveMap, setShowLiveMap] = useState<string | null>(null);
   const [isBoostModalOpen, setIsBoostModalOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [selectedState, setSelectedState] = useState('Browse 36 States');
+  const [, setSelectedState] = useState('Browse 36 States');
   const [engineStatus, setEngineStatus] = useState(NativeTrackingEngine.getStatus());
 
   const handleTrackingRequest = async (e: React.FormEvent) => {
@@ -59,10 +59,10 @@ export default function DeepSapphireDashboard({ onNavigateToNetwork, onNavigateT
   }, []);
 
   return (
-    <div className="tc-dashboard w-full flex-1 flex flex-col bg-slate-50 pb-32">
-      <main className="tc-dashboard-main tc-content-container w-full py-4 md:py-6 pb-32">
+    <div className="tc-dashboard flex min-h-0 w-full flex-1 flex-col bg-slate-50 pb-24 sm:pb-32">
+      <main className="tc-dashboard-main tc-content-container w-full min-w-0 py-3 sm:py-4 md:py-6">
         <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork} />
-        <section className="tc-dashboard-grid mt-6" aria-label="TransConet dashboard">
+        <section className="tc-dashboard-grid mt-4 sm:mt-6" aria-label="TransConet dashboard">
           <HeroFindLoadsCard onNavigateToNetwork={onNavigateToNetwork} />
           <MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork} />
           <TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} />
