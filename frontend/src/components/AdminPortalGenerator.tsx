@@ -1,8 +1,7 @@
-
 import React, { useState, lazy, Suspense } from 'react';
-import { 
-  Globe, ShieldCheck, FileText, Headset, Bell, CreditCard, Truck, Users, Megaphone, 
-  Wallet, AlertTriangle, BarChart, Bot, ToggleLeft, Code, Database, History, Key, 
+import {
+  Globe, ShieldCheck, FileText, Headset, Bell, CreditCard, Truck, Users, Megaphone,
+  Wallet, AlertTriangle, BarChart, Bot, ToggleLeft, Code, Database, History, Key,
   Sliders, DollarSign, UserCheck, Activity, ShieldAlert, Loader2
 } from 'lucide-react';
 import { useAdminEngine } from '../hooks/useAdminEngine';
@@ -45,9 +44,9 @@ interface AdminPortalGeneratorProps {
   currentRole: string;
 }
 
-export default function AdminPortalGenerator({ 
-  userPhone, 
-  userEmail, 
+export default function AdminPortalGenerator({
+  userPhone,
+  userEmail,
   currentRole
 }: AdminPortalGeneratorProps) {
   const [activeTab, setActiveTab] = useState<string>('OVERVIEW');
@@ -63,7 +62,6 @@ export default function AdminPortalGenerator({
     syncAllLiveData
   } = useAdminEngine(userPhone, userEmail, currentRole);
 
-  
   const getTabsForRole = (role: string) => {
     const allTabs = [
       { id: 'OVERVIEW', label: 'Platform Overview', icon: Globe },
@@ -110,13 +108,13 @@ export default function AdminPortalGenerator({
   return (
     <div id="admin-portal-generator" className="w-full max-w-6xl mx-auto p-1 space-y-8 animate-fade-in">
       <AdminBrandConsole />
-      
-      <AdminSyncStatusBar 
+
+      <AdminSyncStatusBar
         lastSyncedTime={lastSyncedTime}
         isSyncing={isSyncing}
         onSync={syncAllLiveData}
       />
-      
+
       {error && (
         <div className="bg-red-950/40 border border-red-500/40 text-red-200 text-xs p-4 rounded-2xl animate-fade-in flex items-center gap-3">
           <AlertTriangle className="text-red-400 shrink-0" size={18} />
@@ -131,64 +129,71 @@ export default function AdminPortalGenerator({
         </div>
       )}
 
-      {/* Admin Tabs Navigation */}
-      <div className="flex flex-wrap gap-2 pb-2">
-        {getTabsForRole(currentRole).map(tab => (
-          <Button
-            key={tab.id}
-            onClick={() => setActiveTab(tab.id)}
-            className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-sm font-bold whitespace-nowrap transition-all ${
-              activeTab === tab.id 
-                ? 'bg-brand-50 dark:bg-brand-900/30 text-brand-600' 
-                : 'bg-transparent text-slate-600 dark:text-slate-300 hover:bg-slate-100'
-            }`}
-          >
-            <tab.icon size={16} />
-            {tab.label}
-          </Button>
-        ))}
-      </div>
+      {/* Admin Tabs Navigation: isolated from visual overlays and never rendered as disabled. */}
+      <nav
+        aria-label="Administrative management navigation"
+        className="tc-navigation-layer relative z-[100] flex flex-wrap gap-2 pb-2 bg-transparent"
+      >
+        {getTabsForRole(currentRole).map(tab => {
+          const isActive = activeTab === tab.id;
+          return (
+            <Button
+              key={tab.id}
+              type="button"
+              aria-current={isActive ? 'page' : undefined}
+              onClick={() => setActiveTab(tab.id)}
+              variant="ghost"
+              className={`tc-navigation-control !inline-flex !items-center !justify-center !gap-2 !px-5 !py-3 !rounded-2xl !text-sm !font-bold !whitespace-nowrap !transition-all !duration-200 !opacity-100 !visible !filter-none !mix-blend-normal focus-visible:!ring-2 focus-visible:!ring-brand-500 ${
+                isActive
+                  ? '!bg-brand-600 !text-white !shadow-sm hover:!bg-brand-700'
+                  : '!bg-white !text-slate-700 !border !border-slate-200 hover:!bg-slate-100 hover:!text-slate-900 dark:!bg-slate-900 dark:!text-slate-100 dark:!border-slate-700 dark:hover:!bg-slate-800'
+              }`}
+            >
+              <tab.icon size={16} aria-hidden="true" className="!opacity-100 !visible !shrink-0" />
+              <span className="!opacity-100 !visible">{tab.label}</span>
+            </Button>
+          );
+        })}
+      </nav>
 
       <div className="bg-slate-50 dark:bg-slate-800/50 rounded-[20px] p-1 md:p-4 min-h-[500px]">
         <Suspense fallback={<div className="flex items-center justify-center h-64"><Loader2 className="animate-spin text-brand-600" size={32} /></div>}>
-        {activeTab === 'OVERVIEW' && (
-          <AdminOverviewTab 
-            currentRole={currentRole} 
-            addLog={addLog} 
-            metrics={dashboardMetrics} 
-            dashboardError={dashboardError}
-          />
-        )}
-        {activeTab === 'ANALYTICS' && (
-          <AdminAnalytics metrics={dashboardMetrics} />
-        )}
-        {activeTab === 'USERS' && <AdminUserManagement />}
-        {activeTab === 'LIVE_TRIPS' && <AdminLiveTrips />}
-        {activeTab === 'DISPUTES' && <AdminDisputes />}
-        {activeTab === "API_MANAGEMENT" && <AdminApiManagement />}
-        {activeTab === "SECURITY_CENTER" && <AdminSecurityCenter />}
-        {activeTab === "SYSTEM_SETTINGS" && <AdminSystemSettings />}
-        {activeTab === "DATABASE_HEALTH" && <AdminDatabaseHealth />}
-        {activeTab === "AUDIT_LOGS" && <AdminAuditLogs />}
-        {activeTab === "ERROR_CENTER" && <AdminAlertCenter />}
-        {activeTab === "VERIFICATION_CENTER" && <AdminVerificationCenter />}
-        {activeTab === "CONTENT_MANAGEMENT" && <AdminContentManagement />}
-        {activeTab === "SUPPORT_CUSTOMER_CARE" && <AdminSupportCare />}
-        {activeTab === "NOTIFICATION_CENTER" && <AdminNotificationCenter />}
-        {activeTab === "SUBSCRIPTION_BILLING" && <AdminSubscriptionBilling />}
-        {activeTab === "FLEET_LOAD_MAP" && <AdminFleetMarketplace />}
-        {activeTab === "PARTNER_MANAGEMENT" && <AdminPartnerManagement />}
-        {activeTab === "MARKETING_CENTER" && <AdminMarketingCenter />}
-        {activeTab === "FINANCIAL_OPERATIONS" && <AdminFinancialOperations />}
-        {activeTab === "RISK_FRAUD" && <AdminRiskFraud />}
-        {activeTab === "AI_AUTOMATION" && <AdminAIAutomation />}
-        {activeTab === "FEATURE_MANAGEMENT" && <AdminFeatureManagement />}
-        {activeTab === "DEVELOPER_CONSOLE" && <AdminDeveloperConsole />}
-        {activeTab === "BACKUP_RECOVERY" && <AdminBackupRecovery />}
-        {activeTab === "ROLE_PERMISSION" && <AdminRolePermission />}
-        {activeTab === "REPORTS_CENTER" && <AdminReportsCenter />}
-        {activeTab === "PLATFORM_CONFIGURATION" && <AdminPlatformConfiguration />}
-        {activeTab === "ACTIVITY_TIMELINE" && <AdminActivityTimeline />}
+          {activeTab === 'OVERVIEW' && (
+            <AdminOverviewTab
+              currentRole={currentRole}
+              addLog={addLog}
+              metrics={dashboardMetrics}
+              dashboardError={dashboardError}
+            />
+          )}
+          {activeTab === 'ANALYTICS' && <AdminAnalytics metrics={dashboardMetrics} />}
+          {activeTab === 'USERS' && <AdminUserManagement />}
+          {activeTab === 'LIVE_TRIPS' && <AdminLiveTrips />}
+          {activeTab === 'DISPUTES' && <AdminDisputes />}
+          {activeTab === 'API_MANAGEMENT' && <AdminApiManagement />}
+          {activeTab === 'SECURITY_CENTER' && <AdminSecurityCenter />}
+          {activeTab === 'SYSTEM_SETTINGS' && <AdminSystemSettings />}
+          {activeTab === 'DATABASE_HEALTH' && <AdminDatabaseHealth />}
+          {activeTab === 'AUDIT_LOGS' && <AdminAuditLogs />}
+          {activeTab === 'ERROR_CENTER' && <AdminAlertCenter />}
+          {activeTab === 'VERIFICATION_CENTER' && <AdminVerificationCenter />}
+          {activeTab === 'CONTENT_MANAGEMENT' && <AdminContentManagement />}
+          {activeTab === 'SUPPORT_CUSTOMER_CARE' && <AdminSupportCare />}
+          {activeTab === 'NOTIFICATION_CENTER' && <AdminNotificationCenter />}
+          {activeTab === 'SUBSCRIPTION_BILLING' && <AdminSubscriptionBilling />}
+          {activeTab === 'FLEET_LOAD_MAP' && <AdminFleetMarketplace />}
+          {activeTab === 'PARTNER_MANAGEMENT' && <AdminPartnerManagement />}
+          {activeTab === 'MARKETING_CENTER' && <AdminMarketingCenter />}
+          {activeTab === 'FINANCIAL_OPERATIONS' && <AdminFinancialOperations />}
+          {activeTab === 'RISK_FRAUD' && <AdminRiskFraud />}
+          {activeTab === 'AI_AUTOMATION' && <AdminAIAutomation />}
+          {activeTab === 'FEATURE_MANAGEMENT' && <AdminFeatureManagement />}
+          {activeTab === 'DEVELOPER_CONSOLE' && <AdminDeveloperConsole />}
+          {activeTab === 'BACKUP_RECOVERY' && <AdminBackupRecovery />}
+          {activeTab === 'ROLE_PERMISSION' && <AdminRolePermission />}
+          {activeTab === 'REPORTS_CENTER' && <AdminReportsCenter />}
+          {activeTab === 'PLATFORM_CONFIGURATION' && <AdminPlatformConfiguration />}
+          {activeTab === 'ACTIVITY_TIMELINE' && <AdminActivityTimeline />}
         </Suspense>
       </div>
     </div>
