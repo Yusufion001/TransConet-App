@@ -14,7 +14,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "npm run lint -w frontend --if-present && npm run lint -w backend --if-present",
-    "test": "echo No tests configured",
+    "test": "vitest run",
     "build:frontend": "npm run build -w frontend"
   },
   "dependencies": {
@@ -86,7 +86,7 @@
     "@types/pg": "^8.20.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
-    "@types/supertest": "^7.2.1",
+    "@types/supertest": "^7.2.2",
     "@types/uuid": "^11.0.0",
     "concurrently": "^10.0.4",
     "glob": "^13.0.6",
