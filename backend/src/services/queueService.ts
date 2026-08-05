@@ -45,22 +45,20 @@ if ((hasRedis || isProduction) && connection) {
   notificationQueue = new Queue('notifications', { 
     connection,
     defaultJobOptions: {
-      attempts: 5, // Increased attempts
+      attempts: 5,
       backoff: {
         type: 'exponential',
-        delay: 2000, // Starting at 2 seconds
+        delay: 2000,
       },
       removeOnComplete: {
-        age: 3600, // keep for 1 hour
+        age: 3600,
         count: 1000,
       },
       removeOnFail: {
-        age: 24 * 3600, // keep for 24 hours for inspection
+        age: 24 * 3600,
       }
     },
   });
-
-  /* Worker init moved to startWorkers */
 }
 
 export const saveToOutbox = async (type: string, payload: any) => {
@@ -111,7 +109,6 @@ export const enqueueEmail = async (to: string, subject: string, html: string): P
   }
 };
 
-// Periodically process OutboxEvents
 let outboxInterval: NodeJS.Timeout | null = null;
 let isDbCircuitBreakerOpen = false;
 let dbCircuitBreakerResetTime = 0;
@@ -136,7 +133,7 @@ export const startOutboxWorker = () => {
               try {
                 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
                 const result = await ai.models.embedContent({
-                  model: 'text-embedding-004', config: { outputDimensionality: 768 },
+                  model: 'gemini-embedding-2', config: { outputDimensionality: 768 },
                   contents: event.payload.text,
                 });
                 const embedding = result.embeddings[0].values;
@@ -167,16 +164,11 @@ export const startOutboxWorker = () => {
         }
       }
     } catch (err) {
-      // Simple circuit breaker to prevent spamming logs and tripping database lockout
       isDbCircuitBreakerOpen = true;
-      dbCircuitBreakerResetTime = Date.now() + 60000; // Pause for 60 seconds
-      // Optional: Only log if we are debugging or every so often.
-      // console.error('[Outbox Worker] DB unreachable, pausing outbox for 60s. Error:', err.message);
+      dbCircuitBreakerResetTime = Date.now() + 60000;
     }
-  }, 10000); // every 10 seconds
+  }, 10000);
 };
-
-
 
 export const enqueueLoadEmbedding = async (loadId: string, text: string): Promise<boolean> => {
   try {
@@ -209,7 +201,7 @@ export const startWorkers = () => {
           try {
             const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
             const result = await ai.models.embedContent({
-              model: 'text-embedding-004', config: { outputDimensionality: 768 },
+              model: 'gemini-embedding-2', config: { outputDimensionality: 768 },
               contents: text,
             });
             const embedding = result.embeddings[0].values;
