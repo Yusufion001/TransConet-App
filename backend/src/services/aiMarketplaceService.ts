@@ -38,14 +38,8 @@ export async function searchExistingMarketplace(message: string, context: Record
   const origin = extractOrigin(message, context);
   const cargoType = extractCargoType(message, context);
 
-  if (!origin && !cargoType) {
-    return {
-      needsClarification: true,
-      question: 'What origin or cargo type should I use for the marketplace search?',
-      loads: []
-    };
-  }
-
+  // Mirror the existing marketplace API: with no filters it returns the latest
+  // available loads. The AI must not invent additional marketplace filters.
   const where: { status: string; origin?: string; cargoType?: CargoType } = { status: 'AVAILABLE' };
   if (origin) where.origin = origin;
   if (cargoType) where.cargoType = cargoType;
