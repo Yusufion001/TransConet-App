@@ -9,6 +9,13 @@ type ProposedAction = {
   payload: Record<string, unknown>;
 };
 
+type AutomationResult = {
+  reply: string;
+  needsClarification: boolean;
+  clarifyingQuestion: string;
+  actions: ProposedAction[];
+};
+
 const OPENAI_URL = 'https://api.openai.com/v1/responses';
 
 const roleCapabilities: Record<AutomationRole, string[]> = {
@@ -43,6 +50,84 @@ function extractOutputText(data: any): string {
   return chunks.join('\n');
 }
 
+function isQuotaOrAuthFailure(error: any): boolean {
+  const message = String(error?.message || '').toLowerCase();
+  return message.includes('openai request failed (429)') || message.includes('insufficient_quota') || message.includes('no credits remaining') || message.includes('openai request failed (401)');
+}
+
+function fallbackResult(message: string, role: AutomationRole, context: Record<string, unknown>): AutomationResult {
+  const text = message.toLowerCase();
+  const customer = role === 'CUSTOMER';
+
+  if (/(^|\b)(help|what can i do|what can you do|features|options)(\b|$)/i.test(text)) {
+    const features = customer
+      ? 'post a load, browse the marketplace, find transporters, review or accept bids, track shipments, manage shipments, payments/escrow, or contact support.'
+      : 'browse available loads, find loads, place bids, manage your fleet and vehicles, track trips, manage shipments, payments/escrow, or contact support.';
+    return { reply: `I can help you ${features} What would you like to do?`, needsClarification: false, clarifyingQuestion: '', actions: [] };
+  }
+
+  if (customer && /(post|create|add|publish|book).*(load|shipment|cargo)|load.*(post|create|publish)/i.test(text)) {
+    const payload: Record<string, unknown> = {};
+    for (const key of ['title', 'cargoType', 'weightKg', 'origin', 'destination', 'suggestedBudget', 'isEscrowEnabled']) {
+      if (context[key] !== undefined) payload[key] = context[key];
+    }
+    const missing = ['title', 'cargoType', 'weightKg', 'origin', 'destination'].filter((key) => payload[key] === undefined || payload[key] === '');
+    if (missing.length) {
+      return { reply: `I can prepare the load posting, but I need a few details first.`, needsClarification: true, clarifyingQuestion: `Please provide: ${missing.join(', ')}.`, actions: [] };
+    }
+    return {
+      reply: 'I have prepared your load posting. Please review and approve it before I post it.',
+      needsClarification: false,
+      clarifyingQuestion: '',
+      actions: [{ actionName: 'post_load', description: 'Post this load to the TransConet marketplace.', requiresApproval: true, payload }]
+    };
+  }
+
+  if (!customer && /(place|make|submit|send).*(bid|offer)|bid.*(on|for|load)/i.test(text)) {
+    const payload: Record<string, unknown> = {};
+    for (const key of ['loadId', 'amount', 'notes']) {
+      if (context[key] !== undefined) payload[key] = context[key];
+    }
+    const missing = ['loadId', 'amount'].filter((key) => payload[key] === undefined || payload[key] === '');
+    if (missing.length) {
+      return { reply: 'I can prepare your bid, but I need a few details first.', needsClarification: true, clarifyingQuestion: `Please provide: ${missing.join(' and ')}.`, actions: [] };
+    }
+    return {
+      reply: 'I have prepared your bid. Please review and approve it before I submit it.',
+      needsClarification: false,
+      clarifyingQuestion: '',
+      actions: [{ actionName: 'place_bid', description: 'Submit this bid for the selected load.', requiresApproval: true, payload }]
+    };
+  }
+
+  if (customer && /(accept|choose|select).*(bid|offer)|accept.*bid/i.test(text)) {
+    const bidId = context.bidId;
+    if (!bidId) return { reply: 'I can accept a bid for you, but I need the bid ID or you can select the bid from your bids list.', needsClarification: true, clarifyingQuestion: 'Which bid would you like to accept?', actions: [] };
+    return { reply: 'I found the bid you want to accept. Please review and approve this action before I accept it.', needsClarification: false, clarifyingQuestion: '', actions: [{ actionName: 'accept_bid', description: 'Accept the selected transporter bid.', requiresApproval: true, payload: { bidId } }] };
+  }
+
+  if (/(marketplace|available loads|available capacity|find.*(load|transporter)|transporter|shipment|track|fleet|vehicle|support|payment|escrow)/i.test(text)) {
+    if (customer) {
+      if (/(transporter|find.*transporter)/i.test(text)) return { reply: 'I can help you find transporters. Tell me the route, cargo type, weight, or other requirement you want to use.', needsClarification: true, clarifyingQuestion: 'What route or cargo requirement should I use?', actions: [] };
+      if (/(marketplace|available capacity)/i.test(text)) return { reply: 'I can help you explore the TransConet marketplace and available transport capacity. What route or shipment requirement are you looking for?', needsClarification: true, clarifyingQuestion: 'What route or shipment requirement should I search for?', actions: [] };
+      if (/(track|shipment)/i.test(text)) return { reply: 'I can help you with shipment tracking. Tell me which shipment you want to check.', needsClarification: true, clarifyingQuestion: 'Which shipment should I check?', actions: [] };
+    } else {
+      if (/(marketplace|available loads|available capacity|find.*load)/i.test(text)) return { reply: 'I can help you find available loads in the TransConet marketplace. Tell me your preferred route, cargo type, or capacity.', needsClarification: true, clarifyingQuestion: 'What route or cargo requirement should I search for?', actions: [] };
+      if (/(fleet|vehicle)/i.test(text)) return { reply: 'I can help you manage your fleet and vehicles. What would you like to update or view?', needsClarification: true, clarifyingQuestion: 'What fleet or vehicle task do you want to perform?', actions: [] };
+      if (/(track|trip)/i.test(text)) return { reply: 'I can help with trip tracking. Tell me which trip you want to check.', needsClarification: true, clarifyingQuestion: 'Which trip should I check?', actions: [] };
+    }
+    if (/(support)/i.test(text)) return { reply: 'I can help you contact TransConet support. Tell me what issue you are experiencing.', needsClarification: true, clarifyingQuestion: 'What do you need help with?', actions: [] };
+    if (/(payment|escrow)/i.test(text)) return { reply: 'I can guide you through your TransConet payment or escrow options. I will always ask for approval before a consequential payment action.', needsClarification: true, clarifyingQuestion: 'What payment or escrow task do you need?', actions: [] };
+  }
+
+  return {
+    reply: `I can still help you navigate TransConet while the advanced AI service is unavailable. As a ${customer ? 'customer' : 'transporter'}, tell me what you want to do and I will guide you step by step.`,
+    needsClarification: true,
+    clarifyingQuestion: customer ? 'Do you want to post a load, find a transporter, review bids, track a shipment, or use another customer feature?' : 'Do you want to find a load, place a bid, manage your fleet, track a trip, or use another transporter feature?',
+    actions: []
+  };
+}
+
 async function askOpenAI(userMessage: string, role: AutomationRole, context: Record<string, unknown>) {
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) throw new Error('OPENAI_API_KEY is not configured on the backend.');
@@ -70,13 +155,23 @@ const allowedActions: Record<AutomationRole, Set<string>> = {
 };
 
 export async function processAutomationMessage(userId: string, role: AutomationRole, message: string, context: Record<string, unknown> = {}) {
-  const result = await askOpenAI(message, role, context);
+  let result: any;
+  let fallback = false;
+  try {
+    result = await askOpenAI(message, role, context);
+  } catch (error: any) {
+    if (!isQuotaOrAuthFailure(error)) throw error;
+    fallback = true;
+    result = fallbackResult(message, role, context);
+  }
+
   const actions: ProposedAction[] = Array.isArray(result.actions) ? result.actions : [];
   const storedActions = [];
 
   for (const action of actions) {
     if (!action?.actionName || !allowedActions[role].has(action.actionName)) continue;
-    const payload = { ...(action.payload || {}), description: action.description, source: 'ai_assistant', createdAt: new Date().toISOString() };
+    if (action.requiresApproval !== true) continue;
+    const payload = { ...(action.payload || {}), description: action.description, source: fallback ? 'ai_assistant_fallback' : 'ai_assistant', createdAt: new Date().toISOString() };
     const rows = await prismaBypass.$queryRawUnsafe<any[]>(
       `INSERT INTO public.transconet_ai_actions (user_id, role, action_name, status, payload)
        VALUES ($1, $2, $3, 'PENDING_APPROVAL', $4::jsonb)
@@ -86,7 +181,13 @@ export async function processAutomationMessage(userId: string, role: AutomationR
     storedActions.push(rows[0]);
   }
 
-  return { reply: result.reply || 'What would you like to do in TransConet?', needsClarification: Boolean(result.needsClarification), clarifyingQuestion: result.clarifyingQuestion || '', actions: storedActions };
+  return {
+    reply: result.reply || 'What would you like to do in TransConet?',
+    needsClarification: Boolean(result.needsClarification),
+    clarifyingQuestion: result.clarifyingQuestion || '',
+    actions: storedActions,
+    aiMode: fallback ? 'fallback' : 'openai'
+  };
 }
 
 export async function listPendingActions(userId: string) {
