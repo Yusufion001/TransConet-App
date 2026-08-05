@@ -25,8 +25,10 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [reply, setReply] = useState('Hi. What would you like to do in TransConet?');
+  const [clarifyingQuestion, setClarifyingQuestion] = useState('');
   const [actions, setActions] = useState<AIAction[]>([]);
   const [loads, setLoads] = useState<MarketplaceLoad[]>([]);
+  const [selectedLoadId, setSelectedLoadId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState<string | null>(null);
   const [error, setError] = useState('');
@@ -39,9 +41,14 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
     try {
       const response = await api.post('/ai-automation/assistant', {
         message: text,
-        context: { currentPath: window.location.pathname, ...(overrideContext || {}) }
+        context: {
+          currentPath: window.location.pathname,
+          ...(selectedLoadId ? { loadId: selectedLoadId } : {}),
+          ...(overrideContext || {})
+        }
       });
       setReply(response.data.reply || 'Tell me what you want to do next.');
+      setClarifyingQuestion(response.data.clarifyingQuestion || '');
       setActions(response.data.actions || []);
       setLoads(response.data.marketplace?.loads || []);
       if (!overrideMessage) setMessage('');
@@ -52,9 +59,11 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
 
   const chooseLoadForBid = (load: MarketplaceLoad) => {
     setLoads([]);
+    setActions([]);
+    setSelectedLoadId(load.id);
     setMessage('');
-    setReply(`You selected “${load.title}” (${load.origin} → ${load.destination}, ${load.weightKg} kg). Tell me the amount you want to bid and I will prepare it for your approval.`);
-    void send(undefined, `I want to bid on load ${load.id}`, { loadId: load.id });
+    setClarifyingQuestion('What amount would you like to bid?');
+    setReply(`You selected “${load.title}” (${load.origin} → ${load.destination}, ${load.weightKg} kg).`);
   };
 
   const decide = async (id: string, approved: boolean) => {
@@ -64,6 +73,8 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
       setActions(prev => prev.map(a => a.id === id ? response.data.action : a));
       if (approved) setReply('Approved. The TransConet automation system has executed the requested action.');
       else setReply('Declined. No action was executed.');
+      setClarifyingQuestion('');
+      if (approved) setSelectedLoadId(null);
     } catch (err: any) {
       setError(err?.response?.data?.error || 'Unable to update that request.');
     } finally { setProcessing(null); }
@@ -85,6 +96,7 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
       </div>
       <div className="max-h-[55vh] space-y-3 overflow-y-auto p-4">
         <div className="rounded-2xl bg-slate-100 p-3 text-sm leading-5 text-slate-800 dark:bg-slate-800 dark:text-slate-100">{reply}</div>
+        {clarifyingQuestion && <div className="rounded-2xl border border-brand-200 bg-brand-50 p-3 text-sm font-semibold leading-5 text-slate-800 dark:border-brand-800 dark:bg-brand-950/30 dark:text-slate-100">{clarifyingQuestion}</div>}
 
         {loads.length > 0 && (
           <div className="space-y-2">
