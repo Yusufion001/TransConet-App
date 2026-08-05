@@ -98,7 +98,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-200 dark:border-slate-800 max-h-[70vh] overflow-y-auto overflow-hidden"
+              className="tc-navigation-layer absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-200 dark:border-slate-800 max-h-[70vh] overflow-y-auto overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 px-2">
@@ -110,30 +110,32 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
                   </Button>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <nav aria-label="Primary navigation" className="tc-navigation-layer grid grid-cols-3 gap-2">
                 {navItems.map((item) => {
                   const isActive = selectedNavId === item.id;
                   const Icon = item.icon;
                   return (
-                    <motion.button key={item.id} whileTap={{ scale: 0.9 }} onClick={() => handleNavClick(item.id)} className={`relative flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-colors ${isActive ? 'text-brand-600' : 'bg-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}>
+                    <motion.button key={item.id} type="button" whileTap={{ scale: 0.9 }} onClick={() => handleNavClick(item.id)} className={`tc-navigation-control relative flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-colors ${isActive ? 'text-brand-600' : 'bg-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}>
                       {isActive && <motion.div layoutId="nav-highlight" className="absolute inset-0 bg-brand-50 dark:bg-brand-900/30 rounded-2xl z-0" initial={false} transition={{ type: 'spring', stiffness: 400, damping: 30 }} />}
-                      <div className="relative z-10 flex flex-col items-center gap-2"><Icon size={24} strokeWidth={isActive ? 2.5 : 2} /><span className="text-[10px] font-bold text-center leading-tight">{item.label}</span></div>
+                      <div className="relative z-10 flex flex-col items-center gap-2"><Icon aria-hidden="true" size={24} strokeWidth={isActive ? 2.5 : 2} className="shrink-0" /><span className="text-[10px] font-bold text-center leading-tight">{item.label}</span></div>
                     </motion.button>
                   );
                 })}
-                <motion.button whileTap={{ scale: 0.9 }} onClick={handleLogoutClick} className="flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-all bg-transparent text-red-500 hover:bg-red-50 hover:text-red-600">
+                <motion.button type="button" whileTap={{ scale: 0.9 }} onClick={handleLogoutClick} className="tc-navigation-control flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-all bg-transparent text-red-500 hover:bg-red-50 hover:text-red-600">
                   <LogOut size={24} strokeWidth={2} /><span className="text-[10px] font-bold text-center leading-tight">Logout</span>
                 </motion.button>
-              </div>
+              </nav>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="fixed z-[100] cursor-grab active:cursor-grabbing" style={{ bottom: 20, right: 20 }}>
+      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="tc-navigation-layer fixed z-[200] cursor-grab active:cursor-grabbing" style={{ bottom: 20, right: 20 }}>
         <motion.button
+          type="button"
+          aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
           whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
           onClick={() => { if (!isDragging) setIsOpen(!isOpen); }}
-          className={`w-14 h-14 hover:bg-brand-700 shadow-md rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors ${isOpen ? 'bg-slate-900 text-white' : 'bg-brand-600 text-white hover:bg-brand-700'}`}
+          className={`tc-navigation-control w-14 h-14 hover:bg-brand-700 shadow-md rounded-full flex items-center justify-center shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-colors ${isOpen ? 'bg-slate-900 text-white' : 'bg-brand-600 text-white hover:bg-brand-700'}`}
         >
           {isOpen ? <X size={26} strokeWidth={2.5} /> : <Menu size={26} strokeWidth={2.5} />}
         </motion.button>
