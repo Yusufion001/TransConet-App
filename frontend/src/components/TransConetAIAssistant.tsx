@@ -7,7 +7,7 @@ interface AIAction {
   id: string;
   action_name: string;
   status: string;
-  payload?: { description?: string };
+  payload?: { description?: string; loadId?: string; amount?: number };
 }
 
 interface MarketplaceLoad {
@@ -21,6 +21,11 @@ interface MarketplaceLoad {
   createdAt?: string;
 }
 
+interface HistoryItem {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 export default function TransConetAIAssistant({ role }: { role: string }) {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState('');
@@ -28,29 +33,55 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
   const [clarifyingQuestion, setClarifyingQuestion] = useState('');
   const [actions, setActions] = useState<AIAction[]>([]);
   const [loads, setLoads] = useState<MarketplaceLoad[]>([]);
+  const [conversationLoads, setConversationLoads] = useState<MarketplaceLoad[]>([]);
   const [selectedLoadId, setSelectedLoadId] = useState<string | null>(null);
+  const [history, setHistory] = useState<HistoryItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState<string | null>(null);
   const [error, setError] = useState('');
+
+  const findReferencedLoad = (text: string) => {
+    const lower = text.toLowerCase();
+    if (!conversationLoads.length) return selectedLoadId;
+    if (/\b(second|2nd)\b/.test(lower)) return conversationLoads[1]?.id || null;
+    if (/\b(third|3rd)\b/.test(lower)) return conversationLoads[2]?.id || null;
+    if (/\b(first|1st)\b/.test(lower)) return conversationLoads[0]?.id || null;
+    if (/\b(highest|highest budget|most|maximum|max)\b/.test(lower)) {
+      return [...conversationLoads].sort((a, b) => Number(b.suggestedBudget || 0) - Number(a.suggestedBudget || 0))[0]?.id || null;
+    }
+    if (/\b(lowest|lowest budget|least|minimum|min)\b/.test(lower)) {
+      return [...conversationLoads].sort((a, b) => Number(a.suggestedBudget || Infinity) - Number(b.suggestedBudget || Infinity))[0]?.id || null;
+    }
+    if (/\b(that one|this one|it|the selected|the load)\b/.test(lower)) return selectedLoadId || conversationLoads[0]?.id || null;
+    return selectedLoadId;
+  };
 
   const send = async (e?: React.FormEvent, overrideMessage?: string, overrideContext?: Record<string, unknown>) => {
     e?.preventDefault();
     const text = (overrideMessage ?? message).trim();
     if (!text || loading) return;
     setLoading(true); setError('');
+    const referencedLoadId = findReferencedLoad(text);
+    const nextHistory = [...history, { role: 'user' as const, content: text }].slice(-12);
     try {
       const response = await api.post('/ai-automation/assistant', {
         message: text,
+        history: nextHistory,
         context: {
           currentPath: window.location.pathname,
-          ...(selectedLoadId ? { loadId: selectedLoadId } : {}),
+          ...(referencedLoadId ? { loadId: referencedLoadId } : {}),
           ...(overrideContext || {})
         }
       });
-      setReply(response.data.reply || 'Tell me what you want to do next.');
+      const nextReply = response.data.reply || 'Tell me what you want to do next.';
+      const returnedLoads = response.data.marketplace?.loads || [];
+      setReply(nextReply);
       setClarifyingQuestion(response.data.clarifyingQuestion || '');
       setActions(response.data.actions || []);
-      setLoads(response.data.marketplace?.loads || []);
+      setLoads(returnedLoads);
+      if (returnedLoads.length) setConversationLoads(returnedLoads);
+      if (referencedLoadId && /\b(highest|lowest|second|third|first|that one|this one|it)\b/i.test(text)) setSelectedLoadId(referencedLoadId);
+      setHistory([...nextHistory, { role: 'assistant', content: nextReply }].slice(-12));
       if (!overrideMessage) setMessage('');
     } catch (err: any) {
       setError(err?.response?.data?.error || 'AI assistant is temporarily unavailable.');
@@ -64,6 +95,7 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
     setMessage('');
     setClarifyingQuestion('What amount would you like to bid?');
     setReply(`You selected “${load.title}” (${load.origin} → ${load.destination}, ${load.weightKg} kg).`);
+    setHistory(prev => [...prev, { role: 'assistant', content: `Selected load: ${load.title} (${load.id}).` }].slice(-12));
   };
 
   const decide = async (id: string, approved: boolean) => {
@@ -71,8 +103,9 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
     try {
       const response = await api.post(`/ai-automation/actions/${id}/${approved ? 'approve' : 'reject'}`);
       setActions(prev => prev.map(a => a.id === id ? response.data.action : a));
-      if (approved) setReply('Approved. The TransConet automation system has executed the requested action.');
-      else setReply('Declined. No action was executed.');
+      const nextReply = approved ? 'Approved. The TransConet automation system has executed the requested action.' : 'Declined. No action was executed.';
+      setReply(nextReply);
+      setHistory(prev => [...prev, { role: 'assistant', content: nextReply }].slice(-12));
       setClarifyingQuestion('');
       if (approved) setSelectedLoadId(null);
     } catch (err: any) {
