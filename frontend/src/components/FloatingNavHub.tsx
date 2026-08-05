@@ -4,10 +4,11 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/Button';
 import { DarkModeToggle } from './DarkModeToggle';
 import TransConetAIAssistant from './TransConetAIAssistant';
+import MyBids from './MyBids';
 import './navigation-visibility.css';
 import {
   LayoutDashboard, Search, PackagePlus, Briefcase, Truck, Navigation,
-  MapPin, Rocket, Settings, HelpCircle, LogOut, Shield, Menu, X
+  MapPin, Rocket, Settings, HelpCircle, LogOut, Shield, Menu, X, Handshake
 } from 'lucide-react';
 
 export interface FloatingNavHubProps {
@@ -26,6 +27,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [selectedNavId, setSelectedNavId] = useState(activeView);
+  const [showMyBids, setShowMyBids] = useState(false);
 
   useEffect(() => { setSelectedNavId(activeView); }, [activeView]);
 
@@ -67,6 +69,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
     { id: 'driver-dashboard', label: 'Driver Dashboard', icon: Navigation },
     { id: 'fleet', label: 'Fleet', icon: Truck },
     { id: 'marketplace', label: 'Marketplace', icon: Briefcase },
+    { id: 'my-bids', label: 'My Bids', icon: Handshake },
     { id: 'boost-load', label: 'Boost Load', icon: Rocket },
     { id: 'settings', label: 'Settings', icon: Settings },
     { id: 'support', label: 'Help & Support', icon: HelpCircle },
@@ -76,6 +79,12 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
   const navItems = activeRole === 'CUSTOMER' ? customerNavItems : transporterNavItems;
 
   const handleNavClick = (id: string) => {
+    if (id === 'my-bids') {
+      setSelectedNavId(id);
+      setShowMyBids(true);
+      setIsOpen(false);
+      return;
+    }
     setActiveView(id);
     setSelectedNavId(id);
     setTimeout(() => setIsOpen(false), 250);
@@ -90,6 +99,25 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
     <>
       <TransConetAIAssistant role={activeRole === 'TRANSPORTER' ? 'TRANSPORTER' : 'CUSTOMER'} />
       <AnimatePresence>
+        {showMyBids && activeRole === 'TRANSPORTER' && (
+          <motion.div
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[190] bg-slate-900/50 backdrop-blur-sm p-4 md:p-8"
+            onClick={() => setShowMyBids(false)}
+          >
+            <motion.div
+              initial={{ y: 24, opacity: 0, scale: 0.98 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 24, opacity: 0, scale: 0.98 }}
+              className="relative mx-auto flex h-full max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-3xl border border-slate-200 bg-slate-50 shadow-2xl dark:border-slate-700 dark:bg-slate-900"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 py-3 dark:border-slate-700 dark:bg-slate-900">
+                <div className="flex items-center gap-2 text-sm font-black text-slate-900 dark:text-white"><Handshake size={18} className="text-brand-600" /> My Bids</div>
+                <Button type="button" aria-label="Close My Bids" onClick={() => setShowMyBids(false)} className="rounded-full bg-transparent p-2 text-slate-500 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"><X size={18} /></Button>
+              </div>
+              <div className="min-h-0 flex-1 overflow-y-auto p-3 md:p-5"><MyBids /></div>
+            </motion.div>
+          </motion.div>
+        )}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
