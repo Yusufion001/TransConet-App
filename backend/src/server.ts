@@ -64,8 +64,6 @@ async function startServer() {
     next();
   });
 
-  // Never serialize request headers/cookies into application logs. They can contain
-  // bearer tokens, session cookies and CSRF material.
   app.use(expressWinston.logger({
     winstonInstance: logger,
     meta: true,
@@ -115,10 +113,22 @@ async function startServer() {
     'https://transconet.com',
     'https://www.transconet.com',
     'https://transconet.ng',
-    'https://www.transconet.ng'
+    'https://www.transconet.ng',
+    'https://trans-conet-app.vercel.app'
   ]));
 
   app.use(cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(null, false);
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    credentials: true
+  }));
+
+  // CORS preflight requests must be answered before authentication/CSRF middleware.
+  // This does not bypass authentication for the actual API request.
+  app.options('*', cors({
     origin: (origin, callback) => {
       if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
       return callback(null, false);
