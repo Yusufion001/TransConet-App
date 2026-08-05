@@ -158,7 +158,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="tc-navigation-layer fixed z-[200] cursor-grab active:cursor-grabbing" style={{ bottom: 20, right: 20 }}>
+      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="tc-floating-nav-hub tc-navigation-layer fixed z-[200] cursor-grab active:cursor-grabbing" style={{ bottom: 20, right: 20 }}>
         <motion.button
           type="button"
           aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
