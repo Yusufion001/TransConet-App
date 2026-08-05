@@ -15,7 +15,7 @@
     "clean": "rm -rf dist server.js",
     "lint": "npm run lint -w frontend --if-present && npm run lint -w backend --if-present",
     "test": "echo No tests configured",
-    "build:frontend": "npm run build:frontend"
+    "build:frontend": "npm run build -w frontend"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
