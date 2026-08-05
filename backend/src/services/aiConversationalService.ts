@@ -128,7 +128,35 @@ async function callOpenAI(userId: string, role: Role, message: string, context: 
   throw new Error('OPENAI_TOOL_LOOP_LIMIT');
 }
 
-function isMarketplaceMessage(message: string, role: Role) { return role === 'TRANSPORTER' && /\b(find|search|browse|show|available)\b.*\b(loads?|capacity|marketplace)\b|\bavailable loads?\b|\bfind loads?\b/i.test(message); }
+function isMarketplaceMessage(message: string, role: Role) {
+  return role === 'TRANSPORTER' && (/\b(find|search|browse|show|available)\b.*\b(loads?|capacity|marketplace)\b|\bavailable loads?\b|\bfind loads?\b/i.test(message));
+}
+
+function isMarketplaceFollowup(message: string, context: Record<string, unknown>) {
+  if (!context || (!context.selectedLoad && !context.loadId && !context.marketplaceLoads)) return false;
+  return /\b(highest|lowest|highest budget|lowest budget|best|most expensive|cheapest|second|third|first|that one|this one|it|selected)\b/i.test(message);
+}
+
+function selectedLoadFromContext(context: Record<string, unknown>) {
+  const selected = context.selectedLoad;
+  if (selected && typeof selected === 'object') return selected as any;
+  const loads = Array.isArray(context.marketplaceLoads) ? context.marketplaceLoads as any[] : [];
+  if (!loads.length) return null;
+  const lower = text(context.followupIntent).toLowerCase();
+  if (lower.includes('second')) return loads[1] || loads[0];
+  if (lower.includes('third')) return loads[2] || loads[0];
+  if (lower.includes('lowest')) return [...loads].sort((a, b) => Number(a.suggestedBudget || Infinity) - Number(b.suggestedBudget || Infinity))[0];
+  return [...loads].sort((a, b) => Number(b.suggestedBudget || 0) - Number(a.suggestedBudget || 0))[0];
+}
+
+function deterministicFollowupReply(message: string, context: Record<string, unknown>) {
+  const load = selectedLoadFromContext({ ...context, followupIntent: message });
+  if (!load) return null;
+  const budget = load.suggestedBudget == null ? 'no suggested budget listed' : `₦${Number(load.suggestedBudget).toLocaleString()}`;
+  if (/\b(highest|highest budget|best|most expensive)\b/i.test(message)) return `The highest-budget load from the loads we just found is “${load.title}” (${load.origin} → ${load.destination}) with a suggested budget of ${budget}.`;
+  if (/\b(lowest|lowest budget|cheapest)\b/i.test(message)) return `The lowest-budget load from the loads we just found is “${load.title}” (${load.origin} → ${load.destination}) with a suggested budget of ${budget}.`;
+  return `The load you selected is “${load.title}” (${load.origin} → ${load.destination}) with a suggested budget of ${budget}.`;
+}
 
 export async function processConversationalMessage(userId: string, role: Role, message: string, context: Record<string, unknown> = {}, history: unknown = []): Promise<ConversationResult> {
   try {
@@ -136,6 +164,12 @@ export async function processConversationalMessage(userId: string, role: Role, m
     return { reply: result.reply, needsClarification: false, clarifyingQuestion: '', actions: result.actions || [], marketplace: result.marketplace, aiMode: 'openai' };
   } catch (error: any) {
     console.warn(`Conversational AI fallback: ${error?.message || 'unknown'}`);
+
+    if (isMarketplaceFollowup(message, context)) {
+      const followupReply = deterministicFollowupReply(message, context);
+      if (followupReply) return { reply: followupReply, needsClarification: false, clarifyingQuestion: '', actions: [], marketplace: Array.isArray(context.marketplaceLoads) ? { filters: {}, loads: context.marketplaceLoads } : undefined, aiMode: 'core_marketplace' };
+    }
+
     const core = await processAutomationMessage(userId, role, message, context);
     if (isMarketplaceMessage(message, role)) {
       const marketplace = await searchExistingMarketplace(message, context);
