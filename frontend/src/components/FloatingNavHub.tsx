@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Button } from './ui/Button';
 import { DarkModeToggle } from './DarkModeToggle';
 import TransConetAIAssistant from './TransConetAIAssistant';
+import './navigation-visibility.css';
 import {
   LayoutDashboard, Search, PackagePlus, Briefcase, Truck, Navigation,
   MapPin, Rocket, Settings, HelpCircle, LogOut, Shield, Menu, X
