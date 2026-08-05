@@ -46,12 +46,8 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
     if (/\b(second|2nd)\b/.test(lower)) return conversationLoads[1]?.id || null;
     if (/\b(third|3rd)\b/.test(lower)) return conversationLoads[2]?.id || null;
     if (/\b(first|1st)\b/.test(lower)) return conversationLoads[0]?.id || null;
-    if (/\b(highest|highest budget|most|maximum|max)\b/.test(lower)) {
-      return [...conversationLoads].sort((a, b) => Number(b.suggestedBudget || 0) - Number(a.suggestedBudget || 0))[0]?.id || null;
-    }
-    if (/\b(lowest|lowest budget|least|minimum|min)\b/.test(lower)) {
-      return [...conversationLoads].sort((a, b) => Number(a.suggestedBudget || Infinity) - Number(b.suggestedBudget || Infinity))[0]?.id || null;
-    }
+    if (/\b(highest|highest budget|most|maximum|max)\b/.test(lower)) return [...conversationLoads].sort((a, b) => Number(b.suggestedBudget || 0) - Number(a.suggestedBudget || 0))[0]?.id || null;
+    if (/\b(lowest|lowest budget|least|minimum|min)\b/.test(lower)) return [...conversationLoads].sort((a, b) => Number(a.suggestedBudget || Infinity) - Number(b.suggestedBudget || Infinity))[0]?.id || null;
     if (/\b(that one|this one|it|the selected|the load)\b/.test(lower)) return selectedLoadId || conversationLoads[0]?.id || null;
     return selectedLoadId;
   };
@@ -62,6 +58,7 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
     if (!text || loading) return;
     setLoading(true); setError('');
     const referencedLoadId = findReferencedLoad(text);
+    const selectedLoad = conversationLoads.find(load => load.id === referencedLoadId) || null;
     const nextHistory = [...history, { role: 'user' as const, content: text }].slice(-12);
     try {
       const response = await api.post('/ai-automation/assistant', {
@@ -70,6 +67,8 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
         context: {
           currentPath: window.location.pathname,
           ...(referencedLoadId ? { loadId: referencedLoadId } : {}),
+          ...(selectedLoad ? { selectedLoad } : {}),
+          ...(conversationLoads.length ? { marketplaceLoads: conversationLoads.slice(0, 20) } : {}),
           ...(overrideContext || {})
         }
       });
@@ -130,7 +129,6 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
       <div className="max-h-[55vh] space-y-3 overflow-y-auto p-4">
         <div className="rounded-2xl bg-slate-100 p-3 text-sm leading-5 text-slate-800 dark:bg-slate-800 dark:text-slate-100">{reply}</div>
         {clarifyingQuestion && <div className="rounded-2xl border border-brand-200 bg-brand-50 p-3 text-sm font-semibold leading-5 text-slate-800 dark:border-brand-800 dark:bg-brand-950/30 dark:text-slate-100">{clarifyingQuestion}</div>}
-
         {loads.length > 0 && (
           <div className="space-y-2">
             {loads.map(load => (
@@ -138,16 +136,11 @@ export default function TransConetAIAssistant({ role }: { role: string }) {
                 <div className="text-sm font-bold text-slate-900 dark:text-white">{load.title}</div>
                 <div className="mt-1 text-xs text-slate-600 dark:text-slate-300">{load.origin} → {load.destination}</div>
                 <div className="mt-1 text-xs text-slate-500">{load.cargoType} · {load.weightKg} kg{load.suggestedBudget != null ? ` · Budget ₦${Number(load.suggestedBudget).toLocaleString()}` : ''}</div>
-                {role === 'TRANSPORTER' && (
-                  <Button type="button" disabled={loading} onClick={() => chooseLoadForBid(load)} className="mt-2 w-full rounded-xl bg-brand-600 px-3 py-2 text-xs font-bold text-white">
-                    Bid on this load
-                  </Button>
-                )}
+                {role === 'TRANSPORTER' && <Button type="button" disabled={loading} onClick={() => chooseLoadForBid(load)} className="mt-2 w-full rounded-xl bg-brand-600 px-3 py-2 text-xs font-bold text-white">Bid on this load</Button>}
               </div>
             ))}
           </div>
         )}
-
         {actions.map(action => (
           <div key={action.id} className="rounded-2xl border border-brand-200 bg-brand-50 p-3 dark:border-brand-800 dark:bg-brand-950/30">
             <div className="text-xs font-bold text-slate-900 dark:text-white">Approval required</div>
