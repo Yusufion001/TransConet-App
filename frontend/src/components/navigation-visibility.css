@@ -16,6 +16,28 @@ nav,
   mix-blend-mode: normal !important;
 }
 
+/* The floating Universe menu must belong to the viewport stacking layer.
+ * Keep it outside clipping/scrolling contexts and above page content. */
+.tc-floating-nav-hub {
+  position: fixed !important;
+  right: max(20px, env(safe-area-inset-right, 0px) + 12px) !important;
+  bottom: max(20px, env(safe-area-inset-bottom, 0px) + 12px) !important;
+  z-index: 2147483000 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform-style: flat;
+  isolation: isolate;
+}
+
+.tc-floating-nav-hub > .tc-navigation-control {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
 /* Keep navigation controls visually crisp. Do NOT override disabled state. */
 nav > button,
 nav > a,
@@ -86,5 +108,15 @@ nav a::after,
   .tc-navigation-layer {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
+  }
+
+  /* Do not apply translateZ to the fixed hub itself: transformed ancestors
+   * can otherwise create a viewport/stacking behavior that causes it to
+   * disappear or become clipped on mobile browsers. */
+  .tc-floating-nav-hub {
+    -webkit-transform: none !important;
+    transform: none !important;
+    position: fixed !important;
+    z-index: 2147483000 !important;
   }
 }
