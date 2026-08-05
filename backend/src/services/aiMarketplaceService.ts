@@ -19,10 +19,14 @@ const cargoAliases: Record<string, CargoType> = {
   'heavy machinery': 'HEAVY_MACHINERY'
 };
 
-function extractOrigin(message: string, context: Record<string, unknown>) {
-  if (typeof context.origin === 'string' && context.origin.trim()) return context.origin.trim();
-  const match = message.match(/\bfrom\s+([^,.;!?]+?)(?:\s+to\s+|\s*$)/i);
-  return match?.[1]?.trim() || '';
+function extractRoute(message: string, context: Record<string, unknown>) {
+  const contextOrigin = typeof context.origin === 'string' ? context.origin.trim() : '';
+  const contextDestination = typeof context.destination === 'string' ? context.destination.trim() : '';
+  const match = message.match(/\bfrom\s+([^,.;!?]+?)\s+to\s+([^,.;!?]+?)(?:\s|$|[,.;!?])/i);
+  return {
+    origin: contextOrigin || match?.[1]?.trim() || '',
+    destination: contextDestination || match?.[2]?.trim() || ''
+  };
 }
 
 function extractCargoType(message: string, context: Record<string, unknown>): CargoType | undefined {
@@ -35,13 +39,15 @@ function extractCargoType(message: string, context: Record<string, unknown>): Ca
 }
 
 export async function searchExistingMarketplace(message: string, context: Record<string, unknown> = {}) {
-  const origin = extractOrigin(message, context);
+  const { origin, destination } = extractRoute(message, context);
   const cargoType = extractCargoType(message, context);
 
-  // Mirror the existing marketplace API: with no filters it returns the latest
-  // available loads. The AI must not invent additional marketplace filters.
-  const where: { status: string; origin?: string; cargoType?: CargoType } = { status: 'AVAILABLE' };
+  // Mirror the existing marketplace API, while applying every route filter
+  // explicitly supplied by the user. The query returns all LoadPosting scalar
+  // fields so downstream AI/UI layers have the complete record available.
+  const where: { status: string; origin?: string; destination?: string; cargoType?: CargoType } = { status: 'AVAILABLE' };
   if (origin) where.origin = origin;
+  if (destination) where.destination = destination;
   if (cargoType) where.cargoType = cargoType;
 
   const loads = await prisma.loadPosting.findMany({
@@ -53,7 +59,7 @@ export async function searchExistingMarketplace(message: string, context: Record
   return {
     needsClarification: false,
     question: '',
-    filters: { origin: origin || null, cargoType: cargoType || null },
+    filters: { origin: origin || null, destination: destination || null, cargoType: cargoType || null },
     loads
   };
 }
