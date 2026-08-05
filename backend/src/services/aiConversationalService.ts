@@ -40,6 +40,7 @@ Rules:
 - Read-only queries can be answered after checking data.
 - Financial, bidding, posting, acceptance, or other consequential changes must never be executed silently. Prepare an approval action and tell the user exactly what will happen before approval.
 - Never expose passwords, API keys, JWTs, database credentials, internal secrets, or another user's private data.
+- When comparing marketplace budgets, compare only actual finite numeric suggestedBudget values. Missing budgets are not zero and must never be selected as the highest or lowest budget. If none of the candidate loads has a numeric budget, say that the budgets are not listed and that a highest/lowest budget cannot be determined.
 - If ambiguous and a safe tool call cannot resolve it, ask one focused clarification question.`;
 
 function normalizeHistory(history: unknown): HistoryItem[] {
@@ -137,6 +138,11 @@ function isMarketplaceFollowup(message: string, context: Record<string, unknown>
   return /\b(highest|lowest|highest budget|lowest budget|best|most expensive|cheapest|second|third|first|that one|this one|it|selected)\b/i.test(message);
 }
 
+function numericBudget(load: any) {
+  const value = Number(load?.suggestedBudget);
+  return Number.isFinite(value) ? value : null;
+}
+
 function selectedLoadFromContext(context: Record<string, unknown>) {
   const selected = context.selectedLoad;
   if (selected && typeof selected === 'object') return selected as any;
@@ -145,14 +151,20 @@ function selectedLoadFromContext(context: Record<string, unknown>) {
   const lower = text(context.followupIntent).toLowerCase();
   if (lower.includes('second')) return loads[1] || loads[0];
   if (lower.includes('third')) return loads[2] || loads[0];
-  if (lower.includes('lowest')) return [...loads].sort((a, b) => Number(a.suggestedBudget || Infinity) - Number(b.suggestedBudget || Infinity))[0];
-  return [...loads].sort((a, b) => Number(b.suggestedBudget || 0) - Number(a.suggestedBudget || 0))[0];
+  if (lower.includes('first')) return loads[0];
+  const budgets = loads.map(load => ({ load, budget: numericBudget(load) })).filter(item => item.budget !== null) as { load: any; budget: number }[];
+  if (lower.includes('lowest')) return budgets.sort((a, b) => a.budget - b.budget)[0]?.load || null;
+  if (lower.includes('highest') || lower.includes('best') || lower.includes('most expensive')) return budgets.sort((a, b) => b.budget - a.budget)[0]?.load || null;
+  return loads[0];
 }
 
 function deterministicFollowupReply(message: string, context: Record<string, unknown>) {
+  const isBudgetComparison = /\b(highest|highest budget|lowest|lowest budget|best|most expensive|cheapest)\b/i.test(message);
   const load = selectedLoadFromContext({ ...context, followupIntent: message });
+  if (!load && isBudgetComparison) return 'The available loads do not have numeric suggested budgets listed, so I cannot determine which one has the highest or lowest budget yet.';
   if (!load) return null;
-  const budget = load.suggestedBudget == null ? 'no suggested budget listed' : `₦${Number(load.suggestedBudget).toLocaleString()}`;
+  const budgetValue = numericBudget(load);
+  const budget = budgetValue === null ? 'no suggested budget listed' : `₦${budgetValue.toLocaleString()}`;
   if (/\b(highest|highest budget|best|most expensive)\b/i.test(message)) return `The highest-budget load from the loads we just found is “${load.title}” (${load.origin} → ${load.destination}) with a suggested budget of ${budget}.`;
   if (/\b(lowest|lowest budget|cheapest)\b/i.test(message)) return `The lowest-budget load from the loads we just found is “${load.title}” (${load.origin} → ${load.destination}) with a suggested budget of ${budget}.`;
   return `The load you selected is “${load.title}” (${load.origin} → ${load.destination}) with a suggested budget of ${budget}.`;
