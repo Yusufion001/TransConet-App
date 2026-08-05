@@ -1,11 +1,6 @@
 import { Request, Response } from 'express';
-import {
-  approveAction,
-  listPendingActions,
-  processAutomationMessage,
-  rejectAction
-} from '../services/aiAutomationService';
-import { searchExistingMarketplace } from '../services/aiMarketplaceService';
+import { approveAction, listPendingActions, rejectAction } from '../services/aiAutomationService';
+import { processConversationalMessage } from '../services/aiConversationalService';
 
 const normalizeRole = (role: string): 'CUSTOMER' | 'TRANSPORTER' | null => {
   if (role === 'CUSTOMER' || role === 'TRANSPORTER') return role;
@@ -18,33 +13,16 @@ export async function assistant(req: Request, res: Response) {
     if (!req.user?.id) return res.status(401).json({ error: 'Authentication required.' });
     const role = normalizeRole(req.user.role);
     if (!role) return res.status(403).json({ error: 'Only customer and transporter accounts can use the user automation assistant.' });
-
     const message = typeof req.body?.message === 'string' ? req.body.message.trim() : '';
     if (!message) return res.status(400).json({ error: 'Message is required.' });
     if (message.length > 4000) return res.status(400).json({ error: 'Message is too long.' });
 
-    const context = req.body?.context || {};
-    const marketplaceIntent = role === 'TRANSPORTER' && /\b(find|search|browse|show|available)\b.*\b(loads?|capacity|marketplace)\b|\bavailable loads?\b|\bfind loads?\b/i.test(message);
-
-    if (marketplaceIntent) {
-      const marketplace = await searchExistingMarketplace(message, context);
-      return res.json({
-        success: true,
-        reply: marketplace.loads.length
-          ? `I found ${marketplace.loads.length} available load${marketplace.loads.length === 1 ? '' : 's'} using the existing marketplace search.`
-          : 'I could not find an available load matching those marketplace search options.',
-        needsClarification: false,
-        clarifyingQuestion: '',
-        actions: [],
-        aiMode: 'core_marketplace',
-        marketplace: { filters: marketplace.filters, loads: marketplace.loads }
-      });
-    }
-
-    const result = await processAutomationMessage(req.user.id, role, message, context);
+    const context = req.body?.context && typeof req.body.context === 'object' ? req.body.context : {};
+    const history = Array.isArray(req.body?.history) ? req.body.history : [];
+    const result = await processConversationalMessage(req.user.id, role, message, context, history);
     return res.json({ success: true, ...result });
   } catch (error: any) {
-    console.error('AI automation assistant error:', error);
+    console.error('AI conversational assistant error:', error);
     return res.status(500).json({ error: 'The TransConet automation assistant is temporarily unavailable.' });
   }
 }
