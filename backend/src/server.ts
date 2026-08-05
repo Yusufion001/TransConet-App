@@ -64,9 +64,13 @@ async function startServer() {
     next();
   });
 
+  // Never serialize request headers/cookies into application logs. They can contain
+  // bearer tokens, session cookies and CSRF material.
   app.use(expressWinston.logger({
     winstonInstance: logger,
     meta: true,
+    requestWhitelist: ['method', 'originalUrl', 'query', 'params'],
+    responseWhitelist: ['statusCode', 'responseTime'],
     msg: 'HTTP {{req.method}} {{req.url}} completed in {{res.responseTime}}ms',
     expressFormat: true,
     colorize: false,
@@ -95,15 +99,29 @@ async function startServer() {
     hsts: { maxAge: 31536000, includeSubDomains: true, preload: true }
   }));
 
-  const allowedOrigins = [
-    'http://localhost:5173', 'http://localhost:3000', process.env.FRONTEND_URL, process.env.APP_URL,
-    'https://transconet.com', 'https://www.transconet.com', 'https://transconet.ng', 'https://www.transconet.ng'
+  const configuredOrigins = [
+    process.env.FRONTEND_URL,
+    process.env.APP_URL,
+    ...(process.env.CORS_ALLOWED_ORIGINS || '').split(',').map((origin) => origin.trim())
   ].filter(Boolean) as string[];
+
+  const developmentOrigins = process.env.NODE_ENV === 'production'
+    ? []
+    : ['http://localhost:5173', 'http://localhost:3000'];
+
+  const allowedOrigins = Array.from(new Set([
+    ...configuredOrigins,
+    ...developmentOrigins,
+    'https://transconet.com',
+    'https://www.transconet.com',
+    'https://transconet.ng',
+    'https://www.transconet.ng'
+  ]));
 
   app.use(cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin) || origin.endsWith('.run.app') || origin.endsWith('.cloudshell.dev') || origin.endsWith('.railway.app') || origin.includes('railway') || origin.endsWith('.onrender.com') || origin.includes('onrender') || origin.endsWith('.vercel.app') || origin.includes('vercel')) callback(null, true);
-      else callback(null, false);
+      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(null, false);
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true
@@ -154,12 +172,11 @@ async function startServer() {
 
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
     if (err.code === 'EBADCSRFTOKEN') return res.status(403).json({ error: 'Invalid or missing CSRF token. Please refresh and try again.', code: 'EBADCSRFTOKEN' });
-    console.error('🚨 [CRITICAL BACKEND EXCEPTION ENCOUNTERED]:', { message: err.message, stack: err.stack, path: req.path });
+    console.error('🚨 [CRITICAL BACKEND EXCEPTION ENCOUNTERED]:', { message: err.message, path: req.path });
     if (err.code === 'P2002') return res.status(409).json({ error: 'Data conflict: A resource with these unique values already exists inside the registry.' });
     return res.status(500).json({ error: 'Internal System Safety Error Intercepted.', details: process.env.NODE_ENV !== 'production' ? err.message : 'System Maintenance Active' });
   });
 
-  httpServer.on('error', (e: any) => console.error('Server error:', e));
   app.use((err: any, req: any, res: any, next: any) => res.status(err.status || 500).json({ success: false, message: err.message || 'Internal Server Error.' }));
 
   console.log('Step 4: About to listen on', config.port);

@@ -4,10 +4,9 @@ export default defineConfig({
   test: {
     setupFiles: ['./vitest.setup.ts'],
     fileParallelism: false,
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
-    },
+    pool: 'threads',
+    minWorkers: 1,
+    maxWorkers: 1,
+    exclude: ['**/node_modules/**', '**/dist/**', 'e2e/**'],
   },
 });

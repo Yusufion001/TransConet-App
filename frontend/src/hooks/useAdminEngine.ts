@@ -8,16 +8,13 @@ export function useAdminEngine(
   currentRole: string,
   onRoleSwitched?: (token: string, role: string) => void
 ) {
-  const MASTER_ADMIN_PHONE = '08104352733';
-  const MASTER_ADMIN_EMAIL = 'yusufjimoh969@gmail.com';
-
   const [roleLoading, setRoleLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const [systemLogs, setSystemLogs] = useState<{ id: string; msg: string; type: 'info' | 'success' | 'warn' | 'error'; timestamp: string }[]>([
     { id: '1', msg: 'System integrity monitoring active.', type: 'info', timestamp: '06:23:26' },
-    { id: '2', msg: 'Secure Express Server connected on port 3000.', type: 'success', timestamp: '06:23:27' }
+    { id: '2', msg: 'Secure Express Server connected.', type: 'success', timestamp: '06:23:27' }
   ]);
 
   const [dashboardMetrics, setDashboardMetrics] = useState({
@@ -48,25 +45,25 @@ export function useAdminEngine(
     setRoleLoading(true);
     setError(null);
     setSuccessMessage(null);
-    
+
     const targetRole = currentRole === 'ADMIN' ? 'CUSTOMER' : 'ADMIN';
-    addLog(`Initiating permission context pivot to ${targetRole}...`, 'info');
+    addLog(`Requesting server-authorized role switch to ${targetRole}...`, 'info');
 
     try {
       const response = await api.post('/role/switch', { targetRole });
       const { token, user } = response.data;
-      
+
       localStorage.setItem('tc_token', token);
       localStorage.setItem('token', token);
-      
-      if(onRoleSwitched) onRoleSwitched(token, user.role);
-      
-      setSuccessMessage(`Permission elevated! Your current active session role is now: ${user.role}`);
-      addLog(`Role pivot successful. User session synchronized with: ${user.role}`, 'success');
+
+      if (onRoleSwitched) onRoleSwitched(token, user.role);
+
+      setSuccessMessage(`Role switch accepted by the server. Active session role: ${user.role}`);
+      addLog(`Role switch successful. Session synchronized with: ${user.role}`, 'success');
     } catch (err: any) {
       const errMsg = (typeof err.response?.data?.error === 'object' ? JSON.stringify(err.response?.data?.error) : err.response?.data?.error) || 'Failed to switch role context.';
       setError(errMsg);
-      addLog(`Permission pivot failed: ${errMsg}`, 'error');
+      addLog(`Role switch failed: ${errMsg}`, 'error');
     } finally {
       setRoleLoading(false);
     }
@@ -78,20 +75,19 @@ export function useAdminEngine(
     try {
       const data = await getDashboardStats();
       if (data) {
-        
         setDashboardMetrics({
           ...data,
           totalLoads: data.total_shipments || 0,
           completedLoads: data.completed_shipments || 0,
           escrowTotal: data.total_escrow_value || 0,
-          fulfillmentRate: (data.total_shipments || 0) > 0 
-            ? Math.round(((data.completed_shipments || 0) / data.total_shipments) * 100) 
+          fulfillmentRate: (data.total_shipments || 0) > 0
+            ? Math.round(((data.completed_shipments || 0) / data.total_shipments) * 100)
             : 0,
           transporters: data.transporterCount || 0,
           shippers: data.shipperCount || 0,
-          platformEarnings: data.platform_earnings || (data.total_escrow_value || 0) * 0.015,
-          pendingPayouts: data.pending_payouts || (data.total_escrow_value || 0) * 0.95,
-          boostRevenue: 125000,
+          platformEarnings: data.platform_earnings || 0,
+          pendingPayouts: data.pending_payouts || 0,
+          boostRevenue: data.boost_revenue || 0,
         });
 
         setDashboardError(null);
@@ -115,18 +111,9 @@ export function useAdminEngine(
     }
   };
 
-  // Automatically force ADMIN context if phone or email matches master admin
-  useEffect(() => {
-    const normalizedPhone = userPhone.replace(/\D/g, '');
-    const isMasterPhone = normalizedPhone.endsWith('8104352733');
-    const isMasterEmail = (userEmail || '').toLowerCase().trim() === MASTER_ADMIN_EMAIL;
+  // Admin elevation is intentionally NOT inferred from a phone number or email.
+  // Authorization must come from the server-issued role/session.
 
-    if ((isMasterPhone || isMasterEmail) && currentRole !== 'ADMIN') {
-      handleElevateToAdmin();
-    }
-  }, [userPhone, userEmail, currentRole]);
-
-  // Real-time synchronization hook
   useEffect(() => {
     if (currentRole !== 'ADMIN') return;
 
@@ -135,9 +122,7 @@ export function useAdminEngine(
     let subscription: any;
 
     const autoPoll = () => {
-      if (active) {
-        syncAllLiveData();
-      }
+      if (active) syncAllLiveData();
     };
 
     intervalId = setInterval(autoPoll, 10000);
