@@ -1,5 +1,5 @@
 import { CargoType } from '@prisma/client';
-import { prismaRLS as prisma } from '../db/prisma';
+import { prisma as marketplacePrisma } from '../db/prisma';
 
 const cargoAliases: Record<string, CargoType> = {
   agricultural: 'AGRICULTURAL_GOODS',
@@ -19,10 +19,12 @@ const cargoAliases: Record<string, CargoType> = {
   'heavy machinery': 'HEAVY_MACHINERY'
 };
 
+const normalizeLocation = (value: unknown) => String(value ?? '').trim().toLowerCase().replace(/\s+/g, ' ');
+
 function extractRoute(message: string, context: Record<string, unknown>) {
   const contextOrigin = typeof context.origin === 'string' ? context.origin.trim() : '';
   const contextDestination = typeof context.destination === 'string' ? context.destination.trim() : '';
-  const match = message.match(/\bfrom\s+([^,.;!?]+?)\s+to\s+([^,.;!?]+?)(?:\s|$|[,.;!?])/i);
+  const match = message.match(/\bfrom\s+(.+?)\s+to\s+(.+?)(?:\s+(?:for|with|cargo|loads?|shipment|shipments)\b|\s*$|[,.;!?])/i);
   return {
     origin: contextOrigin || match?.[1]?.trim() || '',
     destination: contextDestination || match?.[2]?.trim() || ''
@@ -42,24 +44,30 @@ export async function searchExistingMarketplace(message: string, context: Record
   const { origin, destination } = extractRoute(message, context);
   const cargoType = extractCargoType(message, context);
 
-  // Mirror the existing marketplace API, while applying every route filter
-  // explicitly supplied by the user. The query returns all LoadPosting scalar
-  // fields so downstream AI/UI layers have the complete record available.
-  const where: { status: string; origin?: string; destination?: string; cargoType?: CargoType } = { status: 'AVAILABLE' };
-  if (origin) where.origin = origin;
-  if (destination) where.destination = destination;
-  if (cargoType) where.cargoType = cargoType;
+  // Marketplace discovery must see the same complete AVAILABLE inventory as the
+  // public marketplace endpoint. Do not use prismaRLS here: a transporter's RLS
+  // context can otherwise hide loads that are intentionally public marketplace data.
+  // Do not impose a 50-row limit; the AI must receive every matching available load.
+  const allAvailableLoads = await marketplacePrisma.loadPosting.findMany({
+    where: { status: 'AVAILABLE' },
+    orderBy: { createdAt: 'desc' }
+  });
 
-  const loads = await prisma.loadPosting.findMany({
-    where,
-    orderBy: { createdAt: 'desc' },
-    take: 50
+  const normalizedOrigin = normalizeLocation(origin);
+  const normalizedDestination = normalizeLocation(destination);
+  const loads = allAvailableLoads.filter((load: any) => {
+    if (normalizedOrigin && normalizeLocation(load.origin) !== normalizedOrigin) return false;
+    if (normalizedDestination && normalizeLocation(load.destination) !== normalizedDestination) return false;
+    if (cargoType && load.cargoType !== cargoType) return false;
+    return true;
   });
 
   return {
     needsClarification: false,
     question: '',
     filters: { origin: origin || null, destination: destination || null, cargoType: cargoType || null },
+    totalAvailable: allAvailableLoads.length,
+    count: loads.length,
     loads
   };
 }
