@@ -1,0 +1,49 @@
+/* Global navigation visibility layer.
+   This is visual-only: it does not alter routing, auth, permissions, or click handlers. */
+
+.tc-navigation-layer,
+.tc-navigation-control {
+  opacity: 1 !important;
+  visibility: visible !important;
+  isolation: isolate;
+}
+
+.tc-navigation-layer {
+  position: relative;
+  z-index: 200 !important;
+}
+
+.tc-navigation-control {
+  position: relative;
+  z-index: 201 !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+.tc-navigation-control svg,
+.tc-navigation-control span {
+  position: relative;
+  z-index: 202 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Prevent decorative overlays/pseudo-elements from washing out navigation content. */
+.tc-navigation-control::before,
+.tc-navigation-control::after {
+  pointer-events: none !important;
+}
+
+/* Keep navigation above ordinary page content while allowing its own controls to receive input. */
+.tc-navigation-layer button,
+.tc-navigation-layer a,
+.tc-navigation-layer [role="button"] {
+  pointer-events: auto !important;
+}
+
+@media (max-width: 767px) {
+  .tc-navigation-layer {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
