@@ -105,7 +105,6 @@ async function callOpenAI(userId: string, role: Role, message: string, context: 
   const messages: any[] = [{ role: 'system', content: systemPrompt(role, context) }, ...history, { role: 'user', content: message }];
   const collectedActions: any[] = [];
   let marketplace: any;
-
   for (let round = 0; round < 4; round += 1) {
     const response = await fetch(OPENAI_URL, { method: 'POST', headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ model: MODEL, messages, tools, tool_choice: 'auto', temperature: 0.2, max_tokens: 900 }) });
     const raw = await response.text();
@@ -115,7 +114,6 @@ async function callOpenAI(userId: string, role: Role, message: string, context: 
     messages.push(assistant);
     const calls = Array.isArray(assistant.tool_calls) ? assistant.tool_calls : [];
     if (!calls.length) return { reply: text(assistant.content) || 'I could not generate a response for that request.', actions: collectedActions, marketplace };
-
     for (const call of calls) {
       let args: any = {};
       try { args = JSON.parse(call.function?.arguments || '{}'); } catch { args = {}; }
@@ -129,8 +127,11 @@ async function callOpenAI(userId: string, role: Role, message: string, context: 
   throw new Error('OPENAI_TOOL_LOOP_LIMIT');
 }
 
-function isMarketplaceMessage(message: string, role: Role) {
-  return role === 'TRANSPORTER' && (/\b(find|search|browse|show|available)\b.*\b(loads?|capacity|marketplace)\b|\bavailable loads?\b|\bfind loads?\b/i.test(message));
+// Marketplace lookup is available to both roles because viewing the marketplace is read-only.
+// Explicit marketplace searches bypass model ambiguity so a simple route request never gets
+// stuck on a clarification prompt.
+function isMarketplaceMessage(message: string) {
+  return /\b(find|search|browse|show|list|available)\b.*\b(loads?|capacity|marketplace)\b|\bavailable loads?\b|\bfind loads?\b/i.test(message);
 }
 
 function isMarketplaceFollowup(message: string, context: Record<string, unknown>) {
@@ -140,7 +141,7 @@ function isMarketplaceFollowup(message: string, context: Record<string, unknown>
 
 function numericBudget(load: any) {
   const value = Number(load?.suggestedBudget);
-  return Number.isFinite(value) ? value : null;
+  return Number.isFinite(value) && value > 0 ? value : null;
 }
 
 function selectedLoadFromContext(context: Record<string, unknown>) {
@@ -160,8 +161,11 @@ function selectedLoadFromContext(context: Record<string, unknown>) {
 
 function deterministicFollowupReply(message: string, context: Record<string, unknown>) {
   const isBudgetComparison = /\b(highest|highest budget|lowest|lowest budget|best|most expensive|cheapest)\b/i.test(message);
+  const loads = Array.isArray(context.marketplaceLoads) ? context.marketplaceLoads as any[] : [];
+  const hasNumericBudget = loads.some(load => numericBudget(load) !== null);
   const load = selectedLoadFromContext({ ...context, followupIntent: message });
-  if (!load && isBudgetComparison) return 'The available loads do not have numeric suggested budgets listed, so I cannot determine which one has the highest or lowest budget yet.';
+  if (isBudgetComparison && !hasNumericBudget) return 'The available loads do not have numeric suggested budgets listed, so I cannot determine which one has the highest or lowest budget yet.';
+  if (!load && isBudgetComparison) return 'I could not determine a highest-budget load from the available marketplace results.';
   if (!load) return null;
   const budgetValue = numericBudget(load);
   const budget = budgetValue === null ? 'no suggested budget listed' : `₦${budgetValue.toLocaleString()}`;
@@ -171,22 +175,26 @@ function deterministicFollowupReply(message: string, context: Record<string, unk
 }
 
 export async function processConversationalMessage(userId: string, role: Role, message: string, context: Record<string, unknown> = {}, history: unknown = []): Promise<ConversationResult> {
+  // Explicit marketplace searches are deterministic and do not depend on OpenAI availability or tool selection.
+  if (isMarketplaceMessage(message)) {
+    try {
+      const marketplace = await searchExistingMarketplace(message, context);
+      return { reply: marketplace.loads.length ? `I found ${marketplace.loads.length} available load${marketplace.loads.length === 1 ? '' : 's'} using the existing marketplace search.` : 'I could not find an available load matching those marketplace search options.', needsClarification: false, clarifyingQuestion: '', actions: [], marketplace: { filters: marketplace.filters, loads: marketplace.loads }, aiMode: 'core_marketplace' };
+    } catch (error: any) {
+      console.warn(`Marketplace search fallback: ${error?.message || 'unknown'}`);
+    }
+  }
+
   try {
     const result = await callOpenAI(userId, role, message, context, normalizeHistory(history));
     return { reply: result.reply, needsClarification: false, clarifyingQuestion: '', actions: result.actions || [], marketplace: result.marketplace, aiMode: 'openai' };
   } catch (error: any) {
     console.warn(`Conversational AI fallback: ${error?.message || 'unknown'}`);
-
     if (isMarketplaceFollowup(message, context)) {
       const followupReply = deterministicFollowupReply(message, context);
       if (followupReply) return { reply: followupReply, needsClarification: false, clarifyingQuestion: '', actions: [], marketplace: Array.isArray(context.marketplaceLoads) ? { filters: {}, loads: context.marketplaceLoads } : undefined, aiMode: 'core_marketplace' };
     }
-
     const core = await processAutomationMessage(userId, role, message, context);
-    if (isMarketplaceMessage(message, role)) {
-      const marketplace = await searchExistingMarketplace(message, context);
-      return { reply: marketplace.loads.length ? `I found ${marketplace.loads.length} available load${marketplace.loads.length === 1 ? '' : 's'} using the existing marketplace search.` : 'I could not find an available load matching those marketplace search options.', needsClarification: false, clarifyingQuestion: '', actions: [], marketplace: { filters: marketplace.filters, loads: marketplace.loads }, aiMode: 'core_marketplace' };
-    }
     return { ...core, aiMode: 'core' };
   }
 }
