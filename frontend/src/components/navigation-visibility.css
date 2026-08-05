@@ -1,40 +1,79 @@
-/* Global navigation visibility layer.
-   This is visual-only: it does not alter routing, auth, permissions, or click handlers. */
+/*
+ * TransConet navigation visibility guard.
+ * UI/UX ONLY: this file does not change routing, state, auth, permissions,
+ * API calls, handlers, or disabled/loading behavior.
+ */
 
-.tc-navigation-layer,
-.tc-navigation-control {
-  opacity: 1 !important;
-  visibility: visible !important;
-  isolation: isolate;
-}
-
+/* Semantic navigation containers across the application. */
+nav,
+[role="navigation"],
 .tc-navigation-layer {
   position: relative;
   z-index: 200 !important;
-}
-
-.tc-navigation-control {
-  position: relative;
-  z-index: 201 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
   filter: none !important;
   mix-blend-mode: normal !important;
 }
 
+/* Keep navigation controls visually crisp. Do NOT override disabled state. */
+nav > button,
+nav > a,
+nav button,
+nav a,
+[role="navigation"] button,
+[role="navigation"] a,
+.tc-navigation-control {
+  position: relative;
+  z-index: 201 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* Icons and labels must remain fully rendered above decorative backgrounds. */
+nav button svg,
+nav a svg,
+nav button > svg,
+nav a > svg,
+[role="navigation"] svg,
 .tc-navigation-control svg,
 .tc-navigation-control span {
   position: relative;
   z-index: 202 !important;
   opacity: 1 !important;
   visibility: visible !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
 }
 
-/* Prevent decorative overlays/pseudo-elements from washing out navigation content. */
+/* Prevent decorative pseudo-elements from washing out iconography/text. */
+nav button::before,
+nav button::after,
+nav a::before,
+nav a::after,
+[role="navigation"] button::before,
+[role="navigation"] button::after,
 .tc-navigation-control::before,
 .tc-navigation-control::after {
   pointer-events: none !important;
 }
 
-/* Keep navigation above ordinary page content while allowing its own controls to receive input. */
+/* Explicitly neutralize common visual-only effects on navigation descendants. */
+.tc-navigation-layer .backdrop-blur,
+.tc-navigation-layer .backdrop-blur-sm,
+.tc-navigation-layer .backdrop-blur-md,
+.tc-navigation-layer .backdrop-blur-lg,
+.tc-navigation-layer .blur,
+.tc-navigation-layer .blur-sm,
+.tc-navigation-layer .blur-md,
+.tc-navigation-layer .blur-lg {
+  filter: none !important;
+}
+
+/* The existing navigation system keeps its controls interactive. */
 .tc-navigation-layer button,
 .tc-navigation-layer a,
 .tc-navigation-layer [role="button"] {
@@ -42,6 +81,8 @@
 }
 
 @media (max-width: 767px) {
+  nav,
+  [role="navigation"],
   .tc-navigation-layer {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
