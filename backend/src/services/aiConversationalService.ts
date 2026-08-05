@@ -54,11 +54,11 @@ async function runTool(name: string, args: any, userId: string, role: Role, cont
     case 'search_marketplace': {
       const origin = text(args?.origin), destination = text(args?.destination), cargoType = text(args?.cargoType);
       const message = [origin && `from ${origin}`, destination && `to ${destination}`, cargoType].filter(Boolean).join(' ');
-      const result = await searchExistingMarketplace(message || 'find available loads', { origin: origin || undefined, cargoType: cargoType || undefined });
+      const result = await searchExistingMarketplace(message || 'find available loads', { origin: origin || undefined, destination: destination || undefined, cargoType: cargoType || undefined });
       let loads = result.loads;
       if (destination) loads = loads.filter((load: any) => String(load.destination || '').toLowerCase().includes(destination.toLowerCase()));
       if (Number.isFinite(args?.maxWeightKg)) loads = loads.filter((load: any) => Number(load.weightKg) <= Number(args.maxWeightKg));
-      return { filters: { ...result.filters, destination: destination || null, maxWeightKg: args?.maxWeightKg || null }, count: loads.length, loads: loads.slice(0, 20) };
+      return { filters: { ...result.filters, destination: destination || null, maxWeightKg: args?.maxWeightKg || null }, totalAvailable: result.totalAvailable, count: loads.length, loads };
     }
     case 'get_my_bids': {
       if (role !== 'TRANSPORTER') return { error: 'This feature is available to transporters only.' };
@@ -127,9 +127,6 @@ async function callOpenAI(userId: string, role: Role, message: string, context: 
   throw new Error('OPENAI_TOOL_LOOP_LIMIT');
 }
 
-// Marketplace lookup is available to both roles because viewing the marketplace is read-only.
-// Explicit marketplace searches bypass model ambiguity so a simple route request never gets
-// stuck on a clarification prompt.
 function isMarketplaceMessage(message: string) {
   return /\b(find|search|browse|show|list|available)\b.*\b(loads?|capacity|marketplace)\b|\bavailable loads?\b|\bfind loads?\b/i.test(message);
 }
@@ -175,7 +172,6 @@ function deterministicFollowupReply(message: string, context: Record<string, unk
 }
 
 export async function processConversationalMessage(userId: string, role: Role, message: string, context: Record<string, unknown> = {}, history: unknown = []): Promise<ConversationResult> {
-  // Explicit marketplace searches are deterministic and do not depend on OpenAI availability or tool selection.
   if (isMarketplaceMessage(message)) {
     try {
       const marketplace = await searchExistingMarketplace(message, context);
