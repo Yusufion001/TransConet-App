@@ -24,11 +24,17 @@ const normalizeLocation = (value: unknown) => String(value ?? '').trim().toLower
 function extractRoute(message: string, context: Record<string, unknown>) {
   const contextOrigin = typeof context.origin === 'string' ? context.origin.trim() : '';
   const contextDestination = typeof context.destination === 'string' ? context.destination.trim() : '';
-  const match = message.match(/\bfrom\s+(.+?)\s+to\s+(.+?)(?:\s+(?:for|with|cargo|loads?|shipments?)\b|\s*$|[,.;!?])/i);
-  return {
-    origin: contextOrigin || match?.[1]?.trim() || '',
-    destination: contextDestination || match?.[2]?.trim() || ''
-  };
+  if (contextOrigin || contextDestination) return { origin: contextOrigin, destination: contextDestination };
+
+  const normalizedMessage = message.replace(/\s+/g, ' ').trim();
+  // Support the natural route forms users actually use in the assistant, including
+  // "from Lagos to Abuja", "Lagos -> Abuja", and comma-separated place names.
+  const arrow = normalizedMessage.match(/(.+?)\s*(?:->|→|\bto\b)\s*(.+)$/i);
+  if (!arrow) return { origin: '', destination: '' };
+
+  const left = arrow[1].replace(/^.*?\bfrom\s+/i, '').trim().replace(/[,.!?]+$/, '').trim();
+  const right = arrow[2].trim().replace(/[.!?]+$/, '').trim();
+  return { origin: left, destination: right };
 }
 
 function extractCargoType(message: string, context: Record<string, unknown>): CargoType | undefined {
@@ -49,12 +55,12 @@ export async function searchExistingMarketplace(message: string, context: Record
   const { origin, destination } = extractRoute(message, context);
   const cargoType = extractCargoType(message, context);
 
-  // This is a read-only marketplace discovery query. Use the standard Prisma
-  // client so the authenticated transporter's RLS context cannot hide public loads.
-  // Fetch every AVAILABLE posting; do not impose an AI-specific 20/50 row cap.
+  // Read every currently AVAILABLE posting. There is intentionally no AI-specific
+  // LIMIT, pagination cap, or take() here: the assistant must search the complete
+  // marketplace dataset before applying route/cargo filters.
   const allAvailableLoads = await marketplacePrisma.loadPosting.findMany({
     where: { status: 'AVAILABLE' },
-    orderBy: { createdAt: 'desc' }
+    orderBy: [{ createdAt: 'desc' }, { id: 'asc' }]
   });
 
   const loads = allAvailableLoads.filter((load: any) =>
