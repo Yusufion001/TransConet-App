@@ -28,16 +28,6 @@ export async function assistant(req: Request, res: Response) {
 
     if (marketplaceIntent) {
       const marketplace = await searchExistingMarketplace(message, context);
-      if (marketplace.needsClarification) {
-        return res.json({
-          success: true,
-          reply: 'I can search the existing TransConet marketplace for you.',
-          needsClarification: true,
-          clarifyingQuestion: marketplace.question,
-          actions: [],
-          aiMode: 'marketplace'
-        });
-      }
       return res.json({
         success: true,
         reply: marketplace.loads.length
@@ -46,11 +36,8 @@ export async function assistant(req: Request, res: Response) {
         needsClarification: false,
         clarifyingQuestion: '',
         actions: [],
-        aiMode: 'marketplace',
-        marketplace: {
-          filters: marketplace.filters,
-          loads: marketplace.loads
-        }
+        aiMode: 'core_marketplace',
+        marketplace: { filters: marketplace.filters, loads: marketplace.loads }
       });
     }
 
@@ -58,7 +45,7 @@ export async function assistant(req: Request, res: Response) {
     return res.json({ success: true, ...result });
   } catch (error: any) {
     console.error('AI automation assistant error:', error);
-    return res.status(500).json({ error: 'The TransConet AI assistant is temporarily unavailable.' });
+    return res.status(500).json({ error: 'The TransConet automation assistant is temporarily unavailable.' });
   }
 }
 
@@ -69,7 +56,7 @@ export async function pendingActions(req: Request, res: Response) {
     return res.json({ success: true, actions });
   } catch (error) {
     console.error('AI pending actions error:', error);
-    return res.status(500).json({ error: 'Unable to load pending AI actions.' });
+    return res.status(500).json({ error: 'Unable to load pending automation actions.' });
   }
 }
 
@@ -79,10 +66,10 @@ export async function approve(req: Request, res: Response) {
     const actionId = String(req.params.id || '');
     const action = await approveAction(req.user.id, actionId);
     if (!action) return res.status(404).json({ error: 'Action not found, already processed, or not owned by this user.' });
-    return res.json({ success: true, action, message: 'Approved. Execution will be handled by the TransConet automation worker.' });
-  } catch (error) {
+    return res.json({ success: true, action, message: 'Approved and executed successfully.' });
+  } catch (error: any) {
     console.error('AI action approval error:', error);
-    return res.status(500).json({ error: 'Unable to approve this AI action.' });
+    return res.status(400).json({ error: String(error?.message || 'Unable to execute this approved automation action.') });
   }
 }
 
@@ -95,6 +82,6 @@ export async function reject(req: Request, res: Response) {
     return res.json({ success: true, action });
   } catch (error) {
     console.error('AI action rejection error:', error);
-    return res.status(500).json({ error: 'Unable to reject this AI action.' });
+    return res.status(500).json({ error: 'Unable to reject this automation action.' });
   }
 }
