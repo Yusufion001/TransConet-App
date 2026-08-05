@@ -164,11 +164,12 @@ async function storeActions(userId: string, role: AutomationRole, actions: Propo
   for (const action of actions) {
     if (!action?.actionName || !allowedActions[role].has(action.actionName) || !CORE_ACTIONS.has(action.actionName) || action.requiresApproval !== true) continue;
     const payload = { ...(action.payload || {}), description: action.description, source, createdAt: new Date().toISOString() };
+    const expiresAt = new Date(Date.now() + 30 * 60 * 1000);
     const rows = await prismaBypass.$queryRawUnsafe<any[]>(
-      `INSERT INTO public.transconet_ai_actions (user_id, role, action_name, status, payload)
-       VALUES ($1, $2, $3, 'PENDING_APPROVAL', $4::jsonb)
-       RETURNING id, user_id, role, action_name, status, payload`,
-      userId, role, action.actionName, JSON.stringify(payload)
+      `INSERT INTO public.transconet_ai_actions (user_id, role, action_name, status, payload, expires_at)
+       VALUES ($1, $2, $3, 'PENDING_APPROVAL', $4::jsonb, $5)
+       RETURNING id, user_id, role, action_name, status, payload, expires_at`,
+      userId, role, action.actionName, JSON.stringify(payload), expiresAt
     );
     stored.push(rows[0]);
   }
@@ -178,109 +179,10 @@ async function storeActions(userId: string, role: AutomationRole, actions: Propo
 export async function processAutomationMessage(userId: string, role: AutomationRole, message: string, context: Record<string, unknown> = {}) {
   // Core automation is intentionally deterministic and free to run. OpenAI is no longer
   // required for routine navigation, marketplace actions, or approval workflows.
-  const result = fallbackResult(message, role, context);
-  const actions = await storeActions(userId, role, result.actions);
+  const base = fallbackResult(message, role, context);
+  const actions = await storeActions(userId, role, base.actions, 'core_automation');
   return {
-    reply: result.reply,
-    needsClarification: result.needsClarification,
-    clarifyingQuestion: result.clarifyingQuestion,
-    actions,
-    aiMode: 'core'
+    ...base,
+    actions
   };
-}
-
-export async function listPendingActions(userId: string) {
-  return prismaBypass.$queryRawUnsafe<any[]>(
-    `SELECT id, user_id, role, action_name, status, payload
-     FROM public.transconet_ai_actions
-     WHERE user_id = $1 AND status = 'PENDING_APPROVAL'
-     ORDER BY id DESC LIMIT 20`,
-    userId
-  );
-}
-
-async function executeApprovedAction(userId: string, role: AutomationRole, actionName: string, payload: any) {
-  if (actionName === 'post_load') {
-    if (role !== 'CUSTOMER') throw new Error('Only customers can post loads.');
-    if (!payload.title || !payload.origin || !payload.destination || !payload.weightKg || !payload.cargoType) throw new Error('Load title, cargo type, weight, origin, and destination are required.');
-    const validCargoTypes = new Set(['AGRICULTURAL_GOODS','CONSTRUCTION_MATERIALS','GENERAL_MERCHANDISE','PHARMACEUTICALS_MEDICAL','ELECTRONICS_APPLIANCES','PETROLEUM_CHEMICALS','HEAVY_MACHINERY']);
-    if (!validCargoTypes.has(String(payload.cargoType))) throw new Error('Invalid cargo type.');
-    return prismaBypass.loadPosting.create({ data: {
-      title: String(payload.title).slice(0, 200), cargoType: payload.cargoType as any, weightKg: Number(payload.weightKg),
-      origin: String(payload.origin).slice(0, 200), destination: String(payload.destination).slice(0, 200),
-      suggestedBudget: payload.suggestedBudget == null ? null : Number(payload.suggestedBudget),
-      isEscrowEnabled: Boolean(payload.isEscrowEnabled), customerId: userId
-    }});
-  }
-
-  if (actionName === 'place_bid') {
-    if (role !== 'TRANSPORTER') throw new Error('Only transporters can place bids.');
-    const amount = moneyNumber(payload.amount);
-    if (!payload.loadId || !amount) throw new Error('A valid load ID and bid amount are required.');
-    const load = await prismaBypass.loadPosting.findUnique({ where: { id: String(payload.loadId) } });
-    if (!load || load.status !== 'AVAILABLE') throw new Error('That load is not available for bidding.');
-    const duplicate = await prismaBypass.bid.findFirst({ where: { loadId: load.id, driverId: userId, status: 'PENDING' } });
-    if (duplicate) throw new Error('You already have a pending bid for this load.');
-    return prismaBypass.bid.create({ data: { loadId: load.id, driverId: userId, amount, notes: payload.notes ? String(payload.notes).slice(0, 1000) : null } });
-  }
-
-  if (actionName === 'accept_bid') {
-    if (role !== 'CUSTOMER') throw new Error('Only customers can accept bids.');
-    if (!payload.bidId) throw new Error('A bid ID is required.');
-    const bid = await prismaBypass.bid.findUnique({ where: { id: String(payload.bidId) }, include: { load: true } });
-    if (!bid || bid.load.customerId !== userId) throw new Error('Bid not found or not owned by this customer.');
-    if (bid.load.status !== 'AVAILABLE') throw new Error('This load is no longer available for assignment.');
-    await prismaBypass.$transaction([
-      prismaBypass.bid.update({ where: { id: bid.id }, data: { status: 'ACCEPTED' } }),
-      prismaBypass.bid.updateMany({ where: { loadId: bid.loadId, id: { not: bid.id } }, data: { status: 'REJECTED' } }),
-      prismaBypass.loadPosting.update({ where: { id: bid.loadId }, data: { status: 'QUOTE_ACCEPTED' } })
-    ]);
-    return { success: true, bidId: bid.id, loadId: bid.loadId };
-  }
-
-  throw new Error(`Unsupported automation action: ${actionName}`);
-}
-
-export async function approveAction(userId: string, actionId: string) {
-  const rows = await prismaBypass.$queryRawUnsafe<any[]>(
-    `SELECT id, user_id, role, action_name, status, payload
-     FROM public.transconet_ai_actions
-     WHERE id = $1 AND user_id = $2 AND status = 'PENDING_APPROVAL'
-     LIMIT 1`,
-    actionId, userId
-  );
-  const action = rows[0];
-  if (!action) return null;
-
-  const role = action.role as AutomationRole;
-  if (!allowedActions[role]?.has(action.action_name) || !CORE_ACTIONS.has(action.action_name)) throw new Error('This automation action is not permitted.');
-
-  try {
-    const result = await executeApprovedAction(userId, role, action.action_name, action.payload || {});
-    const updated = await prismaBypass.$queryRawUnsafe<any[]>(
-      `UPDATE public.transconet_ai_actions
-       SET status = 'COMPLETED', payload = $1::jsonb
-       WHERE id = $2 AND user_id = $3 AND status = 'PENDING_APPROVAL'
-       RETURNING id, user_id, role, action_name, status, payload`,
-      JSON.stringify({ ...(action.payload || {}), result, completedAt: new Date().toISOString() }), actionId, userId
-    );
-    return updated[0] || null;
-  } catch (error: any) {
-    await prismaBypass.$queryRawUnsafe(
-      `UPDATE public.transconet_ai_actions SET status = 'FAILED', payload = $1::jsonb WHERE id = $2 AND user_id = $3 AND status = 'PENDING_APPROVAL'`,
-      JSON.stringify({ ...(action.payload || {}), error: String(error?.message || error), failedAt: new Date().toISOString() }), actionId, userId
-    );
-    throw error;
-  }
-}
-
-export async function rejectAction(userId: string, actionId: string) {
-  const rows = await prismaBypass.$queryRawUnsafe<any[]>(
-    `UPDATE public.transconet_ai_actions
-     SET status = 'REJECTED', payload = payload || jsonb_build_object('rejectedAt', to_jsonb(now()))
-     WHERE id = $1 AND user_id = $2 AND status = 'PENDING_APPROVAL'
-     RETURNING id, user_id, role, action_name, status, payload`,
-    actionId, userId
-  );
-  return rows[0] || null;
 }
