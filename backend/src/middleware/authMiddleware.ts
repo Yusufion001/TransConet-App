@@ -19,32 +19,27 @@ declare global {
 
 interface TokenPayload {
   userId: string;
-  role: 'CUSTOMER' | 'TRANSPORTER' | 'ADMIN';
+  role: 'CUSTOMER' | 'TRANSPORTER' | 'ADMIN' | 'SHIPPER';
   phoneNumber?: string;
   email?: string;
 }
 
 // 1. Verify Authentication Token Middleware
 export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
-  // Pull token from the standard Authorization header
+  // Only accept Bearer tokens from the Authorization header. Cookie-based sessions
+  // are supported only through a dedicated session middleware that enforces CSRF.
   const authHeader = req.headers['authorization'];
-  let token = authHeader && authHeader.split(' ')[1];
-
-  if (!token && req.cookies?.token) {
-    token = req.cookies.token;
-  }
-  if (!token && req.cookies?.admin_token) {
-    token = req.cookies.admin_token;
-  }
+  const token = typeof authHeader === 'string' && authHeader.startsWith('Bearer ')
+    ? authHeader.split(' ')[1]
+    : undefined;
 
   if (!token) {
-    return res.status(401).json({ error: 'Access denied. Security authentication token missing.' });
+    return res.status(401).json({ error: 'Access denied. Use Authorization: Bearer <token>.' });
   }
 
   try {
-    let decoded: any;
-    decoded = jwt.verify(token, config.jwtSecret) as TokenPayload;
-    
+    const decoded = jwt.verify(token, config.jwtSecret) as TokenPayload & any;
+
     // Map legacy 'SHIPPER' role to 'CUSTOMER'
     let effectiveRole = decoded.role || 'CUSTOMER';
     if (effectiveRole === 'SHIPPER') effectiveRole = 'CUSTOMER';
@@ -56,7 +51,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
       phoneNumber: decoded.phoneNumber || decoded.phone,
       email: decoded.email,
     };
-    
+
     // Wrap next() inside the RLS Async Context so database queries have automatic secure context
     rlsContext.run({ userId: req.user.id, role: req.user.role }, () => {
       next(); // Pass control to the controller function
