@@ -1,4 +1,4 @@
-import { ProtectedRoute } from './components/ProtectedRoute';
+import { useAuth } from './hooks/useAppAuth';import { ProtectedRoute } from './components/ProtectedRoute';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useAuthStore } from './store/authStore';
 import { useUIStore } from './store/uiStore';
@@ -33,6 +33,16 @@ const GOOGLE_MAPS_API_KEY =
   const activeView = location.pathname.substring(1) || 'dashboard';
   const setActiveView = (v: string) => navigate('/' + v);
   const { isAuthenticated, userPhone, userEmail, activeRole, isOnboarded, login, logout, setRole, setOnboarded } = useAuthStore();
+const {
+  handleLoginSuccess,
+  handleRoleSwitched,
+  handleLogout,
+} = useAuth({
+  login,
+  logout,
+  setRole,
+  setActiveView,
+});
 
   // Track current active dashboard view: 'dashboard', 'network', 'admin', 'account', or 'support'
   
