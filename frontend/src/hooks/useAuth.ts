@@ -7,7 +7,7 @@ type UseAppAuthProps = {
   setActiveView: (view: string) => void;
 };
 
-export function useAppAuth({
+export function useAuth({
   login,
   logout,
   setRole,

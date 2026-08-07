@@ -651,6 +651,6 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
       />
     </div>
   );
- (Fix frontend build)
+ 
 }
 

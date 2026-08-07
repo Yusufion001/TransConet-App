@@ -1,4 +1,4 @@
-import { useAuth } from './hooks/useAppAuth';import { ProtectedRoute } from './components/ProtectedRoute';
+import { useAuth } from './hooks/useAuth';import { ProtectedRoute } from './components/ProtectedRoute';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useAuthStore } from './store/authStore';
 import { useUIStore } from './store/uiStore';
@@ -606,9 +606,12 @@ const [copied, setCopied] = useState(false);
                 className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-4 py-2 rounded-xl transition"
               >
                 Done
-              </button>
-            </div>
-      )}
+   </button>
+   </div>
+   </div>
+   </div>
+
+    )}
               {isAuthenticated && (
           <FloatingNavHub
             isAdmin={activeRole.includes('ADMIN')}
@@ -617,7 +620,6 @@ const [copied, setCopied] = useState(false);
           />
         )}
             
-      </div>
     </APIProvider>
   );
 }
