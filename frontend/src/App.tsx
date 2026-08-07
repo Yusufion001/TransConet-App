@@ -27,7 +27,8 @@ const GOOGLE_MAPS_API_KEY =
   (globalThis as any).GOOGLE_MAPS_PLATFORM_KEY ||
   '';
 // Highly resilient offline-capable helper to decode JWT payload parameters safely
- {
+
+export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const activeView = location.pathname.substring(1) || 'dashboard';
