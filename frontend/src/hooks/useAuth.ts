@@ -1,4 +1,5 @@
-import { parseJwt } from '../utils/jwt';
+import { parseJwt } from '../utils/jwt'
+
   const handleLoginSuccess = (token: string, phone: string) => {
     localStorage.setItem('token', token);
     localStorage.setItem('tc_token', token);
@@ -11,7 +12,8 @@ import { parseJwt } from '../utils/jwt';
 
     }
     setRole(payload?.role || 'CUSTOMER');
-  };
+  }
+
   const handleRoleSwitched = (newToken: string, newRole: string) => {
     localStorage.setItem('token', newToken);
     localStorage.setItem('tc_token', newToken);
@@ -23,9 +25,17 @@ import { parseJwt } from '../utils/jwt';
       localStorage.setItem('userEmail', email);
 
     }
-  };const handleLogout = () => {
-    ...
-};import { useState } from 'react';
+
+    const handleLogout = () => {
+    localStorage.clear();
+    logout();
+
+
+    setRole('CUSTOMER');
+    setActiveView('dashboard');
+  }
+
+import { useState } from 'react';
 import api from '../api/client';
 
 export function useAuth() {
