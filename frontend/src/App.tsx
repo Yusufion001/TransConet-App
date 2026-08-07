@@ -609,14 +609,14 @@ const [copied, setCopied] = useState(false);
               </button>
             </div>
       )}
-      {isAuthenticated && (
-        <FloatingNavHub 
-          isAdmin={activeRole.includes('ADMIN')} 
-          onLogout={handleLogout} 
-          activeRole={activeRole}
-        />
-      )}
-    </div>
+              {isAuthenticated && (
+          <FloatingNavHub
+            isAdmin={activeRole.includes('ADMIN')}
+            onLogout={handleLogout}
+            activeRole={activeRole}
+          />
+        )} {/* <--- ADD THIS LINE BACK */}
+      </div>
     </APIProvider>
   );
 }
