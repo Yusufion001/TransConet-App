@@ -3,12 +3,9 @@ import request from 'supertest';
 import express from 'express';
 import loadRoutes from '../src/routes/loadRoutes';
 import paymentRoutes from '../src/routes/paymentRoutes';
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../src/db';
 import jwt from 'jsonwebtoken';
 
-const url = process.env.DATABASE_URL || '';
-const testUrl = url.includes('?') ? url + '&pgbouncer=true' : url + '?pgbouncer=true';
-const prisma = new PrismaClient({ datasources: { db: { url: testUrl } } });
 
 const generateTestToken = (userId: string, role: string) => {
   return jwt.sign({ userId, role }, process.env.JWT_SECRET || 'fallback-secret-key-for-dev-only-do-not-use-in-prod');
