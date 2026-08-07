@@ -615,7 +615,8 @@ const [copied, setCopied] = useState(false);
             onLogout={handleLogout}
             activeRole={activeRole}
           />
-        )} {/* <--- ADD THIS LINE BACK */}
+        )}
+            
       </div>
     </APIProvider>
   );
