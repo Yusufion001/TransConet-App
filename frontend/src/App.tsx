@@ -27,30 +27,7 @@ const GOOGLE_MAPS_API_KEY =
   (globalThis as any).GOOGLE_MAPS_PLATFORM_KEY ||
   '';
 // Highly resilient offline-capable helper to decode JWT payload parameters safely
-function parseJwt(token: string) {
-  try {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(
-      window.atob(base64)
-        .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-        .join('')
-    );
-    const payload = JSON.parse(jsonPayload);
-    // Security Fix: Ensure token hasn't expired
-    if (payload.exp && payload.exp * 1000 < Date.now()) {
-      return null;
-    }
-    return payload;
-  } catch (e) {
-    return null;
-  }
-}
-
-import { fetchCsrfToken } from './api/client';
-
-export default function App() {
+ {
   const navigate = useNavigate();
   const location = useLocation();
   const activeView = location.pathname.substring(1) || 'dashboard';
