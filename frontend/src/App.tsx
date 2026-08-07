@@ -51,11 +51,6 @@ const GOOGLE_MAPS_API_KEY =
     setSupportHighlight(false);
   };
 
-  // Track Expo mobile portal states
-  const [isMobilePortalOpen, setIsMobilePortalOpen] = useState(false);
-  const [expoTunnelUrl, setExpoTunnelUrl] = useState(window.location.href);
-  const [copied, setCopied] = useState(false);
-
   // High-Fidelity Mobile Simulator States
   const { isMobileDevice, setMobileDevice, isMobileFrame: useMobileFrame, setMobileFrame: setUseMobileFrame } = useUIStore();
 
