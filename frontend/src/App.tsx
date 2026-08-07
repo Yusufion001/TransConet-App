@@ -600,24 +600,27 @@ const [copied, setCopied] = useState(false);
               </div>
             </div>
 
-            <div className="p-4 bg-slate-50 dark:bg-slate-800  border-t border-slate-200 dark:border-slate-700  flex justify-end">
-              <button 
-                onClick={() => setIsMobilePortalOpen(false)}
-                className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-4 py-2 rounded-xl transition"
-              >
-                Done
-              </button>
-            </div>
-      )}
-              {isAuthenticated && (
-          <FloatingNavHub
-            isAdmin={activeRole.includes('ADMIN')}
-            onLogout={handleLogout}
-            activeRole={activeRole}
-          />
-        )}
-            
-      </div>
+        603  <div className="p-4 bg-slate-50 dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 flex justify-end">
+    <button
+      onClick={() => setIsMobilePortalOpen(false)}
+      className="bg-brand-600 hover:bg-brand-50 cursor-pointer hover:shadow-sm0 text-white text-xs font-bold px-4 py-2 rounded-xl transition"
+    >
+      Done
+    </button>
+  </div>
+
+ </div>   {/* closes the modal content */}
+ </div>   {/* closes the overlay */}
+
+ )}
+
+ {isAuthenticated && (
+   <FloatingNavHub
+     isAdmin={activeRole.includes('ADMIN')}
+     onLogout={handleLogout}
+     activeRole={activeRole}
+   />
+ )}    
     </APIProvider>
   );
 }
