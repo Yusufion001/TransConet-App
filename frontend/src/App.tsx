@@ -93,18 +93,24 @@ const [copied, setCopied] = useState(false);
 
   // Clock Synchronizer for Phone Status Bar
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      let hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-      setStatusBarTime(`${hours}:${minutes} ${ampm}`);
-    updateTime();
-    const interval = setInterval(updateTime, 15000); // Check every 15 seconds
-    return () => clearInterval(interval);
-  }, []);
+  const updateTime = () => {
+    const now = new Date();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+
+    setStatusBarTime(`${hours}:${minutes} ${ampm}`);
+  };
+
+  updateTime();
+
+  const interval = setInterval(updateTime, 15000); // Check every 15 seconds
+
+  return () => clearInterval(interval);
+}, []);
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(expoTunnelUrl);
