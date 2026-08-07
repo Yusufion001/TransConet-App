@@ -12,9 +12,18 @@ import { parseJwt } from '../utils/jwt';
     }
     setRole(payload?.role || 'CUSTOMER');
   };
-;const handleRoleSwitched = (newToken: string, newRole: string) => {
-    ...
-};const handleLogout = () => {
+  const handleRoleSwitched = (newToken: string, newRole: string) => {
+    localStorage.setItem('token', newToken);
+    localStorage.setItem('tc_token', newToken);
+    setRole(newRole);
+
+    const payload = parseJwt(newToken);
+    const email = payload?.email || '';
+    if (email) {
+      localStorage.setItem('userEmail', email);
+
+    }
+  };const handleLogout = () => {
     ...
 };import { useState } from 'react';
 import api from '../api/client';
