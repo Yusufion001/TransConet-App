@@ -1,5 +1,15 @@
 import axios from 'axios';
 
+type ImportMetaEnv = {
+  readonly VITE_API_URL?: string;
+};
+
+declare global {
+  interface ImportMeta {
+    readonly env: ImportMetaEnv;
+  }
+}
+
 let csrfToken = '';
 
 const api = axios.create({

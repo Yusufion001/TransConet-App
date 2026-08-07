@@ -75,6 +75,582 @@ export default function LoginGateway({ onLoginSuccess }: LoginGatewayProps) {
   const Trust=({dark}:{dark:boolean})=><div className={`mx-auto grid w-full max-w-[620px] grid-cols-2 border-t sm:grid-cols-4 ${dark?'border-white/15':'border-[#DCE3ED]'}`}>{benefits.map(([Icon,title,text],i)=><div key={title} className={`px-2 py-3 text-center sm:px-3 ${i?'border-l':''} ${dark?'border-white/15':''}`}><Icon size={17} className={`mx-auto mb-1.5 ${dark?'text-white/80':'text-[#1457E6]'}`}/><div className={`text-[11px] font-bold ${dark?'text-white':'text-[#172033]'}`}>{title}</div><div className={`mt-0.5 text-[9px] leading-4 ${dark?'text-white/55':'text-[#7A8496]'}`}>{text}</div></div>)}</div>;
   const Footer=({dark}:{dark:boolean})=><div className={`flex justify-center gap-2 pt-3 text-[10px] font-medium ${dark?'text-white/55':'text-[#7A8496]'}`}><button type="button" onClick={()=>setLegal({isOpen:true,type:'terms'})} className="hover:text-[#1457E6]">Terms & Conditions</button><span>•</span><button type="button" onClick={()=>setLegal({isOpen:true,type:'privacy'})} className="hover:text-[#1457E6]">Privacy Policy</button></div>;
 
+
   const isSignup=page==='signup';
   return <div className="min-h-[100dvh] w-full overflow-x-hidden bg-[#F5F8FC] font-sans text-[#172033]">{isSignup ? <section className="relative flex min-h-[100dvh] flex-col overflow-hidden px-5 py-6 sm:px-8 lg:px-10 xl:px-14"><div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage:`linear-gradient(180deg,rgba(255,255,255,.93),rgba(255,255,255,.73) 38%,rgba(245,248,252,.97)),url(${images.light})`}}/><div className="relative z-10 flex min-h-full flex-1 flex-col"><Brand dark={false}/><div className="flex flex-1 flex-col items-center justify-center py-8"><div className="mb-4 hidden w-full max-w-[520px] lg:block"><span className="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-[#1457E6] shadow-sm"><Truck size={13}/>Global freight network</span></div>{signUpCard}</div><Trust dark={false}/><Footer dark={false}/></div></section> : <section className="relative flex min-h-[100dvh] flex-col overflow-hidden bg-[#071B49] px-5 py-6 sm:px-8 lg:px-10 xl:px-14"><div className="absolute inset-0 bg-cover bg-center" style={{backgroundImage:`linear-gradient(180deg,rgba(7,27,73,.72),rgba(7,27,73,.62) 34%,rgba(7,27,73,.95)),url(${images.dark})`}}/><div className="absolute inset-0 opacity-20" style={{backgroundImage:'radial-gradient(circle at 20% 20%,rgba(255,255,255,.55) 0 1px,transparent 1px),radial-gradient(circle at 80% 70%,rgba(255,255,255,.4) 0 1px,transparent 1px)',backgroundSize:'38px 38px,52px 52px'}}/><div className="relative z-10 flex min-h-full flex-1 flex-col"><Brand dark/><div className="flex flex-1 flex-col items-center justify-center py-8"><div className="mb-4 hidden w-full max-w-[520px] lg:block"><span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-white/80"><Globe2 size={13}/>International logistics</span></div>{signInCard}</div><Trust dark/><Footer dark/></div></section>}{showSelfie&&<SelfieCapture onCapture={data=>{setProfileImage(data);setShowSelfie(false)}} onCancel={()=>setShowSelfie(false)}/>}<LegalModal isOpen={legal.isOpen} type={legal.type} onClose={()=>setLegal({isOpen:false,type:null})}/></div>;
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      
+      const response = await api.post('/auth/google', {
+        email: user.email,
+        name: user.displayName,
+        uid: user.uid,
+        idToken: await user.getIdToken()
+      });
+      
+      onLoginSuccess(response.data.token, user.phoneNumber || user.email || 'unknown');
+    } catch (err: any) {
+      setError('Google sign-in failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSignupSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setMessage('Performing Identity Verification (KYC)...');
+    await new Promise(r => setTimeout(r, 1200));
+    setMessage('Initializing AI fraud detection...');
+    await new Promise(r => setTimeout(r, 1200));
+    setMessage(null);
+
+    const formattedPhone = phoneNumber.trim();
+
+    if (formattedPhone.length < 10) {
+      setError('Please supply a valid contact phone number.');
+      setLoading(false);
+      return;
+    }
+
+    if (pin.length < 6) {
+      setError('Password must be at least 6 characters.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await api.post('/auth/register-pin', { 
+        phoneNumber: formattedPhone, 
+        email: email.trim() || `${formattedPhone}@transconet.com`,
+        pin: pin,
+        role: role 
+      });
+      
+      const { token } = response.data;
+      onLoginSuccess(token, formattedPhone);
+    } catch (err: any) {
+      setError((typeof err.response?.data?.error === 'object' ? JSON.stringify(err.response?.data?.error) : err.response?.data?.error) || 'Registration failed. Try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleForgotPasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setMessage(null);
+
+    const formattedEmail = email.trim();
+    if (!formattedEmail || !/^\S+@\S+\.\S+$/.test(formattedEmail)) {
+      setError('Please supply a valid email address.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // In a real app this would call: await api.post('/auth/forgot-password', { email: formattedEmail });
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+      setResetStep(2);
+      setMessage(`A secure reset token has been sent to ${formattedEmail}. Please check your inbox.`);
+    } catch (err: any) {
+      setError('Failed to process password recovery request.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResetPasswordSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setMessage(null);
+
+    if (resetToken.length < 5) {
+      setError('Please provide a valid reset token.');
+      setLoading(false);
+      return;
+    }
+    
+    if (newPassword.length < 6) {
+      setError('Your new password must be at least 6 characters.');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      // In a real app this would call: await api.post('/auth/reset-password', { email, token: resetToken, newPassword });
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+      setResetStep(3);
+      setMessage('Password successfully reset. You can now login with your new credentials.');
+      setTimeout(() => {
+        setIsForgotPasswordMode(false);
+        setResetStep(1);
+        setEmail('');
+        setResetToken('');
+        setNewPassword('');
+        setMessage(null);
+      }, 3000);
+    } catch (err: any) {
+      setError('Invalid or expired reset token.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const TikTokIcon = ({ size = 24, color = "currentColor", className = "" }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+      <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+    </svg>
+  );
+
+  if (isSignUpMode && signUpStep === 1) {
+    return (
+      <div className="min-h-[100dvh] w-full bg-slate-950 text-white flex items-center justify-center px-4 py-10">
+        <motion.div 
+          key="signup-step1"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="w-full max-w-3xl rounded-[32px] overflow-hidden border border-white/10 bg-slate-900/95 shadow-[0_40px_120px_rgba(0,0,0,0.35)]"
+        >
+          <div className="relative overflow-hidden bg-slate-950/90 px-6 py-8 sm:px-10">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.24),transparent_25%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.18),transparent_25%)] pointer-events-none" />
+            <div className="relative flex flex-col items-center text-center">
+              <span className="text-[11px] uppercase tracking-[0.35em] text-slate-400">Secure onboarding</span>
+              <h1 className="mt-4 text-3xl font-extrabold tracking-tight">Create your TransConet account</h1>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-300">Choose the role that matches your business and continue with a tailored setup flow.</p>
+            </div>
+          </div>
+
+          <div className="grid gap-4 bg-slate-950/95 px-4 py-6 sm:grid-cols-2 sm:px-6">
+            <button
+              type="button"
+              onClick={() => { setRole('SHIPPER'); setSignUpStep(2); }}
+              className="group rounded-[28px] border border-slate-800 bg-slate-900/90 p-6 text-left transition hover:border-brand-500 hover:bg-slate-800"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs uppercase tracking-[0.35em] text-slate-500">Shipper</span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 text-brand-400 transition group-hover:bg-brand-500 group-hover:text-white">
+                  <ArrowRight size={18} strokeWidth={2.5} />
+                </div>
+              </div>
+              <h2 className="mt-5 text-lg font-semibold text-white">Cargo Owner</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-400">Post loads, compare quotes, and manage shipments from a modern dashboard.</p>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => { setRole('TRANSPORTER'); setSignUpStep(2); }}
+              className="group rounded-[28px] border border-slate-800 bg-slate-900/90 p-6 text-left transition hover:border-brand-500 hover:bg-slate-800"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs uppercase tracking-[0.35em] text-slate-500">Transporter</span>
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 text-brand-400 transition group-hover:bg-brand-500 group-hover:text-white">
+                  <ArrowRight size={18} strokeWidth={2.5} />
+                </div>
+              </div>
+              <h2 className="mt-5 text-lg font-semibold text-white">Driver / Carrier</h2>
+              <p className="mt-3 text-sm leading-6 text-slate-400">Find loads, manage trips, and get paid faster with real-time tools.</p>
+            </button>
+          </div>
+
+          <div className="border-t border-white/10 bg-slate-950/90 px-6 py-5 sm:px-10 text-center">
+            <p className="text-sm text-slate-400">Complete your profile in the next step and access the freight network instantly.</p>
+          </div>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-[100dvh] w-full bg-slate-950 text-slate-100 flex items-center justify-center py-10 px-4">
+      <div className="w-full max-w-lg">
+        <div className="overflow-hidden rounded-[32px] border border-white/10 bg-slate-900/95 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+          <div className="bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),transparent_28%),radial-gradient(circle_at_top_right,_rgba(16,185,129,0.15),transparent_28%)] px-6 py-8 sm:px-8 sm:py-10">
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex flex-col items-start gap-3"
+            >
+              <span className="text-[11px] uppercase tracking-[0.35em] text-slate-400">Premium login</span>
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+                TransConet
+              </h1>
+              <p className="max-w-xl text-sm leading-6 text-slate-300">
+                Move freight smarter with a modern, mobile-first access experience for shippers and transporters.
+              </p>
+            </motion.div>
+          </div>
+
+          <div className="px-6 pb-8 sm:px-8 sm:pb-10 bg-white dark:bg-slate-950">
+            <div className="rounded-[28px] border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 p-6 shadow-sm">
+              <div className="text-center mb-6">
+                <p className="text-sm text-slate-500 dark:text-slate-400">Secure access with phone, PIN, or Google login.</p>
+              </div>
+
+              <div className="space-y-4">
+                {showSelfie && (
+                  <SelfieCapture 
+                    onCapture={(img) => { setProfileImage(img); setShowSelfie(false); }} 
+                    onCancel={() => setShowSelfie(false)} 
+                  />
+                )}
+
+                <AnimatePresence mode="wait">
+                  {isForgotPasswordMode ? (
+                    <motion.div
+                      key="forgot"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      transition={{ duration: 0.3 }}
+                      className="flex flex-col w-full h-full"
+                    >
+                      <div className="flex items-center gap-3 mb-6">
+                        <Button onClick={() => { setIsForgotPasswordMode(false); setResetStep(1); setError(null); setMessage(null); }} className="text-slate-900 p-2 rounded-full hover:bg-slate-100 dark:bg-slate-800 transition-colors">
+                          <ArrowRight size={20} className="rotate-180" />
+                        </Button>
+                        <div>
+                          <h2 className="text-[20px] font-bold text-slate-900 dark:text-white">Password Recovery</h2>
+                          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                            {resetStep === 1 
+                              ? "Enter your email address to receive a secure reset token." 
+                              : resetStep === 2
+                              ? "Enter the token sent to your email and your new password."
+                              : "Your password has been successfully reset."}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        {error && (
+                          <div className="bg-red-50 text-red-600 text-[12px] p-2.5 rounded-xl text-center border border-red-100 font-medium">
+                            {error && error ? ((error as any).message || JSON.stringify(error)) : error}
+                          </div>
+                        )}
+                        {message && (
+                          <div className="bg-emerald-50 text-emerald-700 text-[12px] p-2.5 rounded-xl text-center border border-emerald-100 font-medium">
+                            {message}
+                          </div>
+                        )}
+
+                        {resetStep === 1 ? (
+                          <form onSubmit={handleForgotPasswordSubmit} className="space-y-4">
+                            <label className="block text-[12px] font-bold text-slate-900 uppercase tracking-wider mb-1.5">Email Address</label>
+                            <input 
+                              type="email"
+                              placeholder="e.g. driver@transconet.com"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              className="w-full h-[54px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 text-[15px] font-medium text-slate-900 dark:text-slate-100 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all"
+                              required
+                            />
+
+                            <motion.button 
+                              whileTap={{ scale: 0.98 }}
+                              type="submit" 
+                              disabled={loading}
+                              className="w-full h-[54px] bg-brand-600 hover:bg-brand-700 rounded-2xl flex items-center justify-center transition-all disabled:opacity-70 text-white font-bold text-[15px] shadow-[0_4px_14px_rgba(37,99,235,0.25)]"
+                            >
+                              {loading ? <Loader2 className="animate-spin" size={22} /> : 'Send Reset Token'}
+                            </motion.button>
+                          </form>
+                        ) : resetStep === 2 ? (
+                          <form onSubmit={handleResetPasswordSubmit} className="space-y-4">
+                            <label className="block text-[12px] font-bold text-slate-900 uppercase tracking-wider mb-1.5">Reset Token</label>
+                            <input 
+                              type="text"
+                              placeholder="Enter token code"
+                              value={resetToken}
+                              onChange={(e) => setResetToken(e.target.value)}
+                              className="w-full h-[54px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl px-4 text-[15px] font-medium text-slate-900 dark:text-slate-100 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all"
+                              required
+                            />
+
+                            <div className="space-y-2">
+                              <label className="block text-[12px] font-bold text-slate-900 uppercase tracking-wider mb-1.5">New Password</label>
+                              <div className="relative">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                  <Lock size={18} className="text-slate-400 dark:text-slate-400" />
+                                </div>
+                                <input 
+                                  type={showPassword ? "text" : "password"}
+                                  maxLength={6} placeholder="Enter new password"
+                                  value={newPassword}
+                                  onChange={(e) => setNewPassword(e.target.value)}
+                                  className="w-full h-[54px] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl pl-11 pr-12 text-[15px] font-medium text-slate-900 dark:text-slate-100 focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all tracking-widest"
+                                  required
+                                />
+                                <Button 
+                                  type="button"
+                                  onClick={() => setShowPassword(!showPassword)}
+                                  className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 dark:text-slate-400 hover:text-slate-900"
+                                >
+                                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                </Button>
+                              </div>
+                            </div>
+
+                            <motion.button 
+                              whileTap={{ scale: 0.98 }}
+                              type="submit" 
+                              disabled={loading}
+                              className="w-full h-[54px] bg-brand-600 hover:bg-brand-700 rounded-2xl flex items-center justify-center transition-all disabled:opacity-70 text-white font-bold text-[15px] shadow-[0_4px_14px_rgba(37,99,235,0.25)]"
+                            >
+                              {loading ? <Loader2 className="animate-spin" size={22} /> : 'Reset Password'}
+                            </motion.button>
+                          </form>
+                        ) : (
+                          <div className="flex flex-col items-center justify-center mt-4 gap-4">
+                            <Check size={48} className="text-emerald-500" />
+                            <Button onClick={() => { setIsForgotPasswordMode(false); setResetStep(1); }} className="text-brand-600 font-bold hover:underline">
+                              Return to Login
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  ) : !isSignUpMode ? (
+                    <motion.div 
+                      key="signin"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="flex flex-col w-full h-full"
+                    >
+                      <form onSubmit={handleLoginSubmit} className="space-y-4 w-full">
+                        {error && (
+                          <div className="bg-red-50 text-red-600 text-[12px] p-2.5 rounded-xl text-center border border-red-100 font-medium">
+                            {error && error ? ((error as any).message || JSON.stringify(error)) : error}
+                          </div>
+                        )}
+                        {message && (
+                          <div className="bg-emerald-50 text-emerald-700 text-[12px] p-2.5 rounded-xl text-center border border-emerald-100 font-medium">
+                            {message}
+                          </div>
+                        )}
+
+                        <div className="relative group w-full">
+                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors">
+                            <Smartphone size={20} strokeWidth={2} />
+                          </div>
+                          <input 
+                            type="tel" 
+                            required
+                            placeholder="Mobile Number"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))}
+                            className="w-full h-[54px] pl-[3rem] pr-4 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 rounded-2xl text-[14px] focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium"
+                          />
+                        </div>
+
+                        <div className="relative group w-full">
+                          <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors">
+                            <Lock size={20} strokeWidth={2} />
+                          </div>
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            required
+                            value={pin}
+                            onChange={(e) => setPin(e.target.value)}
+                            maxLength={6}
+                            placeholder="Password"
+                            className="w-full h-[54px] pl-[3rem] pr-10 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700/60 rounded-2xl text-[14px] focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium"
+                          />
+                          <Button 
+                            type="button" 
+                            onClick={() => setShowPassword(!showPassword)} 
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-brand-600 transition-colors p-1.5"
+                          >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                          </Button>
+                        </div>
+
+                        <div className="flex items-center justify-between w-full text-sm">
+                          <label className="flex items-center gap-2 cursor-pointer group">
+                            <div className={`w-4 h-4 rounded-[4px] border flex items-center justify-center transition-colors ${rememberMe ? 'bg-brand-600 border-brand-600' : 'border-slate-300 bg-white dark:bg-slate-900 group-hover:border-brand-600'}`}>
+                              {rememberMe && <Check size={12} className="text-white" strokeWidth={3} />}
+                            </div>
+                            <input 
+                              type="checkbox" 
+                              className="hidden" 
+                              checked={rememberMe}
+                              onChange={(e) => setRememberMe(e.target.checked)}
+                            />
+                            <span className="text-slate-900 dark:text-slate-100 font-medium">Remember Me</span>
+                          </label>
+                          <Button type="button" onClick={() => { setIsForgotPasswordMode(true); setError(null); setMessage(null); }} className="text-brand-600 font-semibold hover:underline">Forgot Password?</Button>
+                        </div>
+
+                        <motion.button 
+                          whileTap={{ scale: 0.98 }}
+                          type="submit" 
+                          disabled={loading}
+                          className="w-full h-[54px] bg-brand-600 hover:bg-brand-700 rounded-[16px] flex items-center justify-center transition-all disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold text-[15px] shadow-[0_4px_14px_rgba(21,101,192,0.25)] overflow-hidden"
+                        >
+                          {loading ? <Loader2 className="animate-spin text-white" size={22} /> : (
+                            <>
+                              <span className="tracking-wide">Continue</span>
+                              <ArrowRight size={18} className="text-white absolute right-4" strokeWidth={2.5} />
+                            </>
+                          )}
+                        </motion.button>
+
+                        <div className="relative py-1">
+                          <div className="absolute inset-x-0 top-1/2 h-px bg-slate-200 dark:bg-slate-700" />
+                          <div className="relative flex justify-center">
+                            <span className="bg-white dark:bg-slate-950 px-3 text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">OR</span>
+                          </div>
+                        </div>
+
+                        <Button type="button" onClick={handleGoogleLogin} className="w-full h-[50px] bg-white dark:bg-slate-900 rounded-[20px] border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2.5 transition hover:bg-brand-50 shadow-sm text-slate-900 dark:text-slate-100">
+                          <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
+                          <span className="text-[14px] font-bold">Continue with Google</span>
+                        </Button>
+
+                        <div className="flex flex-col items-center justify-center gap-3 pt-3 text-sm text-slate-500 dark:text-slate-400">
+                          <div>
+                            Don't have an account?{' '}
+                            <Button type="button" onClick={() => { setIsSignUpMode(true); setSignUpStep(1); }} className="text-brand-600 font-semibold hover:underline">Sign Up</Button>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'terms'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><FileText size={12} /> Terms</Button>
+                            <span className="text-slate-400">•</span>
+                            <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'privacy'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><ShieldCheck size={12} /> Privacy</Button>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <a aria-label="LinkedIn" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><Linkedin size={15} strokeWidth={2} /></a>
+                            <a aria-label="Facebook" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><Facebook size={15} strokeWidth={2} /></a>
+                            <a aria-label="TikTok" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><TikTokIcon size={15} /></a>
+                            <a aria-label="Twitter" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><Twitter size={15} strokeWidth={2} /></a>
+                          </div>
+                        </div>
+                      </form>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      key="signup"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="flex flex-col w-full h-full"
+                    >
+                      <div className="text-center mb-6">
+                        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Create your account</h2>
+                        <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Finish sign-up details so we can personalize your experience.</p>
+                      </div>
+
+                      <div className="flex flex-col items-center justify-center mb-6 gap-3 relative">
+                        <input type="file" accept="image/*" className="hidden" ref={fileInputRef} onChange={(e) => { handleImageUpload(e); setShowProfileOptions(false); }} />
+                        <div className="relative group cursor-pointer" onClick={() => setShowProfileOptions(!showProfileOptions)}>
+                          <div className="w-[72px] h-[72px] bg-white dark:bg-slate-900 rounded-full overflow-hidden border border-slate-200 dark:border-slate-700 border-dashed flex items-center justify-center transition-all shadow-sm group-hover:border-brand-600">
+                            {profileImage ? <img src={profileImage} alt="Profile" className="w-full h-full object-cover" /> : <Camera className="w-6 h-6 text-slate-400 dark:text-slate-400 group-hover:text-brand-600" />}
+                          </div>
+                          <div className="absolute -bottom-1 -right-1 bg-brand-600 w-[24px] h-[24px] rounded-full flex items-center justify-center text-white border-[2px] border-white shadow-sm">
+                            <span className="text-[16px] leading-none pb-0.5 font-bold">+</span>
+                          </div>
+                        </div>
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">Upload profile photo</span>
+
+                        {showProfileOptions && (
+                          <div className="absolute top-full mt-2 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-2 z-10 flex flex-col gap-1 w-40 text-sm overflow-hidden">
+                            <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg text-slate-700 dark:text-slate-400 font-medium" onClick={() => { setShowSelfie(true); setShowProfileOptions(false); }}>
+                              <Camera size={16} /> Take Selfie
+                            </Button>
+                            <Button type="button" className="flex items-center gap-2 p-2 hover:bg-brand-50 cursor-pointer hover:shadow-sm rounded-lg text-slate-700 dark:text-slate-400 font-medium" onClick={() => { fileInputRef.current?.click(); setShowProfileOptions(false); }}>
+                              <UploadCloud size={16} /> Upload Photo
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+
+                      <form onSubmit={handleSignupSubmit} className="space-y-4 w-full">
+                        {error && <div className="bg-red-50 text-red-600 p-2 rounded-xl text-center border border-red-100 font-medium text-sm">{error && error ? ((error as any).message || JSON.stringify(error)) : error}</div>}
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          <div className="relative group">
+                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><UserRound size={16} strokeWidth={2} /></div>
+                            <input required placeholder="First Name" value={firstName} onChange={e => setFirstName(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium shadow-sm" />
+                          </div>
+                          <div className="relative group">
+                            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><UserRound size={16} strokeWidth={2} /></div>
+                            <input required placeholder="Last Name" value={lastName} onChange={e => setLastName(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium shadow-sm" />
+                          </div>
+                        </div>
+                        <div className="relative group">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                          </div>
+                          <input required type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium shadow-sm" />
+                        </div>
+                        <div className="relative group">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><Smartphone size={16} strokeWidth={2} /></div>
+                          <input required type="tel" placeholder="Mobile Number" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ''))} className="w-full h-[48px] pl-9 pr-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium font-mono shadow-sm" />
+                        </div>
+                        <div className="relative group">
+                          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 group-focus-within:text-brand-600 transition-colors"><Lock size={16} strokeWidth={2} /></div>
+                          <input type={showPassword ? "text" : "password"} required maxLength={6} placeholder="Password" value={pin} onChange={(e) => setPin(e.target.value)} className="w-full h-[48px] pl-9 pr-10 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-[13px] focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all text-slate-900 dark:text-slate-100 placeholder:text-slate-500 dark:placeholder:text-slate-400 font-medium font-mono shadow-sm" />
+                          <Button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-400 hover:text-brand-600 transition-colors p-1"><EyeOff size={16} /></Button>
+                        </div>
+                        <motion.button whileTap={{ scale: 0.98 }} type="submit" disabled={loading} className="w-full h-[50px] bg-brand-600 hover:bg-brand-700 rounded-xl flex items-center justify-center transition-all disabled:opacity-70 text-white font-bold text-[15px] cursor-pointer relative shadow-sm mt-1 overflow-hidden">
+                          {loading ? <Loader2 className="animate-spin text-white" size={22} /> : <><span className="tracking-wide">Sign Up</span><ArrowRight size={18} className="text-white absolute right-4" strokeWidth={2.5} /></>}
+                        </motion.button>
+
+                        <div className="relative py-1">
+                          <div className="absolute inset-x-0 top-1/2 h-px bg-slate-200 dark:bg-slate-700" />
+                          <div className="relative flex justify-center">
+                            <span className="bg-white dark:bg-slate-950 px-3 text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">OR</span>
+                          </div>
+                        </div>
+
+                        <Button type="button" onClick={handleGoogleLogin} className="w-full h-[50px] bg-white dark:bg-slate-900 rounded-[20px] border border-slate-200 dark:border-slate-700 flex items-center justify-center gap-2.5 hover:bg-brand-50 dark:hover:bg-slate-800 transition text-slate-900 dark:text-slate-100 shadow-sm">
+                          <svg viewBox="0 0 24 24" className="w-[18px] h-[18px]"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" /><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" /><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" /><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" /></svg>
+                          <span className="text-[14px] font-bold">Continue with Google</span>
+                        </Button>
+
+                        <div className="flex flex-col items-center justify-center gap-3 pt-3 text-sm text-slate-500 dark:text-slate-400">
+                          <div>
+                            Already have an account?{' '}
+                            <Button type="button" onClick={() => setIsSignUpMode(false)} className="text-brand-600 font-semibold hover:underline">Sign In</Button>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'terms'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><FileText size={12} /> Terms</Button>
+                            <span className="text-slate-400">•</span>
+                            <Button type="button" onClick={() => setLegalModal({isOpen: true, type: 'privacy'})} className="flex items-center gap-1 hover:text-brand-600 transition-colors"><ShieldCheck size={12} /> Privacy</Button>
+                          </div>
+                          <div className="flex items-center gap-3">
+                            <a aria-label="LinkedIn" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><Linkedin size={15} strokeWidth={2} /></a>
+                            <a aria-label="Facebook" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><Facebook size={15} strokeWidth={2} /></a>
+                            <a aria-label="TikTok" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><TikTokIcon size={15} /></a>
+                            <a aria-label="Twitter" href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition"><Twitter size={15} strokeWidth={2} /></a>
+                          </div>
+                        </div>
+                      </form>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <LegalModal 
+        isOpen={legalModal.isOpen} 
+        type={legalModal.type} 
+        onClose={() => setLegalModal({isOpen: false, type: null})} 
+      />
+    </div>
+  );
+ (Fix frontend build)
 }
+

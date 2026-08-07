@@ -1,7 +1,7 @@
 generator client {
-  provider        = "prisma-client-js"
+  provider = "prisma-client-js"
+  engineType = "client"
   previewFeatures = ["multiSchema", "postgresqlExtensions"]
-  binaryTargets   = ["native", "debian-openssl-3.0.x"]
 }
 
 datasource db {
@@ -1106,3 +1106,5 @@ enum TransactionStatus {
 
   @@schema("public")
 }
+
+
