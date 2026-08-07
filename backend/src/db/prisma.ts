@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from '../src/db';
 import { AsyncLocalStorage } from 'async_hooks';
 import { Pool } from 'pg';
 import { PrismaPg } from '@prisma/adapter-pg';
