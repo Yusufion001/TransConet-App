@@ -79,6 +79,13 @@ const {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+const [isMobilePortalOpen, setIsMobilePortalOpen] = useState(false);
+
+const [expoTunnelUrl, setExpoTunnelUrl] = useState(
+  window.location.origin
+);
+
+const [copied, setCopied] = useState(false);
 
   const [statusBarTime, setStatusBarTime] = useState('09:41');
   const [simulatedCarrier] = useState('MTN NG 5G');
@@ -93,7 +100,6 @@ const {
       hours = hours % 12;
       hours = hours ? hours : 12; // the hour '0' should be '12'
       setStatusBarTime(`${hours}:${minutes} ${ampm}`);
-    };
     updateTime();
     const interval = setInterval(updateTime, 15000); // Check every 15 seconds
     return () => clearInterval(interval);
