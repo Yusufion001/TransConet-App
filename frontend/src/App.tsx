@@ -608,8 +608,6 @@ const [copied, setCopied] = useState(false);
                 Done
               </button>
             </div>
-          </div>
-        </div>
       )}
       {isAuthenticated && (
         <FloatingNavHub 
