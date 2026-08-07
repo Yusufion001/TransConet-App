@@ -3,7 +3,7 @@ import request from 'supertest';
 import express from 'express';
 import loadRoutes from '../src/routes/loadRoutes';
 import paymentRoutes from '../src/routes/paymentRoutes';
-import { prisma } from '../src/db';
+import { prisma } from '../src/db/prisma';
 import jwt from 'jsonwebtoken';
 
 
