@@ -1,4 +1,11 @@
-import { useState } from 'react';
+import { parseJwt } from '../utils/jwt';
+const handleLoginSuccess = (token: string, phone: string) => {
+    ...
+};const handleRoleSwitched = (newToken: string, newRole: string) => {
+    ...
+};const handleLogout = () => {
+    ...
+};import { useState } from 'react';
 import api from '../api/client';
 
 export function useAuth() {
