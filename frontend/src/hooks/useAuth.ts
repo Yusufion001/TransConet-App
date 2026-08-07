@@ -1,110 +1,57 @@
-import { parseJwt } from '../utils/jwt'
+import { parseJwt } from '../utils/jwt';
 
+type UseAppAuthProps = {
+  login: (token: string, phone: string, email: string) => void;
+  logout: () => void;
+  setRole: (role: string) => void;
+  setActiveView: (view: string) => void;
+};
+
+export function useAppAuth({
+  login,
+  logout,
+  setRole,
+  setActiveView,
+}: UseAppAuthProps) {
   const handleLoginSuccess = (token: string, phone: string) => {
     localStorage.setItem('token', token);
     localStorage.setItem('tc_token', token);
     localStorage.setItem('userPhone', phone);
-    const payload = parseJwt(token);
-    login(token, phone, payload?.email || '');
-    const email = payload?.email || '';
-    if (email) {
-      localStorage.setItem('userEmail', email);
 
+    const payload = parseJwt(token);
+
+    login(token, phone, payload?.email || '');
+
+    if (payload?.email) {
+      localStorage.setItem('userEmail', payload.email);
     }
+
     setRole(payload?.role || 'CUSTOMER');
-  }
+  };
 
   const handleRoleSwitched = (newToken: string, newRole: string) => {
     localStorage.setItem('token', newToken);
     localStorage.setItem('tc_token', newToken);
+
     setRole(newRole);
 
     const payload = parseJwt(newToken);
-    const email = payload?.email || '';
-    if (email) {
-      localStorage.setItem('userEmail', email);
 
+    if (payload?.email) {
+      localStorage.setItem('userEmail', payload.email);
     }
+  };
 
-    const handleLogout = () => {
+  const handleLogout = () => {
     localStorage.clear();
     logout();
-
-
     setRole('CUSTOMER');
     setActiveView('dashboard');
-  }
-
-import { useState } from 'react';
-import api from '../api/client';
-
-export function useAuth() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const loginWithPin = async (phoneNumber: string, pin: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await api.post('/auth/login-pin', { phoneNumber, pin });
-      return response.data;
-    } catch (err: any) {
-      setError((typeof err.response?.data?.error === 'object' ? JSON.stringify(err.response?.data?.error) : err.response?.data?.error) || 'Login failed. Please check your credentials.');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const registerWithPin = async (phoneNumber: string, pin: string, email: string, role: string, fullName?: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await api.post('/auth/register-pin', { phoneNumber, pin, email, role, fullName });
-      return response.data;
-    } catch (err: any) {
-      setError((typeof err.response?.data?.error === 'object' ? JSON.stringify(err.response?.data?.error) : err.response?.data?.error) || 'Registration failed. Please try again.');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const resetPasswordRequest = async (email: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      // await api.post('/auth/forgot-password', { email });
-      await new Promise(resolve => setTimeout(resolve, 1500)); 
-    } catch (err: any) {
-      setError('Failed to process password recovery request.');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const resetPasswordConfirm = async (email: string, token: string, newPassword: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      // await api.post('/auth/reset-password', { email, token, newPassword });
-      await new Promise(resolve => setTimeout(resolve, 1500));
-    } catch (err: any) {
-      setError('Invalid or expired reset token.');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
   };
 
   return {
-    loginWithPin,
-    registerWithPin,
-    resetPasswordRequest,
-    resetPasswordConfirm,
-    loading,
-    error,
-    setError
+    handleLoginSuccess,
+    handleRoleSwitched,
+    handleLogout,
   };
 }
