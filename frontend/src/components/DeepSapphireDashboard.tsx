@@ -66,7 +66,7 @@ export default function DeepSapphireDashboard({
   }, []);
 
   return (
-    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F8FAFC] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <main className="tc-dashboard-main flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden">
         <PremiumHeader
           userPhone={userPhone}
@@ -76,22 +76,30 @@ export default function DeepSapphireDashboard({
           onNavigateToNetwork={onNavigateToNetwork}
         />
 
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
-          <div className="w-full px-3 pb-28 pt-3 sm:px-5 sm:pb-32 sm:pt-5 md:px-7">
-            <header className="border-b border-slate-200 pb-5 dark:border-slate-800">
-              <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700 dark:text-brand-400">Shipper Operations</p>
-              <h1 className="mt-1 text-2xl font-black tracking-tight text-slate-950 dark:text-white sm:text-3xl">Operations Hub</h1>
-              <p className="mt-1.5 max-w-2xl text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-                Manage your cargo, shipments, marketplace activity and freight tracking from one focused workspace.
-              </p>
-            </header>
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain scrollbar-none">
+          <div className="w-full px-4 pb-[calc(6rem+env(safe-area-inset-bottom))] pt-4 sm:px-5 sm:pb-32 sm:pt-5 md:px-7">
+            <section className="relative mb-5 overflow-hidden rounded-[22px] border border-slate-200 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.045)] dark:border-slate-800 dark:bg-slate-900 sm:mb-6" aria-labelledby="operations-hub-title">
+              <div className="absolute inset-y-0 right-0 w-[66%] bg-gradient-to-l from-blue-50 via-blue-50/35 to-transparent dark:from-brand-950/60 dark:via-brand-950/15 dark:to-transparent" />
+              <img
+                src="/images/transconet-global-hero.svg"
+                alt="Global cargo transport by road, sea and air"
+                className="pointer-events-none absolute bottom-0 right-[-5%] h-[92%] w-[62%] object-contain object-right-bottom opacity-95 sm:right-0 sm:h-full sm:w-[56%]"
+              />
+              <div className="relative z-10 min-h-[245px] max-w-[72%] p-5 sm:min-h-[270px] sm:max-w-[58%] sm:p-7 md:p-8">
+                <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700 dark:text-brand-400">Shipper Operations</p>
+                <h1 id="operations-hub-title" className="mt-2 text-[29px] font-black leading-tight tracking-[-0.025em] text-slate-950 dark:text-white sm:text-4xl">Operations Hub</h1>
+                <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-600 dark:text-slate-300 sm:text-base">
+                  Manage your cargo, shipments, marketplace activity and freight tracking from one focused workspace.
+                </p>
+              </div>
+            </section>
 
-            <section className="mt-4 grid w-full min-w-0 grid-cols-1 gap-3 sm:mt-5 sm:gap-4" aria-label="Shipper operations">
+            <section className="grid w-full min-w-0 grid-cols-1 gap-4" aria-label="Shipper operations">
               <div className="min-w-0 w-full">
                 <HeroFindLoadsCard onNavigateToNetwork={onNavigateToNetwork} />
               </div>
 
-              <div className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
+              <div className="grid min-w-0 grid-cols-1 gap-4 min-[390px]:grid-cols-2">
                 <div className="min-w-0">
                   <MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork} />
                 </div>
