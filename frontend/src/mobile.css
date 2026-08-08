@@ -1,0 +1,113 @@
+/* TransConet phone-first layout.
+   The production UI is designed for real Android/iOS phone viewports,
+   not a desktop simulator. */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  max-width: 100%;
+  height: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  overscroll-behavior-x: none;
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
+#root > div {
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* The old development-only simulator toolbar is not part of the mobile app. */
+@media (max-width: 767px) {
+  #root > div > div:nth-of-type(2) {
+    display: none !important;
+  }
+}
+
+/* The footer belongs to the old web workstation layout. */
+#root > div > footer {
+  display: none !important;
+}
+
+/* Keep the real app content edge-to-edge while preserving readable gutters. */
+#root > div > div[class*="flex-1"] {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+/* Prevent cards, forms and grids from creating horizontal overflow. */
+#root * {
+  min-width: 0;
+}
+
+#root img,
+#root video,
+#root canvas,
+#root iframe {
+  max-width: 100%;
+}
+
+/* Phone-safe fixed/floating controls. */
+.tc-floating-nav-hub {
+  right: 16px !important;
+  bottom: max(16px, env(safe-area-inset-bottom)) !important;
+}
+
+.tc-navigation-layer {
+  max-width: calc(100vw - 32px);
+}
+
+/* Give the scrollable app area enough room above the phone gesture bar. */
+#root [class*="overflow-y-auto"] {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Inputs remain readable and avoid iOS auto-zoom. */
+#root input,
+#root select,
+#root textarea {
+  font-size: 16px !important;
+}
+
+/* Comfortable touch targets for Android and iOS. */
+#root button,
+#root [role="button"] {
+  touch-action: manipulation;
+}
+
+@media (min-width: 768px) {
+  /* Even during browser development, keep the product canvas phone-shaped.
+     This is intentionally not a simulator frame; it is the actual app layout. */
+  #root > div {
+    width: 100%;
+    max-width: 430px;
+    margin-inline: auto;
+    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08);
+  }
+
+  body {
+    background: #e2e8f0;
+  }
+}
+
+@supports (padding: env(safe-area-inset-bottom)) {
+  .tc-mobile-safe-bottom {
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  }
+
+  .tc-mobile-safe-top {
+    padding-top: max(0px, env(safe-area-inset-top));
+  }
+}
