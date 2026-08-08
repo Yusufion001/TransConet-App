@@ -172,6 +172,11 @@ const [copied, setCopied] = useState(false);
 
     return (
       <div className="flex-1 flex flex-col bg-slate-50 dark:bg-slate-800  overflow-hidden relative">
+        <FloatingNavHub
+          activeRole={activeRole}
+          isAdminAuthorized={activeRole.includes('ADMIN')}
+          onLogout={handleLogout}
+        />
         {/* Mobile Device Header Inside Frame */}
         <header className="border-b border-slate-200 dark:border-slate-700  bg-white dark:bg-slate-900/95  backdrop-blur-md sticky top-0 z-30 px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2 select-none">
