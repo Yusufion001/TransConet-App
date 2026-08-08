@@ -1,119 +1,28 @@
-/* TransConet Brand Color System — UI/UX only
- * Royal Blue: #4169E1
- * This file changes presentation only; it does not affect routing, state,
- * authentication, API calls, permissions, or business logic.
- */
+/* TransConet Brand Color System — UI/UX only */
+:root { --tc-royal-blue:#4169E1; --tc-royal-blue-dark:#3157CF; --tc-royal-blue-light:#E8EEFF; }
 
-:root {
-  --tc-royal-blue: #4169E1;
-  --tc-royal-blue-dark: #3157CF;
-  --tc-royal-blue-light: #E8EEFF;
-}
+/* Global application surfaces are white. */
+.bg-slate-50,.bg-slate-100,.bg-slate-800,.bg-slate-900,.bg-slate-950,.bg-gray-50,.bg-gray-100,.bg-gray-800,.bg-gray-900,.bg-gray-950,.bg-zinc-900,.bg-zinc-950,.bg-neutral-900,.bg-neutral-950,.bg-blue-950,.bg-indigo-950 { background-color:#fff !important; }
+.dark .bg-slate-50,.dark .bg-slate-100,.dark .bg-slate-800,.dark .bg-slate-900,.dark .bg-slate-950,.dark .bg-gray-50,.dark .bg-gray-100,.dark .bg-gray-800,.dark .bg-gray-900,.dark .bg-gray-950,.dark .bg-zinc-900,.dark .bg-zinc-950,.dark .bg-neutral-900,.dark .bg-neutral-950,.dark .bg-blue-950,.dark .bg-indigo-950 { background-color:#fff !important; }
+.bg-white { background-color:#fff !important; }
 
-/* Global application surfaces are white. Dark utility classes no longer
- * turn the application into dark/navy panels. Primary controls still use
- * Royal Blue below. */
-.bg-slate-50,
-.bg-slate-100,
-.bg-slate-800,
-.bg-slate-900,
-.bg-slate-950,
-.bg-gray-50,
-.bg-gray-100,
-.bg-gray-800,
-.bg-gray-900,
-.bg-gray-950,
-.bg-zinc-900,
-.bg-zinc-950,
-.bg-neutral-900,
-.bg-neutral-950,
-.bg-blue-950,
-.bg-indigo-950 {
-  background-color: #fff !important;
-}
+.bg-brand-500,.bg-brand-600,.bg-brand-700,.bg-brand-800,.bg-brand-900 { background-color:var(--tc-royal-blue) !important; }
+.text-brand-500,.text-brand-600,.text-brand-700,.text-brand-800,.text-brand-900 { color:var(--tc-royal-blue) !important; }
+.border-brand-500,.border-brand-600,.border-brand-700,.border-brand-800,.border-brand-900 { border-color:var(--tc-royal-blue) !important; }
+.ring-brand-500,.ring-brand-600,.ring-brand-700,.ring-brand-800,.ring-brand-900 { --tw-ring-color:var(--tc-royal-blue) !important; }
+.hover\\:bg-brand-700:hover,.hover\\:bg-brand-800:hover,.hover\\:bg-brand-900:hover { background-color:var(--tc-royal-blue-dark) !important; }
+body { background:#fff !important; color:#172033; }
+input,select,textarea { background-color:#fff; }
+.tc-dashboard,.tc-dashboard-main { --tc-primary-brand:var(--tc-royal-blue); }
+.tc-navigation-layer,.tc-navigation-control { opacity:1 !important; visibility:visible !important; }
 
-.dark .bg-slate-50,
-.dark .bg-slate-100,
-.dark .bg-slate-800,
-.dark .bg-slate-900,
-.dark .bg-slate-950,
-.dark .bg-gray-50,
-.dark .bg-gray-100,
-.dark .bg-gray-800,
-.dark .bg-gray-900,
-.dark .bg-gray-950,
-.dark .bg-zinc-900,
-.dark .bg-zinc-950,
-.dark .bg-neutral-900,
-.dark .bg-neutral-950,
-.dark .bg-blue-950,
-.dark .bg-indigo-950 {
-  background-color: #fff !important;
-}
-
-.bg-white {
-  background-color: #fff !important;
-}
-
-/* Existing brand-blue controls retain the TransConet Royal Blue identity. */
-.bg-brand-500,
-.bg-brand-600,
-.bg-brand-700,
-.bg-brand-800,
-.bg-brand-900 {
-  background-color: var(--tc-royal-blue) !important;
-}
-
-.text-brand-500,
-.text-brand-600,
-.text-brand-700,
-.text-brand-800,
-.text-brand-900 {
-  color: var(--tc-royal-blue) !important;
-}
-
-.border-brand-500,
-.border-brand-600,
-.border-brand-700,
-.border-brand-800,
-.border-brand-900 {
-  border-color: var(--tc-royal-blue) !important;
-}
-
-.ring-brand-500,
-.ring-brand-600,
-.ring-brand-700,
-.ring-brand-800,
-.ring-brand-900 {
-  --tw-ring-color: var(--tc-royal-blue) !important;
-}
-
-.hover\\:bg-brand-700:hover,
-.hover\\:bg-brand-800:hover,
-.hover\\:bg-brand-900:hover {
-  background-color: var(--tc-royal-blue-dark) !important;
-}
-
-/* Readability / classic UI defaults. */
-body {
-  background: #fff !important;
-  color: #172033;
-}
-
-input,
-select,
-textarea {
-  background-color: #fff;
-}
-
-.tc-dashboard,
-.tc-dashboard-main {
-  --tc-primary-brand: var(--tc-royal-blue);
-}
-
-/* Floating navigation remains visibly above page content. */
-.tc-navigation-layer,
-.tc-navigation-control {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
+/* POST CARGO: neutral classic presentation only. No functionality/API/business logic changes. */
+.tc-cargo-form .text-brand-500,.tc-cargo-form .text-brand-600,.tc-cargo-form .text-brand-700,.tc-cargo-form .text-brand-800,.tc-cargo-form .text-brand-900 { color:#334155 !important; }
+.tc-cargo-form .bg-brand-500,.tc-cargo-form .bg-brand-600,.tc-cargo-form .bg-brand-700,.tc-cargo-form .bg-brand-800,.tc-cargo-form .bg-brand-900 { background-color:#334155 !important; }
+.tc-cargo-form .border-brand-500,.tc-cargo-form .border-brand-600,.tc-cargo-form .border-brand-700,.tc-cargo-form .border-brand-800,.tc-cargo-form .border-brand-900 { border-color:#cbd5e1 !important; }
+.tc-cargo-form .ring-brand-500,.tc-cargo-form .ring-brand-600,.tc-cargo-form .ring-brand-700,.tc-cargo-form .ring-brand-800,.tc-cargo-form .ring-brand-900 { --tw-ring-color:#cbd5e1 !important; }
+.tc-cargo-form h1 .text-brand-600,.tc-cargo-form h1 .text-brand-500,.tc-cargo-form h1 .text-brand-700,.tc-cargo-form h1 .text-brand-800,.tc-cargo-form h1 .text-brand-900 { color:#111827 !important; }
+.tc-cargo-form .text-blue-400,.tc-cargo-form .text-blue-500,.tc-cargo-form .text-blue-600,.tc-cargo-form .text-blue-700,.tc-cargo-form .text-indigo-400,.tc-cargo-form .text-indigo-500,.tc-cargo-form .text-indigo-600,.tc-cargo-form .text-indigo-700 { color:#475569 !important; }
+.tc-cargo-form .bg-blue-50,.tc-cargo-form .bg-blue-100,.tc-cargo-form .bg-indigo-50,.tc-cargo-form .bg-indigo-100 { background-color:#f8fafc !important; }
+.tc-cargo-form .border-blue-200,.tc-cargo-form .border-blue-300,.tc-cargo-form .border-blue-400,.tc-cargo-form .border-blue-500,.tc-cargo-form .border-indigo-200,.tc-cargo-form .border-indigo-300,.tc-cargo-form .border-indigo-400,.tc-cargo-form .border-indigo-500 { border-color:#cbd5e1 !important; }
+.tc-cargo-form input:focus,.tc-cargo-form select:focus,.tc-cargo-form textarea:focus,.tc-cargo-form button:focus-visible { border-color:#94a3b8 !important; --tw-ring-color:#cbd5e1 !important; }
