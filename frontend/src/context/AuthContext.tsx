@@ -1,72 +1,35 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '../supabaseClient';
-import { Session } from '@supabase/supabase-js';
+import React, { createContext, useContext } from 'react';
+import { useAuthStore } from '../store/authStore';
 
-type UserRole = 'owner' | 'admin' | 'shipper' | 'transporter' | null;
+type UserRole = 'owner' | 'admin' | 'shipper' | 'transporter' | 'customer' | null;
 
 type AuthContextType = {
-  session: Session | null;
+  session: null;
   role: UserRole;
-  isLoading: boolean;
+  isLoading: false;
 };
 
-const AuthContext = createContext<AuthContextType>({ session: null, role: null, isLoading: true });
+const AuthContext = createContext<AuthContextType>({
+  session: null,
+  role: null,
+  isLoading: false,
+});
 
+/** Compatibility provider. Backend JWT/Zustand is the application auth authority. */
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [session, setSession] = useState<Session | null>(null);
-  const [role, setRole] = useState<UserRole>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    try {
-      supabase.auth.getSession().then(({ data: { session } }) => {
-        setSession(session);
-        if (session?.user) {
-          fetchUserRole(session.user.id);
-        } else {
-          setIsLoading(false);
-        }
-      }).catch(err => {
-        setIsLoading(false);
-      });
-
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-        setSession(session);
-        if (session?.user) {
-          fetchUserRole(session.user.id);
-        } else {
-          setRole(null);
-          setIsLoading(false);
-        }
-      });
-      return () => subscription?.unsubscribe();
-    } catch (err) {
-      setIsLoading(false);
-    }
-  }, []);
-
-  const fetchUserRole = async (userId: string) => {
-    try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', userId)
-        .single();
-
-      if (!error && data) {
-        setRole(data.role as UserRole);
-      } else {
-        // console.error('Error fetching role:', error);
-      }
-    } catch (err) {
-      // console.error('Failed to fetch role', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const activeRole = useAuthStore((state) => state.activeRole);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   return (
-    <AuthContext.Provider value={{ session, role, isLoading }}>
+    <AuthContext.Provider
+      value={{
+        session: null,
+        role: isAuthenticated
+          ? (String(activeRole || 'customer').toLowerCase() as UserRole)
+          : null,
+        isLoading: false,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
