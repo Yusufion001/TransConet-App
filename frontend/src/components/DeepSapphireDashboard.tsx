@@ -11,6 +11,7 @@ import { NativeTrackingEngine } from '../utils/nativeTrackingEngine';
 
 interface DeepSapphireDashboardProps {
   onNavigateToNetwork?: () => void;
+  onNavigateToPostCargo?: () => void;
   onNavigateToAccount?: () => void;
   onNavigateToSupport?: () => void;
   userPhone?: string;
@@ -20,6 +21,7 @@ interface DeepSapphireDashboardProps {
 
 export default function DeepSapphireDashboard({
   onNavigateToNetwork,
+  onNavigateToPostCargo,
   onNavigateToAccount,
   onNavigateToSupport,
   userPhone = '0803XXXXXXX',
@@ -102,7 +104,7 @@ export default function DeepSapphireDashboard({
               </div>
               <div className="grid grid-cols-1 gap-2.5 min-[430px]:grid-cols-3">
                 <Button onClick={onNavigateToNetwork} className="min-h-12 justify-start rounded-xl bg-brand-600 px-4 text-left text-sm font-bold text-white hover:bg-brand-700"><PackageSearch size={18} className="mr-2.5" />Find Transport</Button>
-                <Button onClick={onNavigateToNetwork} variant="ghost" className="min-h-12 justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"><FileText size={18} className="mr-2.5 text-brand-600" />Post / manage cargo</Button>
+                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-12 justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"><FileText size={18} className="mr-2.5 text-brand-600" />Post Cargo</Button>
                 <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-12 justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"><MapPinned size={18} className="mr-2.5 text-emerald-600" />Track shipment</Button>
               </div>
             </section>

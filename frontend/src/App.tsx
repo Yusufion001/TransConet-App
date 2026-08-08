@@ -189,6 +189,7 @@ export default function App() {
             ) : dashboardViews.includes(activeView) && activeRole !== 'TRANSPORTER' ? (
               <DeepSapphireDashboard
                 onNavigateToNetwork={() => setActiveView('network')}
+                onNavigateToPostCargo={() => setActiveView('post-load')}
                 onNavigateToAccount={() => setActiveView('account')}
                 onNavigateToSupport={handleNavigateToSupportWithHighlight}
                 userPhone={userPhone}
