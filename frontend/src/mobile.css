@@ -1,5 +1,5 @@
 /* TransConet phone-first production layout.
-   The product is designed for real Android/iOS phone viewports.
+   The product is designed for real Android/iOS phone and tablet viewports.
    There is no desktop simulator or artificial phone frame. */
 
 html,
@@ -31,7 +31,6 @@ body {
   overflow: hidden;
 }
 
-/* One consistent UI type system across Shipper, Transporter and Admin. */
 #root,
 #root * {
   font-family: inherit !important;
@@ -45,27 +44,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* The old development-only simulator toolbar is not part of the mobile app. */
 @media (max-width: 767px) {
   #root > div > div:nth-of-type(2) {
     display: none !important;
   }
 }
 
-/* The footer belongs to the old web workstation layout. */
 #root > div > footer {
   display: none !important;
 }
 
-/* Keep the application shell edge-to-edge. */
 #root > div > div[class*="flex-1"] {
   width: 100%;
   max-width: none;
   min-width: 0;
 }
 
-/* The dashboard is a single-column phone layout. Every dashboard card must
-   consume the available viewport width instead of inheriting a desktop grid. */
 #root .tc-dashboard,
 #root .tc-dashboard-main,
 #root .tc-dashboard-grid {
@@ -92,9 +86,6 @@ body {
   min-width: 0;
 }
 
-/* Shipper Cargo Posting: preserve the existing form and API behaviour while
-   presenting the information as a classic two-column grid on wider screens.
-   :has() scopes this safely to the cargo form by its existing name field. */
 @supports selector(form:has(input[name="name"])) {
   form:has(input[name="name"]) {
     width: 100%;
@@ -119,7 +110,6 @@ body {
   }
 }
 
-/* Prevent cards, forms and grids from creating horizontal overflow. */
 #root * {
   min-width: 0;
   box-sizing: border-box;
@@ -132,7 +122,6 @@ body {
   max-width: 100%;
 }
 
-/* Phone-safe fixed/floating controls. */
 .tc-floating-nav-hub {
   right: max(16px, env(safe-area-inset-right)) !important;
   bottom: max(16px, env(safe-area-inset-bottom)) !important;
@@ -142,27 +131,22 @@ body {
   max-width: calc(100vw - 32px);
 }
 
-/* Give the scrollable app area enough room above the phone gesture bar. */
 #root [class*="overflow-y-auto"] {
   padding-bottom: max(16px, env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
 }
 
-/* Inputs remain readable and avoid iOS auto-zoom. */
 #root input,
 #root select,
 #root textarea {
   font-size: 16px !important;
 }
 
-/* Comfortable touch targets for Android and iOS. */
 #root button,
 #root [role="button"] {
   touch-action: manipulation;
 }
 
-/* Mobile typography: keep headings and labels readable without letting
-   desktop-sized text force horizontal overflow. */
 @media (max-width: 767px) {
   #root h1,
   #root h2,
@@ -177,20 +161,10 @@ body {
   #root h3 { font-size: clamp(1.05rem, 5vw, 1.3rem); line-height: 1.2; }
   #root h4 { font-size: clamp(0.95rem, 4.2vw, 1.15rem); line-height: 1.25; }
 
-  #root p,
-  #root label,
-  #root li,
-  #root td,
-  #root th {
-    overflow-wrap: anywhere;
-  }
-
   #root .text-3xl { font-size: 1.65rem !important; line-height: 1.1 !important; }
   #root .text-2xl { font-size: 1.45rem !important; line-height: 1.15 !important; }
   #root .text-xl { font-size: 1.2rem !important; line-height: 1.2 !important; }
 
-  /* Cargo posting becomes one column on phones, while retaining the grid
-     arrangement on tablets/desktops. */
   @supports selector(form:has(input[name="name"])) {
     form:has(input[name="name"]) {
       max-width: none;
@@ -210,13 +184,58 @@ body {
     }
   }
 
-  /* Compact horizontal padding used by legacy desktop cards. */
   #root .p-8 { padding: 1rem !important; }
   #root .px-8 { padding-inline: 1rem !important; }
   #root .md\:p-8 { padding: 1rem !important; }
 }
 
-/* Never constrain the production app to a desktop-sized centered canvas. */
+/* Tablet tier: a larger touch-first workspace, not a desktop website. */
+@media (min-width: 600px) and (max-width: 1024px) {
+  #root .tc-dashboard-main {
+    padding-left: 0;
+  }
+
+  #root .tc-dashboard .tc-shipper-hero {
+    border-radius: 16px;
+  }
+
+  #root .tc-dashboard p {
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  #root .tc-dashboard h1 {
+    font-size: clamp(1.8rem, 4vw, 2.25rem);
+    line-height: 1.12;
+  }
+
+  #root .tc-dashboard h2 {
+    font-size: clamp(1.35rem, 3vw, 1.65rem);
+    line-height: 1.2;
+  }
+
+  #root .tc-dashboard h3 {
+    font-size: clamp(1.15rem, 2.5vw, 1.35rem);
+  }
+
+  #root .tc-dashboard .tc-shipper-hero img {
+    right: 0;
+  }
+
+  #root .tc-dashboard [class*="min-h-\[220px\]"],
+  #root .tc-dashboard [class*="min-h-\[250px\]"] {
+    min-height: 230px;
+  }
+
+  /* Cargo posting stays a comfortable two-column form on tablets. */
+  @supports selector(form:has(input[name="name"])) {
+    form:has(input[name="name"]) > div:nth-of-type(2) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+  }
+}
+
 @media (min-width: 768px) {
   #root > div {
     width: 100%;
