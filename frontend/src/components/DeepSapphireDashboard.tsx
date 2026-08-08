@@ -68,6 +68,14 @@ export default function DeepSapphireDashboard({
 
   return (
     <div className="flex h-full min-h-0 w-full min-w-0 flex-col overflow-hidden bg-[#f7f8fa] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <PremiumHeader
+        userPhone={userPhone}
+        userRole={userRole}
+        onNavigateToAccount={onNavigateToAccount}
+        onNavigateToSupport={onNavigateToSupport}
+        onNavigateToNetwork={onNavigateToNetwork}
+      />
+
       <header className="shrink-0 border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
         <div className="mx-auto w-full max-w-7xl px-4 pb-4 pt-4 sm:px-6 lg:px-8">
           <div className="flex items-start justify-between gap-3">
@@ -166,30 +174,21 @@ export default function DeepSapphireDashboard({
             <div className="grid gap-3 sm:grid-cols-3">
               <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Shipment visibility</p>
-                    <p className="mt-2 text-xl font-black">Live</p>
-                  </div>
+                  <div><p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Shipment visibility</p><p className="mt-2 text-xl font-black">Live</p></div>
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400"><MapPinned size={16} /></span>
                 </div>
                 <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Track active freight from one reference.</p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Verified capacity</p>
-                    <p className="mt-2 text-xl font-black">Network</p>
-                  </div>
+                  <div><p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Verified capacity</p><p className="mt-2 text-xl font-black">Network</p></div>
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-brand-600 dark:bg-brand-500/10 dark:text-brand-400"><Truck size={16} /></span>
                 </div>
                 <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Connect with transport providers through the marketplace.</p>
               </div>
               <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900">
                 <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Priority service</p>
-                    <p className="mt-2 text-xl font-black">Boost</p>
-                  </div>
+                  <div><p className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Priority service</p><p className="mt-2 text-xl font-black">Boost</p></div>
                   <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-500/10 dark:text-amber-400"><Rocket size={16} /></span>
                 </div>
                 <p className="mt-2 text-xs leading-5 text-slate-500 dark:text-slate-400">Promote urgent cargo for faster matching.</p>
@@ -202,8 +201,6 @@ export default function DeepSapphireDashboard({
           </section>
         </div>
       </main>
-
-      <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork} />
 
       <BoostLoadModal isOpen={isBoostModalOpen} onClose={() => setIsBoostModalOpen(false)} />
       {showLiveMap && <TrackingDashboard shipmentId={showLiveMap} onClose={() => setShowLiveMap(null)} />}
