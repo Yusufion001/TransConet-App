@@ -127,7 +127,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }} transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-              className="tc-navigation-layer absolute bottom-24 left-4 right-4 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-200 dark:border-slate-800 max-h-[70vh] overflow-y-auto overflow-hidden"
+              className="tc-navigation-layer absolute bottom-[calc(5.5rem+env(safe-area-inset-bottom))] left-3 right-3 md:left-auto md:right-6 md:w-80 bg-white dark:bg-slate-900 rounded-[20px] p-4 shadow-sm border border-slate-200 dark:border-slate-800 max-h-[70vh] overflow-y-auto overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 px-2">
@@ -158,7 +158,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="tc-floating-nav-hub tc-navigation-layer fixed z-[200] cursor-grab active:cursor-grabbing" style={{ bottom: 20, right: 20 }}>
+      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="tc-floating-nav-hub tc-navigation-layer fixed z-[200] cursor-grab active:cursor-grabbing" style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom))', right: 16 }}>
         <motion.button
           type="button"
           aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
