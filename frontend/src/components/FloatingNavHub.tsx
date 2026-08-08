@@ -5,6 +5,7 @@ import { Button } from './ui/Button';
 import { DarkModeToggle } from './DarkModeToggle';
 import TransConetAIAssistant from './TransConetAIAssistant';
 import MyBids from './MyBids';
+import { MobileBottomNav } from './MobileBottomNav';
 import './navigation-visibility.css';
 import {
   LayoutDashboard, Search, PackagePlus, Briefcase, Truck, Navigation,
@@ -98,6 +99,14 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
   return (
     <>
       <TransConetAIAssistant role={activeRole === 'TRANSPORTER' ? 'TRANSPORTER' : 'CUSTOMER'} />
+
+      <MobileBottomNav
+        items={navItems}
+        activeId={selectedNavId}
+        onSelect={handleNavClick}
+        onMore={() => setIsOpen(true)}
+      />
+
       <AnimatePresence>
         {showMyBids && activeRole === 'TRANSPORTER' && (
           <motion.div
@@ -118,6 +127,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
             </motion.div>
           </motion.div>
         )}
+
         {isOpen && (
           <motion.div
             initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
@@ -158,7 +168,17 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div drag dragMomentum={false} dragElastic={0.1} onDragStart={() => setIsDragging(true)} onDragEnd={handleDragEnd} animate={position} className="tc-floating-nav-hub tc-navigation-layer fixed z-[200] cursor-grab active:cursor-grabbing" style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom))', right: 16 }}>
+
+      <motion.div
+        drag
+        dragMomentum={false}
+        dragElastic={0.1}
+        onDragStart={() => setIsDragging(true)}
+        onDragEnd={handleDragEnd}
+        animate={position}
+        className="tc-floating-nav-hub tc-navigation-layer fixed z-[200] hidden cursor-grab active:cursor-grabbing md:block"
+        style={{ bottom: 'calc(1rem + env(safe-area-inset-bottom))', right: 16 }}
+      >
         <motion.button
           type="button"
           aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}

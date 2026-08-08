@@ -25,26 +25,28 @@ export const PremiumHeader = ({ userPhone, userRole, onNavigateToAccount, onNavi
   }, [showProfile]);
 
   return (
-    <header className="sticky top-0 z-40 mb-3 flex w-full min-w-0 items-center justify-between gap-2 border-b border-slate-200 bg-white/80 px-3 py-2.5 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/80 sm:mb-5 sm:px-4 sm:py-3 md:mb-7 md:px-6 md:py-4">
-      <div className="flex min-w-0 items-center gap-2 sm:gap-3">
-        <div className="flex shrink-0 items-center justify-center"><Package size={22} className="text-brand-600 sm:h-7 sm:w-7" strokeWidth={2.5} /></div>
+    <header className="sticky top-0 z-40 flex h-[68px] w-full min-w-0 shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/95 sm:h-[74px] sm:px-5 md:px-6">
+      <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-700 dark:bg-brand-900 dark:text-brand-300 sm:h-10 sm:w-10">
+          <Package size={21} strokeWidth={2.4} />
+        </div>
         <div className="min-w-0">
-          <h1 className="truncate text-[14px] font-display font-bold tracking-tight text-slate-900 dark:text-white sm:text-lg md:text-xl">TransConet</h1>
-          <p className="truncate text-[8px] font-medium uppercase tracking-wide text-slate-500 sm:text-[10px] md:text-xs">{userRole.replace('_', ' ')} Portal</p>
+          <h1 className="truncate font-display text-[18px] font-bold tracking-[-0.02em] text-[#0B1F44] dark:text-white sm:text-[20px]">TransConet</h1>
+          <p className="truncate text-[8px] font-bold uppercase tracking-[0.14em] text-slate-400 sm:text-[9px]">{userRole.replace('_', ' ')} Portal</p>
         </div>
       </div>
 
-      <div className="flex shrink-0 items-center gap-1 sm:gap-2.5">
-        <Button variant="ghost" size="icon" onClick={() => onNavigateToSupport?.()} className="relative h-10 w-10 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white sm:h-11 sm:w-11" title="Notifications" aria-label="Notifications">
-          <Bell size={18} strokeWidth={2} />
+      <div className="flex shrink-0 items-center gap-1.5 sm:gap-2.5">
+        <Button variant="ghost" size="icon" onClick={() => onNavigateToSupport?.()} className="relative h-10 w-10 rounded-full text-slate-500 hover:bg-slate-50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-white sm:h-11 sm:w-11" title="Notifications" aria-label="Notifications">
+          <Bell size={19} strokeWidth={2} />
           {unreadCount > 0 && <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-red-500 dark:border-slate-950" />}
         </Button>
 
         <div className="relative" ref={dropdownRef}>
-          <button onClick={() => setShowProfile(!showProfile)} aria-expanded={showProfile} aria-haspopup="menu" className="flex h-10 items-center gap-1 rounded-full border border-slate-200 px-2 py-1 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800 sm:h-11 sm:gap-2 sm:pr-3">
-            <span className="flex items-center justify-center text-slate-600 dark:text-slate-300"><UserRound size={18} strokeWidth={2} /></span>
-            <span className="hidden max-w-[140px] truncate text-[13px] font-semibold text-slate-700 dark:text-slate-300 md:block">{userPhone}</span>
-            <ChevronDown size={14} className="hidden text-slate-400 md:block" />
+          <button onClick={() => setShowProfile(!showProfile)} aria-expanded={showProfile} aria-haspopup="menu" className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 transition hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700 sm:h-11 sm:w-auto sm:gap-2 sm:px-2.5 sm:pr-3">
+            <span className="flex items-center justify-center"><UserRound size={18} strokeWidth={2} /></span>
+            <span className="hidden max-w-[140px] truncate text-[13px] font-semibold md:block">{userPhone}</span>
+            <ChevronDown size={14} className="hidden text-slate-400 sm:block md:block" />
           </button>
 
           <AnimatePresence>
