@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import { rlsContext } from '../db/prisma';
 import { config } from '../config/env';
 
-// Extend the Express Request type to attach user session data safely
 declare global {
   namespace Express {
     interface Request {
@@ -18,23 +17,26 @@ declare global {
 }
 
 interface TokenPayload {
-  userId: string;
-  role: 'CUSTOMER' | 'TRANSPORTER' | 'ADMIN';
+  sub?: string;
+  id?: string;
+  userId?: string;
+  role?: string;
   phoneNumber?: string;
+  phone?: string;
   email?: string;
 }
 
-// 1. Verify Authentication Token Middleware
-export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
-  // Pull token from the standard Authorization header
-  const authHeader = req.headers['authorization'];
-  let token = authHeader && authHeader.split(' ')[1];
+const USER_ROLES = new Set(['CUSTOMER', 'TRANSPORTER', 'ADMIN']);
 
-  if (!token && req.cookies?.token) {
+/** Verifies application JWTs and establishes the RLS request context. */
+export const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  let token: string | undefined;
+
+  if (authHeader?.startsWith('Bearer ')) {
+    token = authHeader.slice(7).trim();
+  } else if (req.cookies?.token) {
     token = req.cookies.token;
-  }
-  if (!token && req.cookies?.admin_token) {
-    token = req.cookies.admin_token;
   }
 
   if (!token) {
@@ -42,31 +44,29 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
   }
 
   try {
-    let decoded: any;
-    decoded = jwt.verify(token, config.jwtSecret) as TokenPayload;
-    
-    // Map legacy 'SHIPPER' role to 'CUSTOMER'
-    let effectiveRole = decoded.role || 'CUSTOMER';
+    const decoded = jwt.verify(token, config.jwtSecret) as TokenPayload;
+    const userId = decoded.sub || decoded.userId || decoded.id;
+    let effectiveRole = String(decoded.role || 'CUSTOMER').toUpperCase();
+
     if (effectiveRole === 'SHIPPER') effectiveRole = 'CUSTOMER';
 
-    // Attach user session properties to the request object safely
+    if (!userId || !USER_ROLES.has(effectiveRole)) {
+      return res.status(403).json({ error: 'Invalid application authentication claims.' });
+    }
+
     req.user = {
-      id: decoded.sub || decoded.userId || decoded.adminId || decoded.id,
-      role: effectiveRole,
+      id: userId,
+      role: effectiveRole as 'CUSTOMER' | 'TRANSPORTER' | 'ADMIN',
       phoneNumber: decoded.phoneNumber || decoded.phone,
       email: decoded.email,
     };
-    
-    // Wrap next() inside the RLS Async Context so database queries have automatic secure context
-    rlsContext.run({ userId: req.user.id, role: req.user.role }, () => {
-      next(); // Pass control to the controller function
-    });
-  } catch (error) {
+
+    rlsContext.run({ userId, role: effectiveRole }, () => next());
+  } catch {
     return res.status(403).json({ error: 'Session expired or invalid token signature. Re-authenticate.' });
   }
 };
 
-// 2. Role-Based Access Control Gatekeeper
 export const requireRole = (allowedRoles: ('CUSTOMER' | 'TRANSPORTER' | 'ADMIN')[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
     if (!req.user) {
