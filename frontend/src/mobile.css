@@ -12,11 +12,13 @@ body,
   min-height: 100dvh;
   margin: 0;
   overflow-x: hidden;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
   overscroll-behavior-x: none;
   -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
   touch-action: manipulation;
 }
 
@@ -27,6 +29,24 @@ body {
   min-height: 100dvh;
   height: 100dvh;
   overflow: hidden;
+}
+
+/* Keep typography consistent across shipper, transporter and administration
+   surfaces without changing their business functionality. */
+#root,
+#root button,
+#root input,
+#root select,
+#root textarea {
+  font-family: inherit;
+}
+
+#root button,
+#root input,
+#root select,
+#root textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* The old development-only simulator toolbar is not part of the mobile app. */
@@ -76,6 +96,33 @@ body {
   min-width: 0;
 }
 
+/* Shipper Cargo Posting: preserve the existing form and API behaviour while
+   presenting the information as a classic two-column grid on wider screens.
+   :has() scopes this safely to the cargo form by its existing name field. */
+@supports selector(form:has(input[name="name"])) {
+  form:has(input[name="name"]) {
+    width: 100%;
+    max-width: 1100px;
+    margin-inline: auto;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) > div:first-child,
+  form:has(input[name="name"]) > div:nth-of-type(2) > div:nth-last-child(1) {
+    grid-column: 1 / -1;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) > div:nth-child(4),
+  form:has(input[name="name"]) > div:nth-of-type(2) > div:nth-child(9) {
+    grid-column: 1 / -1;
+  }
+}
+
 /* Prevent cards, forms and grids from creating horizontal overflow. */
 #root * {
   min-width: 0;
@@ -116,6 +163,61 @@ body {
 #root button,
 #root [role="button"] {
   touch-action: manipulation;
+}
+
+/* Mobile typography: keep headings and labels readable without letting
+   desktop-sized text force horizontal overflow. */
+@media (max-width: 767px) {
+  #root h1,
+  #root h2,
+  #root h3,
+  #root h4 {
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+
+  #root h1 { font-size: clamp(1.5rem, 7vw, 2rem); line-height: 1.1; }
+  #root h2 { font-size: clamp(1.25rem, 6vw, 1.6rem); line-height: 1.15; }
+  #root h3 { font-size: clamp(1.05rem, 5vw, 1.3rem); line-height: 1.2; }
+  #root h4 { font-size: clamp(0.95rem, 4.2vw, 1.15rem); line-height: 1.25; }
+
+  #root p,
+  #root label,
+  #root li,
+  #root td,
+  #root th {
+    overflow-wrap: anywhere;
+  }
+
+  #root .text-3xl { font-size: 1.65rem !important; line-height: 1.1 !important; }
+  #root .text-2xl { font-size: 1.45rem !important; line-height: 1.15 !important; }
+  #root .text-xl { font-size: 1.2rem !important; line-height: 1.2 !important; }
+
+  /* Cargo posting becomes one column on phones, while retaining the grid
+     arrangement on tablets/desktops. */
+  @supports selector(form:has(input[name="name"])) {
+    form:has(input[name="name"]) {
+      max-width: none;
+      padding: 12px !important;
+      margin: 0;
+    }
+
+    form:has(input[name="name"]) > div:nth-of-type(2) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+      padding: 14px !important;
+      border-radius: 18px;
+    }
+
+    form:has(input[name="name"]) > div:nth-of-type(2) > * {
+      grid-column: 1 / -1 !important;
+    }
+  }
+
+  /* Compact horizontal padding used by legacy desktop cards. */
+  #root .p-8 { padding: 1rem !important; }
+  #root .px-8 { padding-inline: 1rem !important; }
+  #root .md\:p-8 { padding: 1rem !important; }
 }
 
 /* Never constrain the production app to a desktop-sized centered canvas. */
