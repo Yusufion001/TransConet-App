@@ -31,14 +31,10 @@ body {
   overflow: hidden;
 }
 
-/* Keep typography consistent across shipper, transporter and administration
-   surfaces without changing their business functionality. */
+/* One consistent UI type system across Shipper, Transporter and Admin. */
 #root,
-#root button,
-#root input,
-#root select,
-#root textarea {
-  font-family: inherit;
+#root * {
+  font-family: inherit !important;
 }
 
 #root button,
