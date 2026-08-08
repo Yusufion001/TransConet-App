@@ -15,6 +15,8 @@ interface AuthState {
   setOnboarded: (status: boolean) => void;
 }
 
+const normalizeRole = (role: unknown): string => String(role || 'CUSTOMER').trim().toUpperCase();
+
 const isValidToken = (token: string | null): boolean => {
   if (!token) return false;
   try {
@@ -30,7 +32,10 @@ const isValidToken = (token: string | null): boolean => {
 const clearAuthStorage = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('tc_token');
+  localStorage.removeItem('admin_token');
+  localStorage.removeItem('userPhone');
   localStorage.removeItem('userEmail');
+  localStorage.removeItem('activeRole');
   localStorage.removeItem('userVerified');
 };
 
@@ -47,50 +52,43 @@ export const useAuthStore = create<AuthState>()(
       login: (token, phone, email) => {
         if (!isValidToken(token)) {
           clearAuthStorage();
-          set({
-            isAuthenticated: false,
-            token: null,
-            userPhone: null,
-            userEmail: null,
-            activeRole: 'CUSTOMER',
-          });
+          set({ isAuthenticated: false, token: null, userPhone: null, userEmail: null, activeRole: 'CUSTOMER' });
           return;
         }
 
+        const payload = parseJwt(token);
+        const role = normalizeRole(payload?.role);
+        const resolvedEmail = email || payload?.email || '';
+
         localStorage.setItem('token', token);
         localStorage.setItem('tc_token', token);
-        if (email) localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPhone', phone);
+        localStorage.setItem('activeRole', role);
+        if (resolvedEmail) localStorage.setItem('userEmail', resolvedEmail);
 
-        const payload = parseJwt(token);
-        set({
-          isAuthenticated: true,
-          token,
-          userPhone: phone,
-          userEmail: email,
-          activeRole: payload?.role || 'CUSTOMER',
-        });
+        set({ isAuthenticated: true, token, userPhone: phone, userEmail: resolvedEmail, activeRole: role });
       },
 
       logout: () => {
         clearAuthStorage();
-        set({
-          isAuthenticated: false,
-          token: null,
-          userPhone: null,
-          userEmail: null,
-          activeRole: 'CUSTOMER',
-          isOnboarded: false,
-        });
+        set({ isAuthenticated: false, token: null, userPhone: null, userEmail: null, activeRole: 'CUSTOMER', isOnboarded: false });
       },
 
-      setRole: (role) => set({ activeRole: role }),
-      setOnboarded: (status) => set({ isOnboarded: status }),
+      setRole: (role) => {
+        const normalized = normalizeRole(role);
+        localStorage.setItem('activeRole', normalized);
+        set({ activeRole: normalized });
+      },
+
+      setOnboarded: (status) => {
+        localStorage.setItem('onboarded', String(status));
+        set({ isOnboarded: status });
+      },
     }),
     {
       name: 'auth-storage',
       onRehydrateStorage: () => (state) => {
         if (!state) return;
-
         const persistedToken = state.token || localStorage.getItem('tc_token') || localStorage.getItem('token');
         if (!isValidToken(persistedToken)) {
           state.logout();
@@ -98,13 +96,22 @@ export const useAuthStore = create<AuthState>()(
         }
 
         const payload = parseJwt(persistedToken);
+        const role = normalizeRole(payload?.role || state.activeRole);
+        const phone = state.userPhone || localStorage.getItem('userPhone');
+        const email = state.userEmail || payload?.email || localStorage.getItem('userEmail');
+
         state.token = persistedToken;
         state.isAuthenticated = true;
-        state.activeRole = payload?.role || state.activeRole || 'CUSTOMER';
-        state.userEmail = state.userEmail || payload?.email || localStorage.getItem('userEmail');
+        state.activeRole = role;
+        state.userPhone = phone;
+        state.userEmail = email;
+        state.isOnboarded = localStorage.getItem('onboarded') === 'true' || state.isOnboarded;
+
         localStorage.setItem('token', persistedToken);
         localStorage.setItem('tc_token', persistedToken);
-        if (state.userEmail) localStorage.setItem('userEmail', state.userEmail);
+        localStorage.setItem('activeRole', role);
+        if (phone) localStorage.setItem('userPhone', phone);
+        if (email) localStorage.setItem('userEmail', email);
       },
     }
   )
