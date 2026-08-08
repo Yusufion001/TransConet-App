@@ -57,12 +57,14 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
   };
 
   const customerNavItems = [
-    { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
-    { id: 'network', label: 'Find Transport', icon: Search },
-    { id: 'post-load', label: 'Post Load', icon: PackagePlus },
-    { id: 'track-shipments', label: 'Track Shipments', icon: MapPin },
-    { id: 'settings', label: 'Settings', icon: Settings },
-    { id: 'support', label: 'Help & Support', icon: HelpCircle },
+    { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
+    { id: 'shipments', label: 'Shipments', icon: PackagePlus },
+    { id: 'network', label: 'Marketplace', icon: Briefcase },
+    { id: 'track-shipments', label: 'Track', icon: MapPin },
+    { id: 'post-load', label: 'Post Cargo', icon: PackagePlus },
+    { id: 'boost-load', label: 'Boost Load', icon: Rocket },
+    { id: 'settings', label: 'Account', icon: Settings },
+    { id: 'support', label: 'Support', icon: HelpCircle },
     ...(isAdminAuthorized ? [{ id: 'admin', label: 'Admin', icon: Shield }] : [])
   ];
 
@@ -141,27 +143,27 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100 dark:border-slate-800 px-2">
-                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-400 uppercase tracking-wider">Menu</h3>
+                <h3 className="text-sm font-bold text-slate-800 dark:text-slate-400 uppercase tracking-wider">More</h3>
                 <div className="flex items-center gap-2">
                   <DarkModeToggle />
-                  <Button aria-label="Action" onClick={() => setIsOpen(false)} className="p-1.5 bg-transparent text-slate-500 dark:text-slate-400 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                  <Button aria-label="Close menu" onClick={() => setIsOpen(false)} className="p-1.5 bg-transparent text-slate-500 dark:text-slate-400 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
                     <X size={16} strokeWidth={2.5} />
                   </Button>
                 </div>
               </div>
-              <nav aria-label="Primary navigation" className="tc-navigation-layer grid grid-cols-3 gap-2">
-                {navItems.map((item) => {
+              <nav aria-label="Primary navigation" className="tc-navigation-layer grid grid-cols-2 gap-2">
+                {navItems.slice(4).map((item) => {
                   const isActive = selectedNavId === item.id;
                   const Icon = item.icon;
                   return (
-                    <motion.button key={item.id} type="button" whileTap={{ scale: 0.9 }} onClick={() => handleNavClick(item.id)} className={`tc-navigation-control relative flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-colors ${isActive ? 'text-brand-600' : 'bg-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}>
-                      {isActive && <motion.div layoutId="nav-highlight" className="absolute inset-0 bg-brand-50 dark:bg-brand-900/30 rounded-2xl z-0" initial={false} transition={{ type: 'spring', stiffness: 400, damping: 30 }} />}
-                      <div className="relative z-10 flex flex-col items-center gap-2"><Icon aria-hidden="true" size={24} strokeWidth={isActive ? 2.5 : 2} className="shrink-0" /><span className="text-[10px] font-bold text-center leading-tight">{item.label}</span></div>
+                    <motion.button key={item.id} type="button" whileTap={{ scale: 0.97 }} onClick={() => handleNavClick(item.id)} className={`tc-navigation-control relative flex min-h-16 items-center gap-3 rounded-xl px-3 text-left transition-colors ${isActive ? 'text-brand-700' : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800'}`}>
+                      {isActive && <motion.div layoutId="nav-highlight" className="absolute inset-0 bg-brand-50 dark:bg-brand-900/30 rounded-xl z-0" initial={false} />}
+                      <div className="relative z-10 flex items-center gap-3"><Icon aria-hidden="true" size={20} strokeWidth={isActive ? 2.5 : 2} className="shrink-0" /><span className="text-sm font-semibold">{item.label}</span></div>
                     </motion.button>
                   );
                 })}
-                <motion.button type="button" whileTap={{ scale: 0.9 }} onClick={handleLogoutClick} className="tc-navigation-control flex flex-col items-center justify-center gap-2 p-3 rounded-2xl transition-all bg-transparent text-red-500 hover:bg-red-50 hover:text-red-600">
-                  <LogOut size={24} strokeWidth={2} /><span className="text-[10px] font-bold text-center leading-tight">Logout</span>
+                <motion.button type="button" whileTap={{ scale: 0.97 }} onClick={handleLogoutClick} className="tc-navigation-control flex min-h-16 items-center gap-3 rounded-xl px-3 text-left text-red-500 hover:bg-red-50 hover:text-red-600">
+                  <LogOut size={20} strokeWidth={2} /><span className="text-sm font-semibold">Logout</span>
                 </motion.button>
               </nav>
             </motion.div>
