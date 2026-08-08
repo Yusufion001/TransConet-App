@@ -15,7 +15,7 @@ import { redis } from '../utils/redis';
 
 // Distributed Redis used for login attempts
 const MAX_FAILED_ATTEMPTS = 5;
-const LOCKOUT_DURATION_MS = 160 * 1000; // 15 minutes
+const LOCKOUT_DURATION_MS = 15 * 60 * 1000; // 15 minutes
 
 export const requestOTP = async (req: Request, res: Response): Promise<any> => {
   try {
