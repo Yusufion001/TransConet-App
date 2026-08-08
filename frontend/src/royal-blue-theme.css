@@ -10,9 +10,17 @@
   --tc-royal-blue-light: #E8EEFF;
 }
 
-/* Replace deep navy/sapphire surfaces with the TransConet Royal Blue brand. */
+/* Global application surfaces are white. Dark utility classes no longer
+ * turn the application into dark/navy panels. Primary controls still use
+ * Royal Blue below. */
+.bg-slate-50,
+.bg-slate-100,
+.bg-slate-800,
 .bg-slate-900,
 .bg-slate-950,
+.bg-gray-50,
+.bg-gray-100,
+.bg-gray-800,
 .bg-gray-900,
 .bg-gray-950,
 .bg-zinc-900,
@@ -21,24 +29,33 @@
 .bg-neutral-950,
 .bg-blue-950,
 .bg-indigo-950 {
-  background-color: var(--tc-royal-blue) !important;
+  background-color: #fff !important;
 }
 
-/* Dark-mode utility surfaces that previously rendered as deep blue/navy. */
-.dark\\:bg-slate-900,
-.dark\\:bg-slate-950,
-.dark\\:bg-gray-900,
-.dark\\:bg-gray-950,
-.dark\\:bg-zinc-900,
-.dark\\:bg-zinc-950,
-.dark\\:bg-neutral-900,
-.dark\\:bg-neutral-950,
-.dark\\:bg-blue-950,
-.dark\\:bg-indigo-950 {
-  background-color: var(--tc-royal-blue) !important;
+.dark .bg-slate-50,
+.dark .bg-slate-100,
+.dark .bg-slate-800,
+.dark .bg-slate-900,
+.dark .bg-slate-950,
+.dark .bg-gray-50,
+.dark .bg-gray-100,
+.dark .bg-gray-800,
+.dark .bg-gray-900,
+.dark .bg-gray-950,
+.dark .bg-zinc-900,
+.dark .bg-zinc-950,
+.dark .bg-neutral-900,
+.dark .bg-neutral-950,
+.dark .bg-blue-950,
+.dark .bg-indigo-950 {
+  background-color: #fff !important;
 }
 
-/* Existing brand-blue controls use the same exact Royal Blue identity. */
+.bg-white {
+  background-color: #fff !important;
+}
+
+/* Existing brand-blue controls retain the TransConet Royal Blue identity. */
 .bg-brand-500,
 .bg-brand-600,
 .bg-brand-700,
@@ -71,29 +88,32 @@
   --tw-ring-color: var(--tc-royal-blue) !important;
 }
 
-/* Keep readable white foreground content on newly branded royal-blue surfaces. */
-.bg-slate-900 .text-white,
-.bg-slate-950 .text-white,
-.bg-gray-900 .text-white,
-.bg-gray-950 .text-white,
-.bg-zinc-900 .text-white,
-.bg-zinc-950 .text-white,
-.bg-neutral-900 .text-white,
-.bg-neutral-950 .text-white,
-.bg-blue-950 .text-white,
-.bg-indigo-950 .text-white {
-  color: #fff !important;
-}
-
-/* Hover states remain within the Royal Blue family. */
 .hover\\:bg-brand-700:hover,
 .hover\\:bg-brand-800:hover,
 .hover\\:bg-brand-900:hover {
   background-color: var(--tc-royal-blue-dark) !important;
 }
 
-/* Sapphire/deep-blue dashboard naming is presentation-only; keep the existing component intact. */
+/* Readability / classic UI defaults. */
+body {
+  background: #fff !important;
+  color: #172033;
+}
+
+input,
+select,
+textarea {
+  background-color: #fff;
+}
+
 .tc-dashboard,
 .tc-dashboard-main {
   --tc-primary-brand: var(--tc-royal-blue);
+}
+
+/* Floating navigation remains visibly above page content. */
+.tc-navigation-layer,
+.tc-navigation-control {
+  opacity: 1 !important;
+  visibility: visible !important;
 }
