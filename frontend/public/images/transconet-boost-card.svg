@@ -1,0 +1,25 @@
+<svg width="640" height="320" viewBox="0 0 640 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="road" x1="0" y1="160" x2="640" y2="160" gradientUnits="userSpaceOnUse"><stop stop-color="#0B1F44"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+    <linearGradient id="truck" x1="310" y1="120" x2="540" y2="250" gradientUnits="userSpaceOnUse"><stop stop-color="#60A5FA"/><stop offset="1" stop-color="#1D4ED8"/></linearGradient>
+  </defs>
+  <path d="M0 267C120 224 237 219 350 238C466 258 553 242 640 203V320H0V267Z" fill="#071832"/>
+  <path d="M0 267C123 228 244 226 357 244C470 263 557 247 640 211" stroke="#60A5FA" stroke-opacity="0.5" stroke-width="4"/>
+  <path d="M150 264C228 249 307 250 379 259C455 269 520 260 579 241" stroke="white" stroke-opacity="0.55" stroke-width="5" stroke-dasharray="30 22"/>
+  <circle cx="92" cy="82" r="42" fill="#60A5FA" opacity="0.14"/>
+  <circle cx="92" cy="82" r="20" fill="#60A5FA" opacity="0.18"/>
+  <path d="M83 87L92 71L101 87L92 93L83 87Z" fill="#93C5FD"/>
+  <path d="M302 146H488L537 176V234H302V146Z" fill="url(#truck)"/>
+  <path d="M488 146H526L570 178V234H488V146Z" fill="#BFDBFE"/>
+  <path d="M315 158H472V219H315V158Z" fill="#1E40AF" opacity="0.65"/>
+  <path d="M495 158H522L552 181V214H495V158Z" fill="#DBEAFE"/>
+  <rect x="337" y="172" width="34" height="26" rx="3" fill="#F59E0B"/>
+  <rect x="377" y="172" width="34" height="26" rx="3" fill="#FBBF24"/>
+  <rect x="417" y="172" width="34" height="26" rx="3" fill="#F59E0B"/>
+  <circle cx="350" cy="239" r="27" fill="#020617"/>
+  <circle cx="350" cy="239" r="12" fill="#94A3B8"/>
+  <circle cx="513" cy="239" r="27" fill="#020617"/>
+  <circle cx="513" cy="239" r="12" fill="#94A3B8"/>
+  <path d="M544 111C574 91 600 88 623 96" stroke="#93C5FD" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <path d="M617 91L629 97L617 103" stroke="#93C5FD" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
