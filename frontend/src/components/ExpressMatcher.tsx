@@ -167,18 +167,20 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
         </div>
       )}
 
-      {/* Header */}
-      <div className="text-center space-y-3">
-        <span className="bg-brand-50/50 text-brand-600 border border-brand-100 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest inline-flex items-center gap-1.5">
-          <Handshake size={12} /> Direct Connection & Free Negotiation
-        </span>
-        <h1 className="text-2xl font-black text-slate-900 dark:text-white  tracking-tight">
-          {mode === 'SHIPPER' ? 'Find a Verified Truck Instantly' : 'Grab Premium Haulage Jobs Instantly'}
-        </h1>
-        <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400  max-w-md mx-auto">
-          Get a baseline price match, negotiate directly on the platform, or call to finalize your arrangement.
-        </p>
-      </div>
+      {/* Shipper post-cargo uses the dedicated form as its page header. */}
+      {!(mode === 'SHIPPER' && shipperSubMode === 'POST') && (
+        <div className="text-center space-y-3">
+          <span className="bg-brand-50/50 text-brand-600 border border-brand-100 text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest inline-flex items-center gap-1.5">
+            <Handshake size={12} /> Direct Connection & Free Negotiation
+          </span>
+          <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+            {mode === 'SHIPPER' ? 'Find a Verified Truck Instantly' : 'Grab Premium Haulage Jobs Instantly'}
+          </h1>
+          <p className="text-sm leading-relaxed text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            Get a baseline price match, negotiate directly on the platform, or call to finalize your arrangement.
+          </p>
+        </div>
+      )}
 
       {/* User Type Toggle - Segmented Control */}
       <div className="flex justify-center">
@@ -255,7 +257,7 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
           }}
         />
       ) : !activeMatch && matchOptions.length === 0 ? (
-        <div className="bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  rounded-[20px] p-6 shadow-sm  overflow-hidden">
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm overflow-hidden">
           <form onSubmit={handleActionSubmit} className={`grid grid-cols-1 md:grid-cols-${mode === 'SHIPPER' ? '3' : '2'} gap-4 items-end`}>
             <div>
               <LocationAutocomplete 
