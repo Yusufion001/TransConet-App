@@ -1,8 +1,8 @@
 import React from 'react';
-import { MoreHorizontal } from 'lucide-react';
+import { MoreHorizontal, type LucideIcon } from 'lucide-react';
 import { motion } from 'motion/react';
 
-type NavItem = { id: string; label: string; icon: React.ComponentType<{ size?: number; strokeWidth?: number; className?: string }> };
+type NavItem = { id: string; label: string; icon: LucideIcon };
 
 interface MobileBottomNavProps {
   items: NavItem[];
