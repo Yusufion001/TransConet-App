@@ -1,20 +1,20 @@
-/* TransConet phone-first layout.
-   The production UI is designed for real Android/iOS phone viewports,
-   not a desktop simulator. */
+/* TransConet phone-first production layout.
+   The product is designed for real Android/iOS phone viewports.
+   There is no desktop simulator or artificial phone frame. */
 
 html,
 body,
 #root {
   width: 100%;
-  min-width: 320px;
-  max-width: 100%;
+  min-width: 0;
+  max-width: none;
   height: 100%;
   min-height: 100dvh;
+  margin: 0;
   overflow-x: hidden;
 }
 
 body {
-  margin: 0;
   overscroll-behavior-x: none;
   -webkit-text-size-adjust: 100%;
   touch-action: manipulation;
@@ -22,6 +22,8 @@ body {
 
 #root > div {
   width: 100%;
+  max-width: none;
+  min-width: 0;
   min-height: 100dvh;
   height: 100dvh;
   overflow: hidden;
@@ -39,8 +41,36 @@ body {
   display: none !important;
 }
 
-/* Keep the real app content edge-to-edge while preserving readable gutters. */
+/* Keep the application shell edge-to-edge. */
 #root > div > div[class*="flex-1"] {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+/* The dashboard is a single-column phone layout. Every dashboard card must
+   consume the available viewport width instead of inheriting a desktop grid. */
+#root .tc-dashboard,
+#root .tc-dashboard-main,
+#root .tc-dashboard-grid {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin-inline: 0;
+  box-sizing: border-box;
+}
+
+#root .tc-dashboard-main {
+  padding-inline: 0;
+}
+
+#root .tc-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+#root .tc-dashboard-grid > * {
   width: 100%;
   max-width: none;
   min-width: 0;
@@ -49,6 +79,7 @@ body {
 /* Prevent cards, forms and grids from creating horizontal overflow. */
 #root * {
   min-width: 0;
+  box-sizing: border-box;
 }
 
 #root img,
@@ -60,7 +91,7 @@ body {
 
 /* Phone-safe fixed/floating controls. */
 .tc-floating-nav-hub {
-  right: 16px !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
   bottom: max(16px, env(safe-area-inset-bottom)) !important;
 }
 
@@ -87,18 +118,17 @@ body {
   touch-action: manipulation;
 }
 
+/* Never constrain the production app to a desktop-sized centered canvas. */
 @media (min-width: 768px) {
-  /* Even during browser development, keep the product canvas phone-shaped.
-     This is intentionally not a simulator frame; it is the actual app layout. */
   #root > div {
     width: 100%;
-    max-width: 430px;
-    margin-inline: auto;
-    box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.08);
+    max-width: none;
+    margin-inline: 0;
+    box-shadow: none;
   }
 
   body {
-    background: #e2e8f0;
+    background: transparent;
   }
 }
 
