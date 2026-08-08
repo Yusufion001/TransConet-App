@@ -5,24 +5,26 @@ import jwt from 'jsonwebtoken';
 import { prisma } from '../../db/prisma';
 import crypto from 'crypto';
 import { sendEmailAlert } from '../../services/emailService';
-import { supabase } from '../../supabaseClient'; // Make sure this is correct
 
 const LOCKOUT_DURATION_MS = 15 * 60 * 1000;
 const MAX_FAILED_ATTEMPTS = 5;
+const OTP_TTL_MS = 5 * 60 * 1000;
+const MAX_OTP_ATTEMPTS = 3;
 
-// In-memory store for OTPs
-const otpStore = new Map<string, { code: string, expires: number, failedAttempts: number }>();
+// In-memory OTP state is retained for compatibility with the current deployment.
+// It is intentionally short-lived and bounded by the login flow.
+const otpStore = new Map<string, { code: string; expires: number; failedAttempts: number }>();
 
-const verifyCaptcha = (token: string) => {
-  return token && token.length > 5;
-}
+const verifyCaptcha = (token?: string) => Boolean(token && token.length > 5);
+
+const genericAuthError = 'Invalid credentials or insufficient permissions.';
 
 export const adminLogin = async (req: Request, res: Response): Promise<any> => {
   try {
-    const { email, password, captchaToken, mfaToken } = req.body;
-    console.log('Login attempt:', { email, origin: req.headers.origin });
+    const { email, password, captchaToken, mfaToken } = req.body || {};
+    const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
 
-    if (!email || !password) {
+    if (!normalizedEmail || typeof password !== 'string' || !password) {
       return res.status(400).json({ error: 'Email and password are required.' });
     }
 
@@ -34,167 +36,138 @@ export const adminLogin = async (req: Request, res: Response): Promise<any> => {
     const userAgent = req.headers['user-agent'] || 'unknown';
     const deviceId = req.headers['x-device-id']?.toString() || 'unknown';
 
-    // 1. Authenticate using Supabase Auth (or fallback if in dev)
-    let authenticatedEmail = email;
-    // We will attempt Supabase Auth. If it fails, we return generic error.
-    // NOTE: To support the auto-created info@transconet.com if it doesn't exist in Supabase,
-    // we might need to handle it.
-    /*
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error || !data.user) {
-         // Generic message
-         return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-      }
-    } catch (err) {
-       return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-    }
-    */
-    
-    // As we can't guarantee Supabase Auth is fully set up with info@transconet.com for this preview environment,
-    // we will check via prisma.AdminUser. The prompt requires us to use Supabase Auth conceptually or literally.
-    // I will include the literal check wrapped in a try/catch, but provide fallback to bcrypt if Supabase fails (since this is preview).
-    // WAIT: The prompt explicitly said: "Authenticate the user using Supabase Auth. Query the admin_users table...". I will do exactly that, but fallback to bcrypt for robustness in preview.
-    
-    let isSupabaseAuthed = false;
-    try {
-        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-        if (!error && data.user) {
-            isSupabaseAuthed = true;
-        }
-    } catch(e) {}
+    const admin = await prisma.adminUser.findUnique({ where: { email: normalizedEmail } });
 
-    // 2. Query the admin_users table
-    let admin = await prisma.adminUser.findUnique({ where: { email } });
-
-    // Super Admin auto-create
-    if (!admin && email === 'info@transconet.com') {
-      const pwd = await bcrypt.hash(password, 10);
-      admin = await prisma.adminUser.create({ 
-        data: { email, passwordHash: pwd, role: 'SUPER_ADMIN', isActive: true } 
-      });
-    }
-
+    // Do not auto-create privileged accounts during authentication. Account
+    // provisioning must happen through an explicit administrative/bootstrap path.
     if (!admin) {
-      return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
+      return res.status(401).json({ error: genericAuthError });
     }
-    
-    let isMatch = isSupabaseAuthed;
-    if (!isMatch) {
-       isMatch = await bcrypt.compare(password, admin.passwordHash);
+
+    if (admin.lockoutUntil && admin.lockoutUntil > new Date()) {
+      return res.status(401).json({ error: genericAuthError });
     }
-    
-    if (email === 'info@transconet.com' && process.env.NODE_ENV !== 'production') {
-      isMatch = true; // Always allow in preview for Super Admin
+
+    const validRoles = new Set([
+      'SUPER_ADMIN',
+      'ADMIN',
+      'PLATFORM_ADMIN',
+      'FINANCE_ADMIN',
+      'SUPPORT_ADMIN',
+      'COMPLIANCE_ADMIN',
+      'DEVELOPER'
+    ]);
+
+    if (!admin.isActive || !validRoles.has(String(admin.role))) {
+      return res.status(401).json({ error: genericAuthError });
     }
+
+    const isMatch = await bcrypt.compare(password, admin.passwordHash);
 
     if (!isMatch) {
       const attempts = admin.failedLoginAttempts + 1;
-      let lockoutUntil = null;
-      if (attempts >= MAX_FAILED_ATTEMPTS) {
-        lockoutUntil = new Date(Date.now() + LOCKOUT_DURATION_MS);
-        // Alert Super Admin
-        await sendEmailAlert(
-          'yusufjimoh969@gmail.com',
-          'Security Alert: Multiple Failed Login Attempts',
-          `<p>More than 5 failed login attempts detected for admin: ${admin.email}. Account temporarily locked.</p>`
-        );
-      }
+      const lockoutUntil = attempts >= MAX_FAILED_ATTEMPTS
+        ? new Date(Date.now() + LOCKOUT_DURATION_MS)
+        : null;
+
       await prisma.adminUser.update({
         where: { id: admin.id },
         data: { failedLoginAttempts: attempts, lockoutUntil }
       });
-      return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-    }
 
-    // 3. Confirm active, role, not suspended
-    if (!admin.isActive) {
-      await sendEmailAlert(
-          'yusufjimoh969@gmail.com',
-          'Security Alert: Disabled Admin Attempted Login',
-          `<p>A disabled admin account (${admin.email}) attempted to log in.</p>
-           <p>IP: ${ipAddress}</p>`
-      );
-      return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-    }
-
-    if (admin.lockoutUntil && admin.lockoutUntil > new Date()) {
-      return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-    }
-
-    const validRoles = ['SUPER_ADMIN', 'ADMIN', 'PLATFORM_ADMIN', 'FINANCE_ADMIN', 'SUPPORT_ADMIN', 'COMPLIANCE_ADMIN', 'DEVELOPER'];
-    if (!validRoles.includes(admin.role)) {
-      return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-    }
-
-    // 4. Generate OTP if not provided
-    if (!mfaToken) {
-       const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
-       const expires = Date.now() + 5 * 60 * 1000; // 5 minutes
-       otpStore.set(admin.id, { code: otpCode, expires, failedAttempts: 0 });
-       
-       try {
-         await sendEmailAlert(
-           'yusufjimoh969@gmail.com',
-           'Admin Login Attempt Approval',
-           `<p>An attempt to login to the TransConet Admin Portal was detected.</p>
-            <p><strong>Admin Email:</strong> ${admin.email}</p>
-            <p><strong>OTP Token:</strong> <span style="font-size: 1.5em; font-weight: bold; letter-spacing: 2px;">${otpCode}</span></p>
-            <p>If you did not initiate this login, please ignore this email.</p>`
-         );
-       } catch (err) {
-         console.error('Failed to send OTP email via Resend:', err);
-       }
-       return res.status(200).json({ requireMfa: true, message: 'OTP sent successfully.' }); // Masked message
-    }
-
-    // Verify MFA token
-    const storedOtp = otpStore.get(admin.id);
-    
-    if (!storedOtp || storedOtp.expires < Date.now()) {
-       return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
-    }
-    
-    if (storedOtp.code !== mfaToken) {
-        storedOtp.failedAttempts += 1;
-        if (storedOtp.failedAttempts >= 3) {
-            await sendEmailAlert(
-              'yusufjimoh969@gmail.com',
-              'Security Alert: Multiple Failed OTP Verifications',
-              `<p>Multiple failed OTP attempts for admin: ${admin.email}.</p>
-               <p>IP: ${ipAddress}</p>`
-            );
-            otpStore.delete(admin.id);
+      if (attempts >= MAX_FAILED_ATTEMPTS) {
+        try {
+          await sendEmailAlert(
+            'yusufjimoh969@gmail.com',
+            'Security Alert: Multiple Failed Login Attempts',
+            `<p>Multiple failed login attempts were detected for admin: ${admin.email}.</p><p>IP: ${ipAddress}</p>`
+          );
+        } catch (alertError) {
+          console.error('Failed to send failed-login alert:', alertError);
         }
-        return res.status(401).json({ error: 'Invalid credentials or insufficient permissions.' });
+      }
+
+      return res.status(401).json({ error: genericAuthError });
     }
-    
-    // Clear OTP after successful use
+
+    // A successful password check resets the failed-attempt counter only after
+    // all account-state checks above have passed.
+    if (!mfaToken) {
+      const otpCode = crypto.randomInt(100000, 1000000).toString();
+      otpStore.set(admin.id, {
+        code: otpCode,
+        expires: Date.now() + OTP_TTL_MS,
+        failedAttempts: 0
+      });
+
+      try {
+        await sendEmailAlert(
+          'yusufjimoh969@gmail.com',
+          'Admin Login Attempt Approval',
+          `<p>An attempt to log in to the TransConet Admin Portal was detected.</p>
+           <p><strong>Admin Email:</strong> ${admin.email}</p>
+           <p><strong>OTP Token:</strong> <span style="font-size: 1.5em; font-weight: bold; letter-spacing: 2px;">${otpCode}</span></p>
+           <p>If you did not initiate this login, please ignore this email.</p>`
+        );
+      } catch (err) {
+        console.error('Failed to send admin OTP email:', err);
+        return res.status(503).json({ error: 'Unable to complete administrator verification. Please try again.' });
+      }
+
+      return res.status(200).json({ requireMfa: true, message: 'OTP sent successfully.' });
+    }
+
+    const suppliedOtp = typeof mfaToken === 'string' ? mfaToken.trim() : '';
+    const storedOtp = otpStore.get(admin.id);
+
+    if (!storedOtp || storedOtp.expires < Date.now()) {
+      otpStore.delete(admin.id);
+      return res.status(401).json({ error: genericAuthError });
+    }
+
+    if (!/^\d{6}$/.test(suppliedOtp) || storedOtp.code !== suppliedOtp) {
+      storedOtp.failedAttempts += 1;
+      if (storedOtp.failedAttempts >= MAX_OTP_ATTEMPTS) {
+        otpStore.delete(admin.id);
+        try {
+          await sendEmailAlert(
+            'yusufjimoh969@gmail.com',
+            'Security Alert: Multiple Failed OTP Verifications',
+            `<p>Multiple failed OTP attempts for admin: ${admin.email}.</p><p>IP: ${ipAddress}</p>`
+          );
+        } catch (alertError) {
+          console.error('Failed to send OTP failure alert:', alertError);
+        }
+      }
+      return res.status(401).json({ error: genericAuthError });
+    }
+
     otpStore.delete(admin.id);
 
-    // Alert if new device or browser
     if (admin.lastLoginDeviceId && admin.lastLoginDeviceId !== deviceId) {
-       await sendEmailAlert(
-         'yusufjimoh969@gmail.com',
-         'Security Alert: New Device Login',
-         `<p>Admin ${admin.email} logged in from a new device or browser.</p>
-          <p>IP: ${ipAddress}</p>
-          <p>User Agent: ${userAgent}</p>`
-       );
+      try {
+        await sendEmailAlert(
+          'yusufjimoh969@gmail.com',
+          'Security Alert: New Device Login',
+          `<p>Admin ${admin.email} logged in from a new device or browser.</p><p>IP: ${ipAddress}</p><p>User Agent: ${userAgent}</p>`
+        );
+      } catch (alertError) {
+        console.error('Failed to send new-device alert:', alertError);
+      }
     }
 
     const sessionToken = crypto.randomBytes(32).toString('hex');
-    const expiresAt = new Date(Date.now() + 8 * 60 * 60 * 1000); // 8 hours absolute timeout
-    
-    await prisma.$transaction([
+    const expiresAt = new Date(Date.now() + 8 * 60 * 60 * 1000);
+
+    const result = await prisma.$transaction([
       prisma.adminUser.update({
         where: { id: admin.id },
-        data: { 
-           failedLoginAttempts: 0, 
-           lockoutUntil: null, 
-           lastLoginAt: new Date(),
-           lastLoginIp: ipAddress,
-           lastLoginDeviceId: deviceId
+        data: {
+          failedLoginAttempts: 0,
+          lockoutUntil: null,
+          lastLoginAt: new Date(),
+          lastLoginIp: ipAddress,
+          lastLoginDeviceId: deviceId
         }
       }),
       prisma.adminSession.create({
@@ -217,57 +190,55 @@ export const adminLogin = async (req: Request, res: Response): Promise<any> => {
       })
     ]);
 
-    const jwtToken = jwt.sign({ 
-       adminId: admin.id, 
-       role: admin.role, 
-       sessionToken 
-     }, config.adminJwtSecret, { expiresIn: '8h' });
+    const updatedAdmin = result[0];
+    const jwtToken = jwt.sign(
+      { adminId: updatedAdmin.id, role: updatedAdmin.role, sessionToken },
+      config.adminJwtSecret,
+      { expiresIn: '8h' }
+    );
 
-    res.cookie('admin_token', jwtToken, { 
-       httpOnly: true, 
-       secure: true, 
-       sameSite: 'none', 
-       maxAge: 8 * 60 * 60 * 1000 // 8 hours
-     });
-     
-    // Implementing Idle timeout of 15 minutes would typically be handled in middleware by checking last activity and sliding it.
-    // For now, setting standard session.
-    
+    res.cookie('admin_token', jwtToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 8 * 60 * 60 * 1000,
+      path: '/'
+    });
+
     return res.status(200).json({
       message: 'Admin login successful.',
       token: jwtToken,
       admin: {
-        id: admin.id,
-        email: admin.email,
-        role: admin.role
+        id: updatedAdmin.id,
+        email: updatedAdmin.email,
+        role: updatedAdmin.role
       }
     });
-
   } catch (error: any) {
-    console.error('Admin login error:', error.message);
+    console.error('Admin login error:', error?.message || error);
     return res.status(500).json({ error: 'Internal server error.' });
   }
 };
 
 export const adminLogout = async (req: Request, res: Response): Promise<any> => {
   try {
-    const adminReq = req as any; 
+    const adminReq = req as any;
     if (adminReq.adminSessionToken) {
-       await prisma.adminSession.deleteMany({
-         where: { token: adminReq.adminSessionToken }
-       });
-       await prisma.adminAuditLog.create({
-         data: {
-           adminUserId: adminReq.adminUser?.id,
-           action: 'LOGOUT',
-           ipAddress: req.ip || req.headers['x-forwarded-for']?.toString(),
-           userAgent: req.headers['user-agent']
-         }
-       });
+      await prisma.adminSession.deleteMany({ where: { token: adminReq.adminSessionToken } });
+      await prisma.adminAuditLog.create({
+        data: {
+          adminUserId: adminReq.adminUser?.id,
+          action: 'LOGOUT',
+          ipAddress: req.ip || req.headers['x-forwarded-for']?.toString() || 'unknown',
+          userAgent: req.headers['user-agent'] || 'unknown'
+        }
+      });
     }
-    res.clearCookie('admin_token');
+
+    res.clearCookie('admin_token', { httpOnly: true, secure: true, sameSite: 'none', path: '/' });
     return res.status(200).json({ message: 'Logged out successfully.' });
   } catch (error: any) {
+    console.error('Admin logout error:', error?.message || error);
     return res.status(500).json({ error: 'Internal server error.' });
   }
-}
+};
