@@ -32,7 +32,7 @@ export function MobileBottomNav({ items, activeId, onSelect, onMore }: MobileBot
               className={`relative flex min-h-[54px] flex-col items-center justify-center gap-1 rounded-2xl px-1 text-[10px] font-semibold transition-colors ${isActive ? 'text-brand-700 dark:text-brand-300' : 'text-slate-500 dark:text-slate-400'}`}
               aria-current={isActive ? 'page' : undefined}
             >
-              {isActive && <span className="absolute inset-1 rounded-2xl bg-blue-50 dark:bg-brand-950/70" />}
+              {isActive && <span className="absolute inset-1 rounded-2xl bg-blue-50 dark:bg-brand-900/70" />}
               <Icon className="relative z-10" size={21} strokeWidth={isActive ? 2.6 : 2} />
               <span className="relative z-10 truncate">{item.label}</span>
             </motion.button>
