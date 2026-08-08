@@ -19,6 +19,7 @@ const AdminPortalGenerator = lazyWithRetry(() => import('./components/AdminPorta
 const DedicatedAdminLogin = lazyWithRetry(() => import('./components/DedicatedAdminLogin'));
 const AccountManagement = lazyWithRetry(() => import('./components/AccountManagement'));
 const DeepSapphireDashboard = lazyWithRetry(() => import('./components/DeepSapphireDashboard'));
+const ShipperShipmentsPage = lazyWithRetry(() => import('./components/ShipperShipmentsPage'));
 const SupportChatWidget = lazyWithRetry(() => import('./components/SupportChatWidget'));
 const DriverDashboard = lazyWithRetry(() => import('./components/DriverDashboard'));
 // src/App.tsx
@@ -159,7 +160,6 @@ export default function App() {
           onLogout={handleLogout}
         />
 
-        {/* Keep the existing global header for non-dashboard screens. The customer dashboard owns its own mobile-first header. */}
         {(!dashboardViews.includes(activeView) || activeRole === 'TRANSPORTER') && (
           <header className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/95 backdrop-blur-md sticky top-0 z-30 px-4 py-3 flex items-center justify-between">
             <div className="flex items-center gap-2 select-none">
@@ -184,6 +184,8 @@ export default function App() {
               <TransporterFleetDashboard />
             ) : activeView === 'driver-dashboard' && activeRole !== 'CUSTOMER' ? (
               <DriverDashboard />
+            ) : activeView === 'shipments' && activeRole === 'CUSTOMER' ? (
+              <ShipperShipmentsPage />
             ) : dashboardViews.includes(activeView) && activeRole !== 'TRANSPORTER' ? (
               <DeepSapphireDashboard
                 onNavigateToNetwork={() => setActiveView('network')}
