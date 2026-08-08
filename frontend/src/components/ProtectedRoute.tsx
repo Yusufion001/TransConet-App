@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldAlert } from 'lucide-react';
 import { useAuthStore } from '../store/authStore';
+import { parseJwt } from '../utils/jwt';
 
 type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -14,10 +15,18 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
   children,
   allowedRoles,
 }) => {
-  const { isAuthenticated, activeRole } = useAuthStore();
+  const { isAuthenticated, token, activeRole, logout } = useAuthStore();
   const role = normalizeRole(activeRole);
 
-  if (!isAuthenticated) {
+  // Do not trust persisted Zustand state after the JWT has expired or become malformed.
+  const tokenPayload = token ? parseJwt(token) : null;
+  const authenticated = isAuthenticated && !!token && !!tokenPayload;
+
+  if (!authenticated) {
+    if (isAuthenticated || token) {
+      logout();
+    }
+
     return (
       <div className="flex flex-col items-center justify-center py-24 px-4 text-center space-y-4 bg-white dark:bg-slate-900 rounded-[20px] p-8 shadow-sm h-full w-full overflow-hidden">
         <div className="bg-red-500/10 p-5 rounded-full mb-2">
@@ -31,6 +40,7 @@ export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
     );
   }
 
+  // Role checks are a UI guard only. The backend must independently authorize every protected API operation.
   if (!allowedRoles.map(normalizeRole).includes(role)) {
     return (
       <div className="flex flex-col items-center justify-center py-24 px-4 text-center space-y-4 bg-white dark:bg-slate-900 rounded-[20px] p-8 shadow-sm h-full w-full overflow-hidden">
