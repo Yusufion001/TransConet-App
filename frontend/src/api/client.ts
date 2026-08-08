@@ -13,8 +13,18 @@ declare global {
 
 let csrfToken = '';
 
+// Accept either a Render/API origin (https://api.example.com) or an API base
+// that already ends in /api. This prevents accidental /api/api requests.
+const configuredApiUrl = (import.meta.env.VITE_API_URL || '').trim().replace(/\/+$/, '');
+const apiBaseUrl = configuredApiUrl
+  ? (configuredApiUrl.endsWith('/api') ? configuredApiUrl : `${configuredApiUrl}/api`)
+  : '/api';
+const csrfBaseUrl = configuredApiUrl
+  ? (configuredApiUrl.endsWith('/api') ? configuredApiUrl : `${configuredApiUrl}/api`)
+  : '';
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
+  baseURL: apiBaseUrl,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -27,8 +37,7 @@ export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
 
   const performFetch = async (r = retries, b = backoff): Promise<void> => {
     try {
-      const baseUrl = import.meta.env.VITE_API_URL || '';
-      const response = await fetch(`${baseUrl}/api/csrf-token`, {
+      const response = await fetch(`${csrfBaseUrl}/csrf-token`, {
         method: 'GET',
         headers: { Accept: 'application/json' },
         credentials: 'include',
