@@ -1,4 +1,6 @@
-import { useAuth } from './hooks/useAuth';import { ProtectedRoute } from './components/ProtectedRoute';
+import { useAuth } from './hooks/useAuth';
+import { ProtectedRoute } from './components/ProtectedRoute';
+import { fetchCsrfToken } from './api/client';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useAuthStore } from './store/authStore';
 import { useUIStore } from './store/uiStore';
