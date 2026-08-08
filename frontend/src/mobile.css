@@ -258,3 +258,132 @@ body {
     padding-top: max(0px, env(safe-area-inset-top));
   }
 }
+
+/* ================================================================
+   Final mobile readability and visual correction pass
+   ================================================================ */
+
+html,
+body,
+#root,
+#root > div {
+  background: #ffffff !important;
+}
+
+/* Increase the rem-based type scale by one third across the application. */
+html {
+  font-size: 133.3333% !important;
+}
+
+#root {
+  color: #172033;
+  line-height: 1.5;
+}
+
+#root p,
+#root label,
+#root li,
+#root td,
+#root th {
+  line-height: 1.5;
+}
+
+/* Fixed-pixel utility labels are also enlarged. */
+#root [class*="text-[10px]"],
+#root [class*="text-[11px]"],
+#root [class*="text-[12px]"] {
+  font-size: 16px !important;
+  line-height: 1.35 !important;
+}
+
+#root input,
+#root select,
+#root textarea {
+  font-size: 21px !important;
+  line-height: 1.35 !important;
+}
+
+/* Correct the cargo form layout. The previous broad :has() grid was making the
+   whole card a grid, which caused Pickup/Delivery headings to collide on phones. */
+@supports selector(form:has(input[name="name"])) {
+  form:has(input[name="name"]) {
+    background: #ffffff !important;
+    color: #172033 !important;
+    text-align: center;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) {
+    background: #ffffff !important;
+    text-align: center;
+    align-items: start;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) {
+    justify-self: center;
+    width: 100%;
+    max-width: 720px;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) input,
+  form:has(input[name="name"]) > div:nth-of-type(2) select,
+  form:has(input[name="name"]) > div:nth-of-type(2) textarea {
+    text-align: left;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) label {
+    text-align: left;
+  }
+
+  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) > div,
+  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) h2,
+  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) p {
+    text-align: center;
+  }
+}
+
+/* The matcher workspace and its card canvas are white and centered. */
+#root [class~="max-w-4xl"][class~="space-y-8"] {
+  background: #ffffff !important;
+  text-align: center;
+}
+
+#root [class~="max-w-4xl"][class~="space-y-8"] form {
+  text-align: left;
+}
+
+/* Make the floating navigation hub clearly visible on phones and tablets. */
+@media (max-width: 767px) {
+  .tc-floating-nav-hub {
+    display: block !important;
+    right: max(16px, env(safe-area-inset-right)) !important;
+    bottom: calc(5.5rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  .tc-floating-nav-hub > button {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    min-height: 60px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .tc-floating-nav-hub > button {
+    width: 64px !important;
+    height: 64px !important;
+    min-width: 64px !important;
+    min-height: 64px !important;
+  }
+}
+
+.tc-floating-nav-hub button,
+nav[aria-label="Mobile navigation"] button {
+  line-height: 1.2 !important;
+}
