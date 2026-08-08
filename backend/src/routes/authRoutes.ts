@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { requestOTP, verifyOTP, checkPhoneStatus, loginPin, registerPin, logout, googleLogin } from '../controllers/authController';
+import { requestPasswordReset, confirmPasswordReset } from '../controllers/passwordResetController';
 import { validateRequest } from '../middleware/validateRequest';
 import { z } from 'zod';
 
@@ -28,11 +29,27 @@ const pinSchema = z.object({
   })
 });
 
+const passwordResetRequestSchema = z.object({
+  body: z.object({
+    email: z.string().email()
+  })
+});
+
+const passwordResetConfirmSchema = z.object({
+  body: z.object({
+    email: z.string().email(),
+    token: z.string().min(1).max(256),
+    newPassword: z.string().min(6).max(128)
+  })
+});
+
 router.post('/request-otp', validateRequest(phoneSchema), requestOTP);
 router.post('/verify-otp', validateRequest(verifyOtpSchema), verifyOTP);
 router.post('/check-phone-status', validateRequest(phoneSchema), checkPhoneStatus);
 router.post('/login-pin', validateRequest(pinSchema), loginPin);
 router.post('/register-pin', validateRequest(pinSchema), registerPin);
+router.post('/reset-password-request', validateRequest(passwordResetRequestSchema), requestPasswordReset);
+router.post('/reset-password-confirm', validateRequest(passwordResetConfirmSchema), confirmPasswordReset);
 router.post('/logout', logout);
 router.post('/google', googleLogin);
 
