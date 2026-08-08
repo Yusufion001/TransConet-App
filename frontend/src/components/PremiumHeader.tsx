@@ -27,7 +27,7 @@ export const PremiumHeader = ({ userPhone, userRole, onNavigateToAccount, onNavi
   return (
     <header className="sticky top-0 z-40 flex h-[68px] w-full min-w-0 shrink-0 items-center justify-between border-b border-slate-200/80 bg-white/95 px-4 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/95 sm:h-[74px] sm:px-5 md:px-6">
       <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-700 dark:bg-brand-950 dark:text-brand-300 sm:h-10 sm:w-10">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-brand-700 dark:bg-brand-900 dark:text-brand-300 sm:h-10 sm:w-10">
           <Package size={21} strokeWidth={2.4} />
         </div>
         <div className="min-w-0">
