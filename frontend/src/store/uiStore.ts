@@ -10,10 +10,11 @@ interface UIState {
 }
 
 export const useUIStore = create<UIState>((set) => ({
-  isMobileFrame: window.innerWidth > 768,
-  setMobileFrame: (val) => set({ isMobileFrame: val }),
-  isMobileDevice: window.innerWidth < 768,
-  setMobileDevice: (val) => set({ isMobileDevice: val }),
+  // TransConet is a phone-only application. No desktop/mobile simulator mode.
+  isMobileFrame: false,
+  setMobileFrame: () => set({ isMobileFrame: false }),
+  isMobileDevice: true,
+  setMobileDevice: () => set({ isMobileDevice: true }),
   activeView: 'dashboard',
   setActiveView: (view) => set({ activeView: view }),
 }));
