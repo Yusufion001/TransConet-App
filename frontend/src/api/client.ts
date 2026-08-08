@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuthStore } from '../store/authStore';
 
 type ImportMetaEnv = {
   readonly VITE_API_URL?: string;
@@ -30,9 +31,9 @@ export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
       const response = await fetch(`${baseUrl}/api/csrf-token`, {
         method: 'GET',
         headers: {
-          'Accept': 'application/json',
+          Accept: 'application/json',
         },
-        credentials: 'include'
+        credentials: 'include',
       });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -42,34 +43,34 @@ export const fetchCsrfToken = async (retries = 5, backoff = 1000) => {
     } catch (err: any) {
       if (r > 0) {
         console.warn(`CSRF fetch failed, retrying in ${b}ms...`);
-        await new Promise(res => setTimeout(res, b));
+        await new Promise((res) => setTimeout(res, b));
         return performFetch(r - 1, b * 1.5);
       }
       console.error('CSRF Token fetch failed permanently:', err?.message || err, err);
     }
   };
 
-  csrfFetchPromise = performFetch().finally(() => { csrfFetchPromise = null; });
+  csrfFetchPromise = performFetch().finally(() => {
+    csrfFetchPromise = null;
+  });
   return csrfFetchPromise;
 };
+
 api.interceptors.request.use(
   async (config) => {
     const isAdminRoute = config.url?.startsWith('/admin') || config.url?.startsWith('admin');
-    
-    let token = null;
+
+    let token: string | null = null;
     if (isAdminRoute) {
-      // Prefer admin_token for admin routes
       token = localStorage.getItem('admin_token') || localStorage.getItem('token') || localStorage.getItem('tc_token');
     } else {
-      // Prefer standard tokens for normal routes
       token = localStorage.getItem('tc_token') || localStorage.getItem('token') || localStorage.getItem('admin_token');
     }
 
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    
-    // Lazy fetch CSRF token for mutating requests if not yet fetched
+
     if (!csrfToken && ['post', 'put', 'delete', 'patch'].includes(config.method?.toLowerCase() || '')) {
       await fetchCsrfToken();
     }
@@ -88,19 +89,34 @@ api.interceptors.response.use(
   (error) => {
     if (error.response) {
       const status = error.response.status;
-      const errMsg = error.response.data?.error || '';
-      
-      const isInvalidToken = status === 401 || (status === 403 && (errMsg.includes('expired') || errMsg.includes('signature') || errMsg.includes('Re-authenticate')));
-      
+      const rawError = error.response.data?.error;
+      const errMsg = typeof rawError === 'string' ? rawError : rawError?.message || '';
+
+      const isInvalidToken =
+        status === 401 ||
+        (status === 403 &&
+          /expired|signature|re-authenticate|invalid token|token invalid/i.test(errMsg));
+
       if (isInvalidToken) {
+        const isAdminRoute =
+          error.config?.url?.startsWith('/admin') ||
+          error.config?.url?.startsWith('admin') ||
+          window.location.pathname.startsWith('/admin');
+
         localStorage.removeItem('tc_token');
         localStorage.removeItem('token');
-        localStorage.removeItem('admin_token');
+        localStorage.removeItem('userEmail');
         localStorage.removeItem('userVerified');
-        
-        // Prevent infinite reload loops in dev mode
-        if ( !window.location.pathname.includes('/login') && !window.location.pathname.includes('/admin/login')) {
-          window.location.href = window.location.pathname.startsWith('/admin') ? '/admin/login' : '/login';
+
+        if (isAdminRoute) {
+          localStorage.removeItem('admin_token');
+          localStorage.removeItem('admin_user');
+        } else {
+          useAuthStore.getState().logout();
+        }
+
+        if (!window.location.pathname.includes('/login') && !window.location.pathname.includes('/admin/login')) {
+          window.location.href = isAdminRoute ? '/admin/login' : '/login';
         }
       }
     }
