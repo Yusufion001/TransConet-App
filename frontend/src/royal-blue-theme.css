@@ -36,7 +36,7 @@ input,select,textarea { background-color:#fff; }
   box-sizing: border-box;
 }
 
-/* Remove the main Post Cargo form/card border and shadow. Internal field, option and address borders remain intact. */
+/* Remove the main Post Cargo form/card border and shadow. */
 .tc-cargo-form > .bg-white {
   width: 100% !important;
   max-width: none !important;
@@ -45,6 +45,12 @@ input,select,textarea { background-color:#fff; }
   border-width: 0 !important;
   border-color: transparent !important;
   box-shadow: none !important;
+}
+
+/* Remove the border line around the Pickup Location and Delivery Location address cards. */
+.tc-cargo-form [class*="pickup" i],
+.tc-cargo-form [class*="delivery" i] {
+  border-color: transparent !important;
 }
 
 @media (min-width: 768px) {
