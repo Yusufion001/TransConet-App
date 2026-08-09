@@ -69,7 +69,7 @@ export default function DeepSapphireDashboard({
   }, []);
 
   return (
-    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F8FAFC] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <main className="tc-dashboard-main flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden">
         <PremiumHeader
           userPhone={userPhone}
@@ -79,31 +79,35 @@ export default function DeepSapphireDashboard({
           onNavigateToNetwork={onNavigateToNetwork}
         />
 
-        <div className="h-full min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain scrollbar-none">
-          <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-4 sm:px-5 sm:pt-5 md:px-7 md:pb-24 lg:px-8">
+        <div className="h-full min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain scrollbar-none [-webkit-overflow-scrolling:touch]">
+          <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pt-5 md:px-7 md:pb-24 lg:px-8">
             <section className="tc-shipper-hero relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_18px_rgba(15,23,42,0.045)] dark:border-slate-800 dark:bg-slate-900" aria-labelledby="operations-hub-title">
-              <div className="relative z-10 min-h-[236px] w-full p-5 sm:min-h-[260px] sm:p-7 md:min-h-[280px] md:p-8">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700 dark:text-brand-300">Shipper workspace</p>
-                <h1 id="operations-hub-title" className="mt-2 text-[28px] font-extrabold leading-tight tracking-[-0.025em] text-[#0B1F44] dark:text-white sm:text-4xl">Operations Hub</h1>
-                <p className="mt-3 max-w-xl text-[15px] leading-6 text-slate-600 dark:text-slate-300 sm:text-base">A focused command center for cargo, shipments, transport matching and freight tracking.</p>
+              <div className="relative z-10 min-h-[200px] w-full p-5 sm:min-h-[250px] sm:p-7 md:min-h-[280px] md:p-8">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-brand-700 dark:text-brand-300">Shipper workspace</p>
+                <h1 id="operations-hub-title" className="mt-2 text-[27px] font-extrabold leading-tight tracking-[-0.025em] text-[#0B1F44] dark:text-white sm:text-4xl">Operations Hub</h1>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-300 sm:text-base">A focused command center for cargo, shipments, transport matching and freight tracking.</p>
               </div>
             </section>
 
             <section className="mt-5" aria-label="Quick actions">
-              <div className="mb-3 flex items-end justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.13em] text-slate-500 dark:text-slate-400">Quick actions</p>
-                  <h2 className="mt-1 text-xl font-bold tracking-tight text-[#0B1F44] dark:text-white">Move cargo forward</h2>
-                </div>
+              <div className="mb-3">
+                <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-slate-500 dark:text-slate-400">Quick actions</p>
+                <h2 className="mt-1 text-xl font-extrabold tracking-tight text-[#0B1F44] dark:text-white">Move cargo forward</h2>
               </div>
-              <div className="grid grid-cols-1 gap-2.5 min-[430px]:grid-cols-3">
-                <Button onClick={onNavigateToNetwork} className="min-h-12 justify-start rounded-xl bg-brand-600 px-4 text-left text-sm font-bold text-white hover:bg-brand-700"><PackageSearch size={18} className="mr-2.5" />Find Transport</Button>
-                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-12 justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"><FileText size={18} className="mr-2.5 text-brand-600" />Post Cargo</Button>
-                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-12 justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"><MapPinned size={18} className="mr-2.5 text-emerald-600" />Track shipment</Button>
+              <div className="grid grid-cols-1 gap-3 min-[430px]:grid-cols-3">
+                <Button onClick={onNavigateToNetwork} className="min-h-12 w-full justify-start rounded-xl bg-brand-600 px-4 text-left text-sm font-bold text-white shadow-sm hover:bg-brand-700">
+                  <PackageSearch size={18} className="mr-2.5 shrink-0" />Find Transport
+                </Button>
+                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-12 w-full justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-bold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                  <FileText size={18} className="mr-2.5 shrink-0 text-brand-600" />Post Cargo
+                </Button>
+                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-12 w-full justify-start rounded-xl border border-slate-200 bg-white px-4 text-left text-sm font-bold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
+                  <MapPinned size={18} className="mr-2.5 shrink-0 text-emerald-600" />Track shipment
+                </Button>
               </div>
             </section>
 
-            <section className="mt-5" aria-label="Cargo operations">
+            <section className="mt-6" aria-label="Cargo operations">
               <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
                 <div className="min-w-0"><MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork} /></div>
                 <div className="min-w-0"><TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} /></div>
