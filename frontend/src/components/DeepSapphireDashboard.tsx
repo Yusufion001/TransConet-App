@@ -69,8 +69,8 @@ export default function DeepSapphireDashboard({
   }, []);
 
   return (
-    <div className="tc-dashboard flex min-h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <main className="tc-dashboard-main flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden">
+    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <main className="tc-dashboard-main flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden">
         <PremiumHeader
           userPhone={userPhone}
           userRole={userRole}
@@ -79,7 +79,7 @@ export default function DeepSapphireDashboard({
           onNavigateToNetwork={onNavigateToNetwork}
         />
 
-        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain scrollbar-none">
+        <div className="h-full min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain scrollbar-none">
           <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-4 sm:px-5 sm:pt-5 md:px-7 md:pb-24 lg:px-8">
             <section className="tc-shipper-hero relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_18px_rgba(15,23,42,0.045)] dark:border-slate-800 dark:bg-slate-900" aria-labelledby="operations-hub-title">
               <div className="relative z-10 min-h-[236px] w-full p-5 sm:min-h-[260px] sm:p-7 md:min-h-[280px] md:p-8">
