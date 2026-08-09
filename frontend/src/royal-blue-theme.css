@@ -17,7 +17,13 @@ input,select,textarea { background-color:#fff; }
 .tc-cargo-form { width:100vw !important; max-width:none !important; margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important; padding-left:16px !important; padding-right:16px !important; box-sizing:border-box; background:#fff !important; color:#000 !important; }
 .tc-cargo-form > div:nth-of-type(4) { width:100% !important; max-width:none !important; margin-left:0 !important; margin-right:0 !important; box-sizing:border-box; border:0 !important; box-shadow:none !important; border-radius:0 !important; background:#fff !important; color:#000 !important; }
 
-/* Form canvas is white; only cards and controls are off-white. */
+/* Remove the top TransConet branding/tagline row and its two action cards. */
+.tc-cargo-form > div:first-of-type { display:none !important; }
+
+/* Remove the redundant Step-1 Cargo Details title/description block. */
+.tc-cargo-form > div:nth-of-type(4):has(input[name="name"]) > div:first-child { display:none !important; }
+
+/* Form canvas is white; cards and controls are off-white. */
 .tc-cargo-form > div:nth-of-type(4) > div,
 .tc-cargo-form > div:nth-of-type(4) input,
 .tc-cargo-form > div:nth-of-type(4) select,
@@ -34,6 +40,18 @@ input,select,textarea { background-color:#fff; }
 .tc-cargo-form > div:nth-of-type(4) > button,
 .tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { min-height:56px !important; padding:14px 16px !important; box-sizing:border-box; border-color:#e5e7eb !important; }
 .tc-cargo-form > div:nth-of-type(4) textarea { min-height:120px !important; }
+
+/* Category and Packaging option lists: no royal-blue fill. Use the same clean highlight language as the weight selector. */
+.tc-cargo-form .absolute.z-10 { background:#fff !important; border-color:#dbe3f5 !important; box-shadow:0 8px 24px rgba(15,23,42,.08) !important; }
+.tc-cargo-form .absolute.z-10 > button { background:var(--tc-off-white) !important; color:#000 !important; border-color:#dbe3f5 !important; }
+.tc-cargo-form .absolute.z-10 > button:hover,
+.tc-cargo-form .absolute.z-10 > button:focus-visible,
+.tc-cargo-form .absolute.z-10 > button:active { background:var(--tc-royal-blue-light) !important; color:#000 !important; border-color:var(--tc-royal-blue) !important; outline:none !important; }
+.tc-cargo-form .absolute.z-10 > button span { color:#4169E1 !important; }
+
+/* Native weight-unit list follows the same light highlight treatment where supported by the OS/browser. */
+.tc-cargo-form select option:checked { background:var(--tc-royal-blue-light) !important; color:#000 !important; }
+.tc-cargo-form select option:hover { background:var(--tc-royal-blue-light) !important; color:#000 !important; }
 
 .tc-cargo-form > div:nth-of-type(4) h1 { color:#000 !important; font-weight:700 !important; text-decoration:none !important; font-size:28px !important; line-height:1.2 !important; }
 .tc-cargo-form > div:nth-of-type(4) h2,.tc-cargo-form > div:nth-of-type(4) h3,.tc-cargo-form > div:nth-of-type(4) h4 { color:#000 !important; font-weight:700 !important; text-decoration:none !important; font-size:20px !important; line-height:1.3 !important; }
