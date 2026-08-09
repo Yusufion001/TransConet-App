@@ -2,30 +2,102 @@
  * Presentation only: no API, state, navigation, or business-logic changes.
  */
 
-.tc-shipper-mobile-surface {
-  background: #f8fafc;
-}
+.tc-shipper-mobile-surface { background: #f7f8fb; }
 
 @media (max-width: 767px) {
   .tc-dashboard,
   .tc-dashboard-main {
     min-height: 0 !important;
     height: 100% !important;
+    background: #f7f8fb !important;
   }
 
   .tc-dashboard-main > .overflow-y-auto {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
+    background: #f7f8fb !important;
+  }
+
+  /* Premium phone canvas */
+  .tc-dashboard-main > .overflow-y-auto > div {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 16px !important;
+    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
+    box-sizing: border-box;
   }
 
   .tc-shipper-hero {
-    border-radius: 18px !important;
-    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.045) !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 22px !important;
+    background: linear-gradient(145deg, #ffffff 0%, #f5f9ff 100%) !important;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07) !important;
   }
 
   .tc-shipper-hero > div {
     min-height: 0 !important;
-    padding: 20px !important;
+    padding: 24px 20px !important;
+  }
+
+  .tc-shipper-hero h1 {
+    font-size: 28px !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+  }
+
+  .tc-shipper-hero p {
+    line-height: 1.55 !important;
+  }
+
+  /* Quick actions become clean full-width touch controls. */
+  .tc-dashboard section[aria-label="Quick actions"] {
+    margin-top: 22px !important;
+  }
+
+  .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .tc-dashboard section[aria-label="Quick actions"] button {
+    width: 100% !important;
+    min-height: 54px !important;
+    justify-content: flex-start !important;
+    border: 0 !important;
+    border-radius: 15px !important;
+    padding: 0 17px !important;
+    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.055) !important;
+    font-size: 15px !important;
+  }
+
+  .tc-dashboard section[aria-label="Quick actions"] button:first-child {
+    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.20) !important;
+  }
+
+  /* Cargo operation cards: one-column mobile rhythm, no hard borders. */
+  .tc-dashboard section[aria-label="Cargo operations"] {
+    margin-top: 22px !important;
+  }
+
+  .tc-dashboard section[aria-label="Cargo operations"] > div {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  .tc-dashboard section[aria-label="Cargo operations"] > div > div {
+    grid-column: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .tc-dashboard section[aria-label="Cargo operations"] article,
+  .tc-dashboard section[aria-label="Cargo operations"] > div > div > div {
+    border: 0 !important;
+    border-color: transparent !important;
+    border-radius: 18px !important;
+    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.06) !important;
   }
 
   /* Shipper matching / cargo flow */
@@ -51,6 +123,7 @@
 
   .tc-dashboard-main .max-w-4xl .rounded-\[20px\] {
     border-radius: 18px !important;
+    border-width: 0 !important;
   }
 
   .tc-dashboard-main .max-w-4xl form {
@@ -60,13 +133,14 @@
   .tc-dashboard-main .max-w-4xl input,
   .tc-dashboard-main .max-w-4xl select,
   .tc-dashboard-main .max-w-4xl textarea {
-    min-height: 48px;
+    min-height: 50px;
     max-width: 100%;
     box-sizing: border-box;
+    font-size: 16px !important;
   }
 
   .tc-dashboard-main .max-w-4xl button {
-    min-height: 46px;
+    min-height: 48px;
     touch-action: manipulation;
   }
 
@@ -83,11 +157,12 @@
   .tc-cargo-form .rounded-3xl {
     max-width: 100%;
     min-width: 0;
+    border-width: 0 !important;
+    border-color: transparent !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06) !important;
   }
 
-  .tc-cargo-form .grid {
-    min-width: 0;
-  }
+  .tc-cargo-form .grid { min-width: 0; }
 
   .tc-cargo-form input,
   .tc-cargo-form select,
@@ -95,12 +170,21 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    font-size: 17px !important;
+    font-size: 16px !important;
+    min-height: 50px;
+    border-radius: 12px !important;
   }
 
   .tc-cargo-form button {
     font-size: 16px !important;
+    min-height: 50px !important;
     touch-action: manipulation;
+  }
+
+  /* Shipment lists */
+  .tc-dashboard article {
+    max-width: 100%;
+    min-width: 0;
   }
 
   /* Inline support should occupy the available mobile viewport instead of appearing as a half-height card. */
@@ -113,9 +197,7 @@
     box-sizing: border-box;
   }
 
-  #customer-support-panel > * {
-    min-width: 0;
-  }
+  #customer-support-panel > * { min-width: 0; }
 
   /* Prevent mobile pages from creating accidental horizontal overflow. */
   .tc-dashboard article,
@@ -128,30 +210,31 @@
   #customer-support-panel {
     min-width: 0;
   }
+
+  /* Larger readable body copy and touch-friendly controls. */
+  .tc-dashboard p { line-height: 1.5 !important; }
+  .tc-dashboard button { touch-action: manipulation; }
 }
 
 @media (min-width: 768px) {
-  .tc-shipper-hero > div {
-    min-height: 250px;
-  }
+  .tc-shipper-hero > div { min-height: 250px; }
 }
 
 @media (max-width: 429px) {
-  .tc-dashboard .tc-shipper-hero h1 {
-    font-size: 26px !important;
-  }
-
-  .tc-dashboard .tc-shipper-hero p {
-    max-width: 100%;
-  }
+  .tc-dashboard .tc-shipper-hero h1 { font-size: 26px !important; }
+  .tc-dashboard .tc-shipper-hero p { max-width: 100%; }
 }
 
 @media (max-width: 380px) {
-  .tc-dashboard-main .max-w-4xl {
-    padding: 12px !important;
-  }
+  .tc-dashboard-main .max-w-4xl { padding: 12px !important; }
+  .tc-cargo-form { padding: 12px !important; }
+}
 
-  .tc-cargo-form {
-    padding: 12px !important;
-  }
+.dark .tc-dashboard,
+.dark .tc-dashboard-main,
+.dark .tc-dashboard-main > .overflow-y-auto { background: #090f1a !important; }
+
+.dark .tc-shipper-hero {
+  background: linear-gradient(145deg, #111827 0%, #0f172a 100%) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
 }
