@@ -13,82 +13,38 @@ interface BiddingInterfaceProps {
   handleCounterOffer: (e: React.FormEvent) => void;
 }
 
-export default function BiddingInterface({
-  activeMatch,
-  negotiationStatus,
-  isNegotiating,
-  setIsNegotiating,
-  counterPrice,
-  setCounterPrice,
-  handleAcceptBid,
-  handleCounterOffer
-}: BiddingInterfaceProps) {
+export default function BiddingInterface({ activeMatch, negotiationStatus, isNegotiating, setIsNegotiating, counterPrice, setCounterPrice, handleAcceptBid, handleCounterOffer }: BiddingInterfaceProps) {
   if (!activeMatch) return null;
 
   return (
-    <div className="bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-slate-700 rounded-[20px] p-6 shadow-sm space-y-4 overflow-hidden">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-start gap-4">
-          <div className="p-3 bg-brand-100 text-brand-600 rounded-xl shrink-0">
-            <ShieldCheck size={28} />
-          </div>
-          <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">{activeMatch.title}</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">{activeMatch.subtitle}</p>
-            {negotiationStatus && (
-              <p className="text-xs font-bold text-amber-400 mt-2 bg-amber-950/40 border border-amber-900/50 px-2 py-1 rounded w-fit">
-                ⚠️ {negotiationStatus}
-              </p>
-            )}
+    <div className="overflow-hidden rounded-2xl bg-white p-4 shadow-[0_4px_20px_rgba(15,23,42,0.055)] ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800 sm:rounded-3xl sm:p-6">
+      <div className="flex flex-col gap-4">
+        <div className="flex min-w-0 items-start gap-3">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600 dark:bg-brand-950"><ShieldCheck size={23} /></div>
+          <div className="min-w-0 flex-1">
+            <h3 className="truncate text-lg font-extrabold text-slate-900 dark:text-white sm:text-xl">{activeMatch.title}</h3>
+            <p className="mt-0.5 break-words text-xs leading-5 text-slate-500 dark:text-slate-400">{activeMatch.subtitle}</p>
+            {negotiationStatus && <p className="mt-2 w-fit rounded-lg bg-amber-50 px-2.5 py-1 text-[11px] font-bold text-amber-700 dark:bg-amber-950/40 dark:text-amber-300">⚠️ {negotiationStatus}</p>}
           </div>
         </div>
 
-        <div className="bg-brand-600 border border-brand-500 rounded-xl p-4 flex items-center gap-4 text-white">
-          <div>
-            <p className="text-[10px] text-brand-100 uppercase font-black tracking-wider">Suggested Fare</p>
-            <p className="text-white text-xl font-black">₦{activeMatch.price?.toLocaleString()}</p>
-          </div>
-          
-          <div className="flex flex-col gap-1.5">
-            <Button 
-              onClick={() => handleAcceptBid(true, String(activeMatch.id))}
-              className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs px-4 py-2 rounded-lg transition uppercase tracking-wider cursor-pointer shadow-sm"
-            >
-              Accept Deal
-            </Button>
-            <a 
-              href={`tel:${activeMatch.phone || '+2348000000000'}`}
-              className="bg-white dark:bg-slate-900 hover:bg-slate-100 text-brand-600 font-black text-xs px-4 py-2 rounded-lg transition text-center uppercase tracking-wider shadow-sm"
-            >
-              Call to Deal
-            </a>
-            <Button 
-              onClick={() => setIsNegotiating(!isNegotiating)}
-              className="bg-brand-500 hover:bg-brand-400 text-white font-bold text-xs px-4 py-2 rounded-lg transition uppercase tracking-wider cursor-pointer shadow-sm"
-            >
-              Counter Offer
-            </Button>
+        <div className="rounded-2xl bg-brand-600 p-4 text-white shadow-sm sm:p-5">
+          <p className="text-[10px] font-black uppercase tracking-wider text-brand-100">Suggested Fare</p>
+          <p className="mt-1 text-2xl font-black">₦{activeMatch.price?.toLocaleString()}</p>
+          <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+            <Button onClick={() => handleAcceptBid(true, String(activeMatch.id))} className="min-h-11 rounded-xl bg-emerald-500 px-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-emerald-400">Accept Deal</Button>
+            <a href={`tel:${activeMatch.phone || '+2348000000000'}`} className="flex min-h-11 items-center justify-center rounded-xl bg-white px-3 text-center text-xs font-black uppercase tracking-wider text-brand-700 shadow-sm hover:bg-slate-50">Call to Deal</a>
+            <Button onClick={() => setIsNegotiating(!isNegotiating)} className="min-h-11 rounded-xl bg-brand-500 px-3 text-xs font-bold uppercase tracking-wider text-white hover:bg-brand-400">Counter Offer</Button>
           </div>
         </div>
       </div>
 
       {isNegotiating && (
-        <form onSubmit={handleCounterOffer} className="bg-brand-600 border border-brand-500 rounded-xl p-4 space-y-3 animate-in slide-in-from-top-2 duration-75 text-white">
-          <div className="flex items-center gap-2 text-xs font-bold text-white uppercase tracking-wider">
-            <DollarSign size={14} className="text-amber-400" /> Propose Your Price (₦)
-          </div>
-          <div className="flex gap-2">
-            <input 
-              type="number" 
-              required 
-              placeholder="e.g., 360000" 
-              value={counterPrice} 
-              onChange={e => setCounterPrice(e.target.value)}
-              className="flex-1 bg-white dark:bg-slate-900 border border-slate-700 rounded-xl py-2 px-3 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500" 
-            />
-            <Button type="submit" className="bg-white dark:bg-slate-900 hover:bg-slate-100 text-brand-600 text-xs font-bold px-4 py-2 rounded-xl transition cursor-pointer flex items-center justify-center">
-              Send Offer
-            </Button>
+        <form onSubmit={handleCounterOffer} className="mt-4 rounded-2xl bg-slate-50 p-4 ring-1 ring-slate-200 animate-in slide-in-from-top-2 dark:bg-slate-800/70 dark:ring-slate-700">
+          <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-200"><DollarSign size={14} className="text-brand-600" /> Propose Your Price (₦)</div>
+          <div className="mt-3 flex flex-col gap-2 sm:flex-row">
+            <input type="number" required placeholder="e.g., 360000" value={counterPrice} onChange={e => setCounterPrice(e.target.value)} className="min-h-12 min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-3 text-base text-slate-900 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100 dark:border-slate-700 dark:bg-slate-900 dark:text-white" />
+            <Button type="submit" className="min-h-12 rounded-xl bg-brand-600 px-5 text-xs font-bold uppercase tracking-wider text-white hover:bg-brand-700">Send Offer</Button>
           </div>
         </form>
       )}
