@@ -1,5 +1,5 @@
 /* TransConet Brand Color System — UI/UX only */
-:root { --tc-royal-blue:#4169E1; --tc-royal-blue-dark:#3157CF; --tc-royal-blue-light:#E8EEFF; }
+:root { --tc-royal-blue:#4169E1; --tc-royal-blue-dark:#3157CF; --tc-royal-blue-light:#E8EEFF; --tc-off-white:#F7F8FA; }
 
 .bg-slate-50,.bg-slate-100,.bg-slate-800,.bg-slate-900,.bg-slate-950,.bg-gray-50,.bg-gray-100,.bg-gray-800,.bg-gray-900,.bg-gray-950,.bg-zinc-900,.bg-zinc-950,.bg-neutral-900,.bg-neutral-950,.bg-blue-950,.bg-indigo-950 { background-color:#fff !important; }
 .dark .bg-slate-50,.dark .bg-slate-100,.dark .bg-slate-800,.dark .bg-slate-900,.dark .bg-slate-950,.dark .bg-gray-50,.dark .bg-gray-100,.dark .bg-gray-800,.dark .bg-gray-900,.dark .bg-gray-950,.dark .bg-zinc-900,.dark .bg-zinc-950,.dark .bg-neutral-900,.dark .bg-neutral-950,.dark .bg-blue-950,.dark .bg-indigo-950 { background-color:#fff !important; }
@@ -26,49 +26,54 @@ input,select,textarea { background-color:#fff; }
 /* The two main step cards are edge-to-edge; retain readable inner spacing. */
 .tc-cargo-form > div:nth-of-type(4) { width:100% !important; max-width:none !important; margin-left:0 !important; margin-right:0 !important; box-sizing:border-box; border:0 !important; box-shadow:none !important; border-radius:0 !important; }
 
-/* Make the requested Post Cargo controls approximately 2x their former control size. */
+/* Requested controls remain large, but use a softer off-white card/surface treatment. */
 .tc-cargo-form > div:nth-of-type(4) input,
 .tc-cargo-form > div:nth-of-type(4) select,
 .tc-cargo-form > div:nth-of-type(4) textarea,
 .tc-cargo-form > div:nth-of-type(4) > div > button,
 .tc-cargo-form > div:nth-of-type(4) > button,
-.tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { min-height:104px !important; padding:28px 32px !important; box-sizing:border-box; }
+.tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { min-height:104px !important; padding:28px 32px !important; box-sizing:border-box; background-color:var(--tc-off-white) !important; color:#000 !important; border-color:#e5e7eb !important; }
 .tc-cargo-form > div:nth-of-type(4) textarea { min-height:240px !important; }
 
-/* Royal-blue cards/controls with white readable text. */
-.tc-cargo-form > div:nth-of-type(4) input,
-.tc-cargo-form > div:nth-of-type(4) select,
-.tc-cargo-form > div:nth-of-type(4) textarea,
-.tc-cargo-form > div:nth-of-type(4) > div > button,
-.tc-cargo-form > div:nth-of-type(4) > button,
-.tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { background-color:var(--tc-royal-blue) !important; color:#fff !important; border-color:var(--tc-royal-blue) !important; }
+/* Off-white card/surface background with black readable text. */
+.tc-cargo-form > div:nth-of-type(4),
+.tc-cargo-form > div:nth-of-type(4) > div,
+.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] { background-color:var(--tc-off-white) !important; color:#000 !important; }
 
-.tc-cargo-form > div:nth-of-type(4) label,
+/* Header text: bold, black, underlined, approximately 3x the prior size while retaining the existing text. */
+.tc-cargo-form > div:nth-of-type(4) h1,
 .tc-cargo-form > div:nth-of-type(4) h2,
 .tc-cargo-form > div:nth-of-type(4) h3,
+.tc-cargo-form > div:nth-of-type(4) h4 { color:#000 !important; font-weight:800 !important; text-decoration:underline !important; text-decoration-thickness:2px !important; text-underline-offset:4px !important; font-size:clamp(36px, 8vw, 56px) !important; line-height:1.12 !important; }
+
+/* Input text: black and approximately 3x the former 16px baseline. */
+.tc-cargo-form > div:nth-of-type(4) input,
+.tc-cargo-form > div:nth-of-type(4) select,
+.tc-cargo-form > div:nth-of-type(4) textarea { font-size:48px !important; font-weight:500 !important; color:#000 !important; }
+.tc-cargo-form > div:nth-of-type(4) input::placeholder,
+.tc-cargo-form > div:nth-of-type(4) textarea::placeholder { color:#000 !important; opacity:.7 !important; }
+
+/* Labels and supporting form text remain black for contrast on off-white surfaces. */
+.tc-cargo-form > div:nth-of-type(4) label,
 .tc-cargo-form > div:nth-of-type(4) p,
 .tc-cargo-form > div:nth-of-type(4) span,
-.tc-cargo-form > div:nth-of-type(4) svg { color:#fff; }
+.tc-cargo-form > div:nth-of-type(4) svg { color:#000 !important; }
 
-.tc-cargo-form > div:nth-of-type(4) input::placeholder,
-.tc-cargo-form > div:nth-of-type(4) textarea::placeholder { color:rgba(255,255,255,.88) !important; opacity:1 !important; }
+/* Buttons remain visually prominent while using the requested off-white card treatment. */
+.tc-cargo-form > div:nth-of-type(4) > div > button,
+.tc-cargo-form > div:nth-of-type(4) > button,
+.tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { font-size:32px !important; font-weight:800 !important; color:#000 !important; }
 
 .tc-cargo-form > div:nth-of-type(4) input:focus,
 .tc-cargo-form > div:nth-of-type(4) select:focus,
 .tc-cargo-form > div:nth-of-type(4) textarea:focus,
-.tc-cargo-form > div:nth-of-type(4) button:focus-visible { border-color:#fff !important; box-shadow:0 0 0 3px rgba(255,255,255,.3) !important; outline:none !important; }
-
-/* Pickup and Delivery inner panels become Royal Blue while retaining all existing text/controls. */
-.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] { background-color:var(--tc-royal-blue) !important; }
-.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] input,
-.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] button,
-.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] select { min-height:104px !important; background-color:var(--tc-royal-blue) !important; color:#fff !important; border-color:var(--tc-royal-blue) !important; }
+.tc-cargo-form > div:nth-of-type(4) button:focus-visible { border-color:var(--tc-royal-blue) !important; box-shadow:0 0 0 3px rgba(65,105,225,.25) !important; outline:none !important; }
 
 /* Pickup and Delivery cards have no gray border line. */
 .tc-cargo-form [class*="pickup" i],
 .tc-cargo-form [class*="delivery" i] { border-color:transparent !important; }
 
-/* Keep error/success feedback readable and visually distinct from the requested blue controls. */
+/* Keep error/success feedback readable and visually distinct. */
 .tc-cargo-form .bg-red-50 { background-color:#FEF2F2 !important; }
 .tc-cargo-form .bg-emerald-50 { background-color:#ECFDF5 !important; }
 
