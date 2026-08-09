@@ -11,14 +11,14 @@ function OptionCard({ options, selected, onSelect, label }: { options: { label: 
   const [isOpen, setIsOpen] = useState(false);
   const selectedOption = options.find(o => o.value === selected);
   return (
-    <div className="space-y-3 relative">
-      <label className="text-sm font-bold text-slate-800 flex items-center justify-center gap-2 text-center">{label} <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: ROYAL_BLUE }} /></label>
-      <Button type="button" onClick={() => setIsOpen(!isOpen)} className="w-full flex items-center justify-center gap-3 p-4 bg-white rounded-[20px] transition-colors text-center" style={{ border: `1px solid ${ROYAL_BLUE}` }}>
-        {selectedOption ? <div className="flex items-center justify-center gap-3"><span style={{ color: ROYAL_BLUE }}>{selectedOption.icon}</span><span className="text-slate-800 font-medium">{selectedOption.label}</span></div> : <span className="font-medium text-sm" style={{ color: ROYAL_BLUE }}>Select {label}...</span>}
-        <ChevronRight className={`transition-transform ${isOpen ? 'rotate-90' : ''}`} style={{ color: ROYAL_BLUE }} size={20} />
+    <div className="relative space-y-2.5">
+      <label className="flex items-center justify-center gap-2 text-center text-sm font-bold text-slate-800">{label} <span className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: ROYAL_BLUE }} /></label>
+      <Button type="button" onClick={() => setIsOpen(!isOpen)} className="min-h-12 w-full justify-between rounded-xl bg-white px-4 text-center text-sm font-semibold text-slate-800 shadow-none ring-1 ring-slate-200 transition-colors hover:bg-slate-50" style={{ border: `1px solid ${ROYAL_BLUE}` }}>
+        {selectedOption ? <span className="flex min-w-0 items-center gap-2.5 truncate"><span className="shrink-0" style={{ color: ROYAL_BLUE }}>{selectedOption.icon}</span><span className="truncate">{selectedOption.label}</span></span> : <span className="font-semibold text-sm" style={{ color: ROYAL_BLUE }}>Select {label}...</span>}
+        <ChevronRight className={`shrink-0 transition-transform ${isOpen ? 'rotate-90' : ''}`} style={{ color: ROYAL_BLUE }} size={19} />
       </Button>
-      {isOpen && <div className="absolute z-10 top-[calc(100%+0.5rem)] left-0 w-full bg-white rounded-[20px] shadow-sm p-4 grid grid-cols-2 md:grid-cols-3 gap-3 max-h-64 overflow-y-auto overflow-hidden" style={{ border: `1px solid ${ROYAL_BLUE}` }}>
-        {options.map(opt => <Button type="button" key={opt.value} onClick={() => { onSelect(opt.value); setIsOpen(false); }} className="flex items-center justify-center gap-3 p-3 rounded-xl border text-sm font-medium transition-all bg-white" style={{ borderColor: selected === opt.value ? ROYAL_BLUE : '#B7C6F5', color: selected === opt.value ? ROYAL_BLUE : '#475569' }}><span style={{ color: ROYAL_BLUE }}>{opt.icon}</span>{opt.label}</Button>)}
+      {isOpen && <div className="absolute left-0 top-[calc(100%+0.5rem)] z-30 grid max-h-64 w-full grid-cols-1 gap-2 overflow-y-auto rounded-2xl bg-white p-3 shadow-xl ring-1 ring-slate-200 sm:grid-cols-2" style={{ border: `1px solid ${ROYAL_BLUE}` }}>
+        {options.map(opt => <Button type="button" key={opt.value} onClick={() => { onSelect(opt.value); setIsOpen(false); }} className="min-h-11 justify-start gap-2.5 rounded-xl border bg-white p-3 text-left text-sm font-semibold transition-all" style={{ borderColor: selected === opt.value ? ROYAL_BLUE : '#B7C6F5', color: selected === opt.value ? ROYAL_BLUE : '#475569' }}><span className="shrink-0" style={{ color: ROYAL_BLUE }}>{opt.icon}</span><span>{opt.label}</span></Button>)}
       </div>}
     </div>
   );
@@ -92,76 +92,70 @@ export default function CargoDetailsForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="tc-cargo-form bg-white text-slate-600 p-4 md:p-8 space-y-6 max-w-2xl mx-auto">
-      <style>{`\n        .tc-cargo-form { font-size: 18px; --tc-royal-blue: #4169E1; }\n        .tc-cargo-form label { font-size: 18px !important; }\n        .tc-cargo-form input, .tc-cargo-form select, .tc-cargo-form textarea { font-size: 21px !important; border-color: var(--tc-royal-blue) !important; }\n        .tc-cargo-form button { font-size: 21px !important; }\n        .tc-cargo-form input::placeholder, .tc-cargo-form textarea::placeholder { color: #64748b !important; opacity: 1; }\n        .tc-cargo-form input:focus, .tc-cargo-form select:focus, .tc-cargo-form textarea:focus { border-color: var(--tc-royal-blue) !important; box-shadow: 0 0 0 3px rgba(65,105,225,0.15) !important; outline: none; }\n      `}</style>
+    <form onSubmit={handleSubmit} className="tc-cargo-form mx-auto min-h-full w-full max-w-3xl bg-[#F8FAFC] px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-4 text-slate-600 dark:bg-slate-950 sm:px-5 sm:pt-6 md:px-7 md:pb-10 lg:px-8">
+      <style>{`\n        .tc-cargo-form { --tc-royal-blue: #4169E1; }\n        .tc-cargo-form label { font-size: 14px !important; }\n        .tc-cargo-form input, .tc-cargo-form select, .tc-cargo-form textarea { min-height: 48px; font-size: 16px !important; border-color: #CBD5E1 !important; }\n        .tc-cargo-form button { font-size: 15px !important; }\n        .tc-cargo-form input::placeholder, .tc-cargo-form textarea::placeholder { color: #64748b !important; opacity: 1; }\n        .tc-cargo-form input:focus, .tc-cargo-form select:focus, .tc-cargo-form textarea:focus { border-color: var(--tc-royal-blue) !important; box-shadow: 0 0 0 3px rgba(65,105,225,0.12) !important; outline: none; }\n      `}</style>
+
+      <div className="mb-5 text-center">
+        <p className="text-[11px] font-bold uppercase tracking-[0.13em] text-brand-700 dark:text-brand-400">Shipper workspace</p>
+        <h1 className="mt-1 text-[26px] font-extrabold tracking-tight text-[#0B1F44] dark:text-white sm:text-3xl">{step === 1 ? 'Post Cargo' : 'Pickup & Delivery'}</h1>
+        <p className="mx-auto mt-2 max-w-lg text-sm leading-6 text-slate-600 dark:text-slate-400">{step === 1 ? 'Tell us what you are moving so we can match it with the right transport capacity.' : 'Set the collection and delivery points for your shipment.'}</p>
+        <div className="mx-auto mt-4 flex max-w-xs items-center gap-2">
+          <div className="h-1.5 flex-1 rounded-full bg-brand-600" />
+          <div className={`h-1.5 flex-1 rounded-full ${step === 2 ? 'bg-brand-600' : 'bg-slate-200 dark:bg-slate-800'}`} />
+        </div>
+      </div>
+
+      {submitError && <div className="mb-4 rounded-2xl bg-red-50 p-4 text-sm leading-6 text-red-700 ring-1 ring-red-100"><div className="flex items-center gap-2 font-bold"><AlertCircle size={18} /> Please review the form</div><div className="mt-1 whitespace-pre-line">{submitError}</div></div>}
+      {submitSuccess && <div className="mb-4 rounded-2xl bg-emerald-50 p-4 text-sm leading-6 text-emerald-700 ring-1 ring-emerald-100 whitespace-pre-line">{submitSuccess}</div>}
 
       {step === 1 ? (
-        <>
-          <div className="text-center space-y-2">
-            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Post Cargo</h1>
-          </div>
-
-          {submitError && <div className="rounded-xl p-4 bg-red-50 text-red-700 border border-red-200"><div className="flex items-center gap-2 font-bold"><AlertCircle size={20} /> Please review the form</div><div className="mt-1 whitespace-pre-line">{submitError}</div></div>}
-          {submitSuccess && <div className="rounded-xl p-4 bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-pre-line">{submitSuccess}</div>}
-
-          <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-visible">
-            <div className="p-6 md:p-8 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="space-y-2"><label className="block font-semibold text-slate-700">Cargo Name</label><input name="name" value={formData.name} onChange={handleChange} placeholder="e.g. 10 bags of rice" className="w-full px-4 py-3 rounded-xl border bg-white text-slate-900" /></div>
-                <OptionCard label="Category" selected={formData.category} onSelect={(v) => handleSelect('category', v)} options={[
-                  { value: 'GENERAL_MERCHANDISE', label: 'General Merchandise', icon: <Package size={20} /> },
-                  { value: 'FRAGILE', label: 'Fragile Items', icon: <AlertCircle size={20} /> },
-                  { value: 'PERISHABLE', label: 'Perishable Goods', icon: <Leaf size={20} /> },
-                  { value: 'ELECTRONICS', label: 'Electronics', icon: <Smartphone size={20} /> },
-                  { value: 'MEDICAL', label: 'Medical Supplies', icon: <Pill size={20} /> },
-                  { value: 'CHEMICALS', label: 'Chemicals', icon: <FlaskConical size={20} /> },
-                  { value: 'MACHINERY', label: 'Machinery', icon: <Factory size={20} /> },
-                  { value: 'AUTOMOTIVE', label: 'Automotive Parts', icon: <Truck size={20} /> },
-                  { value: 'CONSTRUCTION', label: 'Construction Materials', icon: <Building2 size={20} /> },
-                  { value: 'OTHER', label: 'Other', icon: <MoreHorizontal size={20} /> },
-                ]} />
-              </div>
-
-              <div className="space-y-2"><label className="block font-semibold text-slate-700">Cargo Description</label><textarea name="description" value={formData.description} onChange={handleChange} placeholder="Describe your cargo..." rows={4} className="w-full px-4 py-3 rounded-xl border bg-white text-slate-900 resize-none" /></div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="space-y-2"><label className="block font-semibold text-slate-700">Total Weight</label><div className="flex gap-2"><input type="number" name="weight" value={formData.weight} onChange={handleChange} placeholder="5000" className="flex-1 px-4 py-3 rounded-xl border bg-white text-slate-900" /><select name="weightUnit" value={formData.weightUnit} onChange={handleChange} className="w-28 px-3 py-3 rounded-xl border bg-white text-slate-900"><option>kg</option><option>tons</option></select></div></div>
-                <OptionCard label="Packaging" selected={formData.packaging} onSelect={(v) => handleSelect('packaging', v)} options={[
-                  { value: 'PALLET', label: 'Palletized', icon: <Package size={20} /> },
-                  { value: 'BOX', label: 'Boxes', icon: <Box size={20} /> },
-                  { value: 'BAG', label: 'Bags / Sacks', icon: <ShoppingBag size={20} /> },
-                  { value: 'CRATE', label: 'Crates', icon: <Archive size={20} /> },
-                  { value: 'DRUM', label: 'Drums / Barrels', icon: <Inbox size={20} /> },
-                  { value: 'LOOSE', label: 'Loose', icon: <AlignJustify size={20} /> },
-                  { value: 'OTHER', label: 'Other', icon: <MoreHorizontal size={20} /> },
-                ]} />
-              </div>
-
-              <Button type="button" onClick={continueToStepTwo} className="w-full py-4 rounded-xl font-bold text-white" style={{ backgroundColor: ROYAL_BLUE }}>Continue <ChevronRight size={20} /></Button>
+        <div className="overflow-visible rounded-2xl bg-white shadow-[0_4px_20px_rgba(15,23,42,0.045)] ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <div className="space-y-6 p-5 sm:p-6 md:p-8">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Cargo Name</label><input name="name" value={formData.name} onChange={handleChange} placeholder="e.g. 10 bags of rice" className="w-full rounded-xl bg-white px-4 py-3 text-slate-900 dark:bg-slate-950 dark:text-white" /></div>
+              <OptionCard label="Category" selected={formData.category} onSelect={(v) => handleSelect('category', v)} options={[
+                { value: 'GENERAL_MERCHANDISE', label: 'General Merchandise', icon: <Package size={18} /> },
+                { value: 'FRAGILE', label: 'Fragile Items', icon: <AlertCircle size={18} /> },
+                { value: 'PERISHABLE', label: 'Perishable Goods', icon: <Leaf size={18} /> },
+                { value: 'ELECTRONICS', label: 'Electronics', icon: <Smartphone size={18} /> },
+                { value: 'MEDICAL', label: 'Medical Supplies', icon: <Pill size={18} /> },
+                { value: 'CHEMICALS', label: 'Chemicals', icon: <FlaskConical size={18} /> },
+                { value: 'MACHINERY', label: 'Machinery', icon: <Factory size={18} /> },
+                { value: 'AUTOMOTIVE', label: 'Automotive Parts', icon: <Truck size={18} /> },
+                { value: 'CONSTRUCTION', label: 'Construction Materials', icon: <Building2 size={18} /> },
+                { value: 'OTHER', label: 'Other', icon: <MoreHorizontal size={18} /> },
+              ]} />
             </div>
+            <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Cargo Description</label><textarea name="description" value={formData.description} onChange={handleChange} placeholder="Describe your cargo..." rows={4} className="w-full resize-none rounded-xl bg-white px-4 py-3 text-slate-900 dark:bg-slate-950 dark:text-white" /></div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Total Weight</label><div className="flex gap-2"><input type="number" name="weight" value={formData.weight} onChange={handleChange} placeholder="5000" className="min-w-0 flex-1 rounded-xl bg-white px-4 py-3 text-slate-900 dark:bg-slate-950 dark:text-white" /><select name="weightUnit" value={formData.weightUnit} onChange={handleChange} className="w-24 rounded-xl bg-white px-3 py-3 text-slate-900 dark:bg-slate-950 dark:text-white"><option>kg</option><option>tons</option></select></div></div>
+              <OptionCard label="Packaging" selected={formData.packaging} onSelect={(v) => handleSelect('packaging', v)} options={[
+                { value: 'PALLET', label: 'Palletized', icon: <Package size={18} /> },
+                { value: 'BOX', label: 'Boxes', icon: <Box size={18} /> },
+                { value: 'BAG', label: 'Bags / Sacks', icon: <ShoppingBag size={18} /> },
+                { value: 'CRATE', label: 'Crates', icon: <Archive size={18} /> },
+                { value: 'DRUM', label: 'Drums / Barrels', icon: <Inbox size={18} /> },
+                { value: 'LOOSE', label: 'Loose', icon: <AlignJustify size={18} /> },
+                { value: 'OTHER', label: 'Other', icon: <MoreHorizontal size={18} /> },
+              ]} />
+            </div>
+            <Button type="button" onClick={continueToStepTwo} className="min-h-12 w-full rounded-xl font-bold text-white shadow-sm" style={{ backgroundColor: ROYAL_BLUE }}>Continue <ChevronRight size={19} /></Button>
           </div>
-        </>
+        </div>
       ) : (
-        <>
-          <div className="text-center space-y-2">
-            <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900">Pickup & Delivery</h1>
-          </div>
-          {submitError && <div className="rounded-xl p-4 bg-red-50 text-red-700 border border-red-200"><div className="flex items-center gap-2 font-bold"><AlertCircle size={20} /> Please review the form</div><div className="mt-1 whitespace-pre-line">{submitError}</div></div>}
-          {submitSuccess && <div className="rounded-xl p-4 bg-emerald-50 text-emerald-700 border border-emerald-200 whitespace-pre-line">{submitSuccess}</div>}
-          <div className="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-visible">
-            <div className="p-6 md:p-8 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="space-y-2"><label className="block font-semibold text-slate-700">Pickup Address</label><LocationAutocomplete value={formData.pickupAddress} onChange={(v) => handleSelect('pickupAddress', v)} placeholder="Enter pickup address" className="w-full" /></div>
-                <div className="space-y-2"><label className="block font-semibold text-slate-700">Delivery Address</label><LocationAutocomplete value={formData.deliveryAddress} onChange={(v) => handleSelect('deliveryAddress', v)} placeholder="Enter delivery address" className="w-full" /></div>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="space-y-2"><label className="block font-semibold text-slate-700">Pickup Date</label><input type="date" name="pickupDate" value={formData.pickupDate} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border bg-white text-slate-900" /></div>
-                <div className="space-y-2"><label className="block font-semibold text-slate-700">Delivery Date</label><input type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border bg-white text-slate-900" /></div>
-              </div>
-              <div className="flex gap-3"><Button type="button" onClick={() => setStep(1)} className="flex-1 py-4 rounded-xl font-bold border border-slate-200 bg-white text-slate-700">Back</Button><Button type="submit" disabled={isSubmitting} className="flex-1 py-4 rounded-xl font-bold text-white" style={{ backgroundColor: ROYAL_BLUE }}>{isCalculating ? 'Calculating...' : isSubmitting ? 'Posting...' : 'Post Cargo'}</Button></div>
+        <div className="overflow-visible rounded-2xl bg-white shadow-[0_4px_20px_rgba(15,23,42,0.045)] ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+          <div className="space-y-6 p-5 sm:p-6 md:p-8">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Pickup Address</label><LocationAutocomplete value={formData.pickupAddress} onChange={(v) => handleSelect('pickupAddress', v)} placeholder="Enter pickup address" className="w-full" /></div>
+              <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Delivery Address</label><LocationAutocomplete value={formData.deliveryAddress} onChange={(v) => handleSelect('deliveryAddress', v)} placeholder="Enter delivery address" className="w-full" /></div>
             </div>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Pickup Date</label><input type="date" name="pickupDate" value={formData.pickupDate} onChange={handleChange} className="w-full rounded-xl bg-white px-4 py-3 text-slate-900 dark:bg-slate-950 dark:text-white" /></div>
+              <div className="space-y-2"><label className="block font-bold text-slate-700 dark:text-slate-200">Delivery Date</label><input type="date" name="deliveryDate" value={formData.deliveryDate} onChange={handleChange} className="w-full rounded-xl bg-white px-4 py-3 text-slate-900 dark:bg-slate-950 dark:text-white" /></div>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2"><Button type="button" onClick={() => setStep(1)} className="min-h-12 w-full rounded-xl border border-slate-200 bg-white font-bold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-200">Back</Button><Button type="submit" disabled={isSubmitting} className="min-h-12 w-full rounded-xl font-bold text-white" style={{ backgroundColor: ROYAL_BLUE }}>{isCalculating ? 'Calculating...' : isSubmitting ? 'Posting...' : 'Post Cargo'}</Button></div>
           </div>
-        </>
+        </div>
       )}
     </form>
   );
