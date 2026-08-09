@@ -1,6 +1,6 @@
-/* TransConet phone-first production layout.
-   The product is designed for real Android/iOS phone and tablet viewports.
-   There is no desktop simulator or artificial phone frame. */
+/* TransConet mobile + tablet design system.
+   Phone-first, tablet-adaptive, readable and touch-friendly.
+   No desktop simulator styling. */
 
 html,
 body,
@@ -20,11 +20,11 @@ body {
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   touch-action: manipulation;
+  color: #172033;
 }
 
 #root > div {
   width: 100%;
-  max-width: none;
   min-width: 0;
   min-height: 100dvh;
   height: 100dvh;
@@ -34,85 +34,24 @@ body {
 #root,
 #root * {
   font-family: inherit !important;
+  box-sizing: border-box;
 }
 
 #root button,
+#root [role="button"],
 #root input,
 #root select,
 #root textarea {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
 }
 
-@media (max-width: 767px) {
-  #root > div > div:nth-of-type(2) {
-    display: none !important;
-  }
-}
-
-#root > div > footer {
-  display: none !important;
-}
-
-#root > div > div[class*="flex-1"] {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-
-#root .tc-dashboard,
-#root .tc-dashboard-main,
-#root .tc-dashboard-grid {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-  margin-inline: 0;
-  box-sizing: border-box;
-}
-
-#root .tc-dashboard-main {
-  padding-inline: 0;
-}
-
-#root .tc-dashboard-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 12px;
-}
-
-#root .tc-dashboard-grid > * {
-  width: 100%;
-  max-width: none;
-  min-width: 0;
-}
-
-@supports selector(form:has(input[name="name"])) {
-  form:has(input[name="name"]) {
-    width: 100%;
-    max-width: 1100px;
-    margin-inline: auto;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) > div:first-child,
-  form:has(input[name="name"]) > div:nth-of-type(2) > div:nth-last-child(1) {
-    grid-column: 1 / -1;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) > div:nth-child(4),
-  form:has(input[name="name"]) > div:nth-of-type(2) > div:nth-child(9) {
-    grid-column: 1 / -1;
-  }
-}
-
-#root * {
-  min-width: 0;
-  box-sizing: border-box;
+#root input,
+#root select,
+#root textarea {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
 }
 
 #root img,
@@ -122,32 +61,90 @@ body {
   max-width: 100%;
 }
 
-.tc-floating-nav-hub {
-  right: max(16px, env(safe-area-inset-right)) !important;
-  bottom: max(16px, env(safe-area-inset-bottom)) !important;
-}
-
-.tc-navigation-layer {
-  max-width: calc(100vw - 32px);
-}
-
 #root [class*="overflow-y-auto"] {
-  padding-bottom: max(16px, env(safe-area-inset-bottom));
   -webkit-overflow-scrolling: touch;
 }
 
-#root input,
-#root select,
-#root textarea {
+#root .tc-dashboard,
+#root .tc-dashboard-main,
+#root .tc-dashboard-grid {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  margin-inline: 0;
+}
+
+#root .tc-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+/* ================================
+   FORM DESIGN TOKENS
+   ================================ */
+
+#root form label {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: #334155;
+}
+
+#root form input,
+#root form select,
+#root form textarea {
+  min-height: 52px;
+  border: 1px solid #d9dee7;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #111827;
+  padding: 13px 15px;
   font-size: 16px !important;
+  font-weight: 400;
+  line-height: 1.4 !important;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
 }
 
-#root button,
-#root [role="button"] {
-  touch-action: manipulation;
+#root form textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
-@media (max-width: 767px) {
+#root form input::placeholder,
+#root form textarea::placeholder {
+  color: #8a94a6;
+  opacity: 1;
+}
+
+#root form input:focus,
+#root form select:focus,
+#root form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+#root form input:disabled,
+#root form select:disabled,
+#root form textarea:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+#root form button[type="submit"] {
+  min-height: 52px;
+  border-radius: 12px;
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+  font-weight: 700 !important;
+}
+
+/* ================================
+   PHONE
+   ================================ */
+
+@media (max-width: 599px) {
   #root h1,
   #root h2,
   #root h3,
@@ -156,98 +153,119 @@ body {
     max-width: 100%;
   }
 
-  #root h1 { font-size: clamp(1.5rem, 7vw, 2rem); line-height: 1.1; }
-  #root h2 { font-size: clamp(1.25rem, 6vw, 1.6rem); line-height: 1.15; }
-  #root h3 { font-size: clamp(1.05rem, 5vw, 1.3rem); line-height: 1.2; }
-  #root h4 { font-size: clamp(0.95rem, 4.2vw, 1.15rem); line-height: 1.25; }
+  #root h1 { font-size: clamp(24px, 7vw, 28px); line-height: 1.2; }
+  #root h2 { font-size: clamp(19px, 6vw, 22px); line-height: 1.25; }
+  #root h3 { font-size: clamp(17px, 5vw, 20px); line-height: 1.3; }
+  #root h4 { font-size: 16px; line-height: 1.35; }
 
-  #root .text-3xl { font-size: 1.65rem !important; line-height: 1.1 !important; }
-  #root .text-2xl { font-size: 1.45rem !important; line-height: 1.15 !important; }
-  #root .text-xl { font-size: 1.2rem !important; line-height: 1.2 !important; }
+  #root .text-xs { font-size: 12px !important; }
+  #root .text-sm { font-size: 14px !important; }
+  #root .text-base { font-size: 15px !important; }
+  #root .text-lg { font-size: 17px !important; }
+  #root .text-xl { font-size: 20px !important; }
+  #root .text-2xl { font-size: 24px !important; }
+  #root .text-3xl { font-size: 28px !important; }
 
-  @supports selector(form:has(input[name="name"])) {
-    form:has(input[name="name"]) {
-      max-width: none;
-      padding: 12px !important;
-      margin: 0;
-    }
-
-    form:has(input[name="name"]) > div:nth-of-type(2) {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-      padding: 14px !important;
-      border-radius: 18px;
-    }
-
-    form:has(input[name="name"]) > div:nth-of-type(2) > * {
-      grid-column: 1 / -1 !important;
-    }
+  /* Keep forms comfortable on 320–430px phones. */
+  #root form {
+    width: 100%;
+    max-width: none;
   }
 
-  #root .p-8 { padding: 1rem !important; }
-  #root .px-8 { padding-inline: 1rem !important; }
-  #root .md\:p-8 { padding: 1rem !important; }
+  #root form > * {
+    min-width: 0;
+  }
+
+  #root form button[type="submit"] {
+    width: 100%;
+  }
+
+  #root .tc-floating-nav-hub {
+    right: max(16px, env(safe-area-inset-right)) !important;
+    bottom: calc(5.5rem + env(safe-area-inset-bottom)) !important;
+  }
+
+  nav[aria-label="Mobile navigation"] {
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
 }
 
-/* Tablet tier: a larger touch-first workspace, not a desktop website. */
+/* ================================
+   TABLET — TOUCH-FIRST, NOT DESKTOP
+   ================================ */
+
 @media (min-width: 600px) and (max-width: 1024px) {
   #root .tc-dashboard-main {
     padding-left: 0;
   }
 
-  #root .tc-dashboard .tc-shipper-hero {
-    border-radius: 16px;
+  #root form {
+    max-width: 720px;
+    margin-inline: auto;
   }
 
-  #root .tc-dashboard p {
-    font-size: 15px;
-    line-height: 1.55;
-  }
-
-  #root .tc-dashboard h1 {
-    font-size: clamp(1.8rem, 4vw, 2.25rem);
-    line-height: 1.12;
-  }
-
-  #root .tc-dashboard h2 {
-    font-size: clamp(1.35rem, 3vw, 1.65rem);
-    line-height: 1.2;
-  }
-
-  #root .tc-dashboard h3 {
-    font-size: clamp(1.15rem, 2.5vw, 1.35rem);
-  }
-
-  #root .tc-dashboard .tc-shipper-hero img {
-    right: 0;
-  }
-
-  #root .tc-dashboard [class*="min-h-\[220px\]"],
-  #root .tc-dashboard [class*="min-h-\[250px\]"] {
-    min-height: 230px;
-  }
-
-  /* Cargo posting stays a comfortable two-column form on tablets. */
-  @supports selector(form:has(input[name="name"])) {
-    form:has(input[name="name"]) > div:nth-of-type(2) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-    }
+  #root form input,
+  #root form select,
+  #root form textarea {
+    min-height: 54px;
   }
 }
 
-@media (min-width: 768px) {
-  #root > div {
-    width: 100%;
-    max-width: none;
-    margin-inline: 0;
-    box-shadow: none;
-  }
+/* ================================
+   TYPOGRAPHY
+   ================================ */
 
-  body {
-    background: transparent;
-  }
+#root p,
+#root label,
+#root li,
+#root td,
+#root th {
+  line-height: 1.5;
 }
+
+#root .tc-form-tip,
+#root form .helper-text,
+#root form .form-helper {
+  font-size: 14px;
+  line-height: 1.5;
+  font-style: italic;
+  color: #64748b;
+}
+
+#root .tc-form-error,
+#root form .form-error {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #dc2626;
+}
+
+#root .tc-form-value {
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+#root .tc-form-label-muted {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Bold and italic are intentional: bold for values/actions, italic for tips only. */
+#root .tc-emphasis {
+  font-weight: 700;
+}
+
+#root .tc-tip-emphasis {
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* ================================
+   SAFE AREAS
+   ================================ */
 
 @supports (padding: env(safe-area-inset-bottom)) {
   .tc-mobile-safe-bottom {
@@ -259,139 +277,6 @@ body {
   }
 }
 
-/* Final visual correction pass. */
-html,
-body,
-#root,
-#root > div {
-  background: #ffffff !important;
-}
-
-#root {
-  color: #172033;
-  line-height: 1.5;
-  /* Increase inherited application text by one third without scaling spacing. */
-  font-size: 1.3333rem !important;
-}
-
-/* Tailwind rem-based text utilities, scaled by one third. */
-#root .text-xs { font-size: 1rem !important; }
-#root .text-sm { font-size: 1.1667rem !important; }
-#root .text-base { font-size: 1.3333rem !important; }
-#root .text-lg { font-size: 1.5rem !important; }
-#root .text-xl { font-size: 1.6667rem !important; }
-#root .text-2xl { font-size: 2rem !important; }
-#root .text-3xl { font-size: 2.5rem !important; }
-#root .text-4xl { font-size: 3rem !important; }
-#root .text-5xl { font-size: 4rem !important; }
-#root .text-6xl { font-size: 5rem !important; }
-
-/* Fixed-pixel utility labels are also enlarged by one third. */
-#root [class*="text-[10px]"] { font-size: 0.8333rem !important; }
-#root [class*="text-[11px]"] { font-size: 0.9167rem !important; }
-#root [class*="text-[12px]"] { font-size: 1rem !important; }
-
-#root input,
-#root select,
-#root textarea {
-  font-size: 1.3333rem !important;
-  line-height: 1.35 !important;
-}
-
-#root p,
-#root label,
-#root li,
-#root td,
-#root th {
-  line-height: 1.5;
-}
-
-/* Correct the cargo form layout. The previous broad :has() grid was making the
-   whole card a grid, which caused Pickup/Delivery headings to collide on phones. */
-@supports selector(form:has(input[name="name"])) {
-  form:has(input[name="name"]) {
-    background: #ffffff !important;
-    color: #172033 !important;
-    text-align: center;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) {
-    background: #ffffff !important;
-    text-align: center;
-    align-items: start;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) {
-    justify-self: center;
-    width: 100%;
-    max-width: 720px;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) > * {
-    width: 100%;
-    min-width: 0;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) input,
-  form:has(input[name="name"]) > div:nth-of-type(2) select,
-  form:has(input[name="name"]) > div:nth-of-type(2) textarea {
-    text-align: left;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) label {
-    text-align: left;
-  }
-
-  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) > div,
-  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) h2,
-  form:has(input[name="name"]) > div:nth-of-type(2) > :nth-child(1) p {
-    text-align: center;
-  }
-}
-
-/* Matcher workspace is white and its main card content is centered. */
-#root [class~="max-w-4xl"][class~="space-y-8"] {
-  background: #ffffff !important;
-  text-align: center;
-}
-
-#root [class~="max-w-4xl"][class~="space-y-8"] form {
-  text-align: left;
-}
-
-/* Make FloatingNavHub clearly visible on phones and tablets. */
-@media (max-width: 767px) {
-  .tc-floating-nav-hub {
-    display: block !important;
-    right: max(16px, env(safe-area-inset-right)) !important;
-    bottom: calc(5.5rem + env(safe-area-inset-bottom)) !important;
-  }
-
-  .tc-floating-nav-hub > button {
-    width: 60px !important;
-    height: 60px !important;
-    min-width: 60px !important;
-    min-height: 60px !important;
-    border-radius: 9999px !important;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22) !important;
-  }
-
-  #root h1 { font-size: clamp(2rem, 9.333vw, 2.6667rem) !important; line-height: 1.12 !important; }
-  #root h2 { font-size: clamp(1.6667rem, 8vw, 2.1333rem) !important; line-height: 1.18 !important; }
-  #root h3 { font-size: clamp(1.4rem, 6.667vw, 1.7333rem) !important; line-height: 1.22 !important; }
-  #root h4 { font-size: clamp(1.2667rem, 5.6vw, 1.5333rem) !important; line-height: 1.25 !important; }
-}
-
-@media (min-width: 768px) {
-  .tc-floating-nav-hub > button {
-    width: 64px !important;
-    height: 64px !important;
-    min-width: 64px !important;
-    min-height: 64px !important;
-  }
-}
-
-.tc-floating-nav-hub button,
-nav[aria-label="Mobile navigation"] button {
-  line-height: 1.2 !important;
+#root > div > footer {
+  display: none !important;
 }
