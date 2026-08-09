@@ -239,7 +239,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
 
             {/* Account Settings List */}
             <div className="px-6 mt-8 mb-6">
-              <div className="flex flex-col">
+              <div className="flex flex-col space-y-3 bg-stone-50 dark:bg-slate-900/40 rounded-2xl p-3">
                 {[
                   { id: 'SUPPORT', title: 'Help', icon: <Mail size={20} /> },
                   { id: 'FINANCE', title: 'Wallet', icon: <Landmark size={20} /> },
@@ -255,7 +255,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   <Button
                     key={item.id}
                     onClick={() => setActiveSection(item.id as any)}
-                    className="w-full justify-start flex items-center gap-3 py-3 px-0 text-left bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent shadow-none border-0 rounded-none transition-colors"
+                    className="w-full justify-start flex items-center gap-4 py-4 px-3 text-left bg-transparent hover:bg-white/70 dark:bg-transparent dark:hover:bg-slate-800/50 shadow-none border-0 rounded-xl transition-colors"
                   >
                     <span className="w-6 flex items-center justify-center text-slate-600 dark:text-slate-400">
                       {item.icon}
