@@ -1,0 +1,57 @@
+/* TransConet Shipper mobile-first UI layer.
+ * Presentation only: no API, state, navigation, or business-logic changes.
+ */
+
+.tc-shipper-mobile-surface {
+  background: #f8fafc;
+}
+
+@media (max-width: 767px) {
+  .tc-dashboard,
+  .tc-dashboard-main {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  .tc-dashboard-main > .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  .tc-shipper-hero {
+    border-radius: 18px !important;
+    box-shadow: 0 6px 22px rgba(15, 23, 42, 0.045) !important;
+  }
+
+  .tc-shipper-hero > div {
+    min-height: 0 !important;
+    padding: 20px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .tc-shipper-hero > div {
+    min-height: 250px;
+  }
+}
+
+/* Keep mobile cards readable and prevent accidental horizontal overflow. */
+.tc-dashboard article,
+.tc-dashboard section,
+.tc-dashboard form,
+.tc-dashboard button,
+.tc-dashboard input,
+.tc-dashboard textarea,
+.tc-dashboard select {
+  min-width: 0;
+}
+
+@media (max-width: 429px) {
+  .tc-dashboard .tc-shipper-hero h1 {
+    font-size: 26px !important;
+  }
+
+  .tc-dashboard .tc-shipper-hero p {
+    max-width: 100%;
+  }
+}
