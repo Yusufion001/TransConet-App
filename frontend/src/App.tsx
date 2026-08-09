@@ -150,7 +150,7 @@ export default function App() {
     }
 
     return (
-      <div className="flex-1 flex flex-col bg-slate-50 dark:bg-slate-800 overflow-hidden relative">
+      <div className="flex-1 flex min-h-0 flex-col bg-slate-50 dark:bg-slate-800 overflow-hidden relative">
         <FloatingNavHub
           activeRole={activeRole}
           isAdminAuthorized={activeRole.includes('ADMIN')}
@@ -158,7 +158,7 @@ export default function App() {
         />
 
         {(!dashboardViews.includes(activeView) || activeRole === 'TRANSPORTER') && (
-          <header className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/95 backdrop-blur-md sticky top-0 z-30 px-4 py-3 flex items-center justify-between">
+          <header className="border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900/95 backdrop-blur-md sticky top-0 z-30 px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2 select-none">
               <div className="flex flex-col relative group">
                 <span className="text-[24px] sm:text-[28px] font-sans font-light tracking-tight text-slate-900 dark:text-white flex items-center gap-0.5">
@@ -175,7 +175,7 @@ export default function App() {
           </header>
         )}
 
-        <div className={`min-h-0 flex-1 flex flex-col overflow-x-hidden overflow-y-auto scrollbar-none ${dashboardViews.includes(activeView) ? 'p-0' : ['account', 'wallet', 'reports', 'settings'].includes(activeView) ? 'pb-24' : 'p-3 pb-24'}`}>
+        <div className={`min-h-0 flex-1 flex flex-col ${dashboardViews.includes(activeView) ? 'overflow-hidden p-0' : 'overflow-y-auto overflow-x-hidden scrollbar-none ' + (['account', 'wallet', 'reports', 'settings'].includes(activeView) ? 'pb-24' : 'p-3 pb-24')}`}>
           <Suspense fallback={<div className="flex flex-1 items-center justify-center p-8"><div className="w-8 h-8 border-4 border-brand-500 border-t-transparent rounded-full animate-spin"></div></div>}>
             {activeView === 'fleet' && activeRole !== 'CUSTOMER' ? (
               <TransporterFleetDashboard />
@@ -193,7 +193,7 @@ export default function App() {
                 userRole={activeRole}
               />
             ) : ['network', 'post-load', 'marketplace'].includes(activeView) ? (
-              <div className="h-full flex flex-col overflow-hidden">
+              <div className="h-full min-h-0 flex flex-col overflow-hidden">
                 <ExpressMatcher
                   initialMode={activeView === 'post-load' ? 'SHIPPER' : activeView === 'marketplace' ? 'TRANSPORTER' : (activeRole === 'CUSTOMER' ? 'SHIPPER' : 'TRANSPORTER')}
                   initialSubMode={activeRole === 'TRANSPORTER' && localStorage.getItem('userVerified') !== 'true' ? 'REGISTER' : 'JOBS'}
