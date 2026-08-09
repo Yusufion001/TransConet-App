@@ -92,7 +92,7 @@ export default function CargoDetailsForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="tc-cargo-form bg-white text-slate-600 p-4 md:p-8 space-y-6 max-w-2xl mx-auto min-h-screen">
+    <form onSubmit={handleSubmit} className="tc-cargo-form bg-white text-slate-600 p-4 md:p-8 space-y-6 max-w-2xl mx-auto">
       <style>{`\n        .tc-cargo-form { font-size: 18px; --tc-royal-blue: #4169E1; }\n        .tc-cargo-form label { font-size: 18px !important; }\n        .tc-cargo-form input, .tc-cargo-form select, .tc-cargo-form textarea { font-size: 21px !important; border-color: var(--tc-royal-blue) !important; }\n        .tc-cargo-form button { font-size: 21px !important; }\n        .tc-cargo-form input::placeholder, .tc-cargo-form textarea::placeholder { color: #64748b !important; opacity: 1; }\n        .tc-cargo-form input:focus, .tc-cargo-form select:focus, .tc-cargo-form textarea:focus { border-color: var(--tc-royal-blue) !important; box-shadow: 0 0 0 3px rgba(65,105,225,0.15) !important; outline: none; }\n      `}</style>
 
       {step === 1 ? (
