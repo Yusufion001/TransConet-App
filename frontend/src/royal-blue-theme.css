@@ -1,11 +1,9 @@
 /* TransConet Brand Color System — UI/UX only */
 :root { --tc-royal-blue:#4169E1; --tc-royal-blue-dark:#3157CF; --tc-royal-blue-light:#E8EEFF; }
 
-/* Global application surfaces are white. */
 .bg-slate-50,.bg-slate-100,.bg-slate-800,.bg-slate-900,.bg-slate-950,.bg-gray-50,.bg-gray-100,.bg-gray-800,.bg-gray-900,.bg-gray-950,.bg-zinc-900,.bg-zinc-950,.bg-neutral-900,.bg-neutral-950,.bg-blue-950,.bg-indigo-950 { background-color:#fff !important; }
 .dark .bg-slate-50,.dark .bg-slate-100,.dark .bg-slate-800,.dark .bg-slate-900,.dark .bg-slate-950,.dark .bg-gray-50,.dark .bg-gray-100,.dark .bg-gray-800,.dark .bg-gray-900,.dark .bg-gray-950,.dark .bg-zinc-900,.dark .bg-zinc-950,.dark .bg-neutral-900,.dark .bg-neutral-950,.dark .bg-blue-950,.dark .bg-indigo-950 { background-color:#fff !important; }
 .bg-white { background-color:#fff !important; }
-
 .bg-brand-500,.bg-brand-600,.bg-brand-700,.bg-brand-800,.bg-brand-900 { background-color:var(--tc-royal-blue) !important; }
 .text-brand-500,.text-brand-600,.text-brand-700,.text-brand-800,.text-brand-900 { color:var(--tc-royal-blue) !important; }
 .border-brand-500,.border-brand-600,.border-brand-700,.border-brand-800,.border-brand-900 { border-color:var(--tc-royal-blue) !important; }
@@ -16,45 +14,70 @@ input,select,textarea { background-color:#fff; }
 .tc-dashboard,.tc-dashboard-main { --tc-primary-brand:var(--tc-royal-blue); }
 .tc-navigation-layer,.tc-navigation-control { opacity:1 !important; visibility:visible !important; }
 
-/* POST CARGO: neutral classic presentation only. No functionality/API/business logic changes. */
+/* POST CARGO: presentation-only overrides. Existing APIs, state and business logic are untouched. */
 .tc-cargo-form .text-brand-500,.tc-cargo-form .text-brand-600,.tc-cargo-form .text-brand-700,.tc-cargo-form .text-brand-800,.tc-cargo-form .text-brand-900 { color:#334155 !important; }
-.tc-cargo-form .bg-brand-500,.tc-cargo-form .bg-brand-600,.tc-cargo-form .bg-brand-700,.tc-cargo-form .bg-brand-800,.tc-cargo-form .bg-brand-900 { background-color:#334155 !important; }
-.tc-cargo-form .border-brand-500,.tc-cargo-form .border-brand-600,.tc-cargo-form .border-brand-700,.tc-cargo-form .border-brand-800,.tc-cargo-form .border-brand-900 { border-color:#cbd5e1 !important; }
-.tc-cargo-form .ring-brand-500,.tc-cargo-form .ring-brand-600,.tc-cargo-form .ring-brand-700,.tc-cargo-form .ring-brand-800,.tc-cargo-form .ring-brand-900 { --tw-ring-color:#cbd5e1 !important; }
 .tc-cargo-form h1 .text-brand-600,.tc-cargo-form h1 .text-brand-500,.tc-cargo-form h1 .text-brand-700,.tc-cargo-form h1 .text-brand-800,.tc-cargo-form h1 .text-brand-900 { color:#111827 !important; }
 .tc-cargo-form .text-blue-400,.tc-cargo-form .text-blue-500,.tc-cargo-form .text-blue-600,.tc-cargo-form .text-blue-700,.tc-cargo-form .text-indigo-400,.tc-cargo-form .text-indigo-500,.tc-cargo-form .text-indigo-600,.tc-cargo-form .text-indigo-700 { color:#475569 !important; }
 .tc-cargo-form .bg-blue-50,.tc-cargo-form .bg-blue-100,.tc-cargo-form .bg-indigo-50,.tc-cargo-form .bg-indigo-100 { background-color:#f8fafc !important; }
-.tc-cargo-form .border-blue-200,.tc-cargo-form .border-blue-300,.tc-cargo-form .border-blue-400,.tc-cargo-form .border-blue-500,.tc-cargo-form .border-indigo-200,.tc-cargo-form .border-indigo-300,.tc-cargo-form .border-indigo-400,.tc-cargo-form .border-indigo-500 { border-color:#cbd5e1 !important; }
-.tc-cargo-form input:focus,.tc-cargo-form select:focus,.tc-cargo-form textarea:focus,.tc-cargo-form button:focus-visible { border-color:#94a3b8 !important; --tw-ring-color:#cbd5e1 !important; }
 
-/* POST CARGO: full-width mobile/tablet presentation while retaining the existing header, actions, page title, form fields and functionality. */
-.tc-cargo-form {
-  width: calc(100% + 1.5rem) !important;
-  max-width: none !important;
-  margin-left: -0.75rem !important;
-  margin-right: -0.75rem !important;
-  box-sizing: border-box;
-}
+/* Full viewport, edge-to-edge Post Cargo presentation. */
+.tc-cargo-form { width:100vw !important; max-width:none !important; margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important; padding-left:16px !important; padding-right:16px !important; box-sizing:border-box; }
 
-/* Remove the main Post Cargo form/card border and shadow. */
-.tc-cargo-form > .bg-white {
-  width: 100% !important;
-  max-width: none !important;
-  box-sizing: border-box;
-  border: 0 !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-}
+/* The two main step cards are edge-to-edge; retain readable inner spacing. */
+.tc-cargo-form > div:nth-of-type(4) { width:100% !important; max-width:none !important; margin-left:0 !important; margin-right:0 !important; box-sizing:border-box; border:0 !important; box-shadow:none !important; border-radius:0 !important; }
 
-/* Remove the border line around the Pickup Location and Delivery Location address cards. */
+/* Make the requested Post Cargo controls approximately 2x their former control size. */
+.tc-cargo-form > div:nth-of-type(4) input,
+.tc-cargo-form > div:nth-of-type(4) select,
+.tc-cargo-form > div:nth-of-type(4) textarea,
+.tc-cargo-form > div:nth-of-type(4) > div > button,
+.tc-cargo-form > div:nth-of-type(4) > button,
+.tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { min-height:104px !important; padding:28px 32px !important; box-sizing:border-box; }
+.tc-cargo-form > div:nth-of-type(4) textarea { min-height:240px !important; }
+
+/* Royal-blue cards/controls with white readable text. */
+.tc-cargo-form > div:nth-of-type(4) input,
+.tc-cargo-form > div:nth-of-type(4) select,
+.tc-cargo-form > div:nth-of-type(4) textarea,
+.tc-cargo-form > div:nth-of-type(4) > div > button,
+.tc-cargo-form > div:nth-of-type(4) > button,
+.tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { background-color:var(--tc-royal-blue) !important; color:#fff !important; border-color:var(--tc-royal-blue) !important; }
+
+.tc-cargo-form > div:nth-of-type(4) label,
+.tc-cargo-form > div:nth-of-type(4) h2,
+.tc-cargo-form > div:nth-of-type(4) h3,
+.tc-cargo-form > div:nth-of-type(4) p,
+.tc-cargo-form > div:nth-of-type(4) span,
+.tc-cargo-form > div:nth-of-type(4) svg { color:#fff; }
+
+.tc-cargo-form > div:nth-of-type(4) input::placeholder,
+.tc-cargo-form > div:nth-of-type(4) textarea::placeholder { color:rgba(255,255,255,.88) !important; opacity:1 !important; }
+
+.tc-cargo-form > div:nth-of-type(4) input:focus,
+.tc-cargo-form > div:nth-of-type(4) select:focus,
+.tc-cargo-form > div:nth-of-type(4) textarea:focus,
+.tc-cargo-form > div:nth-of-type(4) button:focus-visible { border-color:#fff !important; box-shadow:0 0 0 3px rgba(255,255,255,.3) !important; outline:none !important; }
+
+/* Pickup and Delivery inner panels become Royal Blue while retaining all existing text/controls. */
+.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] { background-color:var(--tc-royal-blue) !important; }
+.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] input,
+.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] button,
+.tc-cargo-form > div:nth-of-type(4) [style*="F8FAFF"] select { min-height:104px !important; background-color:var(--tc-royal-blue) !important; color:#fff !important; border-color:var(--tc-royal-blue) !important; }
+
+/* Pickup and Delivery cards have no gray border line. */
 .tc-cargo-form [class*="pickup" i],
-.tc-cargo-form [class*="delivery" i] {
-  border-color: transparent !important;
-}
+.tc-cargo-form [class*="delivery" i] { border-color:transparent !important; }
 
-@media (min-width: 768px) {
-  .tc-cargo-form {
-    width: calc(100% + 1.5rem) !important;
-  }
+/* Keep error/success feedback readable and visually distinct from the requested blue controls. */
+.tc-cargo-form .bg-red-50 { background-color:#FEF2F2 !important; }
+.tc-cargo-form .bg-emerald-50 { background-color:#ECFDF5 !important; }
+
+@media (min-width:768px) {
+  .tc-cargo-form { padding-left:24px !important; padding-right:24px !important; }
+  .tc-cargo-form > div:nth-of-type(4) input,
+  .tc-cargo-form > div:nth-of-type(4) select,
+  .tc-cargo-form > div:nth-of-type(4) textarea,
+  .tc-cargo-form > div:nth-of-type(4) > div > button,
+  .tc-cargo-form > div:nth-of-type(4) > button,
+  .tc-cargo-form > div:nth-of-type(4) > .flex.gap-3 > button { min-height:112px !important; }
 }
