@@ -51,11 +51,11 @@ export default function DeepSapphireDashboard({
   useEffect(() => { const interval = setInterval(() => setEngineStatus(NativeTrackingEngine.getStatus()), 15000); return () => clearInterval(interval); }, []);
 
   return (
-    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <main className="tc-dashboard-main flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden">
+    <div className="tc-dashboard flex min-h-0 w-full min-w-0 flex-1 flex-col bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+      <main className="tc-dashboard-main flex min-h-0 w-full min-w-0 flex-1 flex-col">
         <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork} />
 
-        <div className="h-full min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain [-webkit-overflow-scrolling:touch]">
+        <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain [-webkit-overflow-scrolling:touch]">
           <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pt-5 md:px-7 lg:px-8">
             <section className="relative min-h-[205px] overflow-hidden rounded-[26px] bg-[#0B1F44] text-white shadow-[0_14px_35px_rgba(11,31,68,0.14)]" aria-labelledby="operations-hub-title">
               <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F44] via-[#123567] to-[#0B1F44]" />
