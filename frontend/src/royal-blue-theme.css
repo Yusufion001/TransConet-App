@@ -17,7 +17,7 @@ input,select,textarea { background-color:#fff; }
 .tc-cargo-form { width:100vw !important; max-width:none !important; margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important; padding-left:16px !important; padding-right:16px !important; box-sizing:border-box; background:#fff !important; color:#000 !important; }
 .tc-cargo-form > div:nth-of-type(4) { width:100% !important; max-width:none !important; margin-left:0 !important; margin-right:0 !important; box-sizing:border-box; border:0 !important; box-shadow:none !important; border-radius:0 !important; background:#fff !important; color:#000 !important; }
 
-/* Cards and controls use off-white surfaces against the white form background. */
+/* Form canvas is white; only cards and controls are off-white. */
 .tc-cargo-form > div:nth-of-type(4) > div,
 .tc-cargo-form > div:nth-of-type(4) input,
 .tc-cargo-form > div:nth-of-type(4) select,
