@@ -255,7 +255,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   <Button
                     key={item.id}
                     onClick={() => setActiveSection(item.id as any)}
-                    className="w-full flex items-center justify-between py-4 px-5 text-left bg-stone-50 hover:bg-stone-100 dark:bg-slate-900/40 dark:hover:bg-slate-800/60 shadow-none border-0 rounded-xl transition-colors"
+                    className="w-full flex items-center justify-between py-4 px-0 text-left bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent shadow-none border-0 rounded-none transition-colors"
                   >
                     <span
                       className={`font-bold text-base tracking-wide ${
