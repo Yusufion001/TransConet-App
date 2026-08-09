@@ -26,3 +26,24 @@ input,select,textarea { background-color:#fff; }
 .tc-cargo-form .bg-blue-50,.tc-cargo-form .bg-blue-100,.tc-cargo-form .bg-indigo-50,.tc-cargo-form .bg-indigo-100 { background-color:#f8fafc !important; }
 .tc-cargo-form .border-blue-200,.tc-cargo-form .border-blue-300,.tc-cargo-form .border-blue-400,.tc-cargo-form .border-blue-500,.tc-cargo-form .border-indigo-200,.tc-cargo-form .border-indigo-300,.tc-cargo-form .border-indigo-400,.tc-cargo-form .border-indigo-500 { border-color:#cbd5e1 !important; }
 .tc-cargo-form input:focus,.tc-cargo-form select:focus,.tc-cargo-form textarea:focus,.tc-cargo-form button:focus-visible { border-color:#94a3b8 !important; --tw-ring-color:#cbd5e1 !important; }
+
+/* POST CARGO: full-width mobile/tablet presentation while retaining the existing header, actions, page title, form fields and functionality. */
+.tc-cargo-form {
+  width: calc(100% + 1.5rem) !important;
+  max-width: none !important;
+  margin-left: -0.75rem !important;
+  margin-right: -0.75rem !important;
+  box-sizing: border-box;
+}
+
+.tc-cargo-form > .bg-white {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .tc-cargo-form {
+    width: calc(100% + 1.5rem) !important;
+  }
+}
