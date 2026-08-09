@@ -238,34 +238,37 @@ export default function AccountManagement({ initialSection = null }: AccountMana
 
 
             {/* Account Settings List */}
-            <div className="px-6 mt-8 mb-6">
-              <div className="flex flex-col">
+            <div className="px-6 mt-8 mb-8">
+              <div className="flex flex-col gap-4">
                 {[
-                  { id: 'SUPPORT', title: 'Help', icon: <Mail size={20} /> },
-                  { id: 'FINANCE', title: 'Wallet', icon: <Landmark size={20} /> },
-                  { id: 'VERIFICATION', title: 'Verification', icon: <CheckCircle2 size={20} /> },
-                  { id: 'SAFETY', title: 'Safety', icon: <Shield size={20} /> },
-                  { id: 'QUALITY', title: 'Quality', icon: <Star size={20} /> },
-                  { id: 'DISPUTE', title: 'Complaints and inquiries', icon: <AlertTriangle size={20} /> },
-                  { id: 'ABOUT', title: 'About', icon: <Building2 size={20} /> },
-                  { id: 'PRIVACY', title: 'Privacy Policy', icon: <Shield size={20} /> },
-                  { id: 'TERMS', title: 'Terms of Service', icon: <FileText size={20} /> },
-                  { id: 'DELETE', title: 'Delete Account', icon: <Trash2 size={20} className="text-red-500" /> },
+                  { id: 'SUPPORT', title: 'Help' },
+                  { id: 'FINANCE', title: 'Wallet' },
+                  { id: 'VERIFICATION', title: 'Verification' },
+                  { id: 'SAFETY', title: 'Safety' },
+                  { id: 'QUALITY', title: 'Quality' },
+                  { id: 'DISPUTE', title: 'Complaints and inquiries' },
+                  { id: 'ABOUT', title: 'About' },
+                  { id: 'PRIVACY', title: 'Privacy Policy' },
+                  { id: 'TERMS', title: 'Terms of Service' },
+                  { id: 'DELETE', title: 'Delete Account' },
                 ].map((item) => (
                   <Button
                     key={item.id}
                     onClick={() => setActiveSection(item.id as any)}
-                    className="w-full justify-start flex items-center gap-3 py-3 px-0 text-left bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent shadow-none border-0 rounded-none transition-colors"
+                    className="w-full flex items-center justify-between py-4 px-5 text-left bg-stone-50 hover:bg-stone-100 dark:bg-slate-900/40 dark:hover:bg-slate-800/60 shadow-none border-0 rounded-xl transition-colors"
                   >
-                    <span className="w-6 flex items-center justify-center text-slate-600 dark:text-slate-400">
-                      {item.icon}
-                    </span>
-                    <span className={`font-bold text-base ${
-                      item.id === 'DELETE'
-                        ? 'text-red-600 dark:text-red-400'
-                        : 'text-slate-900 dark:text-white'
-                    }`}>
+                    <span
+                      className={`font-bold text-base tracking-wide ${
+                        item.id === 'DELETE'
+                          ? 'text-red-600 dark:text-red-400'
+                          : 'text-slate-900 dark:text-white'
+                      }`}
+                    >
                       {item.title}
+                    </span>
+
+                    <span className="text-slate-500 dark:text-slate-400 font-bold text-2xl leading-none">
+                      ›
                     </span>
                   </Button>
                 ))}

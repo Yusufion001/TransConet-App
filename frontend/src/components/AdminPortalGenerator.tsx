@@ -1,4 +1,5 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
+import { lazyWithRetry as lazy } from '../utils/lazyWithRetry';
 import {
   Globe, ShieldCheck, FileText, Headset, Bell, CreditCard, Truck, Users, Megaphone,
   Wallet, AlertTriangle, BarChart, Bot, ToggleLeft, Code, Database, History, Key,
