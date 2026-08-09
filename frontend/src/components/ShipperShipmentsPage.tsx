@@ -18,12 +18,14 @@ export default function ShipperShipmentsPage() {
   };
 
   return (
-    <div className="min-h-full bg-[#F6F8FB] dark:bg-slate-950">
-      <MyShipments
-        key={refreshKey}
-        onAcceptBid={handleAcceptBid}
-        onViewTracking={(load) => setTrackingShipmentId(load?.id ? String(load.id) : null)}
-      />
+    <div className="tc-shipper-mobile-surface flex min-h-0 w-full flex-1 flex-col overflow-hidden dark:bg-slate-950">
+      <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain [-webkit-overflow-scrolling:touch]">
+        <MyShipments
+          key={refreshKey}
+          onAcceptBid={handleAcceptBid}
+          onViewTracking={(load) => setTrackingShipmentId(load?.id ? String(load.id) : null)}
+        />
+      </div>
       {trackingShipmentId && (
         <TrackingDashboard shipmentId={trackingShipmentId} onClose={() => setTrackingShipmentId(null)} />
       )}
