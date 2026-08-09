@@ -27,23 +27,113 @@
     min-height: 0 !important;
     padding: 20px !important;
   }
+
+  /* Shipper matching / cargo flow */
+  .tc-dashboard-main .max-w-4xl {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 16px !important;
+    gap: 24px !important;
+    box-sizing: border-box;
+  }
+
+  .tc-dashboard-main .max-w-4xl > div,
+  .tc-dashboard-main .max-w-4xl > form,
+  .tc-dashboard-main .max-w-4xl article {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .tc-dashboard-main .max-w-4xl h1 {
+    font-size: 25px !important;
+    line-height: 1.15 !important;
+  }
+
+  .tc-dashboard-main .max-w-4xl .rounded-\[20px\] {
+    border-radius: 18px !important;
+  }
+
+  .tc-dashboard-main .max-w-4xl form {
+    gap: 14px !important;
+  }
+
+  .tc-dashboard-main .max-w-4xl input,
+  .tc-dashboard-main .max-w-4xl select,
+  .tc-dashboard-main .max-w-4xl textarea {
+    min-height: 48px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .tc-dashboard-main .max-w-4xl button {
+    min-height: 46px;
+    touch-action: manipulation;
+  }
+
+  /* Cargo posting form: preserve existing fields and submission logic. */
+  .tc-cargo-form {
+    width: 100% !important;
+    max-width: 720px !important;
+    margin-inline: auto;
+    padding: 16px !important;
+    box-sizing: border-box;
+  }
+
+  .tc-cargo-form > div,
+  .tc-cargo-form .rounded-3xl {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .tc-cargo-form .grid {
+    min-width: 0;
+  }
+
+  .tc-cargo-form input,
+  .tc-cargo-form select,
+  .tc-cargo-form textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 17px !important;
+  }
+
+  .tc-cargo-form button {
+    font-size: 16px !important;
+    touch-action: manipulation;
+  }
+
+  /* Inline support should occupy the available mobile viewport instead of appearing as a half-height card. */
+  #customer-support-panel {
+    width: 100% !important;
+    min-height: calc(100dvh - 80px) !important;
+    height: calc(100dvh - 80px) !important;
+    max-height: none !important;
+    border-radius: 18px !important;
+    box-sizing: border-box;
+  }
+
+  #customer-support-panel > * {
+    min-width: 0;
+  }
+
+  /* Prevent mobile pages from creating accidental horizontal overflow. */
+  .tc-dashboard article,
+  .tc-dashboard section,
+  .tc-dashboard form,
+  .tc-dashboard button,
+  .tc-dashboard input,
+  .tc-dashboard textarea,
+  .tc-dashboard select,
+  #customer-support-panel {
+    min-width: 0;
+  }
 }
 
 @media (min-width: 768px) {
   .tc-shipper-hero > div {
     min-height: 250px;
   }
-}
-
-/* Keep mobile cards readable and prevent accidental horizontal overflow. */
-.tc-dashboard article,
-.tc-dashboard section,
-.tc-dashboard form,
-.tc-dashboard button,
-.tc-dashboard input,
-.tc-dashboard textarea,
-.tc-dashboard select {
-  min-width: 0;
 }
 
 @media (max-width: 429px) {
@@ -53,5 +143,15 @@
 
   .tc-dashboard .tc-shipper-hero p {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .tc-dashboard-main .max-w-4xl {
+    padding: 12px !important;
+  }
+
+  .tc-cargo-form {
+    padding: 12px !important;
   }
 }
