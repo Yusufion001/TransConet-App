@@ -36,10 +36,12 @@ input,select,textarea { background-color:#fff; }
   box-sizing: border-box;
 }
 
+/* Remove only the outer/main Post Cargo form border line. Keep the internal field and section borders. */
 .tc-cargo-form > .bg-white {
   width: 100% !important;
   max-width: none !important;
   box-sizing: border-box;
+  border: none !important;
 }
 
 @media (min-width: 768px) {
