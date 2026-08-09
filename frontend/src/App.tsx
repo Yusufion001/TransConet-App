@@ -5,31 +5,29 @@ import React, { useState, useEffect, Suspense } from 'react';
 import { useAuthStore } from './store/authStore';
 import { useUIStore } from './store/uiStore';
 import { APIProvider } from '@vis.gl/react-google-maps';
-import { lazyWithRetry } from './utils/lazyWithRetry';
-const LoginGateway = lazyWithRetry(() => import('./components/LoginGateway')); // Your secure phone verification screen
 import { FloatingNavHub } from './components/FloatingNavHub';
 import { DarkModeToggle } from './components/DarkModeToggle';
-const WelcomeSlides = lazyWithRetry(() => import('./components/WelcomeSlides'));
+import LoginGateway from './components/LoginGateway';
+import WelcomeSlides from './components/WelcomeSlides';
+import AdminVerificationFeed from './components/AdminVerificationFeed';
+import TransporterFleetDashboard from './components/TransporterFleetDashboard';
+import ExpressMatcher from './components/ExpressMatcher';
+import AdminPortalGenerator from './components/AdminPortalGenerator';
+import DedicatedAdminLogin from './components/DedicatedAdminLogin';
+import AccountManagement from './components/AccountManagement';
+import DeepSapphireDashboard from './components/DeepSapphireDashboard';
+import ShipperShipmentsPage from './components/ShipperShipmentsPage';
+import SupportChatWidget from './components/SupportChatWidget';
+import DriverDashboard from './components/DriverDashboard';
 import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
 import { Truck, LogOut, User, ShieldAlert, Sliders, LayoutDashboard, Smartphone, X, Copy, Check, ExternalLink, LifeBuoy, Building, Briefcase, Shield, Headset, CircleUser } from 'lucide-react';
-const AdminVerificationFeed = lazyWithRetry(() => import('./components/AdminVerificationFeed'));
-const TransporterFleetDashboard = lazyWithRetry(() => import('./components/TransporterFleetDashboard'));
-const ExpressMatcher = lazyWithRetry(() => import('./components/ExpressMatcher'));
-const AdminPortalGenerator = lazyWithRetry(() => import('./components/AdminPortalGenerator'));
-const DedicatedAdminLogin = lazyWithRetry(() => import('./components/DedicatedAdminLogin'));
-const AccountManagement = lazyWithRetry(() => import('./components/AccountManagement'));
-const DeepSapphireDashboard = lazyWithRetry(() => import('./components/DeepSapphireDashboard'));
-const ShipperShipmentsPage = lazyWithRetry(() => import('./components/ShipperShipmentsPage'));
-const SupportChatWidget = lazyWithRetry(() => import('./components/SupportChatWidget'));
-const DriverDashboard = lazyWithRetry(() => import('./components/DriverDashboard'));
-// src/App.tsx
+
 const GOOGLE_MAPS_API_KEY =
   process.env.GOOGLE_MAPS_PLATFORM_KEY ||
   (import.meta as any).env?.VITE_GOOGLE_MAPS_PLATFORM_KEY ||
   (import.meta as any).env?.VITE_GOOGLE_MAP_PLATFORM_KEY ||
   (globalThis as any).GOOGLE_MAPS_PLATFORM_KEY ||
   '';
-// Highly resilient offline-capable helper to decode JWT payload parameters safely
 
 export default function App() {
   const navigate = useNavigate();
@@ -62,7 +60,6 @@ export default function App() {
     setSupportHighlight(false);
   };
 
-  // Existing mobile/device state is retained; the dashboard itself now uses the real viewport.
   const { isMobileDevice, setMobileDevice, isMobileFrame: useMobileFrame, setMobileFrame: setUseMobileFrame } = useUIStore();
 
   useEffect(() => {
