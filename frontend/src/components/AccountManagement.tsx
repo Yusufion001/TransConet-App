@@ -237,30 +237,39 @@ export default function AccountManagement({ initialSection = null }: AccountMana
             </div>
 
 
-            {/* List Section */}
-            <div className="px-6 mt-8 space-y-2 mb-6">
-               {[
-                 { id: 'SUPPORT', title: 'Help', icon: <Mail size={24} /> },
-                 { id: 'FINANCE', title: 'Wallet', icon: <Landmark size={24} /> },
-                 { id: 'VERIFICATION', title: 'Verification', icon: <CheckCircle2 size={24} /> },
-                 { id: 'SAFETY', title: 'Safety', icon: <Shield size={24} /> },
-                 { id: 'QUALITY', title: 'Quality', icon: <Star size={24} /> },
-                 { id: 'DISPUTE', title: 'Complaints and inquiries', icon: <AlertTriangle size={24} /> },
-                 { id: 'ABOUT', title: 'About', icon: <Building2 size={24} /> },
-                 { id: 'PRIVACY', title: 'Privacy Policy', icon: <Shield size={24} /> },
-                 { id: 'TERMS', title: 'Terms of Service', icon: <FileText size={24} /> },
-                 { id: 'DELETE', title: 'Delete Account', icon: <Trash2 size={24} className="text-red-500" /> },
-               ].map((item) => (
-                 <Button key={item.id || item?.id || Math.random()} onClick={() => setActiveSection(item.id as any)} className="w-full flex items-center justify-between py-4 border-b border-slate-200 dark:border-slate-700  last:border-0 hover:bg-white dark:bg-slate-900/50 :bg-slate-800/50 transition cursor-pointer">
-                   <div className="flex items-center gap-5 text-slate-900 dark:text-white ">
-                     <div className="text-slate-700 dark:text-slate-400 ">
-                       {item.icon}
-                     </div>
-                     <span className="font-bold text-base">{item.title}</span>
-                   </div>
-                   <span className="text-slate-600 dark:text-slate-400 font-black text-xl leading-none">&rsaquo;</span>
-                 </Button>
-               ))}
+            {/* Account Settings List */}
+            <div className="px-6 mt-8 mb-6">
+              <div className="flex flex-col">
+                {[
+                  { id: 'SUPPORT', title: 'Help', icon: <Mail size={20} /> },
+                  { id: 'FINANCE', title: 'Wallet', icon: <Landmark size={20} /> },
+                  { id: 'VERIFICATION', title: 'Verification', icon: <CheckCircle2 size={20} /> },
+                  { id: 'SAFETY', title: 'Safety', icon: <Shield size={20} /> },
+                  { id: 'QUALITY', title: 'Quality', icon: <Star size={20} /> },
+                  { id: 'DISPUTE', title: 'Complaints and inquiries', icon: <AlertTriangle size={20} /> },
+                  { id: 'ABOUT', title: 'About', icon: <Building2 size={20} /> },
+                  { id: 'PRIVACY', title: 'Privacy Policy', icon: <Shield size={20} /> },
+                  { id: 'TERMS', title: 'Terms of Service', icon: <FileText size={20} /> },
+                  { id: 'DELETE', title: 'Delete Account', icon: <Trash2 size={20} className="text-red-500" /> },
+                ].map((item) => (
+                  <Button
+                    key={item.id}
+                    onClick={() => setActiveSection(item.id as any)}
+                    className="w-full justify-start flex items-center gap-3 py-3 px-0 text-left bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent shadow-none border-0 rounded-none transition-colors"
+                  >
+                    <span className="w-6 flex items-center justify-center text-slate-600 dark:text-slate-400">
+                      {item.icon}
+                    </span>
+                    <span className={`font-bold text-base ${
+                      item.id === 'DELETE'
+                        ? 'text-red-600 dark:text-red-400'
+                        : 'text-slate-900 dark:text-white'
+                    }`}>
+                      {item.title}
+                    </span>
+                  </Button>
+                ))}
+              </div>
             </div>
 
           </div>
