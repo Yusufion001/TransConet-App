@@ -1,7 +1,6 @@
-import { HeroFindLoadsCard } from './HeroFindLoadsCard';
 import { PremiumHeader } from './PremiumHeader';
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, FileText, MapPinned, PackageSearch } from 'lucide-react';
+import { FileText, MapPinned, PackageSearch } from 'lucide-react';
 import { Button } from './ui/Button';
 import { MyShipmentsCard, BoostLoadCard, TrackShipmentCard } from './DashboardCards';
 import StateFilterOverlay from './StateFilterOverlay';
@@ -82,16 +81,11 @@ export default function DeepSapphireDashboard({
 
         <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain scrollbar-none">
           <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(6.5rem+env(safe-area-inset-bottom))] pt-4 sm:px-5 sm:pt-5 md:px-7 md:pb-24 lg:px-8">
-            <section className="tc-shipper-hero relative overflow-hidden border border-slate-200 bg-white shadow-[0_4px_18px_rgba(15,23,42,0.045)] dark:border-slate-800 dark:bg-slate-900" aria-labelledby="operations-hub-title">
-              <div className="absolute inset-y-0 right-0 w-[62%] bg-[#EEF4FF] dark:bg-brand-950/40" />
-              <img src="/images/transconet-global-hero.svg" alt="Global cargo network by road, sea and air" className="pointer-events-none absolute bottom-0 right-[-8%] h-[90%] w-[68%] object-contain object-right-bottom sm:right-[-2%] sm:h-full sm:w-[58%]" />
-              <div className="relative z-10 min-h-[236px] w-[72%] p-5 sm:min-h-[260px] sm:w-[58%] sm:p-7 md:min-h-[280px] md:p-8">
+            <section className="tc-shipper-hero relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_4px_18px_rgba(15,23,42,0.045)] dark:border-slate-800 dark:bg-slate-900" aria-labelledby="operations-hub-title">
+              <div className="relative z-10 min-h-[236px] w-full p-5 sm:min-h-[260px] sm:p-7 md:min-h-[280px] md:p-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-brand-700 dark:text-brand-300">Shipper workspace</p>
                 <h1 id="operations-hub-title" className="mt-2 text-[28px] font-extrabold leading-tight tracking-[-0.025em] text-[#0B1F44] dark:text-white sm:text-4xl">Operations Hub</h1>
                 <p className="mt-3 max-w-xl text-[15px] leading-6 text-slate-600 dark:text-slate-300 sm:text-base">A focused command center for cargo, shipments, transport matching and freight tracking.</p>
-                <div className="mt-5 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm font-semibold text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200">
-                  <MapPinned size={16} className="text-brand-600" /> Global logistics workspace <ArrowRight size={15} className="text-slate-400" />
-                </div>
               </div>
             </section>
 
@@ -111,7 +105,6 @@ export default function DeepSapphireDashboard({
 
             <section className="mt-5" aria-label="Cargo operations">
               <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
-                <div className="min-w-0 md:col-span-2"><HeroFindLoadsCard onNavigateToNetwork={onNavigateToNetwork} /></div>
                 <div className="min-w-0"><MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork} /></div>
                 <div className="min-w-0"><TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} /></div>
                 <div className="min-w-0 md:col-span-2"><BoostLoadCard onBoostClick={() => setIsBoostModalOpen(true)} /></div>
