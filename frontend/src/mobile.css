@@ -80,10 +80,6 @@ body {
   gap: 12px;
 }
 
-/* ================================
-   FORM DESIGN TOKENS
-   ================================ */
-
 #root form label {
   font-size: 14px;
   line-height: 1.4;
@@ -140,10 +136,6 @@ body {
   font-weight: 700 !important;
 }
 
-/* ================================
-   PHONE
-   ================================ */
-
 @media (max-width: 599px) {
   #root h1,
   #root h2,
@@ -166,19 +158,13 @@ body {
   #root .text-2xl { font-size: 24px !important; }
   #root .text-3xl { font-size: 28px !important; }
 
-  /* Keep forms comfortable on 320–430px phones. */
   #root form {
     width: 100%;
     max-width: none;
   }
 
-  #root form > * {
-    min-width: 0;
-  }
-
-  #root form button[type="submit"] {
-    width: 100%;
-  }
+  #root form > * { min-width: 0; }
+  #root form button[type="submit"] { width: 100%; }
 
   #root .tc-floating-nav-hub {
     right: max(16px, env(safe-area-inset-right)) !important;
@@ -190,38 +176,19 @@ body {
   }
 }
 
-/* ================================
-   TABLET — TOUCH-FIRST, NOT DESKTOP
-   ================================ */
-
 @media (min-width: 600px) and (max-width: 1024px) {
-  #root .tc-dashboard-main {
-    padding-left: 0;
-  }
-
-  #root form {
-    max-width: 720px;
-    margin-inline: auto;
-  }
-
+  #root .tc-dashboard-main { padding-left: 0; }
+  #root form { max-width: 720px; margin-inline: auto; }
   #root form input,
   #root form select,
-  #root form textarea {
-    min-height: 54px;
-  }
+  #root form textarea { min-height: 54px; }
 }
-
-/* ================================
-   TYPOGRAPHY
-   ================================ */
 
 #root p,
 #root label,
 #root li,
 #root td,
-#root th {
-  line-height: 1.5;
-}
+#root th { line-height: 1.5; }
 
 #root .tc-form-tip,
 #root form .helper-text,
@@ -240,43 +207,184 @@ body {
   color: #dc2626;
 }
 
-#root .tc-form-value {
-  font-size: 18px;
-  line-height: 1.35;
-  font-weight: 700;
-}
-
-#root .tc-form-label-muted {
-  font-size: 13px;
-  line-height: 1.4;
-  font-weight: 500;
-  color: #64748b;
-}
-
-/* Bold and italic are intentional: bold for values/actions, italic for tips only. */
-#root .tc-emphasis {
-  font-weight: 700;
-}
-
-#root .tc-tip-emphasis {
-  font-weight: 700;
-  font-style: italic;
-}
-
-/* ================================
-   SAFE AREAS
-   ================================ */
+#root .tc-form-value { font-size: 18px; line-height: 1.35; font-weight: 700; }
+#root .tc-form-label-muted { font-size: 13px; line-height: 1.4; font-weight: 500; color: #64748b; }
+#root .tc-emphasis { font-weight: 700; }
+#root .tc-tip-emphasis { font-weight: 700; font-style: italic; }
 
 @supports (padding: env(safe-area-inset-bottom)) {
-  .tc-mobile-safe-bottom {
-    padding-bottom: max(12px, env(safe-area-inset-bottom));
+  .tc-mobile-safe-bottom { padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .tc-mobile-safe-top { padding-top: max(0px, env(safe-area-inset-top)); }
+}
+
+#root > div > footer { display: none !important; }
+
+/* =========================================================
+   SHIPPER EXPERIENCE — GLOBAL MOBILE UI POLISH
+   Visual-only layer: no API, state, routing or business logic.
+   ========================================================= */
+
+#root .tc-dashboard {
+  background: #f7f8fb !important;
+}
+
+#root .tc-dashboard-main {
+  background: #f7f8fb;
+}
+
+#root .tc-dashboard .tc-shipper-hero {
+  border: 0 !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fbff 100%) !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.055) !important;
+}
+
+#root .tc-dashboard .tc-shipper-hero > div {
+  min-height: 210px;
+}
+
+/* Consistent premium surface treatment for shipper cards. */
+#root .tc-dashboard section:not(.tc-shipper-hero) > div > div,
+#root .tc-dashboard article,
+#root .tc-dashboard [class*="rounded-2xl"][class*="bg-white"] {
+  border-color: transparent !important;
+}
+
+/* Touch targets: comfortable on Android phones. */
+#root .tc-dashboard button,
+#root form button,
+#root [role="button"] {
+  min-height: 44px;
+}
+
+/* Shipper matcher tabs: horizontally scrollable, never squeezed. */
+#root .tc-dashboard + * .overflow-x-auto,
+#root .overflow-x-auto {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+#root .overflow-x-auto::-webkit-scrollbar { display: none; }
+
+/* Find Transport / Post Cargo / My Shipments forms. */
+#root form[class*="tc-cargo-form"] {
+  background: #f7f8fb !important;
+}
+
+#root form[class*="tc-cargo-form"] > div[class*="rounded-2xl"] {
+  border: 0 !important;
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.055) !important;
+}
+
+/* Shipment cards: cleaner hierarchy and better phone spacing. */
+#root article[class*="rounded-2xl"] {
+  border: 0 !important;
+  box-shadow: 0 7px 24px rgba(15, 23, 42, 0.055) !important;
+}
+
+#root article[class*="rounded-2xl"] > div[class*="bg-slate-50"] {
+  background: #f8fafc !important;
+}
+
+/* Prevent long route names, IDs and transporter phone numbers from breaking layout. */
+#root .truncate,
+#root [class*="break-words"] {
+  min-width: 0;
+}
+
+/* Inputs used by logistics search and tracking. */
+#root input,
+#root select,
+#root textarea {
+  max-width: 100%;
+}
+
+/* Mobile: single-column first, with predictable 16px gutters. */
+@media (max-width: 599px) {
+  #root .tc-dashboard-main > [class*="overflow-y-auto"] > div,
+  #root .tc-dashboard-main > div > div {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 
-  .tc-mobile-safe-top {
-    padding-top: max(0px, env(safe-area-inset-top));
+  #root .tc-dashboard .tc-shipper-hero > div {
+    min-height: 200px !important;
+    padding: 22px 18px !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Quick actions"] {
+    margin-top: 18px !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Cargo operations"] {
+    margin-top: 20px !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Quick actions"] button {
+    justify-content: flex-start;
+    border-radius: 14px !important;
+  }
+
+  /* Match/search cards become full-width and visually lighter. */
+  #root .tc-dashboard article,
+  #root .tc-dashboard section {
+    max-width: 100%;
+  }
+
+  /* Keep bid controls readable without horizontal overflow. */
+  #root article .flex.items-start.justify-between,
+  #root article .flex.items-center.justify-between {
+    min-width: 0;
+  }
+
+  #root article button {
+    flex-shrink: 0;
+  }
+
+  /* Cargo form: one comfortable column on phones. */
+  #root form[class*="tc-cargo-form"] {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-top: 12px !important;
+  }
+
+  #root form[class*="tc-cargo-form"] > div[class*="rounded-2xl"] > div {
+    padding: 18px !important;
+  }
+
+  /* Search matcher cards use compact spacing on narrow devices. */
+  #root .tc-dashboard .grid {
+    min-width: 0;
+  }
+
+  /* Make floating overlays respect the phone safe area. */
+  #root [role="dialog"],
+  #root .fixed.z-50 {
+    max-width: calc(100vw - 24px);
   }
 }
 
-#root > div > footer {
-  display: none !important;
+@media (min-width: 600px) {
+  #root .tc-dashboard .tc-shipper-hero > div { min-height: 250px; }
+}
+
+/* Dark mode keeps the same hierarchy without hard borders. */
+.dark #root .tc-dashboard,
+.dark #root .tc-dashboard-main { background: #090f1a !important; }
+
+.dark #root .tc-dashboard .tc-shipper-hero {
+  background: linear-gradient(145deg, #111827 0%, #0f172a 100%) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* Respect reduced-motion preferences. */
+@media (prefers-reduced-motion: reduce) {
+  #root *,
+  #root *::before,
+  #root *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
