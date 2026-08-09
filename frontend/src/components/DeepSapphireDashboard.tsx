@@ -69,7 +69,7 @@ export default function DeepSapphireDashboard({
   }, []);
 
   return (
-    <div className="tc-dashboard flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="tc-dashboard flex min-h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <main className="tc-dashboard-main flex min-h-0 w-full min-w-0 flex-1 flex-col overflow-hidden">
         <PremiumHeader
           userPhone={userPhone}

@@ -414,7 +414,7 @@ export default function SupportChatWidget({
           id="customer-support-panel" 
           className={
             inline
-              ? "w-full h-[600px] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-sm rounded-[20px] flex flex-col overflow-hidden animate-in fade-in duration-75"
+              ? "w-full min-h-[calc(100dvh-80px)] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-sm rounded-[20px] flex flex-col overflow-hidden animate-in fade-in duration-75"
               : "fixed bottom-24 right-6 w-[380px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[calc(100vh-8rem)] bg-white dark:bg-slate-900  border border-slate-200 dark:border-slate-700  shadow-2xl rounded-[20px] flex flex-col overflow-hidden transition-all duration-75 z-50 animate-in slide-in-from-bottom-5 fade-in duration-75"
           }
         >
