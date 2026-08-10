@@ -1,47 +1,31 @@
-/* =========================================================
-   AUTH MOBILE FORM SIZING
-   Exact phone form width + viewport-height ratio requested for
-   TransConet login/sign-up screens.
-
-   360px phone: 198px wide (55% of screen width), 48dvh tall.
-   390px phone: 234px wide (60% of screen width), 48dvh tall.
-   ========================================================= */
+/* TransConet authentication mobile sizing */
 
 @media (max-width: 374px) {
-  #root [class~="min-h-[100dvh]"][class~="bg-slate-950"] > [class~="max-w-lg"] > [class~="overflow-hidden"] > [class*="pb-8"] > [class~="rounded-[28px]"] {
-    width: 198px !important;
-    max-width: 198px !important;
-    height: 48dvh !important;
-    margin-inline: auto !important;
+  .tc-auth-mobile-form {
+    width: 65vw !important;
+    max-width: none !important;
+    min-width: 65vw !important;
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    height: 75dvh !important;
+    max-height: 75dvh !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    padding: 16px !important;
   }
 }
 
 @media (min-width: 375px) and (max-width: 599px) {
-  #root [class~="min-h-[100dvh]"][class~="bg-slate-950"] > [class~="max-w-lg"] > [class~="overflow-hidden"] > [class*="pb-8"] > [class~="rounded-[28px]"] {
-    width: 234px !important;
-    max-width: 234px !important;
-    height: 48dvh !important;
-    margin-inline: auto !important;
+  .tc-auth-mobile-form {
+    width: 70vw !important;
+    max-width: none !important;
+    min-width: 70vw !important;
+    box-sizing: border-box !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    height: 75dvh !important;
+    max-height: 75dvh !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
-    padding: 18px !important;
-  }
-}
-
-/* Keep the narrow auth form usable inside the deliberately compact card. */
-@media (max-width: 599px) {
-  #root [class~="max-w-lg"] [class~="rounded-[28px]"] input {
-    min-width: 0;
-  }
-
-  #root [class~="max-w-lg"] [class~="rounded-[28px]"] .text-sm {
-    font-size: 13px !important;
-  }
-
-  #root [class~="max-w-lg"] [class~="rounded-[28px]"] .text-[15px] {
-    font-size: 13px !important;
   }
 }

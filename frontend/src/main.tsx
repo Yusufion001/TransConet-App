@@ -1,3 +1,4 @@
+import './styles/auth-mobile.css';
 window.addEventListener('vite:preloadError', (event) => {
   console.warn('Vite preload error, reloading page...', event);
   window.location.reload();
