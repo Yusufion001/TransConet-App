@@ -12,8 +12,6 @@
     width: 198px !important;
     max-width: 198px !important;
     height: 48dvh !important;
-    min-height: 384px !important;
-    max-height: 48dvh !important;
     margin-inline: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
@@ -26,8 +24,6 @@
     width: 234px !important;
     max-width: 234px !important;
     height: 48dvh !important;
-    min-height: 405px !important;
-    max-height: 48dvh !important;
     margin-inline: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
