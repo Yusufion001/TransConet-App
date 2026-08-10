@@ -10,7 +10,7 @@ import App from './App.tsx';
 import './index.css';
 import './royal-blue-theme.css';
 import './styles/shipper-mobile.css';
-import './styles/auth-mobile.css';
+import './styles/dashboard-mobile.css';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
