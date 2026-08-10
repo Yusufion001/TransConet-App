@@ -79,3 +79,119 @@ body{margin:0;min-width:320px;background:#fff;color:#172033;font-family:Inter,ui
 @media(max-width:767px){.tc-navigation-layer{transform:translateZ(0);backface-visibility:hidden}.tc-navigation-control{min-width:48px;min-height:48px;touch-action:manipulation}}
 @media(min-width:768px){.tc-navigation-control{min-height:48px}}
 html,body,#root{max-width:100%;}
+
+/* =========================================================
+   DESKTOP COMPACT / MOBILE-SIZED PRESENTATION
+   =========================================================
+   Keep the desktop viewport, but make the application use the
+   same compact single-column proportions as the phone UI.
+   This is presentation-only and does not change app logic.
+*/
+@media (min-width: 1024px) {
+  :root {
+    --tc-container: min(100% - 32px, 520px);
+    --tc-control-height: 52px;
+  }
+
+  #root .tc-dashboard,
+  #root .tc-dashboard-main {
+    width: min(100%, 520px) !important;
+    max-width: 520px !important;
+    min-width: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  #root .tc-dashboard-main {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  #root .tc-dashboard-grid,
+  #root .tc-responsive-grid {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  #root .tc-dashboard-grid > *,
+  #root .tc-responsive-grid > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: auto !important;
+  }
+
+  #root .tc-content-container,
+  #root .tc-hero-container,
+  #root .tc-form-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  #root .tc-dashboard .grid[class*="grid-cols-2"],
+  #root .tc-dashboard .grid[class*="grid-cols-3"],
+  #root .tc-dashboard .grid[class*="grid-cols-4"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #root .tc-shipper-hero {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  #root .tc-shipper-hero > div {
+    min-height: 0 !important;
+    padding: 22px 18px !important;
+  }
+
+  #root .tc-shipper-hero h1 {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Quick actions"] button {
+    width: 100% !important;
+    min-height: 54px !important;
+    justify-content: flex-start !important;
+    padding: 0 16px !important;
+    font-size: 15px !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Cargo operations"] > div {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  #root .tc-dashboard article,
+  #root .tc-dashboard section,
+  #root .tc-dashboard .rounded-2xl,
+  #root .tc-dashboard .rounded-3xl {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #root .tc-dashboard article[class*="rounded-2xl"] {
+    border: 0 !important;
+    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.055) !important;
+  }
+
+  #root form input,
+  #root form select,
+  #root form textarea {
+    font-size: 16px !important;
+    min-height: 52px;
+  }
+
+  #root form button[type="submit"] {
+    min-height: 52px;
+    font-size: 16px !important;
+  }
+}
