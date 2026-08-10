@@ -238,8 +238,8 @@ export default function AccountManagement({ initialSection = null }: AccountMana
 
 
             {/* Account Settings List */}
-            <div className="px-6 mt-8 mb-8">
-              <div className="flex flex-col gap-4">
+            <div className="w-full px-5 sm:px-6 mt-6 mb-8">
+              <div className="mx-auto w-full max-w-[520px] flex flex-col gap-3">
                 {[
                   { id: 'SUPPORT', title: 'Help' },
                   { id: 'FINANCE', title: 'Wallet' },
@@ -255,7 +255,7 @@ export default function AccountManagement({ initialSection = null }: AccountMana
                   <Button
                     key={item.id}
                     onClick={() => setActiveSection(item.id as any)}
-                    className="w-full flex items-center justify-between py-4 px-0 text-left bg-transparent hover:bg-transparent dark:bg-transparent dark:hover:bg-transparent shadow-none border-0 rounded-none transition-colors"
+                    className="w-full min-h-[60px] flex items-center justify-between px-4 py-3 text-left bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:shadow-md hover:border-brand-300 dark:hover:border-brand-500/50 transition-all duration-200"
                   >
                     <span
                       className={`font-bold text-base tracking-wide ${
