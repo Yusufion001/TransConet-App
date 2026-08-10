@@ -1,160 +1,405 @@
-/* TransConet Shipper mobile-first UI layer.
- * Presentation only: no API, state, navigation, or business-logic changes.
+/*
+ * TransConet — Phone-First Application UI
+ *
+ * Presentation only.
+ * No API, routing, authentication, state, or business logic changes.
+ *
+ * Design principle:
+ * - Phone is the primary application surface.
+ * - Tablet expands naturally.
+ * - No simulated phone frame.
+ * - No desktop canvas squeezed into a phone.
  */
 
-.tc-shipper-mobile-surface { background: #f7f8fb; }
+:root {
+  --tc-mobile-gutter: 16px;
+  --tc-mobile-radius: 16px;
+  --tc-mobile-control-height: 52px;
+  --tc-mobile-bottom-nav: 72px;
+}
+
+/* =========================================================
+   GLOBAL APP SURFACE
+   ========================================================= */
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-x: none;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+#root > div {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Never allow normal application content to create page-wide
+   horizontal scrolling. */
+#root * {
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+#root img,
+#root svg,
+#root video,
+#root canvas,
+#root iframe {
+  max-width: 100%;
+}
+
+#root input,
+#root select,
+#root textarea,
+#root button {
+  max-width: 100%;
+}
+
+#root input,
+#root select,
+#root textarea {
+  font-size: 16px;
+}
+
+/* =========================================================
+   PHONE APPLICATION SHELL
+   ========================================================= */
 
 @media (max-width: 767px) {
-  .tc-dashboard,
-  .tc-dashboard-main {
-    min-height: 0 !important;
-    height: 100% !important;
-    background: #f7f8fb !important;
+
+  /*
+   * The application itself occupies the phone viewport.
+   * No desktop-style max-width or centered phone simulator.
+   */
+  #root,
+  #root > div {
+    width: 100%;
+    min-height: 100dvh;
+    height: 100dvh;
+    max-width: 100%;
   }
 
-  .tc-dashboard-main > .overflow-y-auto {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-    background: #f7f8fb !important;
-  }
-
-  /* Premium phone canvas */
-  .tc-dashboard-main > .overflow-y-auto > div {
+  /*
+   * Main application content.
+   */
+  #root .tc-dashboard,
+  #root .tc-dashboard-main {
     width: 100% !important;
     max-width: none !important;
-    padding: 16px !important;
-    padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
-    box-sizing: border-box;
+    min-width: 0 !important;
+    margin: 0 !important;
   }
 
-  .tc-shipper-hero {
+  /*
+   * Dashboard scrolling belongs inside the application,
+   * not on the body.
+   */
+  #root .tc-dashboard-main {
+    min-height: 0 !important;
+    height: 100% !important;
+  }
+
+  #root .tc-dashboard-main > .overflow-y-auto {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+  }
+
+  /* =======================================================
+     PAGE GUTTERS
+     ======================================================= */
+
+  #root .tc-dashboard-main > .overflow-y-auto > div,
+  #root .tc-responsive-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-left: var(--tc-mobile-gutter) !important;
+    padding-right: var(--tc-mobile-gutter) !important;
+  }
+
+  /*
+   * Don't add desktop-style margins to full-width mobile pages.
+   */
+  #root .tc-content-container,
+  #root .tc-hero-container,
+  #root .tc-form-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* =======================================================
+     TYPOGRAPHY
+     ======================================================= */
+
+  #root h1,
+  #root h2,
+  #root h3,
+  #root h4,
+  #root h5,
+  #root h6 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  #root h1 {
+    font-size: clamp(24px, 7vw, 30px);
+    line-height: 1.18;
+  }
+
+  #root h2 {
+    font-size: clamp(20px, 6vw, 24px);
+    line-height: 1.22;
+  }
+
+  #root h3 {
+    font-size: clamp(18px, 5vw, 21px);
+    line-height: 1.28;
+  }
+
+  #root p,
+  #root li,
+  #root label {
+    line-height: 1.5;
+  }
+
+  /* Prevent long IDs, phone numbers and routes from breaking cards. */
+  #root .truncate,
+  #root .break-words,
+  #root [class*="break-words"] {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* =======================================================
+     FORMS
+     ======================================================= */
+
+  #root form {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  #root form > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  #root form input,
+  #root form select,
+  #root form textarea {
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--tc-mobile-control-height);
+    border-radius: 12px;
+    font-size: 16px !important;
+    line-height: 1.4;
+  }
+
+  #root form textarea {
+    min-height: 120px;
+  }
+
+  #root form button[type="submit"] {
+    width: 100%;
+    min-height: var(--tc-mobile-control-height);
+    border-radius: 12px;
+    font-size: 16px !important;
+    font-weight: 700;
+  }
+
+  /*
+   * Prevent browser zoom when focusing form controls on Android/iOS.
+   */
+  #root input,
+  #root select,
+  #root textarea {
+    font-size: 16px !important;
+  }
+
+  /* =======================================================
+     TOUCH TARGETS
+     ======================================================= */
+
+  #root button,
+  #root [role="button"],
+  #root a {
+    touch-action: manipulation;
+  }
+
+  #root button {
+    min-height: 44px;
+  }
+
+  .tc-touch-target {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+
+  /* =======================================================
+     DASHBOARD
+     ======================================================= */
+
+  #root .tc-dashboard {
+    background: #f7f8fb !important;
+  }
+
+  #root .tc-dashboard-main {
+    background: #f7f8fb !important;
+  }
+
+  /*
+   * Dashboard grids become one comfortable phone column.
+   */
+  #root .tc-dashboard-grid,
+  #root .tc-responsive-grid {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 14px !important;
+  }
+
+  #root .tc-dashboard-grid > *,
+  #root .tc-responsive-grid > * {
+    width: 100%;
+    max-width: 100%;
+    grid-column: auto !important;
+  }
+
+  /* =======================================================
+     SHIPPER HERO
+     ======================================================= */
+
+  #root .tc-shipper-hero {
+    width: 100% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     border: 0 !important;
-    border-radius: 22px !important;
-    background: linear-gradient(145deg, #ffffff 0%, #f5f9ff 100%) !important;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.07) !important;
+    border-radius: 20px !important;
+    background: linear-gradient(
+      145deg,
+      #ffffff 0%,
+      #f5f9ff 100%
+    ) !important;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.07) !important;
   }
 
-  .tc-shipper-hero > div {
+  #root .tc-shipper-hero > div {
+    width: 100%;
     min-height: 0 !important;
-    padding: 24px 20px !important;
+    padding: 22px 18px !important;
   }
 
-  .tc-shipper-hero h1 {
-    font-size: 28px !important;
+  #root .tc-shipper-hero h1 {
+    font-size: clamp(25px, 7vw, 30px) !important;
     line-height: 1.15 !important;
     letter-spacing: -0.03em !important;
   }
 
-  .tc-shipper-hero p {
-    line-height: 1.55 !important;
+  #root .tc-shipper-hero p {
+    line-height: 1.5 !important;
   }
 
-  /* Quick actions become clean full-width touch controls. */
-  .tc-dashboard section[aria-label="Quick actions"] {
-    margin-top: 22px !important;
+  /* =======================================================
+     QUICK ACTIONS
+     ======================================================= */
+
+  #root .tc-dashboard section[aria-label="Quick actions"] {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px !important;
   }
 
-  .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
+  #root .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
+    width: 100%;
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 10px !important;
   }
 
-  .tc-dashboard section[aria-label="Quick actions"] button {
+  #root .tc-dashboard section[aria-label="Quick actions"] button {
     width: 100% !important;
     min-height: 54px !important;
     justify-content: flex-start !important;
-    border: 0 !important;
-    border-radius: 15px !important;
-    padding: 0 17px !important;
-    box-shadow: 0 5px 18px rgba(15, 23, 42, 0.055) !important;
+    border-radius: 14px !important;
+    padding: 0 16px !important;
     font-size: 15px !important;
   }
 
-  .tc-dashboard section[aria-label="Quick actions"] button:first-child {
-    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.20) !important;
+  /* =======================================================
+     CARGO OPERATIONS
+     ======================================================= */
+
+  #root .tc-dashboard section[aria-label="Cargo operations"] {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px !important;
   }
 
-  /* Cargo operation cards: one-column mobile rhythm, no hard borders. */
-  .tc-dashboard section[aria-label="Cargo operations"] {
-    margin-top: 22px !important;
-  }
-
-  .tc-dashboard section[aria-label="Cargo operations"] > div {
+  #root .tc-dashboard section[aria-label="Cargo operations"] > div {
+    width: 100%;
+    max-width: 100%;
     grid-template-columns: minmax(0, 1fr) !important;
     gap: 14px !important;
   }
 
-  .tc-dashboard section[aria-label="Cargo operations"] > div > div {
+  #root .tc-dashboard section[aria-label="Cargo operations"] > div > * {
+    width: 100% !important;
+    max-width: 100%;
     grid-column: auto !important;
-    width: 100% !important;
-    min-width: 0 !important;
   }
 
-  .tc-dashboard section[aria-label="Cargo operations"] article,
-  .tc-dashboard section[aria-label="Cargo operations"] > div > div > div {
-    border: 0 !important;
-    border-color: transparent !important;
-    border-radius: 18px !important;
-    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.06) !important;
-  }
+  /* =======================================================
+     CARDS / ARTICLES
+     ======================================================= */
 
-  /* Shipper matching / cargo flow */
-  .tc-dashboard-main .max-w-4xl {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 16px !important;
-    gap: 24px !important;
-    box-sizing: border-box;
-  }
-
-  .tc-dashboard-main .max-w-4xl > div,
-  .tc-dashboard-main .max-w-4xl > form,
-  .tc-dashboard-main .max-w-4xl article {
+  #root .tc-dashboard article,
+  #root .tc-dashboard section,
+  #root .tc-dashboard .rounded-2xl,
+  #root .tc-dashboard .rounded-3xl {
     min-width: 0;
     max-width: 100%;
   }
 
-  .tc-dashboard-main .max-w-4xl h1 {
-    font-size: 25px !important;
-    line-height: 1.15 !important;
+  #root .tc-dashboard article[class*="rounded-2xl"] {
+    border: 0 !important;
+    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.055) !important;
   }
 
-  .tc-dashboard-main .max-w-4xl .rounded-\[20px\] {
-    border-radius: 18px !important;
-    border-width: 0 !important;
-  }
+  /* =======================================================
+     CARGO FORM
+     ======================================================= */
 
-  .tc-dashboard-main .max-w-4xl form {
-    gap: 14px !important;
-  }
-
-  .tc-dashboard-main .max-w-4xl input,
-  .tc-dashboard-main .max-w-4xl select,
-  .tc-dashboard-main .max-w-4xl textarea {
-    min-height: 50px;
-    max-width: 100%;
-    box-sizing: border-box;
-    font-size: 16px !important;
-  }
-
-  .tc-dashboard-main .max-w-4xl button {
-    min-height: 48px;
-    touch-action: manipulation;
-  }
-
-  /* Cargo posting form: preserve existing fields and submission logic. */
-  .tc-cargo-form {
+  #root .tc-cargo-form {
     width: 100% !important;
-    max-width: 720px !important;
-    margin-inline: auto;
-    padding: 16px !important;
-    box-sizing: border-box;
+    max-width: 100% !important;
+    margin: 0 auto;
+    padding: 0 !important;
   }
 
-  .tc-cargo-form > div,
-  .tc-cargo-form .rounded-3xl {
+  #root .tc-cargo-form > div,
+  #root .tc-cargo-form .rounded-3xl {
+    width: 100%;
     max-width: 100%;
     min-width: 0;
     border-width: 0 !important;
@@ -162,79 +407,298 @@
     box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06) !important;
   }
 
-  .tc-cargo-form .grid { min-width: 0; }
-
-  .tc-cargo-form input,
-  .tc-cargo-form select,
-  .tc-cargo-form textarea {
+  #root .tc-cargo-form .grid {
     width: 100%;
     max-width: 100%;
-    box-sizing: border-box;
-    font-size: 16px !important;
+    min-width: 0;
+  }
+
+  #root .tc-cargo-form input,
+  #root .tc-cargo-form select,
+  #root .tc-cargo-form textarea {
+    width: 100%;
+    max-width: 100%;
     min-height: 50px;
+    font-size: 16px !important;
     border-radius: 12px !important;
   }
 
-  .tc-cargo-form button {
-    font-size: 16px !important;
+  #root .tc-cargo-form button {
     min-height: 50px !important;
-    touch-action: manipulation;
+    font-size: 16px !important;
   }
 
-  /* Shipment lists */
-  .tc-dashboard article {
-    max-width: 100%;
+  /* =======================================================
+     SHIPMENTS / TRACKING / MARKETPLACE
+     ======================================================= */
+
+  #root .tc-dashboard article,
+  #root .tc-dashboard [class*="shipment"],
+  #root .tc-dashboard [class*="tracking"] {
+    overflow-wrap: anywhere;
+  }
+
+  #root .tc-dashboard .grid {
     min-width: 0;
+    max-width: 100%;
   }
 
-  /* Inline support should occupy the available mobile viewport instead of appearing as a half-height card. */
+  /*
+   * Two-column layouts inside cards collapse on phones.
+   */
+  #root .tc-dashboard .grid[class*="grid-cols-2"],
+  #root .tc-dashboard .grid[class*="grid-cols-3"],
+  #root .tc-dashboard .grid[class*="grid-cols-4"] {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* =======================================================
+     TABLES
+     ======================================================= */
+
+  #root table {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #root .tc-table-scroll,
+  #root .table-scroll,
+  #root .responsive-table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #root .tc-table-scroll table,
+  #root .table-scroll table,
+  #root .responsive-table table {
+    min-width: 640px;
+  }
+
+  /* =======================================================
+     HORIZONTAL SCROLL AREAS
+     ======================================================= */
+
+  #root .overflow-x-auto {
+    max-width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+  }
+
+  #root .overflow-x-auto::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* =======================================================
+     SUPPORT
+     ======================================================= */
+
   #customer-support-panel {
     width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
     min-height: calc(100dvh - 80px) !important;
-    height: calc(100dvh - 80px) !important;
     max-height: none !important;
-    border-radius: 18px !important;
     box-sizing: border-box;
+    border-radius: 18px !important;
   }
 
-  #customer-support-panel > * { min-width: 0; }
-
-  /* Prevent mobile pages from creating accidental horizontal overflow. */
-  .tc-dashboard article,
-  .tc-dashboard section,
-  .tc-dashboard form,
-  .tc-dashboard button,
-  .tc-dashboard input,
-  .tc-dashboard textarea,
-  .tc-dashboard select,
-  #customer-support-panel {
+  #customer-support-panel > * {
     min-width: 0;
+    max-width: 100%;
   }
 
-  /* Larger readable body copy and touch-friendly controls. */
-  .tc-dashboard p { line-height: 1.5 !important; }
-  .tc-dashboard button { touch-action: manipulation; }
+  /* =======================================================
+     DIALOGS / MODALS / DRAWERS
+     ======================================================= */
+
+  #root dialog,
+  #root [role="dialog"] {
+    max-width: calc(100vw - 24px) !important;
+    max-height: calc(100dvh - 24px) !important;
+  }
+
+  #root [role="dialog"] {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Full-width mobile sheets when explicitly marked as such. */
+  #root .tc-mobile-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+
+  /* =======================================================
+     FIXED BOTTOM NAVIGATION
+     ======================================================= */
+
+  #root nav[aria-label="Mobile navigation"],
+  #root .tc-mobile-nav,
+  #root .mobile-nav,
+  #root .fixed-bottom-nav {
+    padding-bottom: max(
+      8px,
+      env(safe-area-inset-bottom)
+    ) !important;
+  }
+
+  /*
+   * Page content must leave room for a fixed mobile nav.
+   */
+  #root .tc-mobile-content {
+    padding-bottom: calc(
+      var(--tc-mobile-bottom-nav) +
+      env(safe-area-inset-bottom)
+    ) !important;
+  }
+
+  /* =======================================================
+     FLOATING CONTROLS
+     ======================================================= */
+
+  #root .tc-floating-nav-hub {
+    right: max(16px, env(safe-area-inset-right)) !important;
+    bottom: calc(
+      var(--tc-mobile-bottom-nav) +
+      16px +
+      env(safe-area-inset-bottom)
+    ) !important;
+  }
+
+  /* =======================================================
+     AUTH / ONBOARDING
+     ======================================================= */
+
+  #root .tc-auth-card,
+  #root .tc-form-container {
+    width: 100% !important;
+    max-width: 480px !important;
+  }
+
+  /*
+   * On very small phones, remove excessive desktop-style padding.
+   */
+  #root .tc-auth-card {
+    padding: 20px !important;
+  }
+
+  /* =======================================================
+     SAFE AREA
+     ======================================================= */
+
+  .tc-mobile-safe-top {
+    padding-top: max(
+      0px,
+      env(safe-area-inset-top)
+    );
+  }
+
+  .tc-mobile-safe-bottom {
+    padding-bottom: max(
+      12px,
+      env(safe-area-inset-bottom)
+    );
+  }
 }
 
-@media (min-width: 768px) {
-  .tc-shipper-hero > div { min-height: 250px; }
-}
-
-@media (max-width: 429px) {
-  .tc-dashboard .tc-shipper-hero h1 { font-size: 26px !important; }
-  .tc-dashboard .tc-shipper-hero p { max-width: 100%; }
-}
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
 
 @media (max-width: 380px) {
-  .tc-dashboard-main .max-w-4xl { padding: 12px !important; }
-  .tc-cargo-form { padding: 12px !important; }
+  :root {
+    --tc-mobile-gutter: 12px;
+  }
+
+  #root .tc-shipper-hero > div {
+    padding: 18px 15px !important;
+  }
+
+  #root .tc-dashboard-main > .overflow-y-auto > div {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
 }
 
-.dark .tc-dashboard,
-.dark .tc-dashboard-main,
-.dark .tc-dashboard-main > .overflow-y-auto { background: #090f1a !important; }
+/* =========================================================
+   LANDSCAPE PHONES
+   ========================================================= */
 
-.dark .tc-shipper-hero {
-  background: linear-gradient(145deg, #111827 0%, #0f172a 100%) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22) !important;
+@media (orientation: landscape) and (max-width: 767px) {
+  #root .tc-dashboard-main > .overflow-y-auto > div {
+    padding-top: 12px !important;
+    padding-bottom: 24px !important;
+  }
+
+  #root .tc-shipper-hero > div {
+    padding: 18px !important;
+  }
+}
+
+/* =========================================================
+   TABLETS
+   ========================================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #root .tc-dashboard-main {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  #root .tc-dashboard-grid,
+  #root .tc-responsive-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  #root .tc-dashboard-grid > *,
+  #root .tc-responsive-grid > * {
+    grid-column: auto !important;
+  }
+
+  #root .tc-shipper-hero > div {
+    min-height: 230px;
+  }
+}
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.dark #root .tc-dashboard,
+.dark #root .tc-dashboard-main,
+.dark #root .tc-dashboard-main > .overflow-y-auto {
+  background: #090f1a !important;
+}
+
+.dark #root .tc-shipper-hero {
+  background: linear-gradient(
+    145deg,
+    #111827 0%,
+    #0f172a 100%
+  ) !important;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22) !important;
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  #root *,
+  #root *::before,
+  #root *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
