@@ -1,97 +1,26 @@
-import { PremiumHeader } from './PremiumHeader';
-import React, { useState, useEffect } from 'react';
-import { FileText, MapPinned, PackageSearch } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { FileText, MapPinned, PackageSearch, Bell, ChevronRight, Truck, Plus, Search, Clock3, CheckCircle2 } from 'lucide-react';
 import { Button } from './ui/Button';
-import { MyShipmentsCard, BoostLoadCard, TrackShipmentCard } from './DashboardCards';
-import StateFilterOverlay from './StateFilterOverlay';
 import TrackingDashboard from './TrackingDashboard';
 import BoostLoadModal from './BoostLoadModal';
 import { NativeTrackingEngine } from '../utils/nativeTrackingEngine';
+import { PremiumHeader } from './PremiumHeader';
 
-interface DeepSapphireDashboardProps {
-  onNavigateToNetwork?: () => void;
-  onNavigateToPostCargo?: () => void;
-  onNavigateToAccount?: () => void;
-  onNavigateToSupport?: () => void;
-  userPhone?: string;
-  userRole?: string;
-  activeView?: string;
-}
+interface Props { onNavigateToNetwork?:()=>void; onNavigateToPostCargo?:()=>void; onNavigateToAccount?:()=>void; onNavigateToSupport?:()=>void; userPhone?:string; userRole?:string; activeView?:string; }
 
-export default function DeepSapphireDashboard({
-  onNavigateToNetwork,
-  onNavigateToPostCargo,
-  onNavigateToAccount,
-  onNavigateToSupport,
-  userPhone = '0803XXXXXXX',
-  userRole = 'CUSTOMER',
-  activeView,
-}: DeepSapphireDashboardProps) {
-  const [waybillInput, setWaybillInput] = useState('');
-  const [isTracking, setIsTracking] = useState(false);
-  const [trackingError, setTrackingError] = useState('');
-  const [showLiveMap, setShowLiveMap] = useState<string | null>(null);
-  const [isBoostModalOpen, setIsBoostModalOpen] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [, setSelectedState] = useState('Browse 36 States');
-  const [engineStatus, setEngineStatus] = useState(NativeTrackingEngine.getStatus());
-
-  const handleTrackingRequest = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!waybillInput.trim()) { setTrackingError('Please enter a valid Waybill or Trip ID.'); return; }
-    setIsTracking(true); setTrackingError('');
-    setTimeout(() => { setIsTracking(false); setShowLiveMap(waybillInput); setWaybillInput(''); }, 1500);
-  };
-
-  useEffect(() => {
-    if (activeView === 'track-shipments') setTimeout(() => { const input = document.getElementById('tracking-input'); input?.focus(); input?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
-    else if (activeView === 'boost-load') setIsBoostModalOpen(true);
-  }, [activeView]);
-
-  useEffect(() => { const interval = setInterval(() => setEngineStatus(NativeTrackingEngine.getStatus()), 15000); return () => clearInterval(interval); }, []);
-
-  return (
-    <div className="tc-dashboard flex min-h-0 w-full min-w-0 flex-1 flex-col bg-[#F6F8FB] text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <main className="tc-dashboard-main flex min-h-0 w-full min-w-0 flex-1 flex-col">
-        <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork} />
-
-        <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain [-webkit-overflow-scrolling:touch]">
-          <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pt-5 md:px-7 lg:px-8">
-            <section className="relative min-h-[205px] overflow-hidden rounded-[26px] bg-[#0B1F44] text-white shadow-[0_14px_35px_rgba(11,31,68,0.14)]" aria-labelledby="operations-hub-title">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F44] via-[#123567] to-[#0B1F44]" />
-              <div className="absolute -right-10 -top-16 h-52 w-52 rounded-full bg-brand-400/20 blur-3xl" />
-              <div className="absolute -bottom-20 right-10 h-44 w-44 rounded-full bg-cyan-300/10 blur-3xl" />
-              <div className="relative z-10 flex min-h-[205px] flex-col justify-end p-5 sm:p-7 md:p-8">
-                <p className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-blue-200">Shipper workspace</p>
-                <h1 id="operations-hub-title" className="mt-2 text-[30px] font-black leading-none tracking-[-0.035em] sm:text-4xl">Operations Hub</h1>
-                <p className="mt-3 max-w-[620px] text-[14px] leading-6 text-blue-100 sm:text-base">Everything you need to post cargo, find verified transport, manage shipments and track deliveries.</p>
-              </div>
-            </section>
-
-            <section className="mt-7" aria-label="Quick actions">
-              <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Quick actions</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Move cargo forward</h2></div>
-              <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-3">
-                <Button onClick={onNavigateToNetwork} className="min-h-[56px] w-full justify-start rounded-[18px] bg-brand-600 px-4 text-left text-[14px] font-extrabold text-white shadow-sm hover:bg-brand-700 active:scale-[0.99]"><PackageSearch size={19} className="mr-3 shrink-0" />Find Transport</Button>
-                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[56px] w-full justify-start rounded-[18px] border-0 bg-white px-4 text-left text-[14px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><FileText size={19} className="mr-3 shrink-0 text-brand-600" />Post Cargo</Button>
-                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-[56px] w-full justify-start rounded-[18px] border-0 bg-white px-4 text-left text-[14px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><MapPinned size={19} className="mr-3 shrink-0 text-emerald-600" />Track Shipment</Button>
-              </div>
-            </section>
-
-            <section className="mt-7" aria-label="Cargo operations">
-              <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Cargo operations</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Your logistics at a glance</h2></div>
-              <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
-                <div className="min-w-0"><MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork!} /></div>
-                <div className="min-w-0"><TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} /></div>
-                <div className="min-w-0 md:col-span-2"><BoostLoadCard onBoostClick={() => setIsBoostModalOpen(true)} /></div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </main>
-
-      <BoostLoadModal isOpen={isBoostModalOpen} onClose={() => setIsBoostModalOpen(false)} />
-      {showLiveMap && <TrackingDashboard shipmentId={showLiveMap} onClose={() => setShowLiveMap(null)} />}
-      <StateFilterOverlay isInline isVisible={isFilterOpen} onClose={() => setIsFilterOpen(false)} onSelectState={(state) => { setSelectedState(`Hub: ${state}`); setIsFilterOpen(false); setTimeout(() => onNavigateToNetwork?.(), 400); }} />
-    </div>
-  );
+export default function DeepSapphireDashboard({onNavigateToNetwork,onNavigateToPostCargo,onNavigateToAccount,onNavigateToSupport,userPhone='0803XXXXXXX',userRole='CUSTOMER',activeView}:Props){
+ const [waybill,setWaybill]=useState(''); const [tracking,setTracking]=useState(false); const [showMap,setShowMap]=useState<string|null>(null); const [boost,setBoost]=useState(false); const [status,setStatus]=useState(NativeTrackingEngine.getStatus());
+ useEffect(()=>{const t=setInterval(()=>setStatus(NativeTrackingEngine.getStatus()),15000);return()=>clearInterval(t)},[]);
+ const track=(e:React.FormEvent)=>{e.preventDefault();if(!waybill.trim())return;setTracking(true);setTimeout(()=>{setTracking(false);setShowMap(waybill.trim());setWaybill('')},900)};
+ return <div className="tc-dashboard flex min-h-0 w-full flex-1 flex-col bg-[#f6f8fb] text-slate-900 dark:bg-slate-950 dark:text-white">
+  <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork}/>
+  <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain">
+   <div className="mx-auto w-full max-w-[1180px] px-4 pb-28 pt-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden rounded-[28px] bg-[#0b1f44] p-5 text-white shadow-xl sm:p-8"><div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-brand-500/20 blur-3xl"/><div className="relative"><div className="flex items-center justify-between"><span className="rounded-full bg-white/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider">Shipper workspace</span><button onClick={onNavigateToSupport} className="rounded-full bg-white/10 p-2"><Bell size={17}/></button></div><h1 className="mt-8 text-3xl font-black tracking-tight sm:text-4xl">Where is your cargo going?</h1><p className="mt-2 max-w-xl text-sm leading-6 text-blue-100">Book verified transport, post a shipment, and follow every delivery from one place.</p></div></section>
+    <section className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3"><button onClick={onNavigateToNetwork} className="rounded-2xl bg-brand-600 p-4 text-left text-white shadow-lg active:scale-[.98]"><Search size={20}/><b className="mt-7 block text-sm">Find transport</b><span className="mt-1 block text-xs text-blue-100">Get matched fast</span></button><button onClick={onNavigateToPostCargo} className="rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"><Plus size={20} className="text-brand-600"/><b className="mt-7 block text-sm">Post cargo</b><span className="mt-1 block text-xs text-slate-500">Request a quote</span></button><button onClick={()=>document.getElementById('tc-track')?.scrollIntoView({behavior:'smooth'})} className="col-span-2 rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800 sm:col-span-1"><MapPinned size={20} className="text-emerald-600"/><b className="mt-7 block text-sm">Track shipment</b><span className="mt-1 block text-xs text-slate-500">Live delivery status</span></button></section>
+    <section className="mt-7"><div className="mb-3 flex items-end justify-between"><div><p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Overview</p><h2 className="mt-1 text-xl font-black">Your shipments</h2></div><button onClick={()=>window.location.assign('/shipments')} className="flex items-center text-xs font-bold text-brand-600">View all <ChevronRight size={15}/></button></div><div className="grid grid-cols-3 gap-2"><div className="rounded-2xl bg-white p-3 shadow-sm dark:bg-slate-900"><Clock3 size={17} className="text-amber-500"/><b className="mt-2 block text-lg">—</b><span className="text-[10px] text-slate-500">In transit</span></div><div className="rounded-2xl bg-white p-3 shadow-sm dark:bg-slate-900"><Truck size={17} className="text-brand-600"/><b className="mt-2 block text-lg">—</b><span className="text-[10px] text-slate-500">Active</span></div><div className="rounded-2xl bg-white p-3 shadow-sm dark:bg-slate-900"><CheckCircle2 size={17} className="text-emerald-600"/><b className="mt-2 block text-lg">—</b><span className="text-[10px] text-slate-500">Delivered</span></div></div></section>
+    <section id="tc-track" className="mt-7 rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800"><div className="flex items-center gap-3"><div className="rounded-xl bg-emerald-50 p-2 text-emerald-600"><MapPinned size={19}/></div><div><h2 className="font-black">Track a shipment</h2><p className="text-xs text-slate-500">Waybill or trip ID</p></div></div><form onSubmit={track} className="mt-4 flex gap-2"><input value={waybill} onChange={e=>setWaybill(e.target.value)} placeholder="Enter waybill / trip ID" className="min-w-0 flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm outline-none focus:border-brand-500 dark:border-slate-700 dark:bg-slate-800"/><Button disabled={tracking} className="rounded-xl bg-brand-600 px-4">{tracking?'...':'Track'}</Button></form><p className="mt-3 text-[10px] text-slate-400">Tracking engine: {status?.isRunning?'Online':'Standby'}</p></section>
+    <section className="mt-5 rounded-2xl bg-[#0b1f44] p-5 text-white"><div className="flex items-center gap-3"><FileText size={20}/><div className="flex-1"><h3 className="font-black">Need a faster match?</h3><p className="mt-1 text-xs text-blue-100">Boost your cargo to reach more verified transporters.</p></div><button onClick={()=>setBoost(true)} className="rounded-xl bg-white px-3 py-2 text-xs font-bold text-[#0b1f44]">Boost</button></div></section>
+   </div>
+  </main><BoostLoadModal isOpen={boost} onClose={()=>setBoost(false)}/>{showMap&&<TrackingDashboard shipmentId={showMap} onClose={()=>setShowMap(null)}/>}</div>
 }
