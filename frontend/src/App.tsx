@@ -3,7 +3,6 @@ import { ProtectedRoute } from './components/ProtectedRoute';
 import { fetchCsrfToken } from './api/client';
 import React, { useState, useEffect, Suspense } from 'react';
 import { useAuthStore } from './store/authStore';
-import { useUIStore } from './store/uiStore';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import { FloatingNavHub } from './components/FloatingNavHub';
 import { DarkModeToggle } from './components/DarkModeToggle';
@@ -60,50 +59,9 @@ export default function App() {
     setSupportHighlight(false);
   };
 
-  const { isMobileDevice, setMobileDevice, isMobileFrame: useMobileFrame, setMobileFrame: setUseMobileFrame } = useUIStore();
-
   useEffect(() => {
     fetchCsrfToken();
   }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const isMobile = window.innerWidth < 768;
-      setMobileDevice(isMobile);
-      if (isMobile) {
-        setUseMobileFrame(false);
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const [isMobilePortalOpen, setIsMobilePortalOpen] = useState(false);
-  const [expoTunnelUrl, setExpoTunnelUrl] = useState(window.location.origin);
-  const [copied, setCopied] = useState(false);
-  const [statusBarTime, setStatusBarTime] = useState('09:41');
-  const [simulatedCarrier] = useState('MTN NG 5G');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      let hours = now.getHours();
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const ampm = hours >= 12 ? 'PM' : 'AM';
-      hours = hours % 12;
-      hours = hours ? hours : 12;
-      setStatusBarTime(`${hours}:${minutes} ${ampm}`);
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 15000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleCopyLink = () => {
-    navigator.clipboard.writeText(expoTunnelUrl);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
 
   const renderAppContent = () => {
     if (!isAuthenticated) {
