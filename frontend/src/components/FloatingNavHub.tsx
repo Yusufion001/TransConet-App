@@ -5,7 +5,6 @@ import { Button } from './ui/Button';
 import { DarkModeToggle } from './DarkModeToggle';
 import TransConetAIAssistant from './TransConetAIAssistant';
 import MyBids from './MyBids';
-import { MobileBottomNav } from './MobileBottomNav';
 import './navigation-visibility.css';
 import { LayoutDashboard, Briefcase, Package, Truck, Navigation, MapPin, Settings, HelpCircle, LogOut, Shield, Menu, X, Handshake, Users, Activity } from 'lucide-react';
 
@@ -69,7 +68,19 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
   return (
     <>
       <TransConetAIAssistant role={activeRole === 'TRANSPORTER' ? 'TRANSPORTER' : 'CUSTOMER'} />
-      <MobileBottomNav items={navItems} activeId={activeView} onSelect={handleNavClick} onMore={() => setIsOpen(true)} />
+      <motion.div
+        className="tc-floating-nav-hub tc-navigation-layer fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-4 z-[200] md:hidden"
+      >
+        <motion.button
+          type="button"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          whileTap={{ scale: .94 }}
+          onClick={() => setIsOpen(v => !v)}
+          className="flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-white shadow-[0_10px_30px_rgba(7,27,73,.22)] ring-4 ring-white/80 dark:ring-slate-950/80"
+        >
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
+        </motion.button>
+      </motion.div>
 
       <AnimatePresence>
         {showMyBids && activeRole === 'TRANSPORTER' && (
@@ -92,7 +103,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
                 <div className="flex items-center gap-2"><DarkModeToggle /><Button aria-label="Close menu" onClick={() => setIsOpen(false)} className="rounded-full bg-transparent p-2 text-slate-500"><X size={17} /></Button></div>
               </div>
               <nav aria-label="Additional navigation" className="grid grid-cols-2 gap-2">
-                {navItems.slice(4).map((item) => {
+                {navItems.map((item) => {
                   const Icon = item.icon;
                   return <motion.button key={item.id} type="button" whileTap={{ scale: .97 }} onClick={() => handleNavClick(item.id)} className="flex min-h-16 items-center gap-3 rounded-xl px-3 text-left text-slate-700 hover:bg-slate-50"><Icon size={20} className="shrink-0 text-brand-600" /><span className="text-sm font-semibold">{item.label}</span></motion.button>;
                 })}
@@ -104,7 +115,14 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
       </AnimatePresence>
 
       <motion.div className="tc-floating-nav-hub tc-navigation-layer fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom))] right-4 z-[200] hidden md:block">
-        <motion.button type="button" aria-label="Open navigation menu" whileHover={{ scale: 1.05 }} whileTap={{ scale: .95 }} onClick={() => setIsOpen(v => !v)} className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-600 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-brand-700">
+        <motion.button
+          type="button"
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: .95 }}
+          onClick={() => setIsOpen(v => !v)}
+          className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-600 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-brand-700"
+        >
           {isOpen ? <X size={30} /> : <Menu size={30} />}
         </motion.button>
       </motion.div>
