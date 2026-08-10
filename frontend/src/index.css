@@ -36,162 +36,24 @@ body{margin:0;min-width:320px;background:#fff;color:#172033;font-family:Inter,ui
 
 @layer base{button:not(:disabled),.cursor-pointer:not(:disabled),[role="button"]:not(:disabled){@apply transition-all duration-200 active:scale-[0.98]}}
 
-/* Global white-surface policy: presentation only. Interactive state colors remain intact. */
 .bg-slate-50,.bg-slate-100{background-color:#fff!important}
 .dark .bg-slate-50,.dark .bg-slate-100,.dark .bg-slate-800,.dark .bg-slate-900,.dark .bg-slate-950{background-color:#fff!important}
 .bg-white{background-color:#fff!important}
 
-/* Global typography scale: standard Tailwind text utilities are raised by one-third for readability. */
 .text-xs{font-size:16px!important}.text-sm{font-size:18.6667px!important}.text-base{font-size:21.3333px!important}.text-lg{font-size:24px!important}.text-xl{font-size:26.6667px!important}.text-2xl{font-size:32px!important}.text-3xl{font-size:40px!important}.text-4xl{font-size:48px!important}.text-5xl{font-size:64px!important}.text-6xl{font-size:80px!important}
-/* Keep deliberately small navigation/status metadata readable without forcing layout changes. */
 .tc-nav-label{font-size:16px!important;line-height:1.25}.tc-status-label{font-size:16px!important;line-height:1.3}.tc-metadata{font-size:16px!important;line-height:1.4}
 .tc-body{font-size:clamp(20px,1.6vw,24px);line-height:1.55}.tc-label{font-size:clamp(17px,1.33vw,20px);line-height:1.4}.tc-meta{font-size:clamp(16px,1.2vw,19px);line-height:1.4}.tc-card-title{font-size:clamp(24px,2.1vw,32px);line-height:1.2}.tc-section-title{font-size:clamp(29px,2.9vw,43px);line-height:1.12}.tc-page-title{font-size:clamp(37px,4.25vw,64px);line-height:1.08}.tc-hero-title{font-size:clamp(43px,5.6vw,80px);line-height:1.04}
 
-@media(max-width:599px){
-  :root{--tc-container:min(100% - 32px,1360px)}
-  h1{font-size:clamp(32px,8.5vw,36px);line-height:1.08}h2{font-size:clamp(28px,7.5vw,32px);line-height:1.12}h3{font-size:clamp(22px,6vw,24px);line-height:1.18}
-  .tc-responsive-page{padding-inline:16px}.tc-responsive-grid{grid-template-columns:1fr}
-  .tc-form-label{font-size:18px}.tc-form-input{font-size:21px;min-height:56px}.tc-primary-control{font-size:20px;min-height:54px}
-}
-@media(min-width:600px) and (max-width:1023px){
-  :root{--tc-container:min(100% - 64px,1360px)}
-  h1{font-size:clamp(40px,5.5vw,48px);line-height:1.06}h2{font-size:clamp(32px,4.5vw,40px);line-height:1.1}h3{font-size:clamp(24px,3.5vw,28px);line-height:1.15}
-  .tc-responsive-page{padding-inline:clamp(32px,5vw,40px)}.tc-responsive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(min-width:1024px){
-  :root{--tc-container:min(100% - clamp(80px,8vw,128px),1360px)}
-  h1{font-size:clamp(52px,4.2vw,60px);line-height:1.04}h2{font-size:clamp(40px,3.2vw,48px);line-height:1.08}h3{font-size:clamp(28px,2.2vw,32px);line-height:1.12}
-  .tc-responsive-page{padding-inline:clamp(40px,5vw,64px)}.tc-responsive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
+@media(max-width:599px){:root{--tc-container:min(100% - 32px,1360px)}h1{font-size:clamp(32px,8.5vw,36px);line-height:1.08}h2{font-size:clamp(28px,7.5vw,32px);line-height:1.12}h3{font-size:clamp(22px,6vw,24px);line-height:1.18}.tc-responsive-page{padding-inline:16px}.tc-responsive-grid{grid-template-columns:1fr}.tc-form-label{font-size:18px}.tc-form-input{font-size:21px;min-height:56px}.tc-primary-control{font-size:20px;min-height:54px}}
+@media(min-width:600px) and (max-width:1023px){:root{--tc-container:min(100% - 64px,1360px)}h1{font-size:clamp(40px,5.5vw,48px);line-height:1.06}h2{font-size:clamp(32px,4.5vw,40px);line-height:1.1}h3{font-size:clamp(24px,3.5vw,28px);line-height:1.15}.tc-responsive-page{padding-inline:clamp(32px,5vw,40px)}.tc-responsive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1024px){:root{--tc-container:min(100% - clamp(80px,8vw,128px),1360px)}h1{font-size:clamp(52px,4.2vw,60px);line-height:1.04}h2{font-size:clamp(40px,3.2vw,48px);line-height:1.08}h3{font-size:clamp(28px,2.2vw,32px);line-height:1.12}.tc-responsive-page{padding-inline:clamp(40px,5vw,64px)}.tc-responsive-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 .tc-auth-card{width:var(--tc-auth-width);max-width:480px;border-radius:var(--tc-radius-card);padding:clamp(24px,3vw,32px);background:#fff;border:1px solid #e2e8f0}.tc-auth-input,.tc-auth-button{width:100%;min-height:56px;height:clamp(56px,5.5vw,60px);border-radius:var(--tc-radius-control)}
 @media(max-height:700px){:root{--tc-control-height:52px}.tc-auth-card{padding-block:20px}}@media(orientation:landscape) and (max-width:1023px){.tc-responsive-page{padding-block:24px}}
-
-
 .tc-content-container{width:var(--tc-container);margin-inline:auto}.tc-form-container{width:var(--tc-auth-width);max-width:480px;margin-inline:auto}.tc-hero-container{width:var(--tc-hero-width)}.tc-touch-target{min-width:48px;min-height:48px}.tc-dashboard-main{max-width:1360px;margin-inline:auto;padding-inline:16px}.tc-dashboard-grid{display:grid;grid-template-columns:1fr;gap:clamp(16px,2vw,24px)}.tc-dashboard-grid>*{min-width:0}.tc-dashboard-grid>*:first-child{grid-column:1/-1}
-
 @media(min-width:768px){.tc-dashboard-main{padding-inline:clamp(32px,5vw,40px)}.tc-dashboard-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tc-dashboard-grid>*:first-child{grid-column:1/-1}}@media(min-width:1024px){.tc-dashboard-main{padding-inline:clamp(40px,5vw,64px)}.tc-dashboard-grid{grid-template-columns:repeat(12,minmax(0,1fr))}.tc-dashboard-grid>*:first-child{grid-column:1/-1}.tc-dashboard-grid>*:nth-child(2){grid-column:span 6}.tc-dashboard-grid>*:nth-child(3){grid-column:span 6}.tc-dashboard-grid>*:nth-child(4){grid-column:1/-1}}
-
 #root{width:100%;min-width:0;max-width:100%;overflow-x:clip}*,*::before,*::after{box-sizing:border-box}img,svg,video,canvas{max-width:100%;height:auto}iframe{max-width:100%;border:0}button,input,select,textarea{max-width:100%}textarea{resize:vertical}pre,code{max-width:100%;overflow-x:auto}.flex>*{min-width:0}.grid>*{min-width:0}[class*="overflow-x-auto"]{max-width:100%;overscroll-behavior-x:contain}table{width:100%;max-width:100%;border-collapse:collapse}.tc-table-scroll,.table-scroll,.responsive-table{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}.tc-table-scroll table,.table-scroll table,.responsive-table table{min-width:640px}dialog,[role="dialog"]{max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px)}[role="dialog"]{overflow:auto}.tc-mobile-nav,.mobile-nav,.fixed-bottom-nav{padding-bottom:max(12px,env(safe-area-inset-bottom))}
-
 .tc-navigation-layer{position:relative;isolation:isolate;opacity:1!important;visibility:visible!important}.tc-navigation-control{position:relative;z-index:20;opacity:1!important;visibility:visible!important;filter:none!important;mix-blend-mode:normal!important}.tc-navigation-control svg{position:relative;z-index:21;opacity:1!important;visibility:visible!important;filter:none!important;mix-blend-mode:normal!important}.tc-navigation-control span{position:relative;z-index:21;opacity:1!important;visibility:visible!important}.tc-navigation-layer button,.tc-navigation-layer a{opacity:1!important;visibility:visible!important}
-
 @media(max-width:767px){.tc-navigation-layer{transform:translateZ(0);backface-visibility:hidden}.tc-navigation-control{min-width:48px;min-height:48px;touch-action:manipulation}}
 @media(min-width:768px){.tc-navigation-control{min-height:48px}}
 html,body,#root{max-width:100%;}
-
-/* =========================================================
-   DESKTOP COMPACT / MOBILE-SIZED PRESENTATION
-   =========================================================
-   Keep the desktop viewport, but make the application use the
-   same compact single-column proportions as the phone UI.
-   This is presentation-only and does not change app logic.
-*/
-@media (min-width: 1024px) {
-  :root {
-    --tc-container: min(100% - 32px, 520px);
-    --tc-control-height: 52px;
-  }
-
-  #root .tc-dashboard,
-  #root .tc-dashboard-main {
-    width: min(100%, 520px) !important;
-    max-width: 520px !important;
-    min-width: 0 !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-
-  #root .tc-dashboard-main {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-
-  #root .tc-dashboard-grid,
-  #root .tc-responsive-grid {
-    width: 100% !important;
-    max-width: 100% !important;
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 14px !important;
-  }
-
-  #root .tc-dashboard-grid > *,
-  #root .tc-responsive-grid > * {
-    width: 100% !important;
-    max-width: 100% !important;
-    grid-column: auto !important;
-  }
-
-  #root .tc-content-container,
-  #root .tc-hero-container,
-  #root .tc-form-container {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  #root .tc-dashboard .grid[class*="grid-cols-2"],
-  #root .tc-dashboard .grid[class*="grid-cols-3"],
-  #root .tc-dashboard .grid[class*="grid-cols-4"] {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  #root .tc-shipper-hero {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-  }
-
-  #root .tc-shipper-hero > div {
-    min-height: 0 !important;
-    padding: 22px 18px !important;
-  }
-
-  #root .tc-shipper-hero h1 {
-    font-size: 30px !important;
-    line-height: 1.15 !important;
-  }
-
-  #root .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-    gap: 10px !important;
-  }
-
-  #root .tc-dashboard section[aria-label="Quick actions"] button {
-    width: 100% !important;
-    min-height: 54px !important;
-    justify-content: flex-start !important;
-    padding: 0 16px !important;
-    font-size: 15px !important;
-  }
-
-  #root .tc-dashboard section[aria-label="Cargo operations"] > div {
-    grid-template-columns: minmax(0, 1fr) !important;
-    gap: 14px !important;
-  }
-
-  #root .tc-dashboard article,
-  #root .tc-dashboard section,
-  #root .tc-dashboard .rounded-2xl,
-  #root .tc-dashboard .rounded-3xl {
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  #root .tc-dashboard article[class*="rounded-2xl"] {
-    border: 0 !important;
-    box-shadow: 0 7px 24px rgba(15, 23, 42, 0.055) !important;
-  }
-
-  #root form input,
-  #root form select,
-  #root form textarea {
-    font-size: 16px !important;
-    min-height: 52px;
-  }
-
-  #root form button[type="submit"] {
-    min-height: 52px;
-    font-size: 16px !important;
-  }
-}
