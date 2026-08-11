@@ -10,6 +10,8 @@ import WelcomeSlides from './components/WelcomeSlides';
 import TransporterFleetDashboard from './components/TransporterFleetDashboard';
 import TransporterHome from './components/TransporterHome';
 import ExpressMatcher from './components/ExpressMatcher';
+import FindLoadMatchPage from './components/FindLoadMatchPage';
+import RegisterFleetPage from './components/RegisterFleetPage';
 import AdminPortalGenerator from './components/AdminPortalGenerator';
 import DedicatedAdminLogin from './components/DedicatedAdminLogin';
 import AccountManagement from './components/AccountManagement';
@@ -117,6 +119,10 @@ export default function App() {
               isAdmin ? <AdminPortalGenerator currentRole={activeRole} userPhone={userPhone} userEmail={userEmail} /> : (
                 <div className="flex flex-col items-center justify-center py-12 px-4 text-center"><ShieldAlert size={44} className="mb-4 text-red-500" /><h3 className="text-lg font-black text-slate-900 dark:text-white">Access Denied</h3></div>
               )
+            ) : activeView === 'find-load-match' && isTransporter ? (
+              <FindLoadMatchPage onBack={() => setActiveView('dashboard')} />
+            ) : activeView === 'register-fleet' && isTransporter ? (
+              <RegisterFleetPage onBack={() => setActiveView('dashboard')} />
             ) : activeView === 'fleet' && isTransporter ? (
               <TransporterFleetDashboard />
             ) : activeView === 'driver-dashboard' && isTransporter ? (
@@ -146,11 +152,11 @@ export default function App() {
                 userPhone={userPhone}
                 userRole={activeRole}
               />
-            ) : ['network', 'post-load', 'marketplace'].includes(activeView) ? (
+            ) : ['network', 'post-load'].includes(activeView) ? (
               <div className="h-full min-h-0 flex flex-col overflow-hidden">
                 <ExpressMatcher
-                  initialMode={activeView === 'post-load' ? 'SHIPPER' : activeView === 'marketplace' ? 'TRANSPORTER' : (isShipper ? 'SHIPPER' : 'TRANSPORTER')}
-                  initialSubMode={isTransporter && localStorage.getItem('userVerified') !== 'true' ? 'REGISTER' : 'JOBS'}
+                  initialMode={activeView === 'post-load' ? 'SHIPPER' : 'SHIPPER'}
+                  initialSubMode="JOBS"
                 />
               </div>
             ) : ['support', 'messages'].includes(activeView) ? (
