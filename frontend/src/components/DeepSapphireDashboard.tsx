@@ -57,7 +57,7 @@ export default function DeepSapphireDashboard({
       <main className="tc-dashboard-main flex min-h-0 w-full min-w-0 flex-1 flex-col">
         <PremiumHeader userPhone={userPhone} userRole={userRole} onNavigateToAccount={onNavigateToAccount} onNavigateToSupport={onNavigateToSupport} onNavigateToNetwork={onNavigateToNetwork} />
 
-        <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain [-webkit-overflow-scrolling:touch]">
+        <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain touch-pan-y [-webkit-overflow-scrolling:touch]">
           <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pt-5 md:px-7 lg:px-8">
             <section className="tc-operations-hub relative min-h-[205px] overflow-hidden rounded-[26px] bg-[#0B1F44] text-white shadow-[0_14px_35px_rgba(11,31,68,0.14)]" aria-labelledby="operations-hub-title">
               <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F44] via-[#123567] to-[#0B1F44]" />
@@ -81,8 +81,10 @@ export default function DeepSapphireDashboard({
 
             <section className="mt-7" aria-label="Cargo operations">
               <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Cargo operations</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Your logistics at a glance</h2></div>
-              <div className="grid w-full min-w-0 grid-cols-1 gap-4">
+              <div className="grid w-full min-w-0 grid-cols-1 gap-4 min-[640px]:grid-cols-2">
+                <div className="min-w-0"><MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork ?? (() => {})} /></div>
                 <div className="min-w-0"><TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} /></div>
+                <div className="min-w-0 min-[640px]:col-span-2"><BoostLoadCard onBoostClick={() => setIsBoostModalOpen(true)} /></div>
               </div>
             </section>
           </div>
