@@ -22,14 +22,9 @@ export const TrackShipmentCard = ({ engineStatus, waybillInput, setWaybillInput,
     <img src="/images/transconet-track-card.svg" alt="Freight route tracking" className="tc-dashboard-card-art absolute bottom-0 right-0 h-[42%] w-[62%] object-contain object-right-bottom opacity-65" />
     <div className="absolute inset-0 bg-gradient-to-br from-white via-white/97 to-emerald-50/55 dark:from-slate-900 dark:via-slate-900/97 dark:to-emerald-950/30" />
     <div className="tc-dashboard-card-content relative flex min-h-[205px] flex-col p-5 sm:p-6">
-      <div className="flex items-center gap-2">
-        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400"><Crosshair size={20} /></div>
-        <span className="ml-auto rounded-full bg-emerald-50 px-3 py-1.5 text-[11px] font-extrabold text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400">{engineStatus === 'idle' ? 'READY' : 'LOCATING'}</span>
-      </div>
-      <h3 className="mt-4 text-[20px] font-extrabold tracking-tight text-[#0B1F44] dark:text-white">Track Freight</h3>
-      <p className="mt-1.5 text-[14px] leading-6 text-slate-600 dark:text-slate-300">Follow a shipment with its waybill or trip reference.</p>
+      <h3 className="text-[20px] font-extrabold tracking-tight text-[#0B1F44] dark:text-white">Track Freight</h3>
       <form onSubmit={handleTrackingRequest} className="tc-tracking-form relative z-10 mt-auto grid grid-cols-[minmax(0,1fr)_auto] gap-2 pt-4">
-        <input id="tracking-input" type="text" placeholder="Waybill or Trip ID" aria-label="Waybill or Trip ID" className="tc-tracking-input h-12 min-w-0 w-full rounded-2xl border-0 bg-slate-100 px-3.5 text-base font-medium text-slate-900 outline-none transition focus:bg-white focus:ring-2 focus:ring-brand-500/20 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-700" value={waybillInput} onChange={(e) => setWaybillInput(e.target.value)} />
+        <input id="tracking-input" type="text" placeholder="Waybill" aria-label="Waybill" className="tc-tracking-input h-12 min-w-0 w-full rounded-2xl border-0 bg-slate-100 px-3.5 text-base font-medium text-slate-900 outline-none transition focus:bg-white focus:ring-2 focus:ring-brand-500/20 dark:bg-slate-800 dark:text-white dark:focus:bg-slate-700" value={waybillInput} onChange={(e) => setWaybillInput(e.target.value)} />
         <Button type="submit" disabled={isTracking} className="tc-tracking-button h-12 rounded-2xl px-4 text-sm font-extrabold shadow-sm">{isTracking ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" /> : 'Track'}</Button>
       </form>
       {trackingError && <p className="relative z-10 mt-1.5 text-sm font-medium text-red-600 dark:text-red-400">{trackingError}</p>}
