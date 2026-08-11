@@ -13,6 +13,7 @@ interface DeepSapphireDashboardProps {
   onNavigateToPostCargo?: () => void;
   onNavigateToAccount?: () => void;
   onNavigateToSupport?: () => void;
+  onNavigateToTrack?: () => void;
   userPhone?: string;
   userRole?: string;
   activeView?: string;
@@ -23,6 +24,7 @@ export default function DeepSapphireDashboard({
   onNavigateToPostCargo,
   onNavigateToAccount,
   onNavigateToSupport,
+  onNavigateToTrack,
   userPhone = '0803XXXXXXX',
   userRole = 'CUSTOMER',
   activeView,
@@ -71,9 +73,9 @@ export default function DeepSapphireDashboard({
             <section className="mt-7" aria-label="Quick actions">
               <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Quick actions</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Move cargo forward</h2></div>
               <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-3">
-                <Button onClick={onNavigateToNetwork} className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8] active:scale-[0.99]">Find Transport</Button>
+                <Button onClick={onNavigateToNetwork} className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8] active:scale-[0.99]">Find Truck</Button>
                 <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8]">Post Cargo</Button>
-                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8]"><MapPinned size={15} className="mr-1.5 shrink-0 text-emerald-600" />Track Shipment</Button>
+                <Button onClick={onNavigateToTrack} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8]"><MapPinned size={15} className="mr-1.5 shrink-0 text-emerald-600" />Track Shipment</Button>
               </div>
             </section>
 
