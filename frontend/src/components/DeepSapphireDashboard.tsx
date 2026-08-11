@@ -73,6 +73,7 @@ export default function DeepSapphireDashboard({
               <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-3">
                 <Button onClick={onNavigateToNetwork} className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8] active:scale-[0.99]">Find Transport</Button>
                 <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8]">Post Cargo</Button>
+                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8]"><MapPinned size={15} className="mr-1.5 shrink-0 text-emerald-600" />Track Shipment</Button>
               </div>
             </section>
 
