@@ -113,7 +113,7 @@ export default function App() {
           </header>
         )}
 
-        <div className={`min-h-0 flex-1 flex flex-col ${dashboardViews.includes(activeView) ? 'overflow-hidden p-0' : 'overflow-y-auto overflow-x-hidden scrollbar-none ' + (['account', 'wallet', 'reports', 'settings'].includes(activeView) ? 'pb-24' : 'p-3 pb-24')}`}>
+        <div className={`min-h-0 flex-1 flex flex-col ${dashboardViews.includes(activeView) || ['account', 'wallet', 'reports', 'settings'].includes(activeView) ? 'overflow-hidden p-0' : 'overflow-y-auto overflow-x-hidden scrollbar-none p-3 pb-24'}`}>
           <Suspense fallback={<div className="flex flex-1 items-center justify-center p-8"><div className="h-8 w-8 animate-spin rounded-full border-4 border-brand-500 border-t-transparent" /></div>}>
             {activeView === 'admin' || (isAdmin && dashboardViews.includes(activeView)) ? (
               isAdmin ? <AdminPortalGenerator currentRole={activeRole} userPhone={userPhone} userEmail={userEmail} /> : (
