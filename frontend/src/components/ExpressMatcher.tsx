@@ -143,9 +143,6 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
 
           {!(mode === 'SHIPPER' && shipperSubMode === 'POST') && (
             <header className="mb-5 text-center">
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-1.5 text-[10px] font-extrabold uppercase tracking-[0.09em] text-brand-700 ring-1 ring-brand-100 dark:bg-brand-950 dark:text-brand-300 dark:ring-brand-900"><Handshake size={12} /> Direct connection & free negotiation</span>
-              <h1 className="mt-3 text-[25px] font-extrabold tracking-tight text-[#0B1F44] dark:text-white sm:text-3xl">{mode === 'SHIPPER' ? 'Find a Verified Truck Instantly' : 'Grab Premium Haulage Jobs Instantly'}</h1>
-              <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-slate-600 dark:text-slate-400">Get a baseline price match, negotiate directly on the platform, or call to finalize your arrangement.</p>
             </header>
           )}
 
