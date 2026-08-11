@@ -125,10 +125,22 @@ export default function App() {
               <TransporterHome onNavigate={setActiveView} userPhone={userPhone} />
             ) : activeView === 'shipments' && isShipper ? (
               <ShipperShipmentsPage />
+            ) : activeView === 'track-shipments' && isShipper ? (
+              <DeepSapphireDashboard
+                onNavigateToNetwork={() => setActiveView('network')}
+                onNavigateToPostCargo={() => setActiveView('post-load')}
+                onNavigateToAccount={() => setActiveView('account')}
+                onNavigateToSupport={handleNavigateToSupportWithHighlight}
+                onNavigateToTrack={() => setActiveView('track-shipments')}
+                userPhone={userPhone}
+                userRole={activeRole}
+                activeView="track-shipments"
+              />
             ) : dashboardViews.includes(activeView) && isShipper ? (
               <DeepSapphireDashboard
                 onNavigateToNetwork={() => setActiveView('network')}
                 onNavigateToPostCargo={() => setActiveView('post-load')}
+                onNavigateToTrack={() => setActiveView('track-shipments')}
                 onNavigateToAccount={() => setActiveView('account')}
                 onNavigateToSupport={handleNavigateToSupportWithHighlight}
                 userPhone={userPhone}

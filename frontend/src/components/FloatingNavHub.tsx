@@ -26,7 +26,7 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
   const customerNavItems = [
     { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
     { id: 'shipments', label: 'Shipments', icon: Package },
-    { id: 'network', label: 'Find Transport', icon: Briefcase },
+    { id: 'network', label: 'Find Truck', icon: Briefcase },
     { id: 'track-shipments', label: 'Track', icon: MapPin },
     { id: 'post-load', label: 'Post Cargo', icon: Package },
     { id: 'settings', label: 'Account', icon: Settings },
