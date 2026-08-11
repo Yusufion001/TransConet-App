@@ -13,7 +13,8 @@ interface TransporterHomeProps {
  */
 export default function TransporterHome({ onNavigate, userPhone }: TransporterHomeProps) {
   const actions = [
-    { view: 'marketplace', icon: BriefcaseBusiness, title: 'Find loads', text: 'Browse available cargo and matching opportunities.' },
+    { view: 'find-load-match', icon: BriefcaseBusiness, title: 'Find Load Match', text: 'Find cargo that matches your fleet, route and capacity.' },
+    { view: 'register-fleet', icon: Truck, title: 'Register Fleet', text: 'Register and verify your vehicles for load matching.' },
     { view: 'driver-dashboard', icon: Navigation, title: 'My trips', text: 'Manage assigned trips and delivery progress.' },
     { view: 'fleet', icon: Truck, title: 'Fleet', text: 'Manage vehicles and verification.' },
     { view: 'wallet', icon: CircleDollarSign, title: 'Earnings', text: 'View your existing financial activity.' },

@@ -36,8 +36,9 @@ export function FloatingNavHub({ isAdminAuthorized, onLogout, activeRole }: Floa
 
   const transporterNavItems = [
     { id: 'dashboard', label: 'Home', icon: LayoutDashboard },
-    { id: 'marketplace', label: 'Find Loads', icon: Briefcase },
+    { id: 'find-load-match', label: 'Find Load Match', icon: Briefcase },
     { id: 'driver-dashboard', label: 'My Trips', icon: Navigation },
+    { id: 'register-fleet', label: 'Register Fleet', icon: Truck },
     { id: 'fleet', label: 'Fleet', icon: Truck },
     { id: 'my-bids', label: 'My Bids', icon: Handshake },
     { id: 'wallet', label: 'Earnings', icon: Activity },

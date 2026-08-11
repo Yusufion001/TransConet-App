@@ -156,14 +156,6 @@ export default function ExpressMatcher({ initialMode = 'SHIPPER', initialSubMode
             </div>
           )}
 
-          {mode === 'TRANSPORTER' && (
-            <div className="mb-5 overflow-x-auto scrollbar-none">
-              <div className="mx-auto flex w-max items-center gap-1 rounded-full bg-white p-1.5 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
-                <Button onClick={() => { setTransporterSubMode('JOBS'); setActiveMatch(null); }} className={tabClass(transporterSubMode === 'JOBS')}>Find Load Matches</Button>
-                <Button onClick={() => { setTransporterSubMode('REGISTER'); setActiveMatch(null); }} className={tabClass(transporterSubMode === 'REGISTER')}>Register Fleet</Button>
-              </div>
-            </div>
-          )}
 
           {acceptedJob ? (
             <TrackingView acceptedJob={acceptedJob} setAcceptedJob={setAcceptedJob} detailsProvided={detailsProvided} setDetailsProvided={setDetailsProvided} mode={mode} activeMatch={activeMatch} pickupDetails={pickupDetails} setPickupDetails={setPickupDetails} deliveryDetails={deliveryDetails} setDeliveryDetails={setDeliveryDetails} />
