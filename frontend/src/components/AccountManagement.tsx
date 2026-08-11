@@ -193,11 +193,11 @@ export default function AccountManagement({ initialSection = null }: AccountMana
       )}
 
       {/* Dashboard Screen */}
-      <div className="relative flex-1 w-full h-full min-h-full sm:min-h-[650px] overflow-hidden bg-slate-50 dark:bg-slate-800  sm:rounded-2xl sm:border border-slate-200 dark:border-slate-700 ">
+      <div className="relative flex min-h-0 w-full flex-1 flex-col overflow-hidden bg-slate-50 dark:bg-slate-800 sm:rounded-2xl sm:border border-slate-200 dark:border-slate-700">
         
         {/* Main Dashboard View */}
         {!activeSection && (
-          <div className="h-full overflow-y-auto custom-scrollbar pb-6">
+          <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar pb-[calc(6rem+env(safe-area-inset-bottom))]">
             
             {/* Header Section */}
             <div className="flex flex-row items-center justify-between p-6">
