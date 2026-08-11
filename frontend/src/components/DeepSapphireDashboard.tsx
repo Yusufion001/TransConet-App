@@ -57,7 +57,7 @@ export default function DeepSapphireDashboard({
 
         <div className="min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain [-webkit-overflow-scrolling:touch]">
           <div className="mx-auto w-full max-w-[1180px] px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pt-5 md:px-7 lg:px-8">
-            <section className="relative min-h-[205px] overflow-hidden rounded-[26px] bg-[#0B1F44] text-white shadow-[0_14px_35px_rgba(11,31,68,0.14)]" aria-labelledby="operations-hub-title">
+            <section className="tc-operations-hub relative min-h-[205px] overflow-hidden rounded-[26px] bg-[#0B1F44] text-white shadow-[0_14px_35px_rgba(11,31,68,0.14)]" aria-labelledby="operations-hub-title">
               <div className="absolute inset-0 bg-gradient-to-br from-[#0B1F44] via-[#123567] to-[#0B1F44]" />
               <div className="absolute -right-10 -top-16 h-52 w-52 rounded-full bg-brand-400/20 blur-3xl" />
               <div className="absolute -bottom-20 right-10 h-44 w-44 rounded-full bg-cyan-300/10 blur-3xl" />
@@ -71,9 +71,9 @@ export default function DeepSapphireDashboard({
             <section className="mt-7" aria-label="Quick actions">
               <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Quick actions</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Move cargo forward</h2></div>
               <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-3">
-                <Button onClick={onNavigateToNetwork} className="min-h-[56px] w-full justify-start rounded-[18px] bg-brand-600 px-4 text-left text-[14px] font-extrabold text-white shadow-sm hover:bg-brand-700 active:scale-[0.99]"><PackageSearch size={19} className="mr-3 shrink-0" />Find Transport</Button>
-                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[56px] w-full justify-start rounded-[18px] border-0 bg-white px-4 text-left text-[14px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><FileText size={19} className="mr-3 shrink-0 text-brand-600" />Post Cargo</Button>
-                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-[56px] w-full justify-start rounded-[18px] border-0 bg-white px-4 text-left text-[14px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><MapPinned size={19} className="mr-3 shrink-0 text-emerald-600" />Track Shipment</Button>
+                <Button onClick={onNavigateToNetwork} className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] bg-brand-600 px-3 text-left text-[12px] font-extrabold text-white shadow-sm hover:bg-brand-700 active:scale-[0.99]"><PackageSearch size={15} className="mr-1.5 shrink-0" />Find Transport</Button>
+                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-white px-3 text-left text-[12px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><FileText size={15} className="mr-1.5 shrink-0 text-brand-600" />Post Cargo</Button>
+                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-white px-3 text-left text-[12px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><MapPinned size={15} className="mr-1.5 shrink-0 text-emerald-600" />Track Shipment</Button>
               </div>
             </section>
 

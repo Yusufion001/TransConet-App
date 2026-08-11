@@ -24,8 +24,20 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
+
     overflow-x: hidden;
+    overflow-y: auto;
+
     -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+
+    touch-action: pan-y;
+
+    scrollbar-width: none;
+  }
+
+#root .tc-dashboard-main > .overflow-y-auto::-webkit-scrollbar {
+    display: none;
   }
 
   #root .tc-dashboard-main > .overflow-y-auto > div {
@@ -59,6 +71,11 @@
   #root .tc-dashboard .grid[class*="grid-cols-3"],
   #root .tc-dashboard .grid[class*="grid-cols-4"] {
     grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Compact cargo-operation card spacing */
+  #root .tc-dashboard section[aria-label="Cargo operations"] > div:last-child {
+    gap: 12px !important;
   }
 
   #root .tc-dashboard-grid,
@@ -258,5 +275,87 @@
   #root .tc-dashboard-grid > *,
   #root .tc-responsive-grid > * {
     grid-column: auto;
+  }
+}
+
+/* =========================================================
+   COMPACT HOME DASHBOARD CARDS
+   ========================================================= */
+
+@media (max-width: 767px) {
+  /* Operations Hub / hero */
+  #root .tc-dashboard .tc-operations-hub {
+    min-height: 170px !important;
+    height: 170px !important;
+  }
+
+  #root .tc-dashboard .tc-operations-hub > div.relative {
+    min-height: 170px !important;
+  }
+
+  /* Quick navigation actions */
+  #root .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
+    gap: 8px !important;
+  }
+
+  #root .tc-dashboard section[aria-label="Quick actions"] button {
+    min-height: 28px !important;
+    height: 28px !important;
+    width: auto !important;
+    padding: 0 10px !important;
+    border-radius: 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* My Shipments */
+  #root .tc-dashboard-card.tc-my-shipments-card {
+    min-height: 120px !important;
+    height: 120px !important;
+  }
+
+  #root .tc-my-shipments-card .tc-dashboard-card-content {
+    min-height: 120px !important;
+    padding: 14px !important;
+  }
+
+  /* Hide title, description and action */
+  #root .tc-my-shipments-card .tc-dashboard-card-content h3,
+  #root .tc-my-shipments-card .tc-dashboard-card-content p,
+  #root .tc-my-shipments-card .tc-dashboard-card-content > div:last-child {
+    display: none !important;
+  }
+
+  /* Keep the icon compact */
+  #root .tc-my-shipments-card .tc-dashboard-card-content > div:first-child {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Track Freight */
+  #root .tc-dashboard-card.tc-track-shipment-card {
+    min-height: 140px !important;
+    height: 140px !important;
+  }
+
+  #root .tc-track-shipment-card .tc-dashboard-card-content {
+    min-height: 140px !important;
+    padding: 14px !important;
+  }
+
+  /* Boost Load */
+  #root .tc-dashboard-card.tc-boost-load-card {
+    min-height: 140px !important;
+    height: 140px !important;
+  }
+
+  #root .tc-boost-load-card .tc-dashboard-card-content {
+    min-height: 140px !important;
+    padding: 14px !important;
+  }
+
+  /* Compact dashboard rhythm */
+  #root .tc-dashboard-grid,
+  #root .tc-responsive-grid {
+    gap: 12px !important;
   }
 }
