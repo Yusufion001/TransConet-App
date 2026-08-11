@@ -295,7 +295,8 @@
 
   /* Quick navigation actions */
   #root .tc-dashboard section[aria-label="Quick actions"] > div:last-child {
-    gap: 8px !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 12px !important;
   }
 
   #root .tc-dashboard section[aria-label="Quick actions"] button {

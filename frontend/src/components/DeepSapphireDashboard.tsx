@@ -71,18 +71,15 @@ export default function DeepSapphireDashboard({
             <section className="mt-7" aria-label="Quick actions">
               <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Quick actions</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Move cargo forward</h2></div>
               <div className="grid grid-cols-1 gap-3 min-[480px]:grid-cols-3">
-                <Button onClick={onNavigateToNetwork} className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] bg-brand-600 px-3 text-left text-[12px] font-extrabold text-white shadow-sm hover:bg-brand-700 active:scale-[0.99]"><PackageSearch size={15} className="mr-1.5 shrink-0" />Find Transport</Button>
-                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-white px-3 text-left text-[12px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><FileText size={15} className="mr-1.5 shrink-0 text-brand-600" />Post Cargo</Button>
-                <Button onClick={() => document.getElementById('tracking-input')?.focus()} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-white px-3 text-left text-[12px] font-extrabold text-slate-800 shadow-[0_8px_22px_rgba(15,23,42,0.05)] hover:bg-slate-50 dark:bg-slate-900 dark:text-slate-100"><MapPinned size={15} className="mr-1.5 shrink-0 text-emerald-600" />Track Shipment</Button>
+                <Button onClick={onNavigateToNetwork} className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8] active:scale-[0.99]">Find Transport</Button>
+                <Button onClick={onNavigateToPostCargo} variant="ghost" className="min-h-[28px] h-[28px] w-fit justify-start rounded-[10px] border-0 bg-[#F5F5F2] px-3 text-left text-[12px] font-extrabold text-black shadow-[0_4px_12px_rgba(15,23,42,0.05)] hover:bg-[#ECECE8]">Post Cargo</Button>
               </div>
             </section>
 
             <section className="mt-7" aria-label="Cargo operations">
               <div className="mb-3 px-1"><p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Cargo operations</p><h2 className="mt-1 text-[21px] font-black tracking-tight text-[#0B1F44] dark:text-white">Your logistics at a glance</h2></div>
-              <div className="grid w-full min-w-0 grid-cols-1 gap-4 md:grid-cols-2">
-                <div className="min-w-0"><MyShipmentsCard onNavigateToNetwork={onNavigateToNetwork!} /></div>
+              <div className="grid w-full min-w-0 grid-cols-1 gap-4">
                 <div className="min-w-0"><TrackShipmentCard engineStatus={engineStatus} waybillInput={waybillInput} setWaybillInput={setWaybillInput} handleTrackingRequest={handleTrackingRequest} isTracking={isTracking} trackingError={trackingError} /></div>
-                <div className="min-w-0 md:col-span-2"><BoostLoadCard onBoostClick={() => setIsBoostModalOpen(true)} /></div>
               </div>
             </section>
           </div>
