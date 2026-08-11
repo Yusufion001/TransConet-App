@@ -143,9 +143,26 @@ async function startServer() {
 
   const csrfProtection = csurf({ cookie: { httpOnly: true, secure: true, sameSite: 'none' } });
   app.use('/api', (req, res, next) => {
-    if (req.method === 'OPTIONS' || req.path === '/health' || req.path === '/csrf-token' || req.path === '/payments/webhook/paystack' || req.headers.authorization) return next();
-    csrfProtection(req, res, next);
-  });
+  const csrfExemptPaths = [
+    '/health',
+    '/csrf-token',
+    '/payments/webhook/paystack',
+    '/auth/register-pin',
+    '/auth/login-pin',
+    '/auth/request-otp',
+    '/auth/verify-otp',
+  ];
+
+  if (
+    req.method === 'OPTIONS' ||
+    csrfExemptPaths.includes(req.path) ||
+    req.headers.authorization
+  ) {
+    return next();
+  }
+
+  csrfProtection(req, res, next);
+});
 
   app.get('/api/csrf-token', (req, res) => {
     csrfProtection(req, res, (err) => {
