@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "name": "TransConet",
+    "slug": "transconet",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.transconet.app"
+    },
+    "ios": {
+      "bundleIdentifier": "com.transconet.app"
+    }
+  }
+}
